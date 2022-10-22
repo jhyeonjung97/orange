@@ -1,6 +1,7 @@
 from ase.io.vasp import read_vasp_xdatcar
 import matplotlib.pyplot as plt
 from statistics import mean
+import numpy as np
 import sys
 
 element = input(“which element? “)
@@ -17,6 +18,8 @@ for atoms in traj:
     i = i+1
     x.append(i)
     y.append(mean(list))
+
+np.savetxt("z-%s-avg.csv" % element, rows, delimiter =", ", fmt ='% s')
     
 plt.figure(figsize=(4.5, 3.5))
 plt.plot(x, y)
