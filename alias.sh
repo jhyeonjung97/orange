@@ -19,11 +19,15 @@ alias get='python3 ~/bin/orange/get.py'
 alias send='python3 ~/bin/orange/send.py'
 alias port='python3 ~/bin/orange/port.py'
 
-alias pull='git pull'
-alias push='git pull
+alias pull='cd ~/bin/orange
+git pull'
+alias push='cd ~/bin/orange
+git pull
 git add *
 git commit -m "."
-git push origin main'
+git push origin main
+chmod 777 *
+cdw'
 
 #SSH
 alias burning='ssh -X -Y hyeonjung@burning.postech.ac.kr -p 1234'
