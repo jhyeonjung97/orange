@@ -1,9 +1,7 @@
 import sys
 import os
 
-# +
 len=len(sys.argv)
-
 
 if len==2:
     file=input("which files?: ")
@@ -11,6 +9,8 @@ if len==2:
         file='POSCAR'
     elif file=='c' or file=='con':
         file='CONTCAR'
+    elif file=='port':
+        file='~/bin/port/*'
     surv=sys.argv[1]
 elif len==3 and sys.argv[1]=='-r':
     file='-r '+input("which directories?: ")

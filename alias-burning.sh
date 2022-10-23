@@ -1,0 +1,62 @@
+# Emptying trash
+~/bin/empty_basket 2
+# remove
+clear
+
+alias g1='qstat | grep -i "Q g1" '
+alias g2='qstat | grep -i "Q g2" '
+alias g3='qstat | grep -i "Q g3" '
+alias g4='qstat | grep -i "Q g4" '
+alias g5='qstat | grep -i "Q g5" '
+alias mystat='qstat -u hyeonjung'
+alias g='
+g1
+g2
+g3
+g4
+g5'
+
+alias run='cp ~/input_files/run run_slurm.sh'
+alias run1='cp ~/input_files/g1 run_slurm.sh'
+alias run2='cp ~/input_files/g2 run_slurm.sh'
+alias run3='cp ~/input_files/g3 run_slurm.sh'
+alias run4='cp ~/input_files/g4 run_slurm.sh'
+alias run5='cp ~/input_files/g5 run_slurm.sh'
+alias waso1='cp ~/input_files/waso1 run_slurm.sh'
+alias waso2='cp ~/input_files/waso2 run_slurm.sh'
+alias waso3='cp ~/input_files/waso3 run_slurm.sh'
+alias waso4='cp ~/input_files/waso4 run_slurm.sh'
+alias waso5='cp ~/input_files/waso5 run_slurm.sh'
+alias sol1='cp ~/input_files/sol1 run_slurm.sh'
+alias sol2='cp ~/input_files/sol2 run_slurm.sh'
+alias sol3='cp ~/input_files/sol3 run_slurm.sh'
+alias sol4='cp ~/input_files/sol4 run_slurm.sh'
+alias sol5='cp ~/input_files/sol5 run_slurm.sh'
+alias vtst1='cp ~/input_files/vtst1 run_slurm.sh'
+alias vtst2='cp ~/input_files/vtst2 run_slurm.sh'
+alias vtst3='cp ~/input_files/vtst3 run_slurm.sh'
+alias vtst4='cp ~/input_files/vtst4 run_slurm.sh'
+alias vtst5='cp ~/input_files/vtst5 run_slurm.sh'
+alias beef1='cp ~/input_files/beef1 run_slurm.sh'
+alias beef2='cp ~/input_files/beef2 run_slurm.sh'
+alias beef3='cp ~/input_files/beef3 run_slurm.sh'
+alias beef4='cp ~/input_files/beef4 run_slurm.sh'
+alias beef5='cp ~/input_files/beef5 run_slurm.sh'
+alias chdo1='cp ~/input_files/chdo1 run_slurm.sh'
+alias chdo2='cp ~/input_files/chdo2 run_slurm.sh'
+alias chdo3='cp ~/input_files/chdo3 run_slurm.sh'
+alias chdo4='cp ~/input_files/chdo4 run_slurm.sh'
+alias chdo5='cp ~/input_files/chdo5 run_slurm.sh'
+
+alias priority='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q"'
+alias p1='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g1'
+alias p2='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g2'
+alias p3='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g3'
+alias p4='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g4'
+alias p5='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g5'
+alias p='pestat -N'
+alias pestat1='pestat -N | grep g1'
+alias pestat2='pestat -N | grep g2'
+alias pestat3='pestat -N | grep g3'
+alias pestat4='pestat -N | grep g4'
+alias pestat5='pestat -N | grep g5'
