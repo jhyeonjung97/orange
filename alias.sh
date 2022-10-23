@@ -27,7 +27,7 @@ git add *
 git commit -m "."
 git push origin main
 chmod 777 *
-cdw'
+cd'
 
 #SSH
 alias burning='ssh -X -Y hyeonjung@burning.postech.ac.kr -p 1234'
