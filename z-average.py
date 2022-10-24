@@ -19,7 +19,7 @@ for atoms in traj:
     x.append(i)
     y.append(mean(list))
 
-np.savetxt("z-%s-avg.csv" % element, rows, delimiter =", ", fmt ='% s')
+np.savetxt("z-%s-avg.csv" % element, [x, y], delimiter =", ", fmt ='% s')
     
 plt.figure(figsize=(4.5, 3.5))
 plt.plot(x, y)
