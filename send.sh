@@ -31,6 +31,7 @@ fi
     
 read -p "to where?: " path
 
+echo "scp $p$r$file $surv$path"
 scp $p$r$file $surv$path
 
 
