@@ -1,7 +1,7 @@
 #!/bin/bash
 
 read -p "which queue? (g1~g5, gpu): $q"
-read -p -a "which type? (beef, vtst, vaspsol, gam): $type"
+read -a -p "which type? (beef, vtst, vaspsol, gam): $type"
 
 if test -d /TGM/Apps/VASP/VASP_BIN/6.3.2
 then
