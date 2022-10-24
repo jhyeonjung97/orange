@@ -28,7 +28,7 @@ alias nebef='
 date +"%Y-%m-%d %H:%M:%S" >> nebef.txt
 ~/bin/vtstscripts/nebef.pl
 ~/bin/vtstscripts/nebef.pl >> nebef.txt'
-alias z
+alias z='python3 ~/bin/orange/z-position.py'
 
 #RUN_SLURM.SH
 alias sub='python3 ~/bin/orange/sub.py'
