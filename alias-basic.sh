@@ -15,7 +15,7 @@ alias outsend='out
 bash ~/bin/orange/send-vasp.sh'
 alias nebsend='outneb
 bash ~/bin/orange/send-vasp.sh'
-alias nebef.pl='
+alias nebef='
 date +"%Y-%m-%d %H:%M:%S" >> nebef.txt
 ~/bin/vtstscripts/nebef.pl
 ~/bin/vtstscripts/nebef.pl >> nebef.txt'
