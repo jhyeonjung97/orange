@@ -1,6 +1,7 @@
 #INPUT
 alias incar='cp ~/input_files/INCAR .'
 alias k='cp ~/input_files/KPOINTS .'
+alias potcar='python3 ~/
 alias PBE='grep TITEL POTCAR'
 alias vasp='sed -i -e '1h' -e '5G' POSCAR'
 

@@ -1,7 +1,6 @@
 import sys
 import os
 
-# +
 len=len(sys.argv)
 
 if len==2:
@@ -33,6 +32,5 @@ elif surv=='nersc':
 path=input("from where?: ")
 
 os.system("%s %s%s%s ." % (scp, surv, path, file))
-# -
 
 
