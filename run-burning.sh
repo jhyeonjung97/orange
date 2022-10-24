@@ -17,7 +17,7 @@ elif [[ $q == 'g2' ]] || [[ $q == 'g3' ]] ; then
     $node = 20
 elif [[ $q == 'g4' ]]; then
     $node = 24
-elif [[ $q == 'g5' ]] || [[ $q == 'gpu' ]]
+elif [[ $q == 'g5' ]] || [[ $q == 'gpu' ]]; then
     $node = 32
 else
     echo "I've never heard of that kind of node.."

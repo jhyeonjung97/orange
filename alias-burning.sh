@@ -1,5 +1,3 @@
-export here='burning'
-
 alias run='sh run-burning.sh'
 
 alias g1='qstat | grep -i "Q g1" '
