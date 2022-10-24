@@ -8,17 +8,17 @@ alias vasp='sed -i -e '1h' -e '5G' POSCAR'
 alias pos2cif='~/bin/vtstscripts/pos2cif.pl POSCAR'
 alias con2cif='~/bin/vtstscripts/pos2cif.pl CONTCAR'
 
-alias input='python3 ~/bin/orange/input.py'
-alias out='python3 ~/bin/orange/output.py'
-alias outneb='python3 ~/bin/orange/outneb.py'
+alias input='bash ~/bin/orange/input.sh'
+alias out='bash ~/bin/orange/output.sh'
+alias outneb='bash ~/bin/orange/outneb.sh'
 alias outsend='out
-python3 ~/bin/orange/send-vasp.py'
+bash ~/bin/orange/send-vasp.sh'
 alias nebsend='outneb
-python3 ~/bin/orange/send-vasp.py'
+bash ~/bin/orange/send-vasp.sh'
 alias nebef.pl='
 date +"%Y-%m-%d %H:%M:%S" >> nebef.txt
-~/bin/vtstscripts-981/nebef.pl
-~/bin/vtstscripts-981/nebef.pl >> nebef.txt'
+~/bin/vtstscripts/nebef.pl
+~/bin/vtstscripts/nebef.pl >> nebef.txt'
 alias xc='xcell.py
 mv out*.vasp POSCAR'
 
