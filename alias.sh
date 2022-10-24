@@ -20,14 +20,14 @@ alias get='sh ~/bin/orange/get.sh'
 alias send='sh ~/bin/orange/send.sh'
 alias port='sh ~/bin/orange/port.sh'
 
-alias orange='path=$(pwd)
+alias orange='here=$PWD
 cd ~/bin/orange
 git pull
-cd $path'
-alias shoulder='path=$(pwd)
+cd $here'
+alias shoulder='here=$PWD
 cd ~/bin/shoulder
 git pull
-cd $path'
+cd $here'
 
 #SSH
 alias burning='ssh -X -Y hyeonjung@burning.postech.ac.kr -p 1234'
