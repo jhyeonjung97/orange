@@ -1,12 +1,12 @@
 #!/bin/bash
 
 read -p "which queue? (g1~g5, gpu): $q"
-read -a -p "which type? (beef, vtst, vaspsol, gam): $type"
+echo -n "which type? (beef, vtst, vaspsol, gam): "
+read -a type
 
-if test -d /TGM/Apps/VASP/VASP_BIN/6.3.2
-then
-    cp /TGM/Apps/VASP/VASP_BIN/6.3.2/vasp.6.3.2.vtst.std.x run_slurm.sh
-elif
+if test -d /TGM/Apps/VASP/VASP_BIN/6.3.2; then
+    cp ~/input_files/run_slurm.sh .
+else
     echo "Here is not burning.postech.ac.kr..."
     break
 fi
@@ -24,8 +24,7 @@ function in_array {
     return 1
 }
 
-if in_array "vtst" "${type[*]}"
-then
+if in_array "vtst" "${type[*]}"; then
     sed -i 's/std/vtst.std/' run_slurm.sh
 fi
 

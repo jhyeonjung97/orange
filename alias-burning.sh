@@ -1,3 +1,5 @@
+alias run='python3 run-burning.sh'
+
 alias g1='qstat | grep -i "Q g1" '
 alias g2='qstat | grep -i "Q g2" '
 alias g3='qstat | grep -i "Q g3" '
