@@ -24,8 +24,8 @@ else
     break
 fi
 
-sed -i -e "/ntasks-per-node/c\#SBATCH --ntasks-per-node=$node"
-sed -i -e "/partition/c\#SBATCH --partition=$q"
+sed -i "/ntasks-per-node/c\#SBATCH --ntasks-per-node=$node" run_slurm.sh
+sed -i "/partition/c\#SBATCH --partition=$q" run_slurm.sh
 
 function in_array {
     ARRAY=$2
