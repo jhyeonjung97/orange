@@ -6,6 +6,7 @@ jupyter notebook'
 alias cdw='cd ~/Desktop/'
 alias vbash='vi ~/.bash_profile'
 alias sbash='source ~/.bash_profile'
+alias vasp2png='python ~/bin/shoulder/vasp2png.py'
 
 alias orange='cd ~/bin/orange
 git pull

@@ -7,9 +7,9 @@ if [[ $1 == '-r' ]]; then
 else
     surv=$1
     read -p "which files?: " file
-    if [ $file == 'p' ] || [ $file == 'pos' ]; then
+    if [[ $file == 'p' ]] || [[ $file == 'pos' ]]; then
         file='POSCAR'
-    elif [ $file == 'c' ] || [ $file == 'con' ]; then
+    elif [[ $file == 'c' ]] || [[ $file == 'con' ]]; then
         file='CONTCAR'
     fi
 fi
@@ -27,7 +27,12 @@ elif [[ $surv == 'nersc' ]]; then
     surv='jiuy97@perlmutter-p1.nersc.gov:'
 fi
 
-read -p "from where?: " path
+if [[ $file == 'port' ]]; then
+    path='~/port'
+    file='*'
+else
+    read -p "from where?: " path
+fi
 
 echo "scp $p$r$surv$path/$file ."
 scp $p$r$surv$path/$file .

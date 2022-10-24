@@ -20,14 +20,14 @@ alias get='sh ~/bin/orange/get.sh'
 alias send='sh ~/bin/orange/send.sh'
 alias port='sh ~/bin/orange/port.sh'
 
-alias orange='here=$PWD
+alias orange='path=$PWD
 cd ~/bin/orange
 git pull
-cd $here'
-alias shoulder='here=$PWD
+cd $path'
+alias shoulder='path=$PWD
 cd ~/bin/shoulder
 git pull
-cd $here'
+cd $path'
 
 #SSH
 alias burning='ssh -X -Y hyeonjung@burning.postech.ac.kr -p 1234'
@@ -44,7 +44,7 @@ echo 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'
 
 #ASE
 alias ag='ase gui'
-alias aga='ag *'
+alias aga='ag *.vasp'
 alias pos='ag POSCAR'
 alias posa='ag */POSCAR'
 alias pos3='ag 00/POSCAR 01/POSCAR 02/POSCAR 03/POSCAR 04/POSCAR'
