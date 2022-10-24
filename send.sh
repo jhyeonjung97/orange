@@ -23,9 +23,9 @@ elif [[ $surv == 'mac' ]]; then
     surv='hailey@134.79.69.172:~/Desktop/'
 elif [[ $surv == 'kisti' ]]; then
     surv='x2431a10@nurion.ksc.re.kr:'
-elif [[ "$surv" == "cori" ]]; then
+elif [[ $surv == 'cori' ]]; then
     surv='jiuy97@cori.nersc.gov:'
-elif [[ "$surv" == 'nersc']]; then
+elif [[ $surv == 'nersc' ]]; then
     surv='jiuy97@perlmutter-p1.nersc.gov:'
 fi
     
