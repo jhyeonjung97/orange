@@ -1,17 +1,26 @@
-echo "POSCAR? INCAR? run_slurm.sh?"
+#!/bin/bash
 
-read -p "directory from: " a
-read -p "directory to: " b
+if [[ ! -e "INCAR" ]]; then
+    echo "don't forget INCAR.."
+    incar
+    break
+elif [[ ! -e "KPOINTS" ]]; then
+    echo "don't forget KPOINTS.."
+    k
+    break
+elif [[ ! -e "run_slurm.sh" ]]; then
+    echo "don't forget run_slurm.sh.."
+    run
+    break
+fi
+
 read -p "POSCARs starts with: " p
 read -p "job name: " n
 
-for i in {$a+1..$b}
+for i in {$1..$2}
 do
-    cp -r $a $i
-done
-
-for i in {$a..$b}
-do
+    mkdir $i
+    cp INCAR KPOINTS run_slurm.sh $1
     cp $p$i.vasp $i/POSCAR
     cd $i
     xc
