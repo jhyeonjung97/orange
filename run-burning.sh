@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p "which queue? (g1~g5, gpu): $q"
+read -p "which queue? (g1~g5, gpu): " q
 echo -n "which type? (beef, vtst, vaspsol, gam): "
 read -a type
 

@@ -16,7 +16,7 @@ alias unzip='tar -xvf'
 alias vbash='vi ~/.bashrc'
 alias sbash='source ~/.bashrc'
 
-alias get='python3 ~/bin/orange/get.py'
+alias get='bash ~/bin/orange/get.sh'
 alias send='python3 ~/bin/orange/send.py'
 alias port='python3 ~/bin/orange/port.py'
 
