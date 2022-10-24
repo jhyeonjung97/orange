@@ -15,12 +15,19 @@ alias outsend='out
 bash ~/bin/orange/send-vasp.sh'
 alias nebsend='outneb
 bash ~/bin/orange/send-vasp.sh'
+alias xc='xcell.py
+mv out*.vasp POSCAR'
+
+#OUTPUT
+alias e='grep E0 stdout*'
+alias ta='tail -n 6 */stdout*'
+alias fermi='grep E-fermi OUTCAR'
+alias kpoint='grep subdivisionlength vasprun.xml -A 1'
+alias time='tail OUTCAR -n 50 | grep sec'
 alias nebef='
 date +"%Y-%m-%d %H:%M:%S" >> nebef.txt
 ~/bin/vtstscripts/nebef.pl
 ~/bin/vtstscripts/nebef.pl >> nebef.txt'
-alias xc='xcell.py
-mv out*.vasp POSCAR'
 
 #RUN_SLURM.SH
 alias sub='python3 ~/bin/orange/sub.py'
@@ -38,12 +45,6 @@ cp c/INCAR c/KPOINTS c/POTCAR c/run_slurm.sh c/initial.vasp .
 cp c/CONTCAR POSCAR
 cp c/conti.vasp POSCAR
 sub'
-
-#OUTPUT
-alias e='grep E0 stdout*'
-alias ta='tail -n 6 */stdout*'
-alias fermi='grep E-fermi OUTCAR'
-alias kpoint='grep subdivisionlength vasprun.xml -A 1'
 
 #INCAR
 alias chg='python3 ~/bin/orange/change.py'
