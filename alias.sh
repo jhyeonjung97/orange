@@ -8,6 +8,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias cal='bc -l'
 alias cdw='cd ~/scratch'
+alias bin='cd ~/bin'
 
 alias zip='tar -cvzf'
 alias unzip='tar -xvf'
@@ -19,15 +20,10 @@ alias get='python3 ~/bin/orange/get.py'
 alias send='python3 ~/bin/orange/send.py'
 alias port='python3 ~/bin/orange/port.py'
 
-alias pull='cd ~/bin/orange
+alias orange='cd ~/bin/orange
 git pull'
-alias push='cd ~/bin/orange
-git pull
-git add *
-git commit -m "."
-git push origin main
-chmod 777 *
-cd'
+alias shoulder='cd ~/bin/shoulder
+git pull'
 
 #SSH
 alias burning='ssh -X -Y hyeonjung@burning.postech.ac.kr -p 1234'

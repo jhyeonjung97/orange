@@ -3,20 +3,23 @@ import os
 
 len=len(sys.argv)
 
-if len==2:
+get -r cori
+get -r 
+get
+get cori
+
+if sys.argv[1]=='-r':
+    surv=sys.argv[2]
+    scp='scp -r'
+    file=input("which directories?: ")
+else:
+    surv=sys.argv[1]
+    scp='scp'
     file=input("which files?: ")
     if file=='p' or file=='pos':
         file='POSCAR'
     elif file=='c' or file=='con':
         file='CONTCAR'
-    surv=sys.argv[1]
-    scp='scp'
-elif len==3 and sys.argv[1]=='-r':
-    file=input("which directories?: ")
-    surv=sys.argv[2]
-    scp='scp -r'
-else:
-    print("would you like something to drink?")
 
 if not surv:
     surv='hyeonjung@burning.postech.ac.kr:'
