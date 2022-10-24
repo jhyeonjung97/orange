@@ -2,7 +2,7 @@
 
 read -p "job name: " a
 read -p "how many: " b
-if [ -z "$b" ]; then
+if [[ -z "$b" ]]; then
     sed -i -e "/job-name/c\#SBATCH --job-name="$a"" run_slurm.sh
 else
     for i in {0..$b}

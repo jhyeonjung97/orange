@@ -11,13 +11,13 @@ read -p "which queue? (g1~g5, gpu): " q
 echo -n "which type? (beef, vtst, vaspsol, gam): "
 read -a type
 
-if [ "$q" == "g1"]; then
+if [[ $q == 'g1' ]]; then
     $node = 12
-elif [ "$q" == "g2"] || [ "$q" == "g3"] ; then
+elif [[ $q == 'g2' ]] || [[ $q == 'g3' ]] ; then
     $node = 20
-elif [ "$q" == "g4"]; then
+elif [[ $q == 'g4' ]]; then
     $node = 24
-elif [ "$q" == "g5"] || [ "$q" == "gpu"]
+elif [[ $q == 'g5' ]] || [[ $q == 'gpu' ]]
     $node = 32
 else
     echo "I've never heard of that kind of node.."
@@ -29,9 +29,9 @@ sed -i -e "/partition/c\#SBATCH --partition=$q"
 
 function in_array {
     ARRAY=$2
-    for e in ${ARRAY[*]}
+    for e in ${ARRAY[[*]]}
     do
-        if [[ "$e" == "$1" ]]
+        if [[ $e == $1 ]]
         then
             return 0
         fi
@@ -40,22 +40,22 @@ function in_array {
     return 1
 }
 
-if in_array "vtst" "${type[*]}"; then
+if in_array "vtst" "${type[[*]]}"; then
     sed -i 's/std/vtst.std/' run_slurm.sh
 fi
 
-if in_array "beef" "${type[*]}"
+if in_array "beef" "${type[[*]]}"
 then
     sed -i 's/6.3.2./6.3.2.beef/' run_slurm.sh
-elif in_array "vaspsol" "${type[*]}"
+elif in_array "vaspsol" "${type[[*]]}"
     sed -i 's/6.3.2./6.3.2.vaspsol/' run_slurm.sh
-elif in_array "dftd4" "${type[*]}"
+elif in_array "dftd4" "${type[[*]]}"
     sed -i 's/6.3.2./6.3.2.dftd4/' run_slurm.sh
 fi
 
-if in_array "gam" "${type[*]}"
+if in_array "gam" "${type[[*]]}"
 then
     sed -i 's/std/gam/' run_slurm.sh
-elif in_array "ncl" "${type[*]}"
+elif in_array "ncl" "${type[[*]]}"
     sed -i 's/std/ncl/' run_slurm.sh
 fi

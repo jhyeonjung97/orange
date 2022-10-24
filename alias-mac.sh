@@ -3,6 +3,7 @@ jupyter-lab'
 alias jn='cd ~/bin
 jupyter notebook'
 
+alias cdw='cd ~/Desktop/'
 alias vbash='vi ~/.bash_profile'
 alias sbash='source ~/.bash_profile'
 

@@ -1,7 +1,7 @@
 read -p "how many images: " a
 read -p "files starts with: " f
 
-$b = $a+1
+b=$a+1
 for i in {0..$a+1}
 do
     cp 0$i/POSCAR $b-p$i.vasp
@@ -9,4 +9,4 @@ do
 done
 
 cp 00/POSCAR $f-c0.vasp
-cp 0$b/POSCAR '+c+'-c$b.vasp', shell=True)
+cp 0$b/POSCAR $f-c$b.vasp

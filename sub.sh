@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
+if [ -z $1 ]; then
     sed -i '/NPAR/c\NPAR   = 4' INCAR
     grep NPAR INCAR
     grep Selective POSCAR

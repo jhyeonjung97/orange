@@ -1,9 +1,9 @@
 read -p "which files?: " a
 
-if [ "$a" == "p" ]; then
-    $a = "POSCAR"
-elif [ "$a" == "c" ]; then
-    $a = "CONTCAR"
+if [[ $a == 'p' ]]; then
+    a='POSCAR'
+elif [[ $a == 'c' ]]; then
+    a='CONTCAR'
 fi
 
 read -p "files starts with: " b
