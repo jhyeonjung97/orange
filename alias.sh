@@ -20,10 +20,14 @@ alias get='bash ~/bin/orange/get.sh'
 alias send='bash ~/bin/orange/send.sh'
 alias port='bash ~/bin/orange/port.sh'
 
-alias orange='cd ~/bin/orange
-git pull'
-alias shoulder='cd ~/bin/shoulder
-git pull'
+alias orange='path=$(pwd)
+cd ~/bin/orange
+git pull
+cd $path'
+alias shoulder='path=$(pwd)
+cd ~/bin/shoulder
+git pull
+cd $path'
 
 #SSH
 alias burning='ssh -X -Y hyeonjung@burning.postech.ac.kr -p 1234'
@@ -31,6 +35,9 @@ alias kisti='ssh -X -Y x2431a10@nurion.ksc.re.kr'
 alias nurion='ssh -X -Y x2347a10@nurion.ksc.re.kr'
 alias cori='ssh -X -Y jiuy97@cori.nersc.gov'
 alias nersc='ssh -X -Y jiuy97@perlmutter-p1.nersc.gov'
+
+alias send='python3 ~/bin/orange/send.py'
+alias get='python3 ~/bin/orange/get.py'
 
 alias token='echo jhyeonjung97
 echo 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'
