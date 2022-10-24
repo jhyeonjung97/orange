@@ -29,7 +29,7 @@ sed -i -e "/partition/c\#SBATCH --partition=$q"
 
 function in_array {
     ARRAY=$2
-    for e in ${ARRAY[[*]]}
+    for e in ${ARRAY[*]}
     do
         if [[ $e == $1 ]]; then
             return 0
