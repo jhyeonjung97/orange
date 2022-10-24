@@ -1,3 +1,5 @@
+export here='burning'
+
 alias run='python3 run-burning.sh'
 
 alias g1='qstat | grep -i "Q g1" '

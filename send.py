@@ -1,13 +1,22 @@
 import sys
 import os
 
-if sys.argv[1]=='-r':
-    surv=sys.argv[2]
-    scp='scp -r'
-    file='-r '+input("which directories?: ")
+len = len(sys.argv)
+
+r=''
+p=''
+
+if '-r' in sys.argv:
+    if len==2:
+        surv='burning'
+    else:
+        surv=sys.argv[2]
+    file=input("which directories?: ")
 else:
-    surv=sys.argv[1]
-    scp='scp'
+    if len==1:
+        surv='burning'
+    else:
+        surv=sys.argv[1]
     file=input("which files?: ")
     if file=='p' or file=='pos':
         file='POSCAR'
@@ -16,7 +25,10 @@ else:
     elif file=='port':
         file='~/bin/port/*'
 
-if not surv:
+scp='scp'
+
+if surv=='burning':
+    scp=scp+' -P 1234'
     surv='hyeonjung@burning.postech.ac.kr:'
 elif surv=='mac':
     surv='hailey@134.79.69.172:~/Desktop/'
@@ -29,6 +41,6 @@ elif surv=='nersc':
     
 path=input("to where?: ")
 
-os.system("scp %s %s%s" % (file, surv, path))
+os.system(f"scp {p} {r} {file} {surv}{path}")
 
 
