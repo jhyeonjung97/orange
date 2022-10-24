@@ -25,6 +25,10 @@ do
                     cp $file ../$filename$i.$extension
                 fi
             fi
+            
+            if [[ $pattern == 'POSCAR' ]] && [[ $file =~ 'initial' ]]; then
+                cp $file ../$filename$i.vasp
+            fi
         done
         cd ..
     fi
