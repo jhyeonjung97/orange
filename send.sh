@@ -1,10 +1,5 @@
 #!/bin/bash
 
-send
-send -r
-send -r cori
-send cori
-
 if [[ $1 == '-r' ]]; then
     surv=$2
     r='-r '
