@@ -8,13 +8,13 @@ alias vasp='sed -i -e '1h' -e '5G' POSCAR'
 alias pos2cif='~/bin/vtstscripts/pos2cif.pl POSCAR'
 alias con2cif='~/bin/vtstscripts/pos2cif.pl CONTCAR'
 
-alias input='bash ~/bin/orange/input.sh'
-alias out='bash ~/bin/orange/output.sh'
-alias outneb='bash ~/bin/orange/outneb.sh'
+alias input='sh ~/bin/orange/input.sh'
+alias out='sh ~/bin/orange/output.sh'
+alias outneb='sh ~/bin/orange/outneb.sh'
 alias outsend='out
-bash ~/bin/orange/send-vasp.sh'
+sh ~/bin/orange/send-vasp.sh'
 alias nebsend='outneb
-bash ~/bin/orange/send-vasp.sh'
+sh ~/bin/orange/send-vasp.sh'
 alias xc='xcell.py
 mv out*.vasp POSCAR'
 
@@ -33,9 +33,9 @@ date +"%Y-%m-%d %H:%M:%S" >> nebef.txt
 alias sub='python3 ~/bin/orange/sub.py'
 alias resub='rm STD* std*
 sub'
-alias autosub='bash ~/bin/orange/autosub.sh'
+alias autosub='sh ~/bin/orange/autosub.sh'
 alias puresub='sbatch run_slurm.sh'
-alias name='bash ~/bin/orange/jobname.sh'
+alias name='sh ~/bin/orange/jobname.sh'
 
 alias conti='rm c
 mkdir c

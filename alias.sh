@@ -16,9 +16,9 @@ alias unzip='tar -xvf'
 alias vbash='vi ~/.bashrc'
 alias sbash='source ~/.bashrc'
 
-alias get='bash ~/bin/orange/get.sh'
-alias send='bash ~/bin/orange/send.sh'
-alias port='bash ~/bin/orange/port.sh'
+alias get='sh ~/bin/orange/get.sh'
+alias send='sh ~/bin/orange/send.sh'
+alias port='sh ~/bin/orange/port.sh'
 
 alias orange='path=$(pwd)
 cd ~/bin/orange
