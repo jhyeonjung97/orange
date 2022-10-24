@@ -43,18 +43,16 @@ if in_array "vtst" "${type[*]}"; then
     sed -i 's/std/vtst.std/' run_slurm.sh
 fi
 
-if in_array "beef" "${type[*]}"
-then
+if in_array "beef" "${type[*]}"; then
     sed -i 's/6.3.2./6.3.2.beef/' run_slurm.sh
-elif in_array "vaspsol" "${type[*]}"
+elif in_array "vaspsol" "${type[*]}"; then
     sed -i 's/6.3.2./6.3.2.vaspsol/' run_slurm.sh
-elif in_array "dftd4" "${type[*]}"
+elif in_array "dftd4" "${type[*]}"; then
     sed -i 's/6.3.2./6.3.2.dftd4/' run_slurm.sh
 fi
 
-if in_array "gam" "${type[*]}"
-then
+if in_array "gam" "${type[*]}"; then
     sed -i 's/std/gam/' run_slurm.sh
-elif in_array "ncl" "${type[*]}"
+elif in_array "ncl" "${type[*]}"; then
     sed -i 's/std/ncl/' run_slurm.sh
 fi
