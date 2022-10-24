@@ -10,7 +10,6 @@ alias orange='cd ~/bin/orange
 git init
 git remote rm origin
 git remote add origin https://github.com/jhyeonjung97/orange.git
-git pull
 git add *
 git commit -m "."
 git push origin main
@@ -19,7 +18,6 @@ alias shoulder='cd ~/bin/shoulder
 git init
 git remote rm origin
 git remote add origin https://github.com/jhyeonjung97/shoulder.git
-git pull
 git add *
 git commit -m "."
 git push origin main
