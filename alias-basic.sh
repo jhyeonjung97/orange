@@ -1,5 +1,3 @@
-alias clone='echo "git clone https://github.com/jhyeonjung97/shlouder"'
-
 #INPUT
 alias incar='cp ~/input_files/INCAR .'
 alias k='cp ~/input_files/KPOINTS .'

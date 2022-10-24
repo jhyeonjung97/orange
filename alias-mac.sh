@@ -10,11 +10,11 @@ alias orange='cd ~/bin/orange
 git pull
 git add *
 git commit -m "."
-git push origin main
+git push
 chmod 777 *'
 alias shoulder='cd ~/bin/shoulder
 git pull
 git add *
 git commit -m "."
-git push origin main
+git push
 chmod 777 *'
