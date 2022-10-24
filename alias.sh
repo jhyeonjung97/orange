@@ -36,8 +36,8 @@ alias nurion='ssh -X -Y x2347a10@nurion.ksc.re.kr'
 alias cori='ssh -X -Y jiuy97@cori.nersc.gov'
 alias nersc='ssh -X -Y jiuy97@perlmutter-p1.nersc.gov'
 
-alias send='python3 ~/bin/orange/send.py'
-alias get='python3 ~/bin/orange/get.py'
+alias send='sh ~/bin/orange/send.sh'
+alias get='sh ~/bin/orange/get.sh'
 
 alias token='echo jhyeonjung97
 echo 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'
