@@ -37,13 +37,11 @@ alias autosub='sh ~/bin/orange/autosub.sh'
 alias puresub='sbatch run_slurm.sh'
 alias name='sh ~/bin/orange/jobname.sh'
 
-alias conti='rm c
-mkdir c
+alias conti='rm c/*
 mv * c
 cp c/POSCAR initial.vasp
 cp c/INCAR c/KPOINTS c/POTCAR c/run_slurm.sh c/initial.vasp .
 cp c/CONTCAR POSCAR
-cp c/conti.vasp POSCAR
 sub'
 
 #INCAR

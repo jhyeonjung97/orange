@@ -44,7 +44,9 @@ if in_array "vtst" "${type[*]}"; then
 fi
 
 if in_array "beef" "${type[*]}"; then
+    sed -i '/mpiexec/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
     sed -i 's/vasp.6.3.2./vasp.6.3.2.beef./' run_slurm.sh
+    echo 'rm vdw_kernel.bindat' >> run_slurm.sh
 elif in_array "vaspsol" "${type[*]}"; then
     sed -i 's/vasp.6.3.2./vasp.6.3.2.vaspsol./' run_slurm.sh
 elif in_array "dftd4" "${type[*]}"; then
