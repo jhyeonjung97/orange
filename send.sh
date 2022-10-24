@@ -16,6 +16,10 @@ else
     fi
 fi
 
+echo "$surv"
+echo "$r"
+echo "$file"
+
 if [[ -z $surv ]]; then
     p='-P 1234 '
     surv='hyeonjung@burning.postech.ac.kr:'
