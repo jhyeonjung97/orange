@@ -26,9 +26,9 @@ mv out*.vasp POSCAR'
 alias sub='python3 ~/bin/orange/sub.py'
 alias resub='rm STD* std*
 sub'
-alias autosub='python3 ~/bin/orange/autosub.py'
+alias autosub='bash ~/bin/orange/autosub.sh'
 alias puresub='sbatch run_slurm.sh'
-alias name='python3 ~/bin/orange/jobname.py'
+alias name='bash ~/bin/orange/jobname.sh'
 
 alias conti='rm c
 mkdir c
@@ -54,7 +54,7 @@ alias ldau='python3 ~/bin/orange/ldau.py'
 alias ma='grep MAGMOM */INCAR'
 
 #LOBSTERIN
-alias lobin='python3 ~/bin/orange/lobin.py
+alias lobin='python3 ~/bin/shoulder/lobin.py
 cp ~/input_files/submit_lobster.sh .'
 alias lobsub='sbatch submit_lobster.sh'
 alias cohp='mkdir cohp

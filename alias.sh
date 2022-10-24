@@ -17,8 +17,8 @@ alias vbash='vi ~/.bashrc'
 alias sbash='source ~/.bashrc'
 
 alias get='bash ~/bin/orange/get.sh'
-alias send='python3 ~/bin/orange/send.py'
-alias port='python3 ~/bin/orange/port.py'
+alias send='bash ~/bin/orange/send.sh'
+alias port='bash ~/bin/orange/port.sh'
 
 alias orange='cd ~/bin/orange
 git pull'

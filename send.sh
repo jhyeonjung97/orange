@@ -1,5 +1,10 @@
 #!/bin/bash
 
+send
+send -r
+send -r cori
+send cori
+
 if [ "$1" == "-r" ]; then
     $surv = $2
     $r = "-r "
@@ -11,9 +16,11 @@ else
         $file = "POSCAR"
     elif [ "$file" == "c" ] || [ "$file" == "con" ]; then
         $file = "CONTCAR"
+    elif [ "$file" == "port" ]; then
+        $file = "~/bin/port/*"
     fi
 fi
-        
+
 if [ -z "$surv" ]; then
     $p = "-P 1234 "
     surv = "hyeonjung@burning.postech.ac.kr:"
@@ -26,9 +33,9 @@ elif [ "$surv" == "cori" ]; then
 elif [ "$surv" == 'nersc']; then
     $surv = "jiuy97@perlmutter-p1.nersc.gov:"
 fi
+    
+read -p "to where?: " path
 
-read -p "from where?: " path
-
-scp $p$r$surv$path$file .
+scp $p$r$file $surv$path
 
 

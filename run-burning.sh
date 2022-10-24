@@ -1,15 +1,31 @@
 #!/bin/bash
 
-read -p "which queue? (g1~g5, gpu): " q
-echo -n "which type? (beef, vtst, vaspsol, gam): "
-read -a type
-
 if test -d /TGM/Apps/VASP/VASP_BIN/6.3.2; then
     cp ~/input_files/run_slurm.sh .
 else
     echo "Here is not burning.postech.ac.kr..."
     break
 fi
+
+read -p "which queue? (g1~g5, gpu): " q
+echo -n "which type? (beef, vtst, vaspsol, gam): "
+read -a type
+
+if [ "$q" == "g1"]; then
+    $node = 12
+elif [ "$q" == "g2"] || [ "$q" == "g3"] ; then
+    $node = 20
+elif [ "$q" == "g4"]; then
+    $node = 24
+elif [ "$q" == "g5"] || [ "$q" == "gpu"]
+    $node = 32
+else
+    echo "I've never heard of that kind of node.."
+    break
+fi
+
+sed -i -e "/ntasks-per-node/c\#SBATCH --ntasks-per-node=$node"
+sed -i -e "/partition/c\#SBATCH --partition=$q"
 
 function in_array {
     ARRAY=$2

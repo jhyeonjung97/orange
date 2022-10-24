@@ -11,10 +11,10 @@ git pull
 git add *
 git commit -m "."
 git push
-chmod 777 *'
+chmod 644 *'
 alias shoulder='cd ~/bin/shoulder
 git pull
 git add *
 git commit -m "."
 git push
-chmod 777 *'
+chmod 644 *'
