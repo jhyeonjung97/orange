@@ -6,17 +6,13 @@ if [[ $1 == '-r' ]]; then
     read -p "which directories?: " file
 else
     surv=$1
-    if [[ $2 == 'vasp' ]]; then
-        file='*.vasp'
-    else
-        read -p "which files?: " file
-        if [[ $file == 'p' ]] || [[ $file == 'pos' ]]; then
-            file='POSCAR'
-        elif [[ $file == 'c' ]] || [[ $file == 'con' ]]; then
-            file='CONTCAR'
-        elif [[ $file == 'port' ]]; then
-            file='~/bin/port/*'
-        fi
+    read -p "which files?: " file
+    if [[ $file == 'p' ]] || [[ $file == 'pos' ]]; then
+        file='POSCAR'
+    elif [[ $file == 'c' ]] || [[ $file == 'con' ]]; then
+        file='CONTCAR'
+    elif [[ $file == 'port' ]]; then
+        file='~/bin/port/*'
     fi
 fi
 
