@@ -1,9 +1,13 @@
 import sys
 import os
 
-len=len(sys.argv)
-
-if len==2:
+if sys.argv[1]=='-r':
+    surv=sys.argv[2]
+    scp='scp -r'
+    file='-r '+input("which directories?: ")
+else:
+    surv=sys.argv[1]
+    scp='scp'
     file=input("which files?: ")
     if file=='p' or file=='pos':
         file='POSCAR'
@@ -11,12 +15,6 @@ if len==2:
         file='CONTCAR'
     elif file=='port':
         file='~/bin/port/*'
-    surv=sys.argv[1]
-elif len==3 and sys.argv[1]=='-r':
-    file='-r '+input("which directories?: ")
-    surv=sys.argv[2]
-else:
-    print("would you like something to drink?")
 
 if not surv:
     surv='hyeonjung@burning.postech.ac.kr:'
@@ -29,10 +27,8 @@ elif surv=='cori':
 elif surv=='nersc':
     surv='jiuy97@perlmutter-p1.nersc.gov:'
     
-    
 path=input("to where?: ")
 
 os.system("scp %s %s%s" % (file, surv, path))
-# -
 
 

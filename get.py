@@ -1,13 +1,6 @@
 import sys
 import os
 
-len=len(sys.argv)
-
-get -r cori
-get -r 
-get
-get cori
-
 if sys.argv[1]=='-r':
     surv=sys.argv[2]
     scp='scp -r'
