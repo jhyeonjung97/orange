@@ -12,13 +12,13 @@ echo -n "which type? (beef, vtst, vaspsol, gam): "
 read -a type
 
 if [[ $q == 'g1' ]]; then
-    $node = 12
+    node=12
 elif [[ $q == 'g2' ]] || [[ $q == 'g3' ]] ; then
-    $node = 20
+    node=20
 elif [[ $q == 'g4' ]]; then
-    $node = 24
+    node=24
 elif [[ $q == 'g5' ]] || [[ $q == 'gpu' ]]; then
-    $node = 32
+    node=32
 else
     echo "I've never heard of that kind of node.."
     break
