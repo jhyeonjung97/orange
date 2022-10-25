@@ -26,7 +26,7 @@ do
     xc
     magmom
     potcar
-    sed -i -e "/job-name/c\#SBATCH --job-name="$n$i"" run_slurm.sh
+    sed -i "/job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
     sbatch run_slurm.sh
     cd ..
 done

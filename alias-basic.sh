@@ -15,7 +15,7 @@ alias outsend='out
 sh ~/bin/orange/send-vasp.sh'
 alias nebsend='outneb
 sh ~/bin/orange/send-vasp.sh'
-alias xc='python3 ~/bin/pyband/xcell.py
+alias xc='python ~/bin/pyband/xcell.py
 mv out*.vasp POSCAR'
 
 #OUTPUT
