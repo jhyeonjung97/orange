@@ -34,13 +34,13 @@ do
     
     # specific destination
     elif [[ $i == 'p' ]] || [[ $i == 'pos' ]]; then
-        file= $file + ' ' + 'POSCAR'
+        file=$file+' '+'POSCAR'
     elif [[ $i == 'c' ]] || [[ $i == 'con' ]]; then
-        file= $file + ' ' + 'CONTCAR'
+        file=$file+' '+'CONTCAR'
     elif [[ $i == 'port' ]]; then
-        file= $file + ' ' + '~/bin/port/*'
+        file=$file+' '+'~/bin/port/*'
     else 
-        file= $file + ' ' + $i
+        file=$file+' '+$i
     fi
 done
 
