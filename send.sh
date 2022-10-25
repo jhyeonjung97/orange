@@ -17,14 +17,17 @@ else
 fi
 
 if [[ -z $surv ]]; then
-    if [ "$here" == 'burning' ]; then
-        surv='hailey@134.79.69.172:~/Desktop/'
-    else
+    if [ "$here" == 'mac' ]; then
         p='-P 1234 '
         surv='hyeonjung@burning.postech.ac.kr:'
+    else
+        surv='hailey@134.79.69.172:~/Desktop/'
     fi
 elif [[ $surv == 'mac' ]]; then
     surv='hailey@134.79.69.172:~/Desktop/'
+elif [[ $surv == 'burning' ]]; then
+    p='-P 1234 '
+    surv='hyeonjung@burning.postech.ac.kr:'
 elif [[ $surv == 'kisti' ]]; then
     surv='x2431a10@nurion.ksc.re.kr:'
 elif [[ $surv == 'cori' ]]; then
