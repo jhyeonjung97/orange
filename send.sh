@@ -1,44 +1,56 @@
 #!/bin/bash
 
-if [[ $1 == '-r' ]]; then
-    surv=$2
-    r='-r '
-    read -p "which directories?: " file
+# default destination server
+if [ "$here" == 'mac' ]; then
+    p=' -P 1234'
+    srvr='hyeonjung@burning.postech.ac.kr:'
 else
-    surv=$1
-    read -p "which files?: " file
-    if [[ $file == 'p' ]] || [[ $file == 'pos' ]]; then
-        file='POSCAR'
-    elif [[ $file == 'c' ]] || [[ $file == 'con' ]]; then
-        file='CONTCAR'
-    elif [[ $file == 'port' ]]; then
-        file='~/bin/port/*'
-    fi
+    srvr='hailey@134.79.69.172:~/Desktop/'
 fi
 
-if [[ -z $surv ]]; then
-    if [ "$here" == 'mac' ]; then
+# Let's check the input values
+for i in $@
+do    
+    # File OR Directory
+    if [[ $i == '-r' ]]; then
+        r=' -r'
+        
+    # specific destination
+    elif [[ $i == 'mac' ]]; then
+        srvr='hailey@134.79.69.172:~/Desktop/'
+    elif [[ $i == 'burning' ]]; then
         p='-P 1234 '
-        surv='hyeonjung@burning.postech.ac.kr:'
-    else
-        surv='hailey@134.79.69.172:~/Desktop/'
-    fi
-elif [[ $surv == 'mac' ]]; then
-    surv='hailey@134.79.69.172:~/Desktop/'
-elif [[ $surv == 'burning' ]]; then
-    p='-P 1234 '
-    surv='hyeonjung@burning.postech.ac.kr:'
-elif [[ $surv == 'kisti' ]]; then
-    surv='x2431a10@nurion.ksc.re.kr:'
-elif [[ $surv == 'cori' ]]; then
-    surv='jiuy97@cori.nersc.gov:'
-elif [[ $surv == 'nersc' ]]; then
-    surv='jiuy97@perlmutter-p1.nersc.gov:'
-fi
+        srvr='hyeonjung@burning.postech.ac.kr:'
+    elif [[ $i == 'kisti' ]]; then
+        srvr='x2431a10@nurion.ksc.re.kr:'
+    elif [[ $i == 'cori' ]]; then
+        srvr='jiuy97@cori.nersc.gov:'
+    elif [[ $i == 'nersc' ]]; then
+        srvr='jiuy97@perlmutter-p1.nersc.gov:'
     
+    # specific destination
+    elif [[ $i == 'p' ]] || [[ $i == 'pos' ]]; then
+        file = file + ' ' + 'POSCAR'
+    elif [[ $i == 'c' ]] || [[ $i == 'con' ]]; then
+        file = file + ' ' + 'CONTCAR'
+    elif [[ $i == 'port' ]]; then
+        file = file + ' ' + '~/bin/port/*'
+    else 
+        file = file + ' ' + $i
+    fi
+done
+
 read -p "to where?: " path
 
-echo "scp $p$r$file $surv$path"
-scp $p$r$file $surv$path
+# I don't want meaningless command
+if [[ -z $file ]]; then
+    echo 'Please let me know which file to send..'
+    break
+elif [[ -z $path ]] && [[ $srvr != 'hailey@134.79.69.172:~/Desktop/' ]]
+    echo 'Files/Directories will be sent to home directory..'
+fi
+
+echo "scp$p$r$file $srvr$path"
+scp$p$r$file $srvr$path
 
 
