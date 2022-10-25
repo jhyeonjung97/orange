@@ -1,17 +1,19 @@
 #!/bin/bash
 
 if [[ -z $1 ]]; then
-    read -p 'which files? ' $1
+    read -p 'which files? ' f
+elif
+    f=$1
 fi
     
-if [[ $1 == 'p' ]] || [[ $1 == 'pos' ]]; then
+if [[ $f == 'p' ]] || [[ $f == 'pos' ]]; then
     pattern='POSCAR'
     read -p "filename starts with? " filename
-elif [[ $1 == 'c' ]] || [[ $1 == 'con' ]]; then
+elif [[ $f == 'c' ]] || [[ $f == 'con' ]]; then
     pattern='CONTCAR'
     read -p "filename starts with? " filename
 else
-    pattern=$1
+    pattern=$f
 fi
 
 for i in {0..9}
