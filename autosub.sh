@@ -17,7 +17,7 @@ fi
 read -p "POSCARs starts with: " p
 read -p "job name: " n
 
-SET=$(seq $1 $2)
+SET=$(seq -s " " $1 $2)
 for i in $SET
 do
     mkdir $i
