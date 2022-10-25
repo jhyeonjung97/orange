@@ -2,7 +2,7 @@
 
 if [[ -z $1 ]]; then
     read -p 'which files? ' f
-elif
+else
     f=$1
 fi
     
