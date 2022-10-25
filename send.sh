@@ -8,18 +8,15 @@ else
     srvr='hailey@134.79.69.172:~/Desktop/'
 fi
 
-echo "$p $srvr" ##
-
 # Let's check the input values
 for i in $@
 do
-    echo "$i" ##
-    
+
     # File OR Directory
     if [[ $i == '-r' ]]; then
         r=' -r'
         
-    # specific destination
+    # specific destination server
     elif [[ $i == 'mac' ]]; then
         srvr='hailey@134.79.69.172:~/Desktop/'
     elif [[ $i == 'burning' ]]; then
@@ -42,8 +39,10 @@ do
     else 
         file=$file+' '+$i
     fi
+    
 done
 
+# destination path
 read -p "to where?: " path
 
 # I don't want meaningless command
