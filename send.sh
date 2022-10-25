@@ -8,9 +8,13 @@ else
     srvr='hailey@134.79.69.172:~/Desktop/'
 fi
 
+echo "$p $srvr" ##
+
 # Let's check the input values
 for i in $@
-do    
+do
+    echo "$i" ##
+    
     # File OR Directory
     if [[ $i == '-r' ]]; then
         r=' -r'
@@ -30,13 +34,13 @@ do
     
     # specific destination
     elif [[ $i == 'p' ]] || [[ $i == 'pos' ]]; then
-        file = file + ' ' + 'POSCAR'
+        file= $file + ' ' + 'POSCAR'
     elif [[ $i == 'c' ]] || [[ $i == 'con' ]]; then
-        file = file + ' ' + 'CONTCAR'
+        file= $file + ' ' + 'CONTCAR'
     elif [[ $i == 'port' ]]; then
-        file = file + ' ' + '~/bin/port/*'
+        file= $file + ' ' + '~/bin/port/*'
     else 
-        file = file + ' ' + $i
+        file= $file + ' ' + $i
     fi
 done
 
