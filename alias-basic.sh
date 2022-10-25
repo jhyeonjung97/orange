@@ -15,6 +15,7 @@ mv out*.vasp POSCAR'
 
 #OUTPUT
 alias e='grep E0 stdout*'
+alias ee='grep E0 stdout* | tail -n 3'
 alias ta='tail -n 6 */stdout*'
 alias fermi='grep E-fermi OUTCAR'
 alias kpoint='grep subdivisionlength vasprun.xml -A 1'
