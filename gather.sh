@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ -z $1 ]]; then
+    read -p 'which files? ' $1
+fi
+    
 if [[ $1 == 'p' ]] || [[ $1 == 'pos' ]]; then
     pattern='POSCAR'
     read -p "filename starts with? " filename
