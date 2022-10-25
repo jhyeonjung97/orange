@@ -17,7 +17,7 @@ fi
 read -p "POSCARs starts with: " p
 read -p "job name: " n
 
-for i in {$1..$2}
+for i in $(seq $1 $2)
 do
     mkdir $i
     cp INCAR KPOINTS run_slurm.sh $1
