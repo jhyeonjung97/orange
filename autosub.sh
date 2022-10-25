@@ -23,9 +23,10 @@ do
     cp INCAR KPOINTS run_slurm.sh $1
     cp $p$i.vasp $i/POSCAR
     cd $i
-    xc
-    magmom
-    potcar
+    python ~/bin/pyband/xcell.py
+    mv out*.vasp POSCAR
+    python3 ~/bin/orange/magmom.py
+    python3 ~/bin/shoulder/potcar_ara.py
     sed -i "/job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
     sbatch run_slurm.sh
     cd ..
