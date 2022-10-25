@@ -10,7 +10,7 @@ do
 done
 
 cp 00/POSCAR $f-c0.vasp
-cp 0$b/POSCAR $f-c$a.vasp
+cp 0$a/POSCAR $f-c$a.vasp
 
 read -p "to where?: " p
 
