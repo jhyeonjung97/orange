@@ -20,7 +20,7 @@ read -p "job name: " n
 for i in $(seq $1 $2)
 do
     mkdir $i
-    cp INCAR KPOINTS run_slurm.sh $1
+    cp INCAR KPOINTS run_slurm.sh $i
     cp $p$i.vasp $i/POSCAR
     cd $i
     python ~/bin/pyband/xcell.py
