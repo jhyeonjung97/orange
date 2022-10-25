@@ -10,6 +10,7 @@ alias con2cif='~/bin/vtstscripts/pos2cif.pl CONTCAR'
 
 alias nebsend='sh ~/bin/orange/nebsend.sh'
 alias vaspsend='sh ~/bin/orange/vaspsend.sh'
+alias sendvasp='sh ~/bin/orange/vaspsend.sh'
 alias xc='python ~/bin/pyband/xcell.py
 mv out*.vasp POSCAR'
 
