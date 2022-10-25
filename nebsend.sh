@@ -1,9 +1,8 @@
 #!/bin/bash
 
-read -p "how many images: " a
 read -p "files starts with: " f
 
-a=$a+1
+a=$1+1
 for i in $(seq 0 $a)
 do
     cp 0$i/POSCAR $a-p$i.vasp

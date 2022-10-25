@@ -8,13 +8,8 @@ alias vasp='sed -i -e '1h' -e '5G' POSCAR'
 alias pos2cif='~/bin/vtstscripts/pos2cif.pl POSCAR'
 alias con2cif='~/bin/vtstscripts/pos2cif.pl CONTCAR'
 
-alias input='sh ~/bin/orange/input.sh'
-alias out='sh ~/bin/orange/output.sh'
-alias outneb='sh ~/bin/orange/outneb.sh'
-alias outsend='out
-sh ~/bin/orange/send-vasp.sh'
-alias nebsend='outneb
-sh ~/bin/orange/send-vasp.sh'
+alias nebsend='sh ~/bin/orange/nebsend.sh'
+alias vaspsend='sh ~/bin/orange/vaspsend.sh'
 alias xc='python ~/bin/pyband/xcell.py
 mv out*.vasp POSCAR'
 
