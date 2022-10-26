@@ -22,6 +22,6 @@ atoms.set_cell([8.92652, 8.92652, 30.00000, 90.0000, 90.0000, 120.0000])
 write(filename.replace('xyz', 'vasp'), atoms, format='vasp')
 #write('mixture.xyz'.replace('xyz', 'vasp'), atoms, format='vasp')
 
-# os.system(f"~/bin/pyband/xcell.py -i {filename.replace('xyz', 'vasp')}")
-# os.system(f"mv out*.vasp {filename.replace('xyz', 'vasp')}")
+os.system(f"~/bin/pyband/xcell.py -i {filename.replace('xyz', 'vasp')}")
+os.system(f"mv out*.vasp {filename.replace('xyz', 'vasp')}")
 
