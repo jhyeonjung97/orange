@@ -66,9 +66,8 @@ sed -i "/LELF/d" INCAR
 sed -i "/LAECHG/d" INCAR'
 
 #PACKMOL
-alias pack='~/bin/packmol/packmol < mixture.inp'
-alias data='~/bin/packmol/packmol < mixture.inp
-python3 ~/bin/pdb2lmp.py'
+alias pack='~/bin/packmol/packmol < *.inp'
+alias xyz2vasp='~/bin/orange/xyz2vasp.py'
 
 #Vibrational frequency
 alias vivi='mkdir freq
