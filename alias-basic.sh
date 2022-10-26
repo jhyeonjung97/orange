@@ -66,9 +66,7 @@ sed -i "/LELF/d" INCAR
 sed -i "/LAECHG/d" INCAR'
 
 #PACKMOL
-alias pack='~/bin/packmol/packmol < mixture.inp
-xyz2hex mixture.xyz
-send mixture.vasp'
+alias pack='~/bin/packmol/packmol < *.inp'
 alias xyz2hex='python3 ~/bin/orange/xyz2hex.py'
 alias xyz2vasp='python2 ~/bin/vtstscripts/xyz2vasp.py'
 

@@ -3,7 +3,7 @@ from sys import argv, exit
 import os
 
 # if len(argv) < 8 or '-h' in argv:
-#     print("usage: xyz2con.py *.xyz a b c alpha beta gamma\n")
+#     print("usage: xyz2hex.py *.xyz a b c alpha beta gamma\n")
 #     exit(0)
 
 filename = argv[1]
