@@ -2,7 +2,7 @@
 
 # default destination server
 if [[ ${here} == 'mac' ]]; then
-    p=' -P 1234'
+    port=' -P 1234'
     srvr='hyeonjung@burning.postech.ac.kr:'
 else
     srvr='hailey@134.79.69.172:~/Desktop/'
@@ -20,7 +20,7 @@ do
     elif [[ $i == 'mac' ]]; then
         srvr='hailey@134.79.69.172:~/Desktop/'
     elif [[ $i == 'burning' ]]; then
-        p='-P 1234 '
+        port='-P 1234 '
         srvr='hyeonjung@burning.postech.ac.kr:'
     elif [[ $i == 'kisti' ]]; then
         srvr='x2431a10@nurion.ksc.re.kr:'
@@ -53,7 +53,7 @@ elif [[ -z $path ]] && [[ $srvr != 'hailey@134.79.69.172:~/Desktop/' ]]; then
     echo 'Files/Directories will be sent to home directory..'
 fi
 
-echo "scp$p$r$file $srvr$path"
-scp$p$r$file $srvr$path
+echo "scp$port$r$file $srvr$path"
+scp$port$r$file $srvr$path
 
 
