@@ -55,4 +55,5 @@ alias cona='ag */CONTCAR'
 alias con3='ag 00/POSCAR 01/CONTCAR 02/CONTCAR 03/CONTCAR 04/POSCAR'
 alias con5='ag 00/POSCAR 01/CONTCAR 02/CONTCAR 03/CONTCAR 04/CONTCAR 05/CONTCAR 06/POSCAR'
 
+alias combine='python3 ~/bin/orange/combine.py'
 alias pickle='python3 -m ase.io.trajectory *.traj'
