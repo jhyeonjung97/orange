@@ -67,7 +67,8 @@ sed -i "/LAECHG/d" INCAR'
 
 #PACKMOL
 alias pack='~/bin/packmol/packmol < *.inp'
-alias xyz2vasp='~/bin/orange/xyz2vasp.py'
+alias xyz2hex='python3 ~/bin/orange/xyz2hex.py'
+alias xyz2vasp='python2 ~/bin/vtstscripts/xyz2vasp.py'
 
 #Vibrational frequency
 alias vivi='mkdir freq
