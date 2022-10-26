@@ -24,7 +24,6 @@ do
     cp $p$i.vasp $i/POSCAR
     cd $i
     python ~/bin/pyband/xcell.py
-    mv out*.vasp POSCAR
     python3 ~/bin/orange/magmom.py
     python3 ~/bin/shoulder/potcar_ara.py
     sed -i "/job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh

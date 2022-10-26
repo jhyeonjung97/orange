@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [[ -z $2 ]] && [[ $1 == '-r' ]]; then
+if [[ -z $2 ]]; then
     sed -i "/job-name/c\#SBATCH --job-name=\"$1\"" run_slurm.sh
-else
+elif [[ $1 == '-r' ]]; then
     for i in {0..9}
     do
     if [[ -e $i ]]; then
