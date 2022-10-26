@@ -9,7 +9,6 @@ else
 fi
 
 # Let's check the input values
-file=''
 for i in $@
 do
 
