@@ -41,6 +41,7 @@ function in_array {
 
 if in_array "vtst" "${type[*]}"; then
     sed -i 's/std/vtst.std/' run_slurm.sh
+    sed -i 's/gamout/stdout/' run_slurm.sh
 fi
 
 if in_array "beef" "${type[*]}"; then
