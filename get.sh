@@ -35,7 +35,7 @@ do
     elif [[ $i == 'c' ]] || [[ $i == 'con' ]]; then
         file='CONTCAR'
     elif [[ $i == 'port' ]]; then
-        path='~/bin/port'
+        path='~/port'
         file='*'
     else 
         file=$i

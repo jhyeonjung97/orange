@@ -35,7 +35,7 @@ do
     elif [[ $i == 'c' ]] || [[ $i == 'con' ]]; then
         file="$file CONTCAR"
     elif [[ $i == 'port' ]]; then
-        file="$file ~/bin/port/*"
+        file="$file ~/port/*"
     else 
         file="$file $i"
     fi
