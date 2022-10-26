@@ -5,6 +5,8 @@ if [[ -z $2 ]] && [[ $1 == '-r' ]]; then
 else
     for i in {0..9}
     do
-    sed -i "/job-name/c\#SBATCH --job-name=\"$1$i\"" $i*/run_slurm.sh
+    if [[ -e $i ]]; then
+        sed -i "/job-name/c\#SBATCH --job-name=\"$2$i\"" $i*/run_slurm.sh
+    fi
     done
 fi
