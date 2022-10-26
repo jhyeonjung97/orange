@@ -44,8 +44,9 @@ do
 done
 
 # starting path
-if [[ -z $path ]]
-read -p "from where?: " path
+if [[ -z $path ]]; then
+    read -p "from where?: " path
+fi
 
 # I don't want meaningless command
 if [[ -z $file ]]; then
