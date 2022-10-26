@@ -8,15 +8,19 @@ alias vbash='vi ~/.bash_profile'
 alias sbash='source ~/.bash_profile'
 alias vasp2png='python ~/bin/shoulder/vasp2png.py'
 
-alias orange='cd ~/bin/orange
+alias orange='path=$PWD
+cd ~/bin/orange
 git pull
 git add *
 git commit -m "."
 git push
-chmod 644 *'
-alias shoulder='cd ~/bin/shoulder
+chmod 644 *
+cd $path'
+alias shoulder='path=$PWD
+cd ~/bin/shoulder
 git pull
 git add *
 git commit -m "."
 git push
-chmod 644 *'
+chmod 644 *
+cd $path'
