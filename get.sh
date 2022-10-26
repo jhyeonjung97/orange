@@ -2,10 +2,10 @@
 
 # default starting server
 if [[ ${here} == 'mac' ]]; then
-    srvr='hailey@134.79.69.172:'
-else
     port=' -P 1234'
     srvr='hyeonjung@burning.postech.ac.kr:'
+else
+    srvr='hailey@134.79.69.172:~/Desktop/'
 fi
 
 # Let's check the input values
