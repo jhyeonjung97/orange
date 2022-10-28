@@ -29,7 +29,7 @@ do
     elif [[ $i == 'nersc' ]]; then
         srvr='jiuy97@perlmutter-p1.nersc.gov:'
     
-    # specific destination
+    # POSCAR/CONTCAR/port
     elif [[ $i == 'p' ]] || [[ $i == 'pos' ]]; then
         file="$file POSCAR"
     elif [[ $i == 'c' ]] || [[ $i == 'con' ]]; then
