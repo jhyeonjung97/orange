@@ -1,5 +1,3 @@
-export PS1='(${CONDA_DEFAULT_ENV}) [\u@\H \W]\$ '
-
 #INPUT
 alias incar='cp ~/input_files/INCAR .'
 alias k='cp ~/input_files/KPOINTS .'
