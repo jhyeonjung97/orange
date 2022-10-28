@@ -13,7 +13,11 @@ alias nebsend='sh ~/bin/orange/nebsend.sh'
 alias vaspsend='sh ~/bin/orange/vaspsend.sh'
 alias sendvasp='sh ~/bin/orange/vaspsend.sh'
 alias xc='python ~/bin/pyband/xcell.py
-mv out*.vasp POSCAR'
+mv out*.vasp POSCAR
+sed -n 6p POSCAR >> temp1
+sed 1d POSCAR >> temp2
+cat temp1 temp2 > POSCAR
+rm temp1 temp2'
 
 #OUTPUT
 alias e='grep E0 stdout*'
