@@ -20,7 +20,7 @@ do
     elif [[ $i == 'mac' ]]; then
         srvr='hailey@134.79.69.172:~/Desktop/'
     elif [[ $i == 'burning' ]]; then
-        port='-P 1234 '
+        port=' -P 1234'
         srvr='hyeonjung@burning.postech.ac.kr:'
     elif [[ $i == 'kisti' ]]; then
         srvr='x2431a10@nurion.ksc.re.kr:'
