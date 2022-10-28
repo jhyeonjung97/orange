@@ -51,5 +51,5 @@ else
     read -p "from where?: " path
 fi
 
-echo "scp $port$r$surv$path/$file ."
-scp $port$r$surv$path/$file .
+echo "scp $port$r$srvr$path/$file ."
+scp $port$r$srvr$path/$file .
