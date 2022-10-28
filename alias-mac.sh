@@ -14,6 +14,7 @@ git pull
 git add *
 git commit -m "."
 git push
+chmod 644 *
 cd $dir_now'
 alias shoulder='dir_now=$PWD
 cd ~/bin/shoulder
