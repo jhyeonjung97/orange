@@ -18,7 +18,7 @@ do
         
     # specific destination server
     elif [[ $i == 'mac' ]]; then
-        srvr='hailey@134.79.69.172:~/Desktop/'
+        srvr='hailey@134.79.69.172:~/Desktop'
     elif [[ $i == 'burning' ]]; then
         port='-P 1234 '
         srvr='hyeonjung@burning.postech.ac.kr:'
