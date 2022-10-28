@@ -57,5 +57,3 @@ alias con5='ag 00/POSCAR 01/CONTCAR 02/CONTCAR 03/CONTCAR 04/CONTCAR 05/CONTCAR 
 
 alias combine='python ~/bin/orange/combine.py'
 alias pickle='python3 -m ase.io.trajectory *.traj'
-
-export PS1='(${CONDA_DEFAULT_ENV}) [\u@\H \W]\$ '
