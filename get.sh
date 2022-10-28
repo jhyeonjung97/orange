@@ -28,6 +28,7 @@ do
         srvr='jiuy97@cori.nersc.gov:'
     elif [[ $i == 'nersc' ]]; then
         srvr='jiuy97@perlmutter-p1.nersc.gov:'
+    fi
     
 done
 
