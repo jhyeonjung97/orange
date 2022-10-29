@@ -17,4 +17,5 @@ else
         grep MAGMOM INCAR 
         sbatch run_slurm.sh
         cd ..
+    done
 fi
