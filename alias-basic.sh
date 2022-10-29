@@ -67,8 +67,7 @@ sed -i "/LAECHG/d" INCAR'
 
 #PACKMOL
 alias pack='sh ~/bin/orange/pack.sh'
-alias seed='
-'
+alias seed='sh ~/bin/orange/seed.sh'
 alias xyz2hex='python3 ~/bin/orange/xyz2hex.py'
 alias xyz2vasp='python2 ~/bin/vtstscripts/xyz2vasp.py'
 

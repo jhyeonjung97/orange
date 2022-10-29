@@ -1,0 +1,1 @@
+sed -i "/seed/c\seed $2" $1
