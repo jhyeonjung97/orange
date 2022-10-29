@@ -9,3 +9,5 @@ else
 
     sed "/seed/c\seed $2" $1 > $filename$2.inp
 fi
+
+sh ~/bin/orange/pack.sh $filename$2.inp
