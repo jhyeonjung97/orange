@@ -18,15 +18,19 @@ do
         
     # specific destination server
     elif [[ $i == 'mac' ]]; then
+        port=''
         srvr='hailey@134.79.69.172:~/Desktop/'
     elif [[ $i == 'burning' ]]; then
         port=' -P 1234'
         srvr='hyeonjung@burning.postech.ac.kr:'
     elif [[ $i == 'kisti' ]]; then
+        port=''
         srvr='x2431a10@nurion.ksc.re.kr:'
     elif [[ $i == 'cori' ]]; then
+        port=''
         srvr='jiuy97@cori.nersc.gov:'
     elif [[ $i == 'nersc' ]]; then
+        port=''
         srvr='jiuy97@perlmutter-p1.nersc.gov:'
     
     # POSCAR/CONTCAR/port
