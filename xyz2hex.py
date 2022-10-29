@@ -18,7 +18,9 @@ atoms = read(filename)
 # gamma = float(argv[7])
 
 #atoms.set_cell([a, b, c, alpha, beta, gamma])
-atoms.set_cell([8.92652, 8.92652, 30.00000, 90.0000, 90.0000, 120.0000])
+#atoms.set_cell([8.92652, 8.92652, 30.00000, 90., 90., 120.])
+atoms.set_cell([20., 20., 20., 90., 90., 120.])
+
 write(filename.replace('xyz', 'vasp'), atoms, format='vasp')
 #write('mixture.xyz'.replace('xyz', 'vasp'), atoms, format='vasp')
 
