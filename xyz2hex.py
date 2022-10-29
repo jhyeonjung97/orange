@@ -19,7 +19,7 @@ atoms = read(filename)
 
 #atoms.set_cell([a, b, c, alpha, beta, gamma])
 #atoms.set_cell([8.92652, 8.92652, 30.00000, 90., 90., 120.])
-atoms.set_cell([20., 20., 20., 90., 90., 90.])
+atoms.set_cell([30., 30., 30., 90., 90., 90.])
 
 write(filename.replace('xyz', 'vasp'), atoms, format='vasp')
 #write('mixture.xyz'.replace('xyz', 'vasp'), atoms, format='vasp')
