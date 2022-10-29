@@ -32,7 +32,7 @@ date +"%Y-%m-%d %H:%M:%S" >> nebef.txt
 ~/bin/vtstscripts/nebef.pl >> nebef.txt'
 alias z='python3 ~/bin/orange/z-position.py'
 alias gather='sh ~/bin/orange/gather.sh'
-alias energy='ag -t -g "i,e" OUTCAR >'
+alias energy='ag -t -g "i,e" OUTCAR > '
 
 #RUN_SLURM.SH
 alias sub='python3 ~/bin/orange/sub.py'
