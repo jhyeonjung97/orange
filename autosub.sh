@@ -35,6 +35,6 @@ do
     python3 ~/bin/orange/magmom.py
     python3 ~/bin/shoulder/potcar_ara.py
     sed -i "/job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
-    sbatch run_slurm.sh
+    sh ~/bin/orange/sub.sh
     cd ..
 done
