@@ -2,9 +2,10 @@
 
 # default destination server
 if [[ ${here} == 'mac' ]]; then
-    port=' -P 1234'
+    port='-P 1234 '
     srvr='hyeonjung@burning.postech.ac.kr:'
 else
+    port=''
     srvr='hailey@134.79.69.172:~/Desktop/'
 fi
 
@@ -14,26 +15,30 @@ do
 
     # File OR Directory
     if [[ $i == '-r' ]]; then
-        r=' -r'
+        r='-r '
         
     # specific destination server
     elif [[ $i == 'mac' ]]; then
+        port=''
         srvr='hailey@134.79.69.172:~/Desktop'
     elif [[ $i == 'burning' ]]; then
         port='-P 1234 '
         srvr='hyeonjung@burning.postech.ac.kr:'
     elif [[ $i == 'kisti' ]]; then
+        port=''
         srvr='x2431a10@nurion.ksc.re.kr:'
     elif [[ $i == 'cori' ]]; then
+        port=''
         srvr='jiuy97@cori.nersc.gov:'
     elif [[ $i == 'nersc' ]]; then
+        port=''
         srvr='jiuy97@perlmutter-p1.nersc.gov:'
     fi
     
 done
 
 # File OR Directory
-if [[ $r == '-r' ]]; then
+if [[ $r == '-r ' ]]; then
     read -p "which directories?: " file
 else
     read -p "which files?: " file
