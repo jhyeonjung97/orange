@@ -1,7 +1,7 @@
 #BASIC
 alias c='clear'
 alias ls='ls --color=auto'
-alias rm='~/bin/orange/rm_mv'
+alias rm='~/bin/shoulder/rm_mv'
 alias remove='/bin/rm'
 alias ..='cd ..'
 alias ...='cd ../..'
