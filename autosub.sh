@@ -40,7 +40,7 @@ else
         sh ~/bin/orange/vasp5.sh
         python3 ~/bin/shoulder/potcar_ara.py
         
-        sed -i "/job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
+        sh ~/bin/orange/jobname.sh $n$i
         sh ~/bin/orange/sub.sh
         cd ..
     done
