@@ -16,7 +16,7 @@ elif [[ -z $1 ]]; then
     echo 'usage: autosub (directory#1) [directory#2]'
 else
     if [[ -z $2 ]]; then
-        a=0
+        a=1
         b=$1
     else
         a=$1
