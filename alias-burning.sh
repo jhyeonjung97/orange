@@ -1,3 +1,6 @@
+#!/bin/bash
+
+alias cdw='cd ~/scratch'
 alias run='sh run-burning.sh'
 
 alias g1='qstat | grep -i "Q g1" '

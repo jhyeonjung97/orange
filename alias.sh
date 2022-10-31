@@ -7,7 +7,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias cal='bc -l'
-alias cdw='cd ~/scratch'
 alias bin='cd ~/bin'
 alias py3='conda activate py3'
 
