@@ -18,24 +18,22 @@ fi
 
 for i in {0..9}
 do
-    if [[ -d $i* ]]; then
-        cd $i*
-        for file in *
-        do
-            if [[ $file =~ $pattern ]]; then
-                if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
-                    cp $file ../$filename$i.vasp
-                else
-                    extension="${file##*.}"
-                    filename="${file%.*}"
-                    cp $file ../$filename$i.$extension
-                fi
-            fi
-            
-            if [[ $pattern == 'POSCAR' ]] && [[ $file =~ 'initial' ]]; then
+    cd $i*
+    for file in *
+    do
+        if [[ $file =~ $pattern ]]; then
+            if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
                 cp $file ../$filename$i.vasp
+            else
+                extension="${file##*.}"
+                filename="${file%.*}"
+                cp $file ../$filename$i.$extension
             fi
-        done
-        cd ..
-    fi
+        fi
+            
+        if [[ $pattern == 'POSCAR' ]] && [[ $file =~ 'initial' ]]; then
+            cp $file ../$filename$i.vasp
+        fi
+    done
+    cd ..
 done
