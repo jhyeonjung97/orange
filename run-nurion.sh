@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if test -d ~/bin/KISTI_VASP/; then
+if test -d ~/KISTI_VASP/; then
     cp ~/input_files/run_slurm.sh .
 
     read -p "which queue? (normal, skl): " q
