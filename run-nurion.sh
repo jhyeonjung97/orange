@@ -29,17 +29,19 @@ if test -d ~/bin/KISTI_VASP/; then
         done
         return 1
     }
-
+   
     if in_array "beef" "${type[*]}"; then
-        sed -i '/mpiexec/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
-        sed -i 's/vasp.6.3.2./vasp.6.3.2.beef./' run_slurm.sh
+        sed -i '/mpiexec/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
+        sed -i 's/std/beef.std/' run_slurm.sh
         echo 'rm vdw_kernel.bindat' >> run_slurm.sh
-    elif in_array "vaspsol" "${type[*]}"; then
-        sed -i 's/vasp.6.3.2./vasp.6.3.2.vaspsol./' run_slurm.sh
-    elif in_array "dftd4" "${type[*]}"; then
-        sed -i 's/vasp.6.3.2./vasp.6.3.2.dftd4./' run_slurm.sh
+        
+        if in_array "vaspsol" "${type[*]}"; then
+            sed -i 's/std/vaspsol.std/' run_slurm.sh
+        elif in_array "vtst" "${type[*]}"; then
+            sed -i 's/beef/vtst179.beef/' run_slurm.sh
+        fi
     fi
-
+    
     if in_array "gam" "${type[*]}"; then
         sed -i 's/std/gam/' run_slurm.sh
     elif in_array "ncl" "${type[*]}"; then
