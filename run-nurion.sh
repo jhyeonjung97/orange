@@ -1,27 +1,23 @@
 #!/bin/bash
 
-if test -d /TGM/Apps/VASP/VASP_BIN/6.3.2; then
+if test -d ~/bin/KISTI_VASP/; then
     cp ~/input_files/run_slurm.sh .
 
-    read -p "which queue? (g1~g5, gpu): " q
-    echo -n "which type? (beef, vtst, vaspsol, gam): "
+    read -p "which queue? (normal, skl): " q
+    echo -n "which type? (beef, vaspsol, gam): "
     read -a type
 
-    if [[ $q == 'g1' ]]; then
-        node=12
-    elif [[ $q == 'g2' ]] || [[ $q == 'g3' ]] ; then
-        node=20
-    elif [[ $q == 'g4' ]]; then
-        node=24
-    elif [[ $q == 'g5' ]] || [[ $q == 'gpu' ]]; then
-        node=32
+    if [[ $q == 'skl' ]]; then
+        node=40
+        q='norm_skl'
+        sed -i "s/KNL_XeonPhi/SKL_Skylake" run_slurm.sh
     else
-        echo "I've never heard of that kind of node.."
-        break
+        node=64
+        q='normal'
     fi
 
-    sed -i "/ntasks-per-node/c\#SBATCH --ntasks-per-node=$node" run_slurm.sh
-    sed -i "/partition/c\#SBATCH --partition=$q" run_slurm.sh
+    sed -i "/ncpus/c\#PBS -l select=1:ncpus=$node:mpiprocs=$node:ompthreads=1" run_slurm.sh
+    sed -i "/partition/c\#PBS -q $q" run_slurm.sh
 
     function in_array {
         ARRAY=$2
@@ -31,13 +27,8 @@ if test -d /TGM/Apps/VASP/VASP_BIN/6.3.2; then
                 return 0
             fi
         done
-
         return 1
     }
-
-    if in_array "vtst" "${type[*]}"; then
-        sed -i 's/std/vtst.std/' run_slurm.sh
-    fi
 
     if in_array "beef" "${type[*]}"; then
         sed -i '/mpiexec/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
@@ -51,12 +42,10 @@ if test -d /TGM/Apps/VASP/VASP_BIN/6.3.2; then
 
     if in_array "gam" "${type[*]}"; then
         sed -i 's/std/gam/' run_slurm.sh
-        sed -i 's/gamout/stdout/' run_slurm.sh
     elif in_array "ncl" "${type[*]}"; then
         sed -i 's/std/ncl/' run_slurm.sh
-        sed -i 's/nclout/stdout/' run_slurm.sh
     fi
-    
+
 else
-    echo "Here is not burning.postech.ac.kr..."
+    echo "Here is not nurion.ksc.re.kr..."
 fi

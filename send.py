@@ -34,6 +34,8 @@ elif surv=='mac':
     surv='hailey@134.79.69.172:~/Desktop/'
 elif surv=='kisti':
     surv='x2431a10@nurion.ksc.re.kr:'
+elif surv=='nurion':
+    surv='x2347a10@nurion.ksc.re.kr:'
 elif surv=='cori':
     surv='jiuy97@cori.nersc.gov:'
 elif surv=='nersc':
