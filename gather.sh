@@ -19,7 +19,7 @@ fi
 for i in {0..9}
 do
     if [[ -d $i ]]; then
-        cd $i
+        cd $i*/
         for file in *
         do
             if [[ $file =~ $pattern ]]; then
