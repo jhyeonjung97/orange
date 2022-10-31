@@ -25,14 +25,11 @@ else
         cp $p$i.vasp $i/POSCAR
         
         cd $i
-        python ~/bin/pyband/xcell.py
-        mv out*.vasp POSCAR
+        python ~/bin/pyband/xcell.py #XCELL
+        mv out*.vasp POSCAR #XCELL
         python3 ~/bin/orange/magmom.py
         
-        sed -n 6p POSCAR >> temp1
-        sed 1d POSCAR >> temp2
-        cat temp1 temp2 > POSCAR
-        rm temp1 temp2
+        sh ~/bin/orange/vasp5.sh
         python3 ~/bin/shoulder/potcar_ara.py
         
         sed -i "/job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh

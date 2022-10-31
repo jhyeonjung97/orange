@@ -4,7 +4,6 @@ alias k='cp ~/input_files/KPOINTS .'
 alias potcar='vasp425
 python3 ~/bin/shoulder/potcar_ara.py'
 alias PBE='grep TITEL POTCAR'
-alias vasp='sed -i -e '1h' -e '5G' POSCAR'
 
 alias pos2cif='~/bin/vtstscripts/pos2cif.pl POSCAR'
 alias con2cif='~/bin/vtstscripts/pos2cif.pl CONTCAR'
@@ -14,11 +13,8 @@ alias vaspsend='sh ~/bin/orange/vaspsend.sh'
 alias sendvasp='sh ~/bin/orange/vaspsend.sh'
 alias xc='python ~/bin/pyband/xcell.py
 mv out*.vasp POSCAR'
-alias vasp425='sh ~/bin/orange/vasp425.sh'
-alias vasphead='sed -n 6p POSCAR >> temp1
-sed 1d POSCAR >> temp2
-cat temp1 temp2 > POSCAR
-rm temp1 temp2'
+alias vasp='sh ~/bin/orange/vasp.sh'
+alias vasp524='sed -i -e '1h' -e '5G' POSCAR'
 
 #OUTPUT
 alias e='grep E0 stdout*'
