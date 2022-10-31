@@ -23,7 +23,7 @@ do
     do
         if [[ $file =~ $pattern ]]; then
             if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
-                cp $file ../$filename$i.vasp
+                cp $pattern ../$filename$i.vasp
             else
                 extension="${file##*.}"
                 filename="${file%.*}"
