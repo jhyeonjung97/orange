@@ -12,13 +12,21 @@ elif [[ ! -e "run_slurm.sh" ]]; then
     echo "don't forget run_slurm.sh.."
     run
     break
-elif [[ -z $2 ]]; then
-    echo 'usage: autosub [directory#1] [directory#2]'
+elif [[ -z $1 ]]; then
+    echo 'usage: autosub (directory#1) [directory#2]'
 else
+    if [[ -z $2 ]]; then
+        a=0
+        b=$1
+    else
+        a=$1
+        b=$2
+    fi
+    
     read -p "POSCARs starts with: " p
     read -p "job name: " n
     
-    for i in $(seq $1 $2)
+    for i in $(seq $a $b)
     do
         mkdir $i
         cp INCAR KPOINTS run_slurm.sh $i
