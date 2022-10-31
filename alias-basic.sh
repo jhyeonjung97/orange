@@ -36,7 +36,7 @@ alias gather='sh ~/bin/orange/gather.sh'
 alias energy='ag -t -g "i,e" OUTCAR > '
 
 #RUN_SLURM.SH
-alias sub='python3 ~/bin/orange/sub.py'
+alias sub='sh ~/bin/orange/sub.sh'
 alias resub='rm STD* std*
 sub'
 alias autosub='sh ~/bin/orange/autosub.sh'
