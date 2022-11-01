@@ -23,9 +23,6 @@ if [[ -z $dos ]] || [[ $dos =~ 'y' ]]; then
     if [[ $chg == 'y' ]] && [[ ! -s CHGCAR ]]; then
         echo 'you need CHGCAR..'
         exit 6
-    else
-        more KPOINTS
-        read -p 'double k-points? (enter: yes)' double
     fi
     dos='y'
 fi
@@ -95,6 +92,7 @@ fi
 
 #prepare input files
 sed -n '11,$p' run_slurm.sh > temp1
+
 if [[ $chg == 'y' ]]; then
     echo 'cp * geo
     cp CONTCAR POSCAR
@@ -102,6 +100,7 @@ if [[ $chg == 'y' ]]; then
     cat run_slurm.sh temp1 >> temp2
     mv temp2 run_slurm.sh
 fi
+
 if [[ $dos == 'y' ]]; then
     cp KPOINTS double_k
     if [[ -z $(grep ISMEAR INCAR | grep -5) ]]; then
