@@ -11,8 +11,17 @@ if [[ -z $1 ]]; then
         sbatch run_slurm.sh
     fi
     cd ..
+    
 else
-    for i in $(seq $1 $2)
+    if [[ -z $2 ]]; then
+        a=1
+        b=$1
+    else
+        a=$1
+        b=$2
+    fi
+    
+    for i in $(seq $a $b)
     do
         cd $i*
         sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
