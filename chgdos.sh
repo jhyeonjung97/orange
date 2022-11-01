@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p 'Geometry optimization? [y/n] (default: y)' geo
+read -p 'Geometry optimization? [y/n] (default: y) ' geo
 
 # default answer/ check input files
 if [[ -z $geo ]] || [[ $geo =~ 'y' ]]; then
@@ -11,8 +11,8 @@ if [[ -z $geo ]] || [[ $geo =~ 'y' ]]; then
     geo='y'
 fi
 
-read -p 'CHG? [y/n] (default: y)' chg
-read -p 'DOS? [y/n] (default: y)' dos
+read -p 'CHG? [y/n] (default: y) ' chg
+read -p 'DOS? [y/n] (default: y) ' dos
 
 # default answer/ check input files
 if [[ -z $chg ]] || [[ $chg =~ 'y' ]]; then
@@ -120,5 +120,9 @@ fi
 rm temp1 temp2
 
 if [[ $dos == 'y' ]]; then
-    vi double_k
+    more double_k
+    read -p 'do you want to double this? [y/n] (default: n) ' double
+    if [[ $double =~ 'y' ]]; then
+        vi double_k
+    fi
 fi
