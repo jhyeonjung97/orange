@@ -87,7 +87,7 @@ if [[ $chg != 'y' ]]; then
         echo 'please prepare chg directory..'
         exit 2
     fi
-elif [[ geo != 'y' ]]; then
+elif [[ $geo != 'y' ]]; then
     cp * geo
     echo 'hello'
     sed -i '11,$d' run_slurm.sh
@@ -121,6 +121,6 @@ fi
 
 rm temp1 temp2
 
-if [[ dos == 'y' ]]; then
+if [[ $dos == 'y' ]]; then
     vi double_k
 fi
