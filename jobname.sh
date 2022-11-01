@@ -35,7 +35,7 @@ elif [[ $1 == '-r' ]] ; then
         usage_error
     fi
 
-elif [[ numb $2 ]] && [[ -z $3 ]]; then
+elif [[ numb "$2" ]] && [[ -z $3 ]]; then
     name=$2; a=1; b=$3
 elif [[ numb $3 ]] && [[ -z $4 ]]; then
     name=$2; a=$3; b=$4
