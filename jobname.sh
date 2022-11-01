@@ -27,6 +27,12 @@ elif [[ $1 == '-r' ]] ; then
         usage_error
     elif [[ -z $3 ]]; then
         name=$2; SET='*/'
+        for i in $SET
+        do
+        sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$name$i\"" $i/run_slurm.sh
+        sed -i "/#PBS -N/c\#PBS -N $name$i" $i/run_slurm.sh
+        done
+        exit 0
     elif [[ -z $4 ]]; then
         name=$2; SET=$(seq 1 $3)
     elif [[ -z $5 ]]; then
