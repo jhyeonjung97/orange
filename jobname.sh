@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function usage_error{
+function usage_error {
     echo 'usage: name (-r) [jobname] (dir#1) (dir#2)'
     exit 1
 }
