@@ -13,15 +13,15 @@ if [[ -z $1 ]]; then
     cd ..
     
 else
-    if [[ -z $2 ]]; then
-        a=1
-        b=$1
+    if [[ -z $2 ]] && ( [[ $1 == '-r' ]] || [[ $1 == 'all' ]] ) ; then
+        DIR='*/'
+    elif [[ -z $2 ]]; then
+        DIR=$(seq 1 $1)
     else
-        a=$1
-        b=$2
+        DIR=$(seq $1 $2)
     fi
     
-    for i in $(seq $a $b)
+    for i in $DIR
     do
         cd $i*
         sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
