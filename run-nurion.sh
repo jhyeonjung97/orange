@@ -7,7 +7,7 @@ if test -d ~/KISTI_VASP/; then
     echo -n "which type? (beef, vaspsol, gam): "
     read -a type
 
-    if [[ $q == 'skl' ]]; then
+    if [[ $q =~ 's' ]]; then
         node=40
         q='norm_skl'
         sed -i "s/KNL_XeonPhi/SKL_Skylake" run_slurm.sh
