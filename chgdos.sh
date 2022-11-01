@@ -20,7 +20,7 @@ if [[ -z $chg ]] || [[ $chg =~ 'y' ]]; then
 fi
 
 if [[ -z $dos ]] || [[ $dos =~ 'y' ]]; then
-    if [[ $chg == 'y' ]] && [[ ! -s CHGCAR ]]; then
+    if [[ $chg != 'y' ]] && [[ ! -s CHGCAR ]]; then
         echo 'you need CHGCAR..'
         exit 6
     fi
