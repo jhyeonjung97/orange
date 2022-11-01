@@ -37,10 +37,10 @@ elif [[ $1 == '-r' ]] ; then
 
 elif [[ -z $3 ]]; then
     numb $2
-    name=$2; a=1; b=$3
+    name=$1; a=1; b=$2
 elif [[ -z $4 ]]; then
     numb $3
-    name=$2; a=$3; b=$4
+    name=$1; a=$2; b=$3
 else
     usage_error
 fi
