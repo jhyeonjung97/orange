@@ -38,8 +38,8 @@ elif [[ $1 == '-r' ]] ; then
 elif [[ -z $3 ]]; then
     numb $2
     name=$2; a=1; b=$3
-elif [[ numb $3 ]] && [[ -z $4 ]]; then
-    numb $2
+elif [[ -z $4 ]]; then
+    numb $3
     name=$2; a=$3; b=$4
 else
     usage_error
