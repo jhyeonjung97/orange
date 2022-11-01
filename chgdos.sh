@@ -11,7 +11,6 @@ if [[ -z $geo ]] || [[ $geo =~ 'y' ]]; then
     geo='y'
 fi
 
-
 read -p 'CHG? [y/n] (default: y)' chg
 read -p 'DOS? [y/n] (default: y)' dos
 
@@ -19,12 +18,12 @@ read -p 'DOS? [y/n] (default: y)' dos
 if [[ -z $chg ]] || [[ $chg =~ 'y' ]]; then
     chg='y'
 fi
- 
+
 if [[ -z $dos ]] || [[ $dos =~ 'y' ]]; then
-    if [[ $chg == 0 ]] && [[ ! -e double_k ]]; then
+    if [[ $chg == 'y' ]] && [[ ! -e double_k ]]; then
         echo 'you need double_k..'
         exit 5
-    elif [[ ! -s CHGCAR ]]; then
+    elif [[ $chg == 'y' ]] && [[ ! -s CHGCAR ]]; then
         echo 'you need CHGCAR..'
         exit 6
     else
