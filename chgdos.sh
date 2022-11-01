@@ -97,24 +97,19 @@ fi
 sed -n '11,$p' run_slurm.sh > temp1
 
 if [[ $chg == 'y' ]]; then
-    echo 'cp * geo
-    cp CONTCAR POSCAR
-    mv INCAR_chg INCAR' >> run_slurm.sh
+    echo 'cp * geo \n cp CONTCAR POSCAR \n mv INCAR_chg INCAR' >> run_slurm.sh
     cat run_slurm.sh temp1 >> temp2
     mv temp2 run_slurm.sh
 fi
 
 if [[ $dos == 'y' ]]; then
     cp KPOINTS double_k
-    if [[ -z $(grep ISMEAR INCAR | grep -5) ]]; then
+    if [[ -z $(grep ISMEAR INCAR | grep 5) ]]; then
         sed -i '3c\Gamma-only' KPOINTS
     fi
     echo '#please double k-points' >> double_k
     
-    echo 'cp * dos
-    cp CONTCAR POSCAR
-    mv double_k KPOINTS
-    mv INCAR_dos INCAR' >> run_slurm.sh
+    echo 'cp * dos \n cp CONTCAR POSCAR \n mv double_k KPOINTS \n mv INCAR_dos INCAR' >> run_slurm.sh
     cat run_slurm.sh temp1 >> temp2
     mv temp2 run_slurm.sh
 fi
