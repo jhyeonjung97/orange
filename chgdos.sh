@@ -108,7 +108,7 @@ if [[ $dos == 'y' ]]; then
         echo '#please double k-points' >> double_k
     fi
     
-    if [[ -z $(grep ISMEAR INCAR | grep 5) ]]; then
+    if [[ -n $(grep ISMEAR INCAR_dos | grep 5) ]]; then
         sed -i '3c\Gamma-only' double_k
     fi
     
