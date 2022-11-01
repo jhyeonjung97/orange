@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $1 =~ '-h' ]] || [[ $1 =~ '--h' ]]; then
+if [[ $1 =~ '-h' ]] || [[ $1 =~ '--h' ]] || [[ -z $1 ]]; then
     echo 'usage: name (-r) [jobname] (dir#1) (dir#2)'
     exit 1
 fi
