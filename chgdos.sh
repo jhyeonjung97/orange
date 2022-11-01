@@ -99,7 +99,7 @@ sed -n '11,$p' run_slurm.sh > temp1
 if [[ $chg == 'y' ]]; then
     echo 'cp * geo
 cp CONTCAR POSCAR
-mv INCAR_chg INCAR" >> run_slurm.sh
+mv INCAR_chg INCAR' >> run_slurm.sh
     cat run_slurm.sh temp1 >> temp2
     mv temp2 run_slurm.sh
 fi
@@ -115,7 +115,7 @@ if [[ $dos == 'y' ]]; then
     fi
     
     echo 'cp * dos
-cp CONTCAR POSCAR
+    cp CONTCAR POSCAR
 mv double_k KPOINTS
 mv INCAR_dos INCAR' >> run_slurm.sh
     cat run_slurm.sh temp1 >> temp2
