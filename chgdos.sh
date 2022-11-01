@@ -116,7 +116,7 @@ if [[ $dos == 'y' ]]; then
     fi
     
     echo '
-cp * dos
+cp * chg
 cp CONTCAR POSCAR
 mv double_k KPOINTS
 mv INCAR_dos INCAR' >> run_slurm.sh
