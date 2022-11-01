@@ -20,10 +20,7 @@ if [[ -z $chg ]] || [[ $chg =~ 'y' ]]; then
 fi
 
 if [[ -z $dos ]] || [[ $dos =~ 'y' ]]; then
-    if [[ $chg == 'y' ]] && [[ ! -e double_k ]]; then
-        echo 'you need double_k..'
-        exit 5
-    elif [[ $chg == 'y' ]] && [[ ! -s CHGCAR ]]; then
+    if [[ $chg == 'y' ]] && [[ ! -s CHGCAR ]]; then
         echo 'you need CHGCAR..'
         exit 6
     else
