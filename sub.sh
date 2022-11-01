@@ -12,7 +12,7 @@ if [[ -z $1 ]]; then
     fi
     cd ..
 else
-    for i in $(seq $a $b)
+    for i in $(seq $1 $2)
     do
         cd $i*
         sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
