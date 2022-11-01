@@ -56,6 +56,7 @@ function modify {
 if [[ $chg == 'y' ]]; then
     mkdir chg
     cp INCAR INCAR_chg
+    echo '<INCAR_chg>'
     modify INCAR_chg NSW
     modify INCAR_chg IBRION
     modify INCAR_chg LCHARG
@@ -66,6 +67,7 @@ fi
 if [[ $dos == 'y' ]]; then
     mkdir dos
     cp INCAR INCAR_dos
+    echo '<INCAR_dos>'
     modify INCAR_dos ICHARG 11
     modify INCAR_dos NSW
     modify INCAR_dos IBRION
@@ -87,6 +89,7 @@ if [[ $chg != 'y' ]]; then
     fi
 elif [[ geo != 'y' ]]; then
     cp * geo
+    echo 'hello'
     sed -i '11,$d' run_slurm.sh
 fi
 
