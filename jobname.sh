@@ -26,21 +26,21 @@ elif [[ $1 == '-r' ]] ; then
     if [[ -z $2 ]]; then
         usage_error
     elif [[ -z $3 ]]; then
-        name=$2; a=0; b=9
+        name=$2; SET='*/'
     elif [[ -z $4 ]]; then
-        name=$2; a=1; b=$3
+        name=$2; SET=${seq 1 $3}
     elif [[ -z $5 ]]; then
-        name=$2; a=$3; b=$4
+        name=$2; SET=${seq $3 $4}
     else
         usage_error
     fi
 
 elif [[ -z $3 ]]; then
     numb $2
-    name=$1; a=1; b=$2
+    name=$1; SET=${seq 1 $2}
 elif [[ -z $4 ]]; then
     numb $3
-    name=$1; a=$2; b=$3
+    name=$1; SET=${seq $2 $3}
 else
     usage_error
 fi
