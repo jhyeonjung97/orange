@@ -2,9 +2,9 @@
 
 if [[ -z $2 ]]; then
     SET='*/'
-elif [[ $2 == '2']]; then
+elif [[ $2 == '2' ]]; then
     SET='*/*/'
-elif [[ $2 == '3']]; then
+elif [[ $2 == '3' ]]; then
     SET='*/*/*/'
 fi
 
