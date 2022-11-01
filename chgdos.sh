@@ -103,11 +103,14 @@ if [[ $chg == 'y' ]]; then
 fi
 
 if [[ $dos == 'y' ]]; then
-    cp KPOINTS double_k
-    if [[ -z $(grep ISMEAR INCAR | grep 5) ]]; then
-        sed -i '3c\Gamma-only' KPOINTS
+    if ! [[ -e double_k ]]; then
+        cp KPOINTS double_k
+        echo '#please double k-points' >> double_k
     fi
-    echo '#please double k-points' >> double_k
+    
+    if [[ -z $(grep ISMEAR INCAR | grep 5) ]]; then
+        sed -i '3c\Gamma-only' double_k
+    fi
     
     echo 'cp * dos \n cp CONTCAR POSCAR \n mv double_k KPOINTS \n mv INCAR_dos INCAR' >> run_slurm.sh
     cat run_slurm.sh temp1 >> temp2
