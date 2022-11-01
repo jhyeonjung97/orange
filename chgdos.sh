@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [[ $1 =~ '-h' ]] || [[ $1 =~ '--h' ]]; then
-    echo 'usage: just enter command $chdo, then you will know..'
+    echo 'usage: just enter the command $chdo, then you will know..'
     exit 6
 fi
 
-read -p 'Geometry optimization? [y/n] (default: y) ' geo
+read -p '1) Geometry optimization? [y/n] (default: y) ' geo
 
 # default answer/ check input files
 if [[ -z $geo ]] || [[ $geo =~ 'y' ]]; then
@@ -16,8 +16,8 @@ if [[ -z $geo ]] || [[ $geo =~ 'y' ]]; then
     geo='y'
 fi
 
-read -p 'CHG? [y/n] (default: y) ' chg
-read -p 'DOS? [y/n] (default: y) ' dos
+read -p '2) CHG? [y/n] (default: y) ' chg
+read -p '3) DOS? [y/n] (default: y) ' dos
 
 # default answer/ check input files
 if [[ -z $chg ]] || [[ $chg =~ 'y' ]]; then
@@ -139,4 +139,9 @@ if [[ $dos == 'y' ]]; then
     if [[ $double =~ 'y' ]]; then
         vi double_k
     fi
+fi
+
+read -p 'do you want to submit the job now? [y/n] (default:y) ' submit
+if ! [[ $submit =~ 'n' ]]; then
+    sh ~/bin/orange/sub.sh
 fi
