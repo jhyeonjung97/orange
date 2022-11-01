@@ -1,12 +1,17 @@
 #!/bin/bash
 
+if [[ $1 =~ '-h' ]] || [[ $1 =~ '--h' ]]; then
+    echo 'usage: just enter command $chdo, then you will know..'
+    exit 6
+fi
+
 read -p 'Geometry optimization? [y/n] (default: y) ' geo
 
 # default answer/ check input files
 if [[ -z $geo ]] || [[ $geo =~ 'y' ]]; then
     if [ ! -e INCAR ] || [ ! -e KPOINTS ] || [ ! -e POTCAR ] || [ ! -e POSCAR ] || [ ! -e run_slurm.sh ]; then
         echo 'you are missing something..'
-        exit 8
+        exit 1
     fi
     geo='y'
 fi
@@ -22,7 +27,7 @@ fi
 if [[ -z $dos ]] || [[ $dos =~ 'y' ]]; then
     if [[ $chg != 'y' ]] && [[ ! -s CHGCAR ]]; then
         echo 'you need CHGCAR..'
-        exit 6
+        exit 2
     fi
     dos='y'
 fi
@@ -31,7 +36,7 @@ if ( [[ $geo == 'y' ]] && [[ $chg == 'y' ]] && [[ $dos == 'y' ]] ) || ( [[ $geo 
     mkdir geo
 else
     echo 'calculation sequence is wrong..'
-    exit 1
+    exit 3
 fi
 
 # functions
@@ -85,7 +90,7 @@ fi
 if [[ $chg != 'y' ]]; then
     if [[ ! -e $chg ]]; then
         echo 'please prepare chg directory..'
-        exit 2
+        exit 4
     fi
 elif [[ $geo != 'y' ]]; then
     cp * geo
@@ -94,7 +99,14 @@ elif [[ $geo != 'y' ]]; then
 fi
 
 #prepare input files
-sed -n '11,$p' run_slurm.sh > temp1
+if [[ ${here} == 'burning' ]]; then
+    sed -n '16,$p' run_slurm.sh > temp1
+elif [[ ${here} == 'kisti' ]] || [[ ${here} == 'nurion' ]]; then
+    sed -n '11,$p' run_slurm.sh > temp1
+else
+    echo 'where am i..? please modify [chgdos.sh] code'
+    exit 5
+fi
 
 if [[ $chg == 'y' ]]; then
     echo '
