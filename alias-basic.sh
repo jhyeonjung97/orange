@@ -15,6 +15,7 @@ alias xc='python ~/bin/pyband/xcell.py
 mv out*.vasp POSCAR'
 alias vasp='sh ~/bin/orange/vasp5.sh'
 alias vasp524='sed -i -e '1h' -e '5G' POSCAR'
+alias chdo='sh ~/bin/orange/chgdos.sh'
 
 #OUTPUT
 alias e='grep E0 stdout*'
