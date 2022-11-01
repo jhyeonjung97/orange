@@ -41,10 +41,7 @@ fi
 
 # functions
 function modify {
-    grep $2 $1
-
     if [[ -z $(grep $2 $1) ]]; then
-        echo "#$2"
         echo $2 >> $1
     fi
     
@@ -54,8 +51,6 @@ function modify {
     else
         sed -i "/$2/c\\$2 = $3" $1
     fi
-        
-    grep $2 $1
 }
 
 if [[ $chg == 'y' ]]; then
