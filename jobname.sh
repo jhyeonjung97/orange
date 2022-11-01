@@ -28,25 +28,25 @@ elif [[ $1 == '-r' ]] ; then
     elif [[ -z $3 ]]; then
         name=$2; SET='*/'
     elif [[ -z $4 ]]; then
-        name=$2; SET=${seq 1 $3}
+        name=$2; SET=$(seq 1 $3)
     elif [[ -z $5 ]]; then
-        name=$2; SET=${seq $3 $4}
+        name=$2; SET=$(seq $3 $4)
     else
         usage_error
     fi
 
 elif [[ -z $3 ]]; then
     numb $2
-    name=$1; SET=${seq 1 $2}
+    name=$1; SET=$(seq 1 $2)
 elif [[ -z $4 ]]; then
     numb $3
-    name=$1; SET=${seq $2 $3}
+    name=$1; SET=$(seq $2 $3)
 else
     usage_error
 fi
 
 # loop
-for i in $(seq $a $b)
+for i in $SET
 do
 sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$name$i\"" $i*/run_slurm.sh
 sed -i "/#PBS -N/c\#PBS -N $name$i" $i*/run_slurm.sh
