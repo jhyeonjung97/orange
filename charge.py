@@ -20,7 +20,7 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
             
         if i == 0:
             headings = line
-            print(heading.split())
+            print(headings.split())
             if 'BADER' in headings.split():
                 j = headings.split().index('BADER')
                 print(j) ##
