@@ -110,6 +110,7 @@ cp CONTCAR POSCAR
 mv INCAR_chg INCAR' >> run_slurm.sh
     cat run_slurm.sh temp1 >> temp2
     mv temp2 run_slurm.sh
+    echo 'cp * chg' >> run_slurm.sh
 fi
 
 if [[ $dos == 'y' ]]; then
@@ -129,6 +130,7 @@ mv double_k KPOINTS
 mv INCAR_dos INCAR' >> run_slurm.sh
     cat run_slurm.sh temp1 >> temp2
     mv temp2 run_slurm.sh
+    echo 'cp * dos' >> run_slurm.sh
 fi
 
 rm temp1 temp2
