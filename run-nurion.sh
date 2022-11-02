@@ -52,7 +52,7 @@ elif in_array "ncl" "${type[*]}"; then
     sed -i 's/std/ncl/' run_slurm.sh
 fi
 
-if [[ -n $(grep beef run_slurm.sh) ]]
+if [[ -n $(grep beef run_slurm.sh) ]]; then
     sed -n '16,18p' run_slurm.sh > temp1
 else
     sed -n '16p' run_slurm.sh > temp1
