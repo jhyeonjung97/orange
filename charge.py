@@ -52,7 +52,7 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
                     xyz = np.array([float(w) for w in words[1:4]])
                 assert np.linalg.norm(atom.position - xyz) < displacement
         i+=1
-        if atom.symbol == 'Fe':
+        for atom in atoms if atom.symbol == 'Fe'
             print(atom.charge)
 
 atoms = read('POSCAR')
