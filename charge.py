@@ -1,4 +1,4 @@
-import sys import argv
+from sys import argv
 from ase.io import read
 
 def attach_charges(atoms, fileobj='ACF.dat', element='O'):
