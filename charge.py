@@ -3,8 +3,7 @@ from ase.io import read, write
 from ase.units import Bohr
 from ase.visualize import view
 
-def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
-                   use_bohr=True):
+def attach_charges(atoms, fileobj='ACF.dat'):
     """Attach the charges from the fileobj to the Atoms."""
     if isinstance(fileobj, str):
         fileobj = open(fileobj)
@@ -12,6 +11,7 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
     sep = '---------------'
     i = 0 # Counter for the lines
     k = 0 # Counter of sep
+    total = 0
     assume6columns = False
     for line in fileobj:
         if line[0] == '\n': # check if there is an empty line in the 
@@ -41,20 +41,14 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
                                   'Check that Bader program version >= 0.25')
                 
             atom = atoms[int(words[0]) - 1]
-            if use_diff:
-                atom.charge = atom.number - float(words[j])
-            else:
-                atom.charge = float(words[j])
-            if displacement is not None: # check if the atom positions match
-                if use_bohr:
-                    xyz = np.array([float(w) for w in words[1:4]]) * Bohr
-                else:
-                    xyz = np.array([float(w) for w in words[1:4]])
-                assert np.linalg.norm(atom.position - xyz) < displacement
+            atom.charge = float(words[j])
         i+=1
+        
     for atom in atoms:
-        if atom.symbol == 'Fe':
-            print(atom.charge)
+        if atom.symbol == element:
+            print(f"{element}{atom.number}: {atom.charge}")
+            total+=atom.charge
+    print(f"{element}_total: {atom.charge}")
 
 atoms = read('POSCAR')
-attach_charges(atoms, 'ACF.dat', use_bohr=False, use_diff=False)
+attach_charges(atoms, 'ACF.dat')
