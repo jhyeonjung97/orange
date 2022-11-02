@@ -1,6 +1,4 @@
-from sys import argv
 from ase.io import read
-
 
 def attach_charges(atoms, fileobj='ACF.dat', element='O'):
     """Attach the charges from the fileobj to the Atoms."""
@@ -50,6 +48,8 @@ def attach_charges(atoms, fileobj='ACF.dat', element='O'):
     print(f"{element}_total: {atom.charge}")
 
 atoms = read('POSCAR')
-bader = 'ACF*.dat'
-element = argv[1]
-attach_charges(atoms, bader, element)
+fileobj='ACF.dat'
+element = input('which element?: ')
+if element is None:
+    print('default element is oxygen')
+attach_charges(atoms, 'ACF.dat', element)
