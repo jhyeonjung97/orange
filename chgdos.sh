@@ -112,19 +112,6 @@ else
     exit 5
 fi
 
-if [[ $geo == 'y' ]]; then
-    echo '
-i=1
-while [[ -n $(grep "please rerun with smaller EDIFF, or copy CONTCAR" std*) ]]
-do
-mkdir $i
-cp * $i
-rm std*' >> run_slurm.sh
-    cat run_slurm.sh temp1 >> temp2
-    mv temp2 run_slurm.sh
-    echo "done" >> run_slurm.sh
-fi
-
 if [[ $chg == 'y' ]]; then
     echo '
 cp * geo
