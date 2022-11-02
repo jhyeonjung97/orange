@@ -19,18 +19,14 @@ fi
 
 if [[ $1 == '-n' ]] || [[ $1 == '-non' ]]; then
     if [[ -z $3 ]]; then
-        a=1
-        b=$2
+        a=1; b=$2
     else
-        a=$2
-        b=$3
+        a=$2; b=$3
     fi
 elif [[ -z $2 ]]; then
-    a=1
-    b=$1
+    a=1; b=$1
 else
-    a=$1
-    b=$2
+    a=$1; b=$2
 fi
     
 read -p "POSCARs starts with: " p
@@ -55,9 +51,5 @@ do
 done
 
 if [[ $1 != '-n' ]] && [[ $1 != '-non' ]]; then
-    for i in $(seq $a $b)
-    do
-        cd $i
-        sh ~/bin/orange/sub.sh
-    done
+    sh ~/bin/orange/sub.sh $a $b
 fi
