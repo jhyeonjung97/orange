@@ -44,7 +44,7 @@ def attach_charges(atoms, fileobj='ACF.dat', element='O'):
         
     for atom in atoms:
         if atom.symbol == element:
-            print(f"{element}{atom.number}: {atom.charge}")
+            print(f"{element}{atom.index}: {atom.charge}")
             total+=atom.charge
     print(f"{element}_total: {total}")
 
