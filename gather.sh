@@ -18,23 +18,27 @@ fi
 
 for dir in */
 do
+    cd $dir
     numb=$(echo $dir | cut -c 1)
-    for file in $dir/*
+    for file in *
     do
         if [[ $file =~ $pattern ]]; then
             if [[ -n $filename ]]; then
-                cp $dir/$pattern $filename$numb.vasp
+                if [[ $pattern == 'POSCAR' ]] && [[ -e initial.vasp ]]; then
+                    cp initial.vasp ../$filename$numb.vasp
+                elif [[ $pattern == 'CONTCAR' ]] && [[ ! -s $file ]]; then
+                    cp POSCAR ../$filename$numb.vasp
+                else
+                    cp $pattern ../$filename$numb.vasp
+                fi
             else
-                extension="${file##*.}"
                 filename="${file%.*}"
-                cp $dir/$file $filename$numb.$extension
+                extension="${file##*.}"
+                cp $file ../$filename$numb.$extension
             fi
         fi
-
-        if [[ $pattern == 'POSCAR' ]] && [[ $file == 'initial.vasp' ]]; then
-            cp $dir/$file $filename$numb.vasp
-        fi
     done
+    cd ..
 done
 
 # for i in {0..9}
