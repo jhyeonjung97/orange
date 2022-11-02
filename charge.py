@@ -14,12 +14,13 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
     k = 0 # Counter of sep
     assume6columns = False
     for line in fileobj:
-        print(line)
+        print(line) ##
         if line[0] == '\n': # check if there is an empty line in the 
             i -= 1          # head of ACF.dat file
             
         if i == 0:
             headings = line
+            print(heading.split())
             if 'BADER' in headings.split():
                 j = headings.split().index('BADER')
                 print(j) ##
