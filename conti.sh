@@ -3,9 +3,9 @@
 if [[ -d conti ]]; then
     echo 'this can remove some data in <conti> directory..'
     save='conti'
-elif [[ -e conti_2 ]]; then
+elif [[ -d conti_2 ]]; then
     save='conti'
-elif [[ -e conti_1 ]]; then
+elif [[ -d conti_1 ]]; then
     save='conti_2'
 else
     save='conti_1'
