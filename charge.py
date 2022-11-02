@@ -14,23 +14,18 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
     k = 0 # Counter of sep
     assume6columns = False
     for line in fileobj:
-        print(line) ##
         if line[0] == '\n': # check if there is an empty line in the 
-            i -= 1          # head of ACF.dat file
-            
+            i -= 1          # head of ACF.dat file   
         if i == 0:
             headings = line
             if 'BADER' in headings.split():
                 j = headings.split().index('BADER')
-                print('BADER') ##
             elif 'CHARGE' in headings.split():
                 j = headings.split().index('CHARGE')
-                print('CHARGE') ##
             else:
                 print('Can\'t find keyword "BADER" or "CHARGE".' \
                 +' Assuming the ACF.dat file has 6 columns.')
                 j = 4
-                print(j) ##
                 assume6columns = True
         if sep in line: # Stop at last seperator line
             if k == 1:
@@ -57,6 +52,8 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
                     xyz = np.array([float(w) for w in words[1:4]])
                 assert np.linalg.norm(atom.position - xyz) < displacement
         i+=1
+        if atom.symbol == 'Fe'
+            print(atom.charge)
 
 atoms = read('POSCAR')
 attach_charges(atoms, 'ACF.dat', use_bohr=False, use_diff=False)
