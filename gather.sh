@@ -16,24 +16,47 @@ else
     pattern=$f
 fi
 
-for i in {0..9}
+for dir in */
 do
-    cd $i*
-    for file in *
+    numb=$(echo $dir | cut -c 1)
+    for file in $dir/*
     do
         if [[ $file =~ $pattern ]]; then
-            if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
-                cp $pattern ../$filename$i.vasp
+            if [[ -n $filename ]]; then
+                cp $dir/$pattern $filename$numb.vasp
             else
                 extension="${file##*.}"
                 filename="${file%.*}"
-                cp $file ../$filename$i.$extension
+                cp $dir/$file $filename$numb.$extension
             fi
         fi
-            
-        if [[ $pattern == 'POSCAR' ]] && [[ $file =~ 'initial' ]]; then
-            cp $file ../$filename$i.vasp
+
+        if [[ $pattern == 'POSCAR' ]] && [[ $file == 'initial.vasp' ]]; then
+            cp $dir/$file $filename$numb.vasp
         fi
     done
-    cd ..
 done
+
+# for i in {0..9}
+# do
+#     if [[ -d $i*/ ]]; then
+#         cd $i*/
+#         for file in *
+#         do
+#             if [[ $file =~ $pattern ]]; then
+#                 if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
+#                     cp $pattern ../$filename$i.vasp
+#                 else
+#                     extension="${file##*.}"
+#                     filename="${file%.*}"
+#                     cp $file ../$filename$i.$extension
+#                 fi
+#             fi
+
+#             if [[ $pattern == 'POSCAR' ]] && [[ $file =~ 'initial' ]]; then
+#                 cp $file ../$filename$i.vasp
+#             fi
+#         done
+#         cd ..
+#     fi
+# done
