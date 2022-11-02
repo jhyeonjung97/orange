@@ -50,6 +50,7 @@ do
     cd ..
 done
 
-if [[ $1 != '-n' ]] && [[ $1 != '-non' ]]; then
+read -p 'do you want to submit jobs? [y/n] (default: y) ' submit
+if ! [[ $submit =~ '-n' ]]; then
     sh ~/bin/orange/sub.sh $a $b
 fi
