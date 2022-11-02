@@ -1,3 +1,4 @@
+import sys import argv
 from ase.io import read
 
 def attach_charges(atoms, fileobj='ACF.dat', element='O'):
@@ -45,11 +46,12 @@ def attach_charges(atoms, fileobj='ACF.dat', element='O'):
         if atom.symbol == element:
             print(f"{element}{atom.number}: {atom.charge}")
             total+=atom.charge
-    print(f"{element}_total: {atom.charge}")
+    print(f"{element}_total: {total}")
 
 atoms = read('POSCAR')
-fileobj='ACF.dat'
-element = input('which element?: ')
-if element is None:
+fileobj = 'ACF.dat'
+if len(argv) == 1:
     print('default element is oxygen')
-attach_charges(atoms, 'ACF.dat', element)
+    argv[1] = 'O'
+for element in argv
+    attach_charges(atoms, 'ACF.dat', element)
