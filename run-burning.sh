@@ -59,3 +59,6 @@ elif in_array "ncl" "${type[*]}"; then
     sed -i 's/std/ncl/' run_slurm.sh
     sed -i 's/nclout/stdout/' run_slurm.sh
 fi
+
+echo '
+sh ~/bin/orange/relax_error.sh' >> run_slurm.sh
