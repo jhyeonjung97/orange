@@ -14,8 +14,10 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
     k = 0 # Counter of sep
     assume6columns = False
     for line in fileobj:
+        print(line)
         if line[0] == '\n': # check if there is an empty line in the 
             i -= 1          # head of ACF.dat file
+            
         if i == 0:
             headings = line
             if 'BADER' in headings.split():
@@ -58,4 +60,3 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
 
 atoms = read('POSCAR')
 attach_charges(atoms, 'ACF.dat', use_bohr=False, use_diff=False)
-view(atoms)
