@@ -26,27 +26,21 @@ elif [[ $1 == '-r' ]] ; then
     if [[ -z $2 ]]; then
         usage_error
     elif [[ -z $3 ]]; then
-        name=$2; SET='*/'
-        for i in $SET
-        do
-        sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$name$i\"" $i/run_slurm.sh
-        sed -i "/#PBS -N/c\#PBS -N $name$i" $i/run_slurm.sh
-        done
-        exit 0
+        name=$2; SET='*/'; star=''
     elif [[ -z $4 ]]; then
-        name=$2; SET=$(seq 1 $3)
+        name=$2; SET=$(seq 1 $3); star='*'
     elif [[ -z $5 ]]; then
-        name=$2; SET=$(seq $3 $4)
+        name=$2; SET=$(seq $3 $4); star='*'
     else
         usage_error
     fi
 
 elif [[ -z $3 ]]; then
     numb $2
-    name=$1; SET=$(seq 1 $2)
+    name=$1; SET=$(seq 1 $2); star='*'
 elif [[ -z $4 ]]; then
     numb $3
-    name=$1; SET=$(seq $2 $3)
+    name=$1; SET=$(seq $2 $3); star='*'
 else
     usage_error
 fi
@@ -54,6 +48,6 @@ fi
 # loop
 for i in $SET
 do
-sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$name$i\"" $i*/run_slurm.sh
-sed -i "/#PBS -N/c\#PBS -N $name$i" $i*/run_slurm.sh
+sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$name$i\"" $i$star/run_slurm.sh
+sed -i "/#PBS -N/c\#PBS -N $name$i" $i$star/run_slurm.sh
 done

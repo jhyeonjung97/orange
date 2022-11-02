@@ -13,4 +13,8 @@ if [[ -s CONTCAR ]]; then
     mv CONTCAR POSCAR
 fi
 
-sbatch run_slurm.sh
+if [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
+    qsub run_slurm.sh
+else
+    sbatch run_slurm.sh
+fi
