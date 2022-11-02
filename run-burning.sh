@@ -62,3 +62,8 @@ fi
 
 echo '
 sh ~/bin/orange/relax_error.sh' >> run_slurm.sh
+
+read -p 'enter jobname if you want to change it (default: n) ' jobname
+if [[ -n $jobname ]]; then
+    sh ~/bin/ornage/jobname.sh $jobname
+fi
