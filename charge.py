@@ -20,18 +20,20 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
             
         if i == 0:
             headings = line
-            print(headings.split())
-            if 'CHARGE' in headings.split():
-                print('HELLO') ##
-            if 'CHARGE' in headings.split():
-                j = headings.split().index('CHARGE')
-                print('CHARGE') ##
-            else:
-                print('Can\'t find keyword "BADER" or "CHARGE".' \
-                +' Assuming the ACF.dat file has 6 columns.')
-                j = 4
-                print(j) ##
-                assume6columns = True
+            j = headings.split().index('CHARGE')
+            # print(headings.split())
+            # if 'BADER' in headings.split():
+            #     j = headings.split().index('BADER')
+            #     print('BADER') ##
+            # elif 'CHARGE' in headings.split():
+            #     j = headings.split().index('CHARGE')
+            #     print('CHARGE') ##
+            # else:
+            #     print('Can\'t find keyword "BADER" or "CHARGE".' \
+            #     +' Assuming the ACF.dat file has 6 columns.')
+            #     j = 4
+            #     print(j) ##
+            #     assume6columns = True
         if sep in line: # Stop at last seperator line
             if k == 1:
                 break
