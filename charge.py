@@ -23,10 +23,10 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
             print(headings.split())
             if 'BADER' in headings.split():
                 j = headings.split().index('BADER')
-                print(j) ##
+                print('BADER') ##
             elif 'CHARGE' in headings.split():
                 j = headings.split().index('CHARGE')
-                print(j) ##
+                print('CHARGE') ##
             else:
                 print('Can\'t find keyword "BADER" or "CHARGE".' \
                 +' Assuming the ACF.dat file has 6 columns.')
@@ -57,7 +57,7 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
                 else:
                     xyz = np.array([float(w) for w in words[1:4]])
                 assert np.linalg.norm(atom.position - xyz) < displacement
-        i += 1
+        i+=1
 
 atoms = read('POSCAR')
 attach_charges(atoms, 'ACF.dat', use_bohr=False, use_diff=False)
