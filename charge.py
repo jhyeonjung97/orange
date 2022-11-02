@@ -1,9 +1,8 @@
-import numpy as np
-from ase.io import read, write
-from ase.units import Bohr
-from ase.visualize import view
+from sys import argv
+from ase.io import read
 
-def attach_charges(atoms, fileobj='ACF.dat'):
+
+def attach_charges(atoms, fileobj='ACF.dat', element='O'):
     """Attach the charges from the fileobj to the Atoms."""
     if isinstance(fileobj, str):
         fileobj = open(fileobj)
@@ -51,4 +50,6 @@ def attach_charges(atoms, fileobj='ACF.dat'):
     print(f"{element}_total: {atom.charge}")
 
 atoms = read('POSCAR')
-attach_charges(atoms, 'ACF.dat')
+bader = 'ACF*.dat'
+element = argv[1]
+attach_charges(atoms, bader, element)
