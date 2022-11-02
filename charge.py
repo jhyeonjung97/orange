@@ -53,5 +53,5 @@ fileobj = 'ACF.dat'
 if len(argv) == 1:
     print('default element is oxygen')
     argv[1] = 'O'
-for element in argv[*]
+for element in argv:
     attach_charges(atoms, 'ACF.dat', element)
