@@ -133,6 +133,10 @@ mv INCAR_dos INCAR' >> run_slurm.sh
     echo 'cp * dos' >> run_slurm.sh
 fi
 
+echo 'mkdir x
+mv * x
+mv x/*/ .
+rm x' >> run_slurm.sh
 rm temp1 temp2
 
 if [[ $dos == 'y' ]]; then
