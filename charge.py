@@ -54,7 +54,7 @@ def attach_charges(atoms, fileobj='ACF.dat', displacement=1e-4, use_diff=True,
         i+=1
         for atom in atoms:
             if atom.symbol == 'Fe':
-            print(atom.charge)
+                print(atom.charge)
 
 atoms = read('POSCAR')
 attach_charges(atoms, 'ACF.dat', use_bohr=False, use_diff=False)
