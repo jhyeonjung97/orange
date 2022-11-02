@@ -61,9 +61,9 @@ elif in_array "ncl" "${type[*]}"; then
 fi
 
 if [[ -n $(grep beef run_slurm.sh) ]]; then
-    sed -n '11,13p' run_slurm.sh > temp1
+    sed -n '16,18p' run_slurm.sh > temp1
 else
-    sed -n '11p' run_slurm.sh > temp1
+    sed -n '16p' run_slurm.sh > temp1
 fi
     
 echo '
