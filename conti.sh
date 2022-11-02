@@ -16,9 +16,11 @@ if ! [[ -d conti ]]; then
 fi
 
 mv * $save
-mv $save/*/ .
-cp $save/POSCAR initial.vasp
-cp $save/POSCAR $save/CONTCAR $save/INCAR $save/KPOINTS $save/POTCAR $save/run_slurm.sh $save/initial.vasp .
+cd $save/
+mv */ ..
+cp POSCAR ../initial.vasp
+cp POSCAR CONTCAR INCAR KPOINTS POTCAR run_slurm.sh initial.vasp ..
+cd ..
 
 if [[ -s CONTCAR ]]; then
     mv CONTCAR POSCAR
