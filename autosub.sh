@@ -57,6 +57,7 @@ done
 if [[ $1 != '-n' ]] && [[ $1 != '-non' ]]; then
     for i in $(seq $a $b)
     do
+        cd $i
         sh ~/bin/orange/sub.sh
     done
 fi
