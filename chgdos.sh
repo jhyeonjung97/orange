@@ -53,6 +53,7 @@ function modify {
     fi
 }
 
+#prepare input files
 if [[ $chg == 'y' ]]; then
     mkdir chg
     cp INCAR INCAR_chg
@@ -93,14 +94,35 @@ elif [[ $geo != 'y' ]]; then
     sed -i '11,$d' run_slurm.sh
 fi
 
-#prepare input files
+#prepare run files
 if [[ ${here} == 'burning' ]]; then
-    sed -n '16,$p' run_slurm.sh > temp1
+    if [[ -n $(grep beef run_slurm.sh) ]]
+        sed -n '16,18p' run_slurm.sh > temp1
+    else
+        sed -n '16p' run_slurm.sh > temp1
+    fi
 elif [[ ${here} == 'kisti' ]] || [[ ${here} == 'nurion' ]]; then
-    sed -n '11,$p' run_slurm.sh > temp1
+    if [[ -n $(grep beef run_slurm.sh) ]]
+        sed -n '11,13p' run_slurm.sh > temp1
+    else
+        sed -n '11p' run_slurm.sh > temp1
+    fi
 else
     echo 'where am i..? please modify [chgdos.sh] code'
     exit 5
+fi
+
+if [[ $geo == 'y' ]]; then
+    echo '
+i=1
+while [[ -n $(grep "please rerun with smaller EDIFF, or copy CONTCAR" std*) ]]
+do
+mkdir $i
+cp * $i
+rm std*' >> run_slurm.sh
+    cat run_slurm.sh temp1 >> temp2
+    mv temp2 run_slurm.sh
+    echo "done" >> run_slurm.sh
 fi
 
 if [[ $chg == 'y' ]]; then
