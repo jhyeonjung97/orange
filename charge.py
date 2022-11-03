@@ -1,4 +1,5 @@
 from sys import argv
+from os.path import isfile
 from ase.io import read
 
 #usage: charge (-tot) [elements]
@@ -53,10 +54,17 @@ def charges(atoms, fileobj='ACF.dat', element='O'):
 
 atoms = read('POSCAR')
 
-until [[ -f 'ACF.dat' ]] || [[ -f 'ACF.dat' ]] 
-do
-done
+if not os.path.isfile('ACF.dat'):
+    cp *ACF*.dat ACF.dat
+    
+if not os.path.isfile('ACF.dat'):
+    chgsum.pl AECCAR0 AECCAR2
+    bader CHGCAR -ref CHGCAR_sum
 
+if not os.path.isfile('ACF.dat'):
+    print('there is no charge data..')
+    exit()
+    
 fileobj = 'ACF.dat'
 
 if argv[1] == '-tot':

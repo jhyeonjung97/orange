@@ -29,7 +29,7 @@ while [[ $i < 3 ]] && [[ -n $(grep "please rerun with smaller EDIFF, or copy CON
 do
     mkdir conti_$i
     cp * conti_$i
-    i=$i+1
+    i=$(($i+1))
     rm std* STD*
     mv CONTCAR POSCAR
     sh run_conti.sh
