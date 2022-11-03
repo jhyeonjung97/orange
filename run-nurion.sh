@@ -41,7 +41,7 @@ if in_array "beef" "${type[*]}"; then
 
     if in_array "vaspsol" "${type[*]}"; then
         sed -i 's/std/vaspsol.std/' run_slurm.sh
-    elif in_array "vtst" "${type[*]}"; then
+    else
         sed -i 's/beef/vtst179.beef/' run_slurm.sh
     fi
 fi
