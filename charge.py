@@ -1,5 +1,5 @@
 from sys import argv
-from os.path import isfile
+from os import path, system
 from ase.io import read
 
 #usage: charge (-tot) [elements]
@@ -54,14 +54,14 @@ def charges(atoms, fileobj='ACF.dat', element='O'):
 
 atoms = read('POSCAR')
 
-if not os.path.isfile('ACF.dat'):
-    cp *ACF*.dat ACF.dat
+if not path.isfile('ACF.dat'):
+    system('cp *ACF*.dat ACF.dat')
     
-if not os.path.isfile('ACF.dat'):
+if not path.isfile('ACF.dat'):
     chgsum.pl AECCAR0 AECCAR2
     bader CHGCAR -ref CHGCAR_sum
 
-if not os.path.isfile('ACF.dat'):
+if not path.isfile('ACF.dat'):
     print('there is no charge data..')
     exit()
     
