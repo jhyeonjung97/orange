@@ -1,20 +1,25 @@
 #!/bin/bash
 
-if [[ -z $1 ]]; then
+
+function submit {
     sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
     grep NPAR INCAR
     grep Selective POSCAR
-    grep MAGMOM INCAR
+    grep MAGMOM INCAR 
     if [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
         qsub run_slurm.sh
     else
         sbatch run_slurm.sh
     fi
-    cd ..
-    
+    }
+
+if [[ -z $1 ]]; then # simple submit
+    submit
 else
-    if [[ -z $2 ]] && ( [[ $1 == '-r' ]] || [[ $1 == 'all' ]] ) ; then
+    if [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
         DIR='*/'
+    elif [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
+        DIR=${@:2}
     elif [[ -z $2 ]]; then
         DIR=$(seq 1 $1)
     else
@@ -24,15 +29,7 @@ else
     for i in $DIR
     do
         cd $i*
-        sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
-        grep NPAR INCAR
-        grep Selective POSCAR
-        grep MAGMOM INCAR 
-        if [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
-            qsub run_slurm.sh
-        else
-            sbatch run_slurm.sh
-        fi
+        submit
         cd ..
     done
 fi

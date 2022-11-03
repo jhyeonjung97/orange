@@ -11,7 +11,7 @@ else
     save='conti_1'
 fi
 
-if ! [[ -d conti ]]; then
+if [[ ! -d conti ]]; then
     mkdir $save
 fi
 

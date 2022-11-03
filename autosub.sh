@@ -36,23 +36,24 @@ read -p "job name: " n
 
 for i in $SET
 do
-    mkdir $i
+    if [[ ! -d $i ]]; then
+        mkdir $i
+    fi
     cp INCAR KPOINTS run_slurm.sh $i
     cp $p$i.vasp $i/POSCAR
-
     cd $i
     python ~/bin/pyband/xcell.py #XCELL
     mv out*.vasp POSCAR #XCELL
     python3 ~/bin/orange/magmom.py
-
     sh ~/bin/orange/vasp5.sh
     python3 ~/bin/shoulder/potcar_ara.py
-
     sh ~/bin/orange/jobname.sh $n$i
     cd ..
 done
 
 read -p 'do you want to submit jobs? [y/n] (default: y) ' submit
-if ! [[ $submit =~ '-n' ]]; then
-    sh ~/bin/orange/sub.sh $a $b
-fi
+for i in $SET
+do
+    cd $i
+    sh ~/bin/orange/sub.sh
+done

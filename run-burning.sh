@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! [[ -d /TGM/Apps/VASP/VASP_BIN/6.3.2 ]]; then
+if [[ ! -d /TGM/Apps/VASP/VASP_BIN/6.3.2 ]]; then
     echo "Here is not burning.postech.ac.kr..."
 fi
 

@@ -102,7 +102,7 @@ mv INCAR_chg INCAR' >> run_slurm.sh
 fi
 
 if [[ $dos == 'y' ]]; then
-    if ! [[ -e double_k ]]; then
+    if [[ ! -e double_k ]]; then
         cp KPOINTS double_k
         echo '#please double k-points' >> double_k
     fi
@@ -136,6 +136,6 @@ if [[ $dos == 'y' ]]; then
 fi
 
 read -p 'do you want to submit the job now? [y/n] (default:y) ' submit
-if ! [[ $submit =~ 'n' ]]; then
+if [[ ! $submit =~ 'n' ]]; then
     sh ~/bin/orange/sub.sh
 fi

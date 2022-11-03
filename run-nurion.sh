@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! [[ -d ~/KISTI_VASP/ ]]; then
+if [[ ! -d ~/KISTI_VASP/ ]]; then
     echo 'Here is not nurion.ksc.re.kr...'
     exit 1
 fi
