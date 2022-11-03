@@ -41,26 +41,7 @@ do
     cd ..
 done
 
-# for i in {0..9}
-# do
-#     if [[ -d $i*/ ]]; then
-#         cd $i*/
-#         for file in *
-#         do
-#             if [[ $file =~ $pattern ]]; then
-#                 if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
-#                     cp $pattern ../$filename$i.vasp
-#                 else
-#                     extension="${file##*.}"
-#                     filename="${file%.*}"
-#                     cp $file ../$filename$i.$extension
-#                 fi
-#             fi
-
-#             if [[ $pattern == 'POSCAR' ]] && [[ $file =~ 'initial' ]]; then
-#                 cp $file ../$filename$i.vasp
-#             fi
-#         done
-#         cd ..
-#     fi
-# done
+read -p 'vaspsend? [y/n] (default: y) ' send
+if ! [[ $send =~ 'n' ]]; then
+    sh ~/bin/orange/vaspsend.sh
+fi

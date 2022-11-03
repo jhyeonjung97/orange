@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #INPUT
 alias i='cp ~/input_files/INCAR .'
 alias k='cp ~/input_files/KPOINTS .'
