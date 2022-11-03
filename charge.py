@@ -9,7 +9,7 @@ def attach_charges(atoms, fileobj='ACF.dat', element='O'):
     sep = '---------------'
     i = 0 # Counter for the lines
     k = 0 # Counter of sep
-    total = 0
+    sum0 = 0
     assume6columns = False
     for line in fileobj:
         if line[0] == '\n': # check if there is an empty line in the 
@@ -45,13 +45,18 @@ def attach_charges(atoms, fileobj='ACF.dat', element='O'):
     for atom in atoms:
         if atom.symbol == element:
             print(f"{element}{atom.index}\t {atom.charge:.2f}")
-            total+=atom.charge
-    print('\033[1m' + f"{element}_sum\t {total:.2f}" + '\033[0m')
+            sum0+=atom.charge
+    print('\033[1m' + f"{element}_sum\t {sum0:.2f}" + '\033[0m')
 
 atoms = read('POSCAR')
 fileobj = 'ACF.dat'
 if len(argv) == 1:
     print('default element is oxygen')
     argv[1] = 'O'
+
+total=0
 for element in argv[1:]:
-    attach_charges(atoms, 'ACF.dat', element)
+    total+=attach_charges(atoms, 'ACF.dat', element)
+    print('------------------')
+    print(f"total\t {total:.2f}")
+    
