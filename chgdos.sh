@@ -110,6 +110,10 @@ else
     exit 5
 fi
 
+echo $geo
+echo $chg
+echo $dos
+
 if [[ $geo != 'y' ]]; then
     cp * geo
     if [[ ${here} == 'burning' ]]; then
