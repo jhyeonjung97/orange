@@ -60,30 +60,12 @@ function modify {
 #prepare input files
 if [[ $chg == 'y' ]]; then
     mkdir chg
-    cp INCAR INCAR_chg
-    echo '<INCAR_chg>'
-    modify INCAR_chg NSW
-    modify INCAR_chg IBRION
-    modify INCAR_chg LCHARG
-    modify INCAR_chg LAECHG .TRUE.
-    modify INCAR_chg LORBIT
+    sh ~/bin/orange/modify.sh chg
 fi
 
 if [[ $dos == 'y' ]]; then
     mkdir dos
-    cp INCAR INCAR_dos
-    echo '<INCAR_dos>'
-    modify INCAR_dos ICHARG 11
-    modify INCAR_dos NSW
-    modify INCAR_dos IBRION
-    modify INCAR_dos ISMEAR -5
-    modify INCAR_dos ALGO
-    modify INCAR_dos LCHARG .FALSE.
-    modify INCAR_dos LAECHG
-    modify INCAR_dos LORBIT 11
-    modify INCAR_dos NEDOS 1000
-    modify INCAR_dos EMIN -50
-    modify INCAR_dos EMAX 50
+    sh ~/bin/orange/modify.sh dos
 fi
 
 #geo, chg, dos
