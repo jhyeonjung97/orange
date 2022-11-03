@@ -1,7 +1,9 @@
 from sys import argv
 from ase.io import read
 
-def attach_charges(atoms, fileobj='ACF.dat', element='O'):
+#usage: charge (-tot) (-all) [elements]
+
+def charges(atoms, fileobj='ACF.dat', element='O'):
     """Attach the charges from the fileobj to the Atoms."""
     if isinstance(fileobj, str):
         fileobj = open(fileobj)
@@ -45,18 +47,28 @@ def attach_charges(atoms, fileobj='ACF.dat', element='O'):
         if atom.symbol == element:
             print(f"{element}{atom.index}\t {atom.charge:.2f}")
             sum0+=atom.charge
-    print('\033[1m' + f"{element}_sum\t {sum0:.2f}" + '\033[0m')
+    if show_total:
+        print('\033[1m' + f"{element}_sum\t {sum0:.2f}" + '\033[0m')
     return sum0
 
 atoms = read('POSCAR')
 fileobj = 'ACF.dat'
-if len(argv) == 1:
-    print('default element is oxygen')
-    argv[1] = 'O'
 
+if '-tot' in argv:
+    elements = argv[1:] - '-tot'
+    show_total = True
+else:
+    elements = argv[1:]
+    show_total = False
+
+if len(elements) == 0 or '-all' in argv:
+    print('subjects are all elements..')
+    elements = [*set(atoms.symbols)]
+    
 total=0
-for element in argv[1:]:
-    total+=attach_charges(atoms, 'ACF.dat', element)
-print('------------------')
-print(f"total\t {total:.2f}")
+for element in elements:
+    total+=charges(atoms, 'ACF.dat', element)
+if show_total:
+    print('------------------')
+    print(f"total\t {total:.2f}")
     
