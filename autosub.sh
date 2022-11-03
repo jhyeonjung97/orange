@@ -17,22 +17,24 @@ elif [[ -z $1 ]]; then
     echo 'usage: autosub (directory#1) [directory#2]'
 fi
 
-if [[ $1 == '-n' ]] || [[ $1 == '-non' ]]; then
+if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
+    SET=${@:2}
+elif [[ $1 == '-n' ]] || [[ $1 == '-non' ]]; then
     if [[ -z $3 ]]; then
-        a=1; b=$2
+        SET=$(seq 1 $2)
     else
-        a=$2; b=$3
+        SET=$(seq $2 $3)
     fi
 elif [[ -z $2 ]]; then
-    a=1; b=$1
+    SET=$(seq 1 $1)
 else
-    a=$1; b=$2
+    SET=$(seq $1 $2)
 fi
     
 read -p "POSCARs starts with: " p
 read -p "job name: " n
 
-for i in $(seq $a $b)
+for i in $SET
 do
     mkdir $i
     cp INCAR KPOINTS run_slurm.sh $i
