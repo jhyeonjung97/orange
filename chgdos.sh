@@ -1,11 +1,18 @@
 #!/bin/bash
 
-if [[ $1 =~ '-h' ]] || [[ $1 =~ '--h' ]]; then
-    echo 'usage: just enter the command $chdo, then you will know..'
-    exit 6
-fi
+#usage: chdo [geo?] [chg?] [dos?]
 
-read -p '1) Geometry optimization? [y/n] (default: y) ' geo
+geo=$1; chg=$2; dos=$3
+
+if [[ -z $1 ]]; then
+    read -p '1) Geometry optimization? [y/n] (default: y) ' geo
+fi
+if [[ -z $2 ]]; then
+    read -p '2) CHG? [y/n] (default: y) ' chg
+fi
+if [[ -z $3 ]]; then
+    read -p '3) DOS? [y/n] (default: y) ' dos
+fi
 
 # default answer/ check input files
 if [[ -z $geo ]] || [[ $geo =~ 'y' ]]; then
@@ -15,9 +22,6 @@ if [[ -z $geo ]] || [[ $geo =~ 'y' ]]; then
     fi
     geo='y'
 fi
-
-read -p '2) CHG? [y/n] (default: y) ' chg
-read -p '3) DOS? [y/n] (default: y) ' dos
 
 # default answer/ check input files
 if [[ -z $chg ]] || [[ $chg =~ 'y' ]]; then
