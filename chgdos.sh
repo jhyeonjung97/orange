@@ -96,7 +96,7 @@ fi
 
 #prepare run files
 if [[ ${here} == 'burning' ]]; then
-    if [[ -n $(grep beef run_slurm.sh) ]]
+    if [[ -n $(grep beef run_slurm.sh) ]]; then
         sed -n '16,18p' run_slurm.sh > temp1
     else
         sed -n '16p' run_slurm.sh > temp1
