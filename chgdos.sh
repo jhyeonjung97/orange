@@ -145,7 +145,7 @@ echo 'mkdir x
 mv * x
 mv x/*/ .
 rm x' >> run_slurm.sh
-rm temp1
+#rm temp1
 
 if [[ $dos == 'y' ]]; then
     more double_k
