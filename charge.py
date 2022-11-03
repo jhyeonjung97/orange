@@ -52,6 +52,11 @@ def charges(atoms, fileobj='ACF.dat', element='O'):
     return sum0
 
 atoms = read('POSCAR')
+
+until [[ -f 'ACF.dat' ]] || [[ -f 'ACF.dat' ]] 
+do
+done
+
 fileobj = 'ACF.dat'
 
 if argv[1] == '-tot':
