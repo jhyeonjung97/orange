@@ -120,6 +120,7 @@ if [[ $geo != 'y' ]]; then
         sed -i '16,$d' run_slurm.sh
     elif [[ ${here} == 'kisti' ]] || [[ ${here} == 'nurion' ]]; then
         sed -i '11,$d' run_slurm.sh
+    fi
 fi
 
 if [[ $chg == 'y' ]]; then
