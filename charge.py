@@ -1,7 +1,7 @@
 from sys import argv
 from ase.io import read
 
-#usage: charge (-tot) (-all) [elements]
+#usage: charge (-tot) [elements]
 
 def charges(atoms, fileobj='ACF.dat', element='O'):
     """Attach the charges from the fileobj to the Atoms."""
@@ -54,8 +54,8 @@ def charges(atoms, fileobj='ACF.dat', element='O'):
 atoms = read('POSCAR')
 fileobj = 'ACF.dat'
 
-if '-tot' in argv:
-    elements = argv[1:] - '-tot'
+if argv[1] == '-tot':
+    elements = argv[2:]
     show_total = True
 else:
     elements = argv[1:]
