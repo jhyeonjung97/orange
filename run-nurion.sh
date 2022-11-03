@@ -8,7 +8,7 @@ fi
 cp ~/input_files/run_slurm.sh .
 
 read -p 'which queue? (normal, skl): ' q
-echo -n 'which type? (beef, vaspsol, gam): '
+echo -n 'which type? (beef, vtst, vaspsol, gam): '
 read -a type
 
 if [[ $q =~ 's' ]]; then
@@ -39,7 +39,7 @@ if in_array "beef" "${type[*]}"; then
     sed -i 's/std/beef.std/' run_slurm.sh
     echo 'rm vdw_kernel.bindat' >> run_slurm.sh
 
-    if in_array "vaspsol" "${type[*]}"; then
+    if (in_array "vaspsol" "${type[*]}") || (in_array "sol" "${type[*]}") ; then
         sed -i 's/std/vaspsol.std/' run_slurm.sh
     else
         sed -i 's/beef/vtst179.beef/' run_slurm.sh
