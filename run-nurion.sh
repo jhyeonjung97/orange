@@ -35,7 +35,7 @@ function in_array {
 }
 
 if in_array "beef" "${type[*]}"; then
-    sed -i '/mpiexec/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
+    sed -i '/mpirun/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
     sed -i 's/std/beef.std/' run_slurm.sh
     echo 'rm vdw_kernel.bindat' >> run_slurm.sh
 
