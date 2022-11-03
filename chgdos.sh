@@ -102,7 +102,7 @@ if [[ ${here} == 'burning' ]]; then
         sed -n '16p' run_slurm.sh > temp1
     fi
 elif [[ ${here} == 'kisti' ]] || [[ ${here} == 'nurion' ]]; then
-    if [[ -n $(grep beef run_slurm.sh) ]]
+    if [[ -n $(grep beef run_slurm.sh) ]]; then
         sed -n '11,13p' run_slurm.sh > temp1
     else
         sed -n '11p' run_slurm.sh > temp1
