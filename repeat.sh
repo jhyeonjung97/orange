@@ -1,8 +1,6 @@
 #!/bin/bash
 
-read -p "which command? " c
-
-for i in {$1..$2}
+for dir in '*/'
 do
-    $c
+    ${@:2}
 done
