@@ -53,13 +53,13 @@ def charges(atoms, fileobj='ACF.dat', element='O'):
     return sum0
 
 atoms = read('POSCAR')
-
-if not path.isfile('ACF.dat'):
-    system('cp *ACF*.dat ACF.dat')
     
 if not path.isfile('ACF.dat'):
-    system('chgsum.pl AECCAR0 AECCAR2')
-    system('bader CHGCAR -ref CHGCAR_sum')
+    if path.isfile('*ACF*.dat'):
+        system('cp *ACF*.dat ACF.dat')
+    else:
+        system('chgsum.pl AECCAR0 AECCAR2')
+        system('bader CHGCAR -ref CHGCAR_sum')
 
 if not path.isfile('ACF.dat'):
     print('there is no charge data..')
