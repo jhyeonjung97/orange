@@ -58,8 +58,8 @@ if not path.isfile('ACF.dat'):
     system('cp *ACF*.dat ACF.dat')
     
 if not path.isfile('ACF.dat'):
-    chgsum.pl AECCAR0 AECCAR2
-    bader CHGCAR -ref CHGCAR_sum
+    system('chgsum.pl AECCAR0 AECCAR2')
+    system('bader CHGCAR -ref CHGCAR_sum')
 
 if not path.isfile('ACF.dat'):
     print('there is no charge data..')
