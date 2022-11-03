@@ -1,5 +1,5 @@
 #INPUT
-alias incar='cp ~/input_files/INCAR .'
+alias i='cp ~/input_files/INCAR .'
 alias k='cp ~/input_files/KPOINTS .'
 alias potcar='vasp425
 python3 ~/bin/shoulder/potcar_ara.py'
@@ -139,4 +139,4 @@ mv INCAR_chg INCAR'
 alias idos='sh ~/bin/orange/modify0.sh dos
 cp INCAR INCAR.original
 mv INCAR_dos INCAR'
-alias i='sh ~/bin/orange/modify.sh INCAR'
+alias incar='sh ~/bin/orange/modify.sh INCAR'
