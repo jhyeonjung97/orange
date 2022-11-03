@@ -133,9 +133,10 @@ alias aloha='python3 ~/bin/orange/cohp.py'
 alias charge='python3 ~/bin/orange/charge.py'
 alias bader='chgsum.pl AECCAR0 AECCAR2
 bader CHGCAR -ref CHGCAR_sum'
-alias ichg='sh ~/bin/orange/modify.sh chg
+alias ichg='sh ~/bin/orange/modify0.sh chg
 cp INCAR INCAR.original
 mv INCAR_chg INCAR'
-alias idos='sh ~/bin/orange/modify.sh dos
+alias idos='sh ~/bin/orange/modify0.sh dos
 cp INCAR INCAR.original
 mv INCAR_dos INCAR'
+alias i='sh ~/bin/orange/modify.sh INCAR'

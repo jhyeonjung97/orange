@@ -43,29 +43,15 @@ else
     exit 3
 fi
 
-# functions
-function modify {
-    if [[ -z $(grep $2 $1) ]]; then
-        echo $2 >> $1
-    fi
-    
-    if [[ -z $3 ]]; then
-        sed -i "s/#$2/$2/" $1
-        sed -i "s/$2/#$2/" $1
-    else
-        sed -i "/$2/c\\$2 = $3" $1
-    fi
-}
-
 #prepare input files
 if [[ $chg == 'y' ]]; then
     mkdir chg
-    sh ~/bin/orange/modify.sh chg
+    sh ~/bin/orange/modify0.sh chg
 fi
 
 if [[ $dos == 'y' ]]; then
     mkdir dos
-    sh ~/bin/orange/modify.sh dos
+    sh ~/bin/orange/modify0.sh dos
 fi
 
 #geo, chg, dos
