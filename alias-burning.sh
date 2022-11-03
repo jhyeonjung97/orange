@@ -9,6 +9,7 @@ alias g3='qstat | grep -i "Q g3" '
 alias g4='qstat | grep -i "Q g4" '
 alias g5='qstat | grep -i "Q g5" '
 alias mystat='qstat -u hyeonjung'
+alias idle='pestat -s idle'
 alias g='
 echo -e "\033[1mg1:\033[0m"
 g1
@@ -19,7 +20,10 @@ g3
 echo -e "\033[1mg4:\033[0m"
 g4
 echo -e "\033[1mg5:\033[0m"
-g5'
+g5
+echo -e "\033[1midle:\033[0m"
+idle'
+
 
 alias priority='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q"'
 alias p1='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g1'
