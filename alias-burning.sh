@@ -10,15 +10,15 @@ alias g4='qstat | grep -i "Q g4" '
 alias g5='qstat | grep -i "Q g5" '
 alias mystat='qstat -u hyeonjung'
 alias g='
-echo <g1>
+echo "g1:"
 g1
-echo <g2>
+echo "g2:"
 g2
-echo <g3>
+echo "g3:"
 g3
-echo <g4>
+echo "g4:"
 g4
-echo <g5>
+echo "g5:"
 g5'
 
 alias priority='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q"'
