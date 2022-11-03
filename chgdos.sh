@@ -83,15 +83,9 @@ if [[ $dos == 'y' ]]; then
 fi
 
 #geo, chg, dos
-if [[ $chg != 'y' ]]; then
-    if [[ ! -e $chg ]]; then
-        echo 'please prepare chg directory..'
-        exit 4
-    fi
-elif [[ $geo != 'y' ]]; then
-    cp * geo
-    echo 'hello'
-    sed -i '11,$d' run_slurm.sh
+if [[ $chg != 'y' ]] && [[ ! -d chg ]]; then
+    echo 'please prepare chg directory..'
+    exit 4
 fi
 
 #prepare run files
@@ -110,6 +104,11 @@ elif [[ ${here} == 'kisti' ]] || [[ ${here} == 'nurion' ]]; then
 else
     echo 'where am i..? please modify [chgdos.sh] code'
     exit 5
+fi
+
+if [[ $geo != 'y' ]]; then
+    cp * geo
+    sed -i '11,$d' run_slurm.sh
 fi
 
 if [[ $chg == 'y' ]]; then
