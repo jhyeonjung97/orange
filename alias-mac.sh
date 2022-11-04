@@ -7,6 +7,7 @@ alias cdw='cd ~/Desktop/'
 alias vbash='vi ~/.zshrc'
 alias sbash='source ~/.zshrc'
 alias vasp2png='python ~/bin/shoulder/vasp2png.py'
+alias element='vi /Applications/VESTA/VESTA.app/Contents/Resources/elements.ini'
 
 alias orange='dir_now=$PWD
 cd ~/bin/orange
