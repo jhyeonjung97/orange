@@ -2,5 +2,5 @@
 
 for dir in */
 do
-    "${@:2}"
+    ${@:2}
 done
