@@ -9,7 +9,7 @@ function resub {
     sh ~/bin/orange/sub.sh
 }
 
-if [[ $1 == '-r' ]]
+if [[ $1 == '-r' ]]; then
     for dir in */
     do
         cd $dir
