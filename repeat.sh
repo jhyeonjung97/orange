@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for dir in '*/'
+for dir in */
 do
-    ${@:2}
+    "${@:2}"
 done
