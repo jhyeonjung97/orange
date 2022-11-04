@@ -1,6 +1,8 @@
 #!/bin/bash
 
+read -p 'command $ ' cmd
+
 for dir in */
 do
-    ${@:2}
+    eval $cmd
 done
