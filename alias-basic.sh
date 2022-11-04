@@ -39,8 +39,7 @@ alias energy='ag -t -g "i,e" OUTCAR > '
 
 #RUN_SLURM.SH
 alias sub='sh ~/bin/orange/sub.sh'
-alias resub='rm STD* std* *.e* *.o*
-sub'
+alias resub='sh ~/bin/orang/sub.sh'
 alias autosub='sh ~/bin/orange/autosub.sh'
 alias puresub='sbatch run_slurm.sh'
 alias name='sh ~/bin/orange/jobname.sh'

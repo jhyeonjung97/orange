@@ -1,6 +1,7 @@
 #!/bin/bash
 
-read -p 'command $ ' cmd
+
+read -p 'command (no alias) $ ' cmd
 
 for dir in */
 do
