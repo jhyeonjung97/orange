@@ -141,8 +141,7 @@ mv INCAR_chg INCAR'
 alias idos='sh ~/bin/orange/modify0.sh dos
 cp INCAR INCAR.original
 mv INCAR_dos INCAR'
-alias mr='sh ~/bin/orange/modify.sh run_slurm.sh'
-alias mi='sh ~/bin/orange/modify.sh INCAR'
-alias mic='sh ~/bin/orange/modify.sh INCAR_chg'
-alias mid='sh ~/bin/orange/modify.sh INCAR_dos'
+alias incar='sh ~/bin/orange/modify.sh INCAR'
+alias incarc='sh ~/bin/orange/modify.sh INCAR_chg'
+alias incard='sh ~/bin/orange/modify.sh INCAR_dos'
 
