@@ -43,4 +43,5 @@ do
         cd ..
     done
     sh ~/bin/orange/run1.sh
+    cd ..
 done
