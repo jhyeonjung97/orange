@@ -22,8 +22,10 @@ else
             sh ~/bin/orange/vasp5.sh
             python ~/bin/shoulder/potcar_ara.py
         else
-            ending="there is no POSCAR file in directory $i.."
+            ending+="there is no POSCAR file in directory $i..\n"
         fi
         cd ..
     done
 fi
+
+echo $ending
