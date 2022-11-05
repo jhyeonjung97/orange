@@ -18,7 +18,7 @@ else
     do
         i=${i%/}
         cd $i*
-        if [[ -d POSCAR ]]; then
+        if [[ -e POSCAR ]]; then
             sh ~/bin/orange/vasp5.sh
             python ~/bin/shoulder/potcar_ara.py
         else
