@@ -1,5 +1,6 @@
 #!/bin/bash
 
+i=1
 while [[ -d "conti_$i" ]]
 do
     i=$(($i+1))
