@@ -142,3 +142,6 @@ alias idos='sh ~/bin/orange/modify0.sh dos
 cp INCAR INCAR.original
 mv INCAR_dos INCAR'
 alias incar='sh ~/bin/orange/modify.sh INCAR'
+alias incar_chg='sh ~/bin/orange/modify.sh INCAR_chg'
+alias incar_dos='sh ~/bin/orange/modify.sh INCAR_dos'
+
