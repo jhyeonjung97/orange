@@ -38,9 +38,14 @@ do
     cd ..
     i=$(($i+1))
     
-    cat head.sh bond1.sh bond2.sh tail.sh > run_slurm.sh
+    echo "#run_file from directory: $dir" > bond0.sh
+    if [[ -n bond2.sh ]]; then
+        cat head.sh bond0.sh bond1.sh bond2.sh tail.sh > run_slurm.sh
+    else
+        cat head.sh bond0.sh bond1.sh tail.sh > run_slurm.sh
+    fi
     mv run_slurm.sh head.sh
 done
-rm bond1.sh bond2.sh
+rm bond*.sh
 sed -i '$d' run_slurm.sh
 mv head.sh run_slurm.sh
