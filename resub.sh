@@ -10,7 +10,7 @@ function resub {
 }
 
 if [[ -z $1 ]]; then # simple re-submit
-    submit
+    resub
 else
     if [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
         DIR='*/'
@@ -25,7 +25,7 @@ else
     for i in $DIR
     do
         cd $i*
-        submit
+        resub
         cd ..
     done
 fi
