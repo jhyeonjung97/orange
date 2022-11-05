@@ -2,6 +2,7 @@
 
 function conti {
     i=1
+    save="conti_$i"
     while [[ -d "conti_$i" ]]
     do
         i=$(($i+1))
