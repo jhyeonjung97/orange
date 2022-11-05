@@ -49,9 +49,9 @@ fi
 for i in $SET
 do
     i=${i%/}
-    i=$(echo $i | cut -c 1)
-    sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$name$i\"" $i$star/run_slurm.sh
-    sed -i "/#PBS -N/c\#PBS -N $name$i" $i$star/run_slurm.sh
+    j=$(echo $i | cut -c 1)
+    sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$name$j\"" $i$star/run_slurm.sh
+    sed -i "/#PBS -N/c\#PBS -N $name$j" $i$star/run_slurm.sh
 done
 
 grep $name */run_slurm.sh
