@@ -6,9 +6,16 @@ fi
 
 cp ~/input_files/run_slurm.sh .
 
-read -p "which queue? (g1~g5, gpu): " q
-echo -n "which type? (beef, vtst, vaspsol, gam): "
-read -a type
+q=$2
+type=${@:2}
+
+if [[ -z $q ]]; then
+    read -p "which queue? (g1~g5, gpu): " q
+fi
+if [[ -z $type ]]; then
+    echo -n "which type? (beef, vtst, vaspsol, gam): "
+    read -a type
+fi
 
 if [[ $q == 'g1' ]]; then
     node=12

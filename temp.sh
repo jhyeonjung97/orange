@@ -2,6 +2,7 @@
 
 sh ~/bin/orange/run-burning.sh
 sh ~/bin/orange/spread.sh run_slurm.sh
+sh ~/bin/orange/jobname.sh -r FNC-CHG
 
 for i in {1..5}
 do
