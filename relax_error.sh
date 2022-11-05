@@ -1,43 +1,34 @@
 #!/bin/bash
 
-if [[ ${here} == 'burning' ]]; then
-    if [[ -n $(grep beef run_slurm.sh) ]]
-        sed -n '16,18p' run_slurm.sh > run_conti.sh
-    else
-        sed -n '16p' run_slurm.sh > run_conti.sh
-    fi
-elif [[ ${here} == 'kisti' ]] || [[ ${here} == 'nurion' ]]; then
-    if [[ -n $(grep beef run_slurm.sh) ]]
-        sed -n '11,13p' run_slurm.sh > run_conti.sh
-    else
-        sed -n '11p' run_slurm.sh > run_conti.sh
-    fi
-else
-    echo 'where am i..? please modify [con2pos.sh] code'
-    exit 1
-fi
-
-if [[ -e conti_2 ]]; then
-    i=3
-elif [[ -e conti_1 ]]; then
-    i=2
-else
+function run_conti {
     i=1
-fi 
+    save="conti_$i"
+    while [[ -d "conti_$i" ]]
+    do
+        i=$(($i+1))
+        save="conti_$i"
+    done
+    mkdir $save
+    mv * $save
+    cd $save/
+    mv */ ..
+    cp POSCAR ../initial.vasp
+    cp POSCAR CONTCAR INCAR KPOINTS POTCAR run_slurm.sh initial.vasp .run_conti.sh ..
+    cd ..
 
-while [[ $i < 3 ]] && [[ -n $(grep "please rerun with smaller EDIFF, or copy CONTCAR" std*) ]]
+    if [[ -s CONTCAR ]]; then
+        mv CONTCAR POSCAR
+    fi
+    sh .run_conti.sh
+}
+
+j=0
+until [[ $j == 2 ]] || [[ -n $(grep "please rerun with smaller EDIFF, or copy CONTCAR" std*) ]]
 do
-    mkdir conti_$i
-    cp * conti_$i
-    i=$(($i+1))
-    rm std* STD*
-    mv CONTCAR POSCAR
-    sh run_conti.sh
+    if [[ $j == 1 ]]; then
+        sh ~/bin/orange/modify.sh INCAR EDIFF 1E-06
+    fi
+    run_conti
+    j=$(($j+1))
 done
-
-if [[ $i = 3 ]] && [[ -n $(grep "please rerun with smaller EDIFF, or copy CONTCAR" std*) ]]; then
-    echo "please check if your calculation is okay to be continued.."
-    cp ~/input_files/SPOTCAR .
-    exit 2
-fi
 

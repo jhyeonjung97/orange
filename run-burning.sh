@@ -69,6 +69,12 @@ elif in_array "ncl" "${type[*]}"; then
     sed -i 's/nclout/stdout/' run_slurm.sh
 fi
 
+if [[ -n $(grep beef run_slurm.sh) ]]
+    sed -n '16,18p' run_slurm.sh > .run_conti.sh
+else
+    sed -n '16p' run_slurm.sh > .run_conti.sh
+fi
+
 echo '
 sh ~/bin/orange/relax_error.sh' >> run_slurm.sh
 
