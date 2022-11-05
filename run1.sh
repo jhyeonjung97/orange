@@ -18,7 +18,7 @@ do
     else
         echo "cd .." >> ../bond.sh
     fi
-    echo "# run_slurm.sh from directory: $dir" >> ../bond.sh
+    echo "## run_slurm.sh from directory: $dir" >> ../bond.sh
     echo "cd $dir" >> ../bond.sh
     
     # tail
@@ -34,7 +34,6 @@ do
     cd ..
     i=$(($i+1))
     
-    echo "#run_file from directory: $dir" >> bond0.sh
     cat head.sh bond.sh tail.sh > run_slurm.sh
     rm head.sh bond.sh tail.sh
     mv run_slurm.sh head.sh
