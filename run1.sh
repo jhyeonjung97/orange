@@ -40,5 +40,5 @@ do
     mv run_slurm.sh head.sh
 done
 rm bond*.sh
-sed -i '$d' run_slurm.sh
+sed -i '$d' head.sh
 mv head.sh run_slurm.sh
