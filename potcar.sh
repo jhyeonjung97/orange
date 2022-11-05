@@ -5,7 +5,7 @@ if [[ -z $1 ]]; then # simple potcar
     python ~/bin/shoulder/potcar_ara.py
 else
     if [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
-        DIR='*/'
+        DIR=*/
     elif [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
         DIR=${@:2}
     elif [[ -z $2 ]]; then
