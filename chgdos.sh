@@ -2,7 +2,7 @@
 
 #usage: chdo [geo?] [chg?] [dos?] [submit?]
 
-geo=$1; chg=$2; dos=$3
+geo=$1; chg=$2; dos=$3; submit=$4
 
 if [[ -z $1 ]]; then
     read -p '1) Geometry optimization? [y/n] (default: y) ' geo
@@ -12,6 +12,9 @@ if [[ -z $2 ]]; then
 fi
 if [[ -z $3 ]]; then
     read -p '3) DOS? [y/n] (default: y) ' dos
+fi
+if [[ -z $4 ]]; then
+    read -p '4) SUBMIT? [y/n] (default: y) ' submit
 fi
 
 # default answer/ check input files
@@ -131,9 +134,6 @@ if [[ $dos == 'y' ]]; then
     fi
 fi
 
-if [[ -z $4 ]]; then
-    read -p 'do you want to submit the job now? [y/n] (default:y) ' submit
-fi
 if [[ ! $submit =~ 'n' ]] && [[ $submit != '0' ]]; then
     sh ~/bin/orange/sub.sh
 fi
