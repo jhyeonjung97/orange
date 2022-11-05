@@ -28,6 +28,7 @@ else
     
     for i in $DIR
     do
+        i=${i%/}
         cd $i*
         submit
         cd ..
