@@ -3,7 +3,7 @@
 #INPUT
 alias i='cp ~/input_files/INCAR .'
 alias k='cp ~/input_files/KPOINTS .'
-alias potcar='sh ~/bin/orange/potcar.py'
+alias potcar='sh ~/bin/orange/potcar.sh'
 alias PBE='grep TITEL POTCAR'
 
 alias pos2cif='~/bin/vtstscripts/pos2cif.pl POSCAR'
