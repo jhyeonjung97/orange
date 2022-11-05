@@ -5,6 +5,22 @@ for dir in */
 do
     cd $dir
     
+    # head
+    if [[ $i == 0 ]]; then
+        if [[ ${here} == 'burning' ]]; then
+            sed -n '1,15p' run_slurm.sh > ../head.sh
+        elif [[ ${here} == 'kisti' ]] || [[ ${here} == 'nurion' ]]; then
+            sed -n '1,10p' run_slurm.sh > ../head.sh
+        else
+            echo 'where am i..? please modify [run1.sh] code'
+            exit 1
+        fi
+    else
+        echo "cd .." >> ../bond.sh
+    fi
+    echo "# run_slurm.sh from directory: $dir" >> ../bond.sh
+    echo "cd $dir" >> ../bond.sh
+    
     # tail
     if [[ ${here} == 'burning' ]]; then
         sed -n '16,$p' run_slurm.sh > ../tail.sh
@@ -14,36 +30,13 @@ do
         echo 'where am i..? please modify [combine.sh] code'
         exit 1
     fi
-
-    # head
-    if [[ $i == 0 ]]; then
-        if [[ ${here} == 'burning' ]]; then
-            sed -i '16,$d' run_slurm.sh
-        elif [[ ${here} == 'kisti' ]] || [[ ${here} == 'nurion' ]]; then
-            sed -i '11,$d' run_slurm.sh
-        else
-            echo 'where am i..? please modify [combine.sh] code'
-            exit 1
-        fi
-        # bond2
-        echo "cd $dir" > bond2.sh
-        cat run_slurm.sh bond2.sh > ../head.sh
-    else
-        # bond1
-        echo "cd .." > ../bond1.sh
-        # bond2
-        echo "cd $dir" > bond2.sh
-    fi
     
     cd ..
     i=$(($i+1))
     
-    echo "#run_file from directory: $dir" > bond0.sh
-    if [[ -n bond2.sh ]]; then
-        cat head.sh bond0.sh bond1.sh bond2.sh tail.sh > run_slurm.sh
-    else
-        cat head.sh bond0.sh bond1.sh tail.sh > run_slurm.sh
-    fi
+    echo "#run_file from directory: $dir" >> bond0.sh
+    cat head.sh bond.sh tail.sh > run_slurm.sh
+    rm head.sh bond.sh tail.sh
     mv run_slurm.sh head.sh
 done
 rm bond*.sh
