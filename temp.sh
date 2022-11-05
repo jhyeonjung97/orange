@@ -44,4 +44,3 @@ do
     done
     sh ~/bin/orange/run1.sh
 done
-sub 5
