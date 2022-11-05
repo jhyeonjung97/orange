@@ -39,7 +39,9 @@ do
     for j in {1..6}
     do
         cd $j
-        sh ~/bin/orange/chgdos.sh 1 1 0
-        
+        sh ~/bin/orange/chgdos.sh 1 1 0 0
+        cd ..
     done
+    sh ~/bin/orange/run1.sh
 done
+sub 5
