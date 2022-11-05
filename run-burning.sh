@@ -29,7 +29,7 @@ elif [[ $q == 'g5' ]] || [[ $q == 'gpu' ]]; then
     node=32
 else
     echo "I've never heard of that kind of node.."
-    break
+    exit 1
 fi
 
 sed -i "/ntasks-per-node/c\#SBATCH --ntasks-per-node=$node" run_slurm.sh
