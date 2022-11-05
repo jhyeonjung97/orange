@@ -1,20 +1,11 @@
 #!/bin/bash
 
-if [[ -d conti ]]; then
-    echo 'this can remove some data in <conti> directory..'
-    save='conti'
-elif [[ -d conti_2 ]]; then
-    save='conti'
-elif [[ -d conti_1 ]]; then
-    save='conti_2'
-else
-    save='conti_1'
-fi
-
-if [[ ! -d conti ]]; then
-    mkdir $save
-fi
-
+while [[ -d "conti_$i" ]]
+do
+    i=$(($i+1))
+    save="conti_$i"
+done
+mkdir $save
 mv * $save
 cd $save/
 mv */ ..
