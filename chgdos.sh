@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#usage: chdo [geo?] [chg?] [dos?]
+#usage: chdo [geo?] [chg?] [dos?] [submit?]
 
 geo=$1; chg=$2; dos=$3
 
@@ -15,7 +15,7 @@ if [[ -z $3 ]]; then
 fi
 
 # default answer/ check input files
-if [[ -z $geo ]] || [[ $geo =~ 'y' ]]; then
+if [[ -z $geo ]] || [[ $geo =~ 'y' ]] || [[ $geo =~ '1' ]]; then
     if [ ! -e INCAR ] || [ ! -e KPOINTS ] || [ ! -e POTCAR ] || [ ! -e POSCAR ] || [ ! -e run_slurm.sh ]; then
         echo 'you are missing something..'
         exit 1
@@ -24,11 +24,11 @@ if [[ -z $geo ]] || [[ $geo =~ 'y' ]]; then
 fi
 
 # default answer/ check input files
-if [[ -z $chg ]] || [[ $chg =~ 'y' ]]; then
+if [[ -z $chg ]] || [[ $chg =~ 'y' ]] || [[ $chg =~ '1' ]]; then
     chg='y'
 fi
 
-if [[ -z $dos ]] || [[ $dos =~ 'y' ]]; then
+if [[ -z $dos ]] || [[ $dos =~ 'y' ]] || [[ $dos =~ '1' ]]; then
     if [[ $chg != 'y' ]] && [[ ! -s CHGCAR ]]; then
         echo 'you need CHGCAR..'
         exit 2
@@ -77,10 +77,6 @@ else
     echo 'where am i..? please modify [chgdos.sh] code'
     exit 5
 fi
-
-echo $geo
-echo $chg
-echo $dos
 
 if [[ $geo != 'y' ]]; then
     cp * geo
@@ -135,7 +131,9 @@ if [[ $dos == 'y' ]]; then
     fi
 fi
 
-read -p 'do you want to submit the job now? [y/n] (default:y) ' submit
-if [[ ! $submit =~ 'n' ]]; then
+if [[ -z $4 ]]; then
+    read -p 'do you want to submit the job now? [y/n] (default:y) ' submit
+fi
+if [[ ! $submit =~ 'n' ]] || [[ ! $submit =~ '0' ]]; then
     sh ~/bin/orange/sub.sh
 fi

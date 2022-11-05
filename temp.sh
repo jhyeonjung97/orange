@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sh ~/bin/orange/run-burning.sh g3
+sh ~/bin/orange/run-burning.sh g3 n
 sh ~/bin/orange/spread.sh run_slurm.sh
 sh ~/bin/orange/jobname.sh -r FNC-CHG
 
@@ -35,4 +35,11 @@ do
     sh ~/bin/orange/modify.sh INCAR ISMEAR 1
     sh ~/bin/orange/modify.sh INCAR SIGMA
     cd ..
+    
+    for j in {1..6}
+    do
+        cd $j
+        sh ~/bin/orange/chgdos.sh 1 1 0
+        
+    done
 done
