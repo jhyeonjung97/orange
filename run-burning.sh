@@ -6,7 +6,7 @@ fi
 
 cp ~/input_files/run_slurm.sh .
 
-q=$2
+q=$1
 type=${@:2}
 
 if [[ -z $q ]]; then
