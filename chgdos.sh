@@ -134,6 +134,6 @@ fi
 if [[ -z $4 ]]; then
     read -p 'do you want to submit the job now? [y/n] (default:y) ' submit
 fi
-if [[ ! $submit =~ 'n' ]] || [[ ! $submit =~ '0' ]]; then
+if [[ ! $submit =~ 'n' ]] && [[ $submit != '0' ]]; then
     sh ~/bin/orange/sub.sh
 fi
