@@ -12,7 +12,9 @@ type=${@:2}
 if [[ -z $q ]]; then
     read -p "which queue? (g1~g5, gpu): " q
 fi
-if [[ -z $type ]]; then
+if [[ $type == 'n' ]] || [[ $type == '0' ]]; then
+    type=''
+elif [[ -z $type ]]; then
     echo -n "which type? (beef, vtst, vaspsol, gam): "
     read -a type
 fi
