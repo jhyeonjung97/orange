@@ -7,7 +7,8 @@ fi
 cp ~/input_files/run_slurm.sh .
 
 q=$1
-type=${@:2}
+jobname=$2
+type=${@:3}
 
 if [[ -z $q ]]; then
     read -p "which queue? (g1~g5, gpu): " q
@@ -78,7 +79,12 @@ fi
 # echo '
 # sh ~/bin/orange/relax_error.sh' >> run_slurm.sh
 
-read -p 'enter jobname if you want to change it: ' jobname
+if [[ $jobname == 'n' ]] || [[ $jobname == '0' ]]; then
+    jobname=''
+elif [[ -z $jobname ]]; then
+    read -p 'enter jobname if you want to change it: ' jobname
+fi
+
 if [[ -n $jobname ]]; then
     sh ~/bin/orange/jobname.sh $jobname
 fi
