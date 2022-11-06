@@ -7,7 +7,7 @@ sh ~/bin/orange/jobname.sh -r FNC-S-SO
 for i in {1..5}
 do
     cd $i
-    rm STD*
+    rm std* STD*
     mkdir 1
     mv * 1
     sh ~/bin/orange/duplicate.sh 1 6
