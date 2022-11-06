@@ -6,7 +6,7 @@ for i in {1..5}
 do
     mkdir $i
     # POSCAR
-    cp i$i.vasp $i/POSCAR
+    mv i$i.vasp $i/POSCAR
     # INCAR KPOINTS run_slurm.sh
     sh ~/bin/orange/jobname.sh FNC-S-SO$i
     cp INCAR KPOINTS run_slurm.sh $i
