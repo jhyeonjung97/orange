@@ -54,11 +54,11 @@ elif in_array "ncl" "${type[*]}"; then
     sed -i 's/std/ncl/' run_slurm.sh
 fi
 
-if [[ -n $(grep beef run_slurm.sh) ]]
-    sed -n '11,13p' run_slurm.sh > .run_conti.sh
-else
-    sed -n '11p' run_slurm.sh > .run_conti.sh
-fi
+# if [[ -n $(grep beef run_slurm.sh) ]]
+#     sed -n '11,13p' run_slurm.sh > .run_conti.sh
+# else
+#     sed -n '11p' run_slurm.sh > .run_conti.sh
+# fi
     
 # echo '
 # sh ~/bin/orange/relax_error.sh' >> run_slurm.sh

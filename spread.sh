@@ -12,7 +12,7 @@ fi
 
 for dir in $SET; do
     cp $file $dir
-    if [[ $file == 'run_slurm.sh' ]]
-        cp .run_conti.sh $dir
-    fi
+    # if [[ $file == 'run_slurm.sh' ]]
+    #     cp .run_conti.sh $dir
+    # fi
 done
