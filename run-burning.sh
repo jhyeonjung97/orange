@@ -75,8 +75,8 @@ else
     sed -n '16p' run_slurm.sh > .run_conti.sh
 fi
 
-echo '
-sh ~/bin/orange/relax_error.sh' >> run_slurm.sh
+# echo '
+# sh ~/bin/orange/relax_error.sh' >> run_slurm.sh
 
 read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then

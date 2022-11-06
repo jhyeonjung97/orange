@@ -23,7 +23,7 @@ function run_conti {
 }
 
 j=0
-until [[ $j == 2 ]] || [[ -n $(grep "please rerun with smaller EDIFF, or copy CONTCAR" std*) ]]
+until [[ $j == 2 ]] || [[ -z $(grep "please rerun with smaller EDIFF, or copy CONTCAR" std*) ]]
 do
     if [[ $j == 1 ]]; then
         sh ~/bin/orange/modify.sh INCAR EDIFF 1E-06

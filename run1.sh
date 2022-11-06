@@ -16,7 +16,8 @@ do
             exit 1
         fi
     else
-        echo "cd .." >> ../bond.sh
+        echo "cd ..
+        " >> ../bond.sh
     fi
     echo "## run_slurm.sh from directory: $dir" >> ../bond.sh
     echo "cd $dir" >> ../bond.sh
