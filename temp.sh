@@ -2,7 +2,7 @@
 
 sh ~/bin/orange/run-burning.sh g3 0 0
 sh ~/bin/orange/spread.sh run_slurm.sh
-sh ~/bin/orange/jobname.sh -r FNC-CHG
+sh ~/bin/orange/jobname.sh -r FNC-S-SO
 
 for i in {1..5}
 do
