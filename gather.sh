@@ -19,7 +19,7 @@ fi
 for dir in */
 do
     cd $dir
-    numb=$(echo $dir | cut -c 1)+$(echo $dir | cut -c 2)
+    numb=$(echo $dir | cut -c 1)$(echo $dir | cut -c 2)
     for file in *
     do
         if [[ $file =~ $pattern ]]; then
