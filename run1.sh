@@ -39,6 +39,5 @@ do
     rm head.sh bond.sh tail.sh
     mv run_slurm.sh head.sh
 done
-rm bond*.sh
 sed -i '$d' head.sh
 mv head.sh run_slurm.sh
