@@ -1,13 +1,24 @@
 #!/bin/bash
 
 sh ~/bin/orange/run-burning.sh g3 0 0
-sh ~/bin/orange/spread.sh run_slurm.sh
-sh ~/bin/orange/jobname.sh -r FNC-S-SO
 
 for i in {1..5}
 do
+    # POSCAR
+    cp a$i.vasp $i/POSCAR
+    # INCAR KPOINTS run_slurm.sh
+    cp INCAR KPOINTS run_slurm.sh $i
+    sh ~/bin/orange/jobname.sh FNC-S-SO$i
+    
     cd $i
-    rm std* STD*
+    # XCELL
+    python ~/bin/pyband/xcell.py
+    mv out*.vasp POSCAR
+    # MAGMOM
+    python3 ~/bin/orange/magmom.py
+    # POTCAR
+    sh ~/bin/orange/potcar.sh
+    
     mkdir 1
     mv * 1
     sh ~/bin/orange/duplicate.sh 1 6
