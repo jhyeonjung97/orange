@@ -56,4 +56,5 @@ for i in $SET
 do
     cd $i
     sh ~/bin/orange/sub.sh
+    cd ..
 done
