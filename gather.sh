@@ -42,6 +42,8 @@ do
 done
 
 read -p 'vaspsend? [y/n] (default: y) ' send
-if [[ ! $send =~ 'n' ]]; then
+if [[ $send == 'port' ]]; then
+    cp *.vasp ~/port/
+elif [[ ! $send =~ 'n' ]]; then
     sh ~/bin/orange/vaspsend.sh
 fi
