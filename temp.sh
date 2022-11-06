@@ -8,8 +8,8 @@ do
     # POSCAR
     cp i$i.vasp $i/POSCAR
     # INCAR KPOINTS run_slurm.sh
-    cp INCAR KPOINTS run_slurm.sh $i
     sh ~/bin/orange/jobname.sh FNC-S-SO$i
+    cp INCAR KPOINTS run_slurm.sh $i
     
     cd $i
     # XCELL
