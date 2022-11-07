@@ -3,15 +3,18 @@
 # error cases
 if [[ ! -e "INCAR" ]]; then
     echo "don't forget INCAR.."
-    incar
-    exit 1
+    cp ~/input_files/INCAR .
 elif [[ ! -e "KPOINTS" ]]; then
     echo "don't forget KPOINTS.."
-    k
+    cp ~/input_files/KPOINTS .
     exit 2
 elif [[ ! -e "run_slurm.sh" ]]; then
     echo "don't forget run_slurm.sh.."
-    run
+    if [[ $here == 'burning' ]]; then
+        sh ~/bin/orange/run-burning.sh
+    elif [[ $here == 'kisti' ]] || [[ $here == 'nurion' ]]; then
+        sh ~/bin/orange/run-nurion.sh
+    fi
     exit 3
 elif [[ -z $1 ]]; then
     echo 'usage: autosub (directory#1) [directory#2]'
