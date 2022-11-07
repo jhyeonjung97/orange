@@ -1,8 +1,7 @@
 #!/bin/bash
 
 alias cdw='cd ~/scratch'
-alias run='idle
-sh run-burning.sh'
+alias run='sh run-burning.sh'
 
 alias idle='pestat -s idle'
 alias mystat='qstat -u hyeonjung'

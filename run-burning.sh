@@ -11,6 +11,7 @@ jobname=$2
 type=${@:3}
 
 if [[ -z $q ]]; then
+    pestat -s idle
     read -p "which queue? (g1~g5, gpu): " q
 fi
 if [[ $type == 'n' ]] || [[ $type == '0' ]]; then
