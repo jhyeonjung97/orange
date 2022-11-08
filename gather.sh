@@ -41,9 +41,10 @@ do
     cd ..
 done
 
-read -p 'vaspsend? [y/n] (default: y) ' send
+read -p 'vaspsend destination (enter for skip): ' send
 if [[ $send == 'port' ]]; then
     cp *.vasp ~/port/
-elif [[ ! $send =~ 'n' ]]; then
-    sh ~/bin/orange/vaspsend.sh
+elif [[ -n $send ]]; then
+    echo "scp *.vasp hailey@134.79.69.172:~/Desktop/$p"
+    scp *.vasp hailey@134.79.69.172:~/Desktop/$p
 fi
