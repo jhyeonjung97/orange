@@ -46,10 +46,10 @@ def charges(atoms, fileobj='ACF.dat', element='O'):
         i+=1
     for atom in atoms:
         if atom.symbol == element:
-            print(f"{element}{atom.index}\t {atom.charge:.2f}")
+            print(f"{element}{atom.index}\t {atom.charge:.4f}")
             sum0+=atom.charge
     if show_total:
-        print('\033[1m' + f"{element}_sum\t {sum0:.2f}" + '\033[0m')
+        print('\033[1m' + f"{element}_sum\t {sum0:.4f}" + '\033[0m')
     return sum0
 
 atoms = read('POSCAR')
@@ -83,5 +83,5 @@ for element in elements:
     total+=charges(atoms, 'ACF.dat', element)
 if show_total:
     print('------------------')
-    print(f"total\t {total:.2f}")
+    print(f"total\t {total:.4f}")
     
