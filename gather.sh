@@ -47,4 +47,5 @@ if [[ $send == 'port' ]]; then
 elif [[ -n $send ]]; then
     echo "scp *.vasp hailey@134.79.69.172:~/Desktop/$send"
     scp *.vasp hailey@134.79.69.172:~/Desktop/$send
+    rm *.vasp
 fi
