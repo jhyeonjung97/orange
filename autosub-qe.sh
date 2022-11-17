@@ -58,7 +58,7 @@ cd ..
 for i in $SET
 do
     cd $i
-    sed -n '/ATOMIC_SPECIES/,$p' $p$i.data
     sed -n '/ATOMIC_SPECIES/,$p' potcar.in
+    grep PSEUDO $p$i.data
     cd ..
 done
