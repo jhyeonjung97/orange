@@ -42,8 +42,9 @@ do
         mkdir $i
     fi
     cp incar.in kpoints.in run_slurm.sh potcar.in $p$i.in $p$i.data $i
+    cp $p$i.in poscar.in
     cd $i
-    cat incar.in potcar.in $p$i.in kpoints.in > qe-relax.in
+    cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
     sh ~/bin/orange/jobname.sh $n$i
     cd ..
 done
