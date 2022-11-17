@@ -41,10 +41,10 @@ do
     if [[ ! -d $i ]]; then
         mkdir $i
     fi
-    cp incar.in kpoints.in run_slurm.sh potcar.in $p$i.in $p$i.data $i
+    cp incar.in kpoints.in run_slurm.sh $p$i.in $p$i.data $i
     cp $p$i.in $i/poscar.in
     cd $i
-    cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
+    cat incar.in poscar.in kpoints.in > qe-relax.in
     sh ~/bin/orange/jobname.sh $n$i
     cd ..
 done
@@ -55,12 +55,3 @@ grep nat incar.in
 grep ntyp $p*.data
 grep ntyp incar.in
 cd ..
-
-for i in $SET
-do
-    cd $i
-    echo "< $i >"
-    grep UPF potcar.in
-    grep PSEUDO $p$i.data
-    cd ..
-done
