@@ -20,6 +20,7 @@ alias get='sh ~/bin/orange/get.sh'
 alias send='sh ~/bin/orange/send.sh'
 alias port='sh ~/bin/orange/port.sh'
 alias repeat='sh ~/bin/orange/repeat.sh'
+alias rename='sh ~/bin/orange/rename.sh'
 
 alias orange='dir_now=$PWD
 cd ~/bin/orange
