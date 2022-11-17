@@ -58,7 +58,8 @@ cd ..
 for i in $SET
 do
     cd $i
-    sed -n '/ATOMIC_SPECIES/,$p' potcar.in
+    echo "< $i >"
+    grep UPF potcar.in
     grep PSEUDO $p$i.data
     cd ..
 done
