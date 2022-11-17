@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 extension1="${1##*.}"
 filename1="${1%.*}"
 

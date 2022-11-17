@@ -18,6 +18,7 @@ alias vasp='sh ~/bin/orange/vasp5.sh'
 alias vasp524='sed -i -e '1h' -e '5G' POSCAR'
 alias chdo='sh ~/bin/orange/chgdos.sh'
 alias run1='sh ~/bin/orange/run1.sh'
+alias cell='sh ~/bin/orange/cell.sh'
 alias duplicate='sh ~/bin/orange/duplicate.sh'
 
 #OUTPUT

@@ -2,8 +2,8 @@
 
 ~/bin/packmol/packmol < $1
 
-extension="${1##*.}"
 filename="${1%.*}"
+extension="${1##*.}"
 
 mv mixture.xyz $filename.xyz
 
