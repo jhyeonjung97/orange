@@ -48,7 +48,7 @@ do
     cd ..
 done
 
-echo "grep nat $p*.data
+alias temp="grep nat $p*.data
 grep nat incar.in
 grep ntyp $p*.data
 grep ntyp incar.in
