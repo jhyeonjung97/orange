@@ -4,7 +4,7 @@ function resub {
     if [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
         rm *.e* *.o*
     else
-        rm STD*
+        rm STD* std*
     fi
     sh ~/bin/orange/sub.sh
 }
