@@ -57,9 +57,11 @@ do
 done
 
 read -p 'do you want to submit jobs? [y/n] (default: y) ' submit
-for i in $SET
-do
-    cd $i
-    sh ~/bin/orange/sub.sh
-    cd ..
-done
+if [[ ! $submit =~ 'n' ]]; then
+    for i in $SET
+    do
+        cd $i
+        sh ~/bin/orange/sub.sh
+        cd ..
+    done
+fi

@@ -33,7 +33,7 @@ else
     SET=$(seq $1 $2)
 fi
     
-read -p "poscar.cif files starts with: " p
+read -p "poscars starts with: " p
 read -p "job name: " n
 
 for i in $SET
@@ -41,17 +41,16 @@ do
     if [[ ! -d $i ]]; then
         mkdir $i
     fi
-    cp incar.in kpoints.in run_slurm.sh $p$i.in $i
+    cp incar.in kpoints.in run_slurm.sh potcar.in $p$i.in $p$i.data $i
     cd $i
-    sh ~/bin/orange/relax.sh $p
+    cat incar.in potcar.in $p.in kpoints.in > qe-relax.in
     sh ~/bin/orange/jobname.sh $n$i
     cd ..
 done
 
-read -p 'do you want to submit jobs? [y/n] (default: y) ' submit
-for i in $SET
-do
-    cd $i
-    sh ~/bin/orange/sub.sh
-    cd ..
-done
+echo "grep nat $p.data
+grep nat incar.in
+grep ntyp $p.data
+grep ntyp incar.in
+sed -n '/ATOMIC_SPECIES/,$p' $p.data
+sed -n '/ATOMIC_SPECIES/,$p' potcar.in"
