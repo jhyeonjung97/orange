@@ -50,7 +50,7 @@ function in_array {
 }
 
 if in_array "qe" "${type[*]}"; then
-    sed -i '/\/TGM\/Apps\/VASP\/VASP_BIN\/6.3.2\/vasp.6.3.2.std.x/c\pw.x -in qe-relax.in' run_slurm.sh
+    sed -i 's/\/TGM\/Apps\/VASP\/VASP_BIN\/6.3.2\/vasp.6.3.2.std.x/pw.x -in qe-relax.in' run_slurm.sh
     sed -i '/mpiexec/i\cat incar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
 fi
 
