@@ -20,6 +20,7 @@ alias chdo='sh ~/bin/orange/chgdos.sh'
 alias run1='sh ~/bin/orange/run1.sh'
 alias cell='sh ~/bin/orange/cell.sh'
 alias duplicate='sh ~/bin/orange/duplicate.sh'
+alias relax='sh ~/bin/orange/relax.sh'
 
 #OUTPUT
 alias e='grep E0 stdout*'
