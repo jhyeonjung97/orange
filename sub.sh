@@ -2,10 +2,12 @@
 
 
 function submit {
-    sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
-    grep NPAR INCAR
-    grep Selective POSCAR
-    grep MAGMOM INCAR 
+    if [[ -z $(grep pw.x run_slurm.sh) ]] && [[ -z $(grep pw.x */run_slurm.sh) ]] ; then
+        sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
+        grep NPAR INCAR
+        grep Selective POSCAR
+        grep MAGMOM INCAR 
+    fi
     if [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
         qsub run_slurm.sh
     else
