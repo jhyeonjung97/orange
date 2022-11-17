@@ -52,5 +52,5 @@ echo "grep nat $p.data
 grep nat incar.in
 grep ntyp $p.data
 grep ntyp incar.in
-sed -n '/ATOMIC_SPECIES/,$p' $p.data
-sed -n '/ATOMIC_SPECIES/,$p' potcar.in"
+sed -n '/ATOMIC_SPECIES/,\$p' $p.data
+sed -n '/ATOMIC_SPECIES/,\$p' potcar.in"
