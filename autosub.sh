@@ -4,7 +4,7 @@
 if [[ $1 == '-qe' ]] || [[ $1 == 'qe' ]]; then
     sh ~/bin/orange/autosub-qe.sh ${@:2}
     exit 1
-if [[ ! -e "INCAR" ]]; then
+elif [[ ! -e "INCAR" ]]; then
     echo "don't forget INCAR.."
     exit 2
 elif [[ ! -e "KPOINTS" ]]; then
