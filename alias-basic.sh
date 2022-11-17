@@ -21,6 +21,8 @@ alias run1='sh ~/bin/orange/run1.sh'
 alias cell='sh ~/bin/orange/cell.sh'
 alias duplicate='sh ~/bin/orange/duplicate.sh'
 alias relax='sh ~/bin/orange/relax.sh'
+alias qpot='sed -n "/ATOMIC_SPECIES/,\$p" *.data
+sed -n "/ATOMIC_SPECIES/,\$p" potcar.in'
 
 #OUTPUT
 alias e='grep E0 stdout*'

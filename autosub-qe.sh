@@ -48,9 +48,17 @@ do
     cd ..
 done
 
-alias temp="grep nat $p*.data
+cd *
+grep nat $p*.data
 grep nat incar.in
 grep ntyp $p*.data
 grep ntyp incar.in
-sed -n '/ATOMIC_SPECIES/,\$p' $p*.data
-sed -n '/ATOMIC_SPECIES/,\$p' potcar.in"
+cd ..
+
+for i in $SET
+do
+    cd $i
+    sed -n '/ATOMIC_SPECIES/,\$p' $p$i.data
+    sed -n '/ATOMIC_SPECIES/,\$p' potcar.in
+    cd ..
+done
