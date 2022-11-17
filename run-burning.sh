@@ -17,7 +17,7 @@ fi
 if [[ $type == 'n' ]] || [[ $type == '0' ]]; then
     type=''
 elif [[ -z $type ]]; then
-    echo -n "which type? (beef, vtst, vaspsol, gam): "
+    echo -n "which type? (beef, vtst, vaspsol, gam, qe): "
     read -a type
 fi
 
@@ -48,6 +48,10 @@ function in_array {
 
     return 1
 }
+
+if in_array "qe" "${type[*]}"; then
+    sed -e '/\/TGM\/Apps\/VASP\/VASP_BIN\/6.3.2\/vasp.6.3.2.std.x/c\pw.x -in qe-relax.in' run_slurm.sh
+fi
 
 if in_array "vtst" "${type[*]}"; then
     sed -i 's/std/vtst.std/' run_slurm.sh

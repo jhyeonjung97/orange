@@ -1,13 +1,10 @@
 #!/bin/bash
 
 # error cases
-if [[ $1 == '-qe' ]] || [[ $1 == 'qe' ]]; then
-    sh ~/bin/orange/autosub-qe.sh ${@:2}
-    exit 1
-if [[ ! -e "INCAR" ]]; then
+if [[ ! -e "incar.in" ]]; then
     echo "don't forget INCAR.."
     exit 2
-elif [[ ! -e "KPOINTS" ]]; then
+elif [[ ! -e "kpoints.in" ]]; then
     echo "don't forget KPOINTS.."
     exit 2
 elif [[ ! -e "run_slurm.sh" ]]; then
@@ -36,7 +33,7 @@ else
     SET=$(seq $1 $2)
 fi
     
-read -p "POSCARs starts with: " p
+read -p "poscar.cif files starts with: " p
 read -p "job name: " n
 
 for i in $SET
@@ -44,14 +41,9 @@ do
     if [[ ! -d $i ]]; then
         mkdir $i
     fi
-    cp INCAR KPOINTS run_slurm.sh $i
-    cp $p$i.vasp $i/POSCAR
+    cp incar.in kpoints.in run_slurm.sh $p$i.in $i
     cd $i
-    python ~/bin/pyband/xcell.py #XCELL
-    mv out*.vasp POSCAR #XCELL
-    python3 ~/bin/orange/magmom.py
-    sh ~/bin/orange/vasp5.sh
-    python3 ~/bin/shoulder/potcar_ara.py
+    sh ~/bin/orange/relax.sh $p
     sh ~/bin/orange/jobname.sh $n$i
     cd ..
 done
