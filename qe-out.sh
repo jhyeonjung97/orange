@@ -13,4 +13,17 @@ ntyp=${ntyp_arr[2]}
 echo $ntyp
 
 atoms=$(grep ATOMIC_POSITIONS stdout.log -A $nat | tail -n $nat )
-grep ATOMIC_POSITIONS stdout.log -A 231 | tail -n 231
+
+if [[ -e contcar.in ]]; then
+    rm contcar.in
+fi
+sed '/ATOMIC_POSITIONS/,$d' poscar.in >> contcar.in
+echo 'ATOMIC_POSITIONS (crystal)' >> contcar.in
+echo $atoms >> contcar.in
+
+if [[ -e contcar.xyz ]]; then
+    rm contcar.xyz
+fi
+echo $nat >> contcar.xyz
+echo $PWD >> contcar.xyz
+echo $atoms >> contcar.xyz
