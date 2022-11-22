@@ -3,7 +3,7 @@ from sys import argv, exit
 import os
 
 # usage: cell2xyz.py [lattice_a] [format]
-a = argv[1]
+a = float(argv[1])
 # f = argv[2]
 
 atoms = read('.contcar.xyz')
