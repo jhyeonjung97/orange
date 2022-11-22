@@ -8,6 +8,7 @@ alias PBE='grep TITEL POTCAR'
 
 alias pos2cif='~/bin/vtstscripts/pos2cif.pl POSCAR'
 alias con2cif='~/bin/vtstscripts/pos2cif.pl CONTCAR'
+alias out2xyz='sh ~/bin/orange/out2xyz.sh'
 
 alias nebsend='sh ~/bin/orange/nebsend.sh'
 alias vaspsend='sh ~/bin/orange/vaspsend.sh'

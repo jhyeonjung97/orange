@@ -2,14 +2,15 @@ from ase.io import read, write
 from sys import argv, exit
 import os
 
-# usage: cell2xyz.py [lattice_a] [format]
-a = float(argv[1])
-# f = argv[2]
+# usage: cell2xyz.py [file] [lattice_a] [format]
+file = str(argv[1])
+a = float(argv[2])
+# format = argv[3]
 
-atoms = read('.contcar.xyz')
+atoms = read(file)
 atoms.positions *= a
 # atoms.set_cell([a, a, a])
 
 write('contcar.xyz', atoms, format='xyz')
-# if not f == '';
-#     write('contcar.%s' %f, atoms, format=f)
+# if not format == '';
+#     write('contcar.%s' %format, atoms, format=format)
