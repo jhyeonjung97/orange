@@ -28,4 +28,5 @@ echo $nat >> .contcar.xyz
 echo $PWD >> .contcar.xyz
 echo $atoms >> .contcar.xyz
 
-python ~/bin/orange/cell2xyz.py 
+a=40
+python ~/bin/orange/cell2xyz.py $a
