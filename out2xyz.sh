@@ -30,4 +30,4 @@ echo $atoms >> .contcar.xyz
 
 a=40
 python ~/bin/orange/cell2xyz.py .contcar.xyz $a
-sed -e "1a$nat" -e '2d' contcar.xyz
+sed -i -e "1a$nat" -e '2d' contcar.xyz
