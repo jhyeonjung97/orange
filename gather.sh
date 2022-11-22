@@ -15,7 +15,7 @@ elif [[ $f == 'c' ]] || [[ $f == 'con' ]]; then
 else
     pattern=$f
 fi
-z
+
 for dir in */
 do
     cd $dir
