@@ -15,7 +15,7 @@ elif [[ $f == 'c' ]] || [[ $f == 'con' ]]; then
 else
     pattern=$f
 fi
-
+z
 for dir in */
 do
     cd $dir
@@ -23,7 +23,7 @@ do
     for file in *
     do
         if [[ $file =~ $pattern ]]; then
-            if [[ -n $filename ]]; then
+            if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
                 if [[ $pattern == 'POSCAR' ]] && [[ -e initial.vasp ]]; then
                     cp initial.vasp ../$filename$numb.vasp
                 elif [[ $pattern == 'CONTCAR' ]] && [[ ! -s $file ]]; then
@@ -31,7 +31,7 @@ do
                 else
                     cp $pattern ../$filename$numb.vasp
                 fi
-            else
+            elif [[ "${file##*.}" == "${pattern##*.}" ]]; then
                 filename="${file%.*}"
                 extension="${file##*.}"
                 cp $file ../$filename$numb.$extension
