@@ -2,7 +2,7 @@
 
 
 function submit {
-    if [[ -z $(grep pw.x run_slurm.sh) ]] && [[ -z $(grep pw.x */run_slurm.sh) ]] ; then
+    if [[ -z $(grep pw.x run_slurm.sh) ]] ; then
         sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
         grep NPAR INCAR
         grep Selective POSCAR
