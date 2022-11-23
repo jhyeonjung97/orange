@@ -13,6 +13,8 @@ alias out2xyz='sh ~/bin/orange/out2xyz.sh'
 alias nebsend='sh ~/bin/orange/nebsend.sh'
 alias vaspsend='sh ~/bin/orange/vaspsend.sh'
 alias sendvasp='sh ~/bin/orange/vaspsend.sh'
+alias vaspport='cp *.vasp ~/port/'
+alias portvasp='cp *.vasp ~/port/'
 alias xc='python ~/bin/pyband/xcell.py
 mv out*.vasp POSCAR'
 alias vasp='sh ~/bin/orange/vasp5.sh'
