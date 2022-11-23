@@ -54,4 +54,5 @@ do
     sed -i "/#PBS -N/c\#PBS -N $name$j" $i$star/run_slurm.sh
 done
 
-grep $name */run_slurm.sh
+grep '#PBS -N' */run_slurm.sh
+grep '#SBATCH --job-name' */run_slurm.sh
