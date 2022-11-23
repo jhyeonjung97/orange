@@ -19,6 +19,7 @@ if [[ $1 == 'chg' ]]; then
     # echo '<INCAR_chg>'
     modify INCAR_chg NSW
     modify INCAR_chg IBRION
+    modify INCAR_dos ALGO
     modify INCAR_chg LCHARG
     modify INCAR_chg LAECHG .TRUE.
     modify INCAR_chg LORBIT
