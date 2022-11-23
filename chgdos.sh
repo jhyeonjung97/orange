@@ -122,7 +122,7 @@ fi
 
 rm temp1
 
-if [[ $dos == 'y' ]]; then
+if [[ $dos == 'y' ]] && [[ -z $(grep ready double_k) ]]; then
     more double_k
     read -p 'do you want to double this? [y/n] (default: n) ' double
     if [[ $double =~ 'y' ]]; then
