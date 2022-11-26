@@ -6,6 +6,9 @@ function resub {
     else
         rm STD* std*
     fi
+    if [[ -d pwscf.save ]]; then
+        rm -r pwscf.save
+    fi
     sh ~/bin/orange/sub.sh
 }
 
