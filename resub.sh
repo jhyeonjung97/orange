@@ -12,6 +12,9 @@ function resub {
     if [[ -e "pwscf.*" ]]; then
         rm "pwscf.*"
     fi
+    if [[ -f CRASH ]]; then
+        rm CRASH
+    fi
     sh ~/bin/orange/sub.sh
 }
 
