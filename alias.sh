@@ -13,6 +13,7 @@ alias py3='conda activate py3'
 alias zip='tar -cvzf'
 alias unzip='tar -xvf'
 
+alias temp='sh ~/bin/temp.sh'
 alias vbash='vi ~/.bashrc'
 alias sbash='source ~/.bashrc'
 
