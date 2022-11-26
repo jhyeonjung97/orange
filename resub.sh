@@ -9,8 +9,8 @@ function resub {
     if [[ -d pwscf.save ]]; then
         rm -r pwscf.save
     fi
-    if [[ -e 'pwscf.*' ]]; then
-        rm 'pwscf.*'
+    if [[ -e "pwscf.*" ]]; then
+        rm "pwscf.*"
     fi
     sh ~/bin/orange/sub.sh
 }
