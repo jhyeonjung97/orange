@@ -44,6 +44,10 @@ done
 read -p 'vaspsend destination (enter for skip): ' send
 if [[ $send == 'port' ]]; then
     cp *.vasp ~/port/
+elif [[ send == 'window' ]]; then
+    echo "scp *.vasp jhyeo@192.168.1.251:~/Desktop/$send"
+    scp *.vasp jhyeo@192.168.1.251:~/Desktop/$send
+    rm *.vasp
 elif [[ -n $send ]]; then
     echo "scp *.vasp hailey@134.79.69.172:~/Desktop/$send"
     scp *.vasp hailey@134.79.69.172:~/Desktop/$send
