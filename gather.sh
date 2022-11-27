@@ -48,6 +48,14 @@ elif [[ $send =~ 'w' ]]; then
     echo "scp *.vasp jhyeo@192.168.1.251:~/Desktop/$send"
     scp *.vasp jhyeo@192.168.1.251:~/Desktop/$send
     rm *.vasp
+elif [[ $send =~ 'nurion' ]]; then
+    echo "scp *.vasp x2347a10@nurion.ksc.re.kr:~/vis"
+    scp *.vasp x2347a10@nurion.ksc.re.kr:~/vis
+    rm *.vasp
+elif [[ $send =~ 'kisti' ]]; then
+    echo "scp *.vasp x2431a10@nurion.ksc.re.kr:~/vis"
+    scp *.vasp x2431a10@nurion.ksc.re.kr:~/vis
+    rm *.vasp
 elif [[ $send =~ 'cori' ]]; then
     echo "scp *.vasp jiuy97@cori.nersc.gov:~/vis"
     scp *.vasp jiuy97@cori.nersc.gov:~/vis
