@@ -21,6 +21,8 @@ fi
 
 read -p "lattice parameter (A): " a
 python ~/bin/orange/xyz2cif.py $a
+if [[ ! $a =~ . ]]; then
+    a=$a.0
 
 if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
     SET=${@:2}
@@ -44,11 +46,37 @@ do
     if [[ ! -d $i ]]; then
         mkdir $i
     fi
-    
-    cp incar.in kpoints.in run_slurm.sh $p$i.xyz $p$i.data $i
-    cp $p$i.in $i/poscar.in
+    cp incar.in kpoints.in run_slurm.sh $p$i.xyz $p$i.cif $i
     cd $i
-    cat incar.in poscar.in kpoints.in > qe-relax.in
+    
+    cif2cell $p$i.cif -p quantum-espresso -o $p$i.in
+    
+    nat_tag=$(grep nat $p$i.in | sed 's/\t/ /')
+    IFS=' '
+    read -ra nat_arr <<< $nat_tag
+    nat=${nat_arr[2]}
+    sed -i "/nat/c\    nat = $nat" incar.in
+
+    ntyp_tag=$(grep ntyp $p$i.in | sed 's/\t/ /')
+    IFS=' '
+    read -ra ntyp_arr <<< $ntyp_tag
+    ntyp=${ntyp_arr[2]}
+    sed -i "/ntyp/c\    ntyp = $ntyp" incar.in
+    
+    sed -i '1,2d' $p$i.xyz
+    sed -i '1,19d' '/ATOMIC_POSITIONS/,$d' $p$i.in
+    sed -i 's/H_PSEUDO/H.pbe-kjpaw_psl.1.0.0.UPF/' $p$i.in
+    sed -i 's/O_PSEUDO/O.pbe-nl-kjpaw_psl.1.0.0.UPF/' $p$i.in
+    sed -i 's/Li_PSEUDO/Li.pbe-sl-kjpaw_psl.1.0.0.UPF/' $p$i.in
+    
+    echo "
+CELL_PARAMETERS
+    $a 0. 0.
+    0. $a 0.
+    0. 0. $a" >> incar.in
+
+    cat incar.in $p$i.in $p$i.xyz kpoints.in > qe-relax.in
+    sed -i -e "1i\$nat" "1i\$nat" $p$i.xyz
     sh ~/bin/orange/jobname.sh $n$i
     cd ..
 done
