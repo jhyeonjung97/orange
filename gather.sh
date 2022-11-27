@@ -48,6 +48,10 @@ elif [[ send =~ 'w' ]]; then
     echo "scp *.vasp jhyeo@192.168.1.251:~/Desktop/$send"
     scp *.vasp jhyeo@192.168.1.251:~/Desktop/$send
     rm *.vasp
+elif [[ send =~ 'cori' ]]; then
+    echo "scp *.vasp jiuy97@cori.nersc.gov:~/vis"
+    scp *.vasp jiuy97@cori.nersc.gov:~/vis
+    rm *.vasp
 elif [[ -n $send ]]; then
     echo "scp *.vasp hailey@134.79.69.172:~/Desktop/$send"
     scp *.vasp hailey@134.79.69.172:~/Desktop/$send
