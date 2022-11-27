@@ -19,6 +19,9 @@ elif [[ -z $1 ]]; then
     echo 'usage: autosub (directory#1) [directory#2]'
 fi
 
+read -p "lattice parameter (A): " a
+python ~/bin/orange/xyz2cif.py $a
+
 if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
     SET=${@:2}
 elif [[ $1 == '-n' ]] || [[ $1 == '-non' ]]; then
@@ -41,7 +44,8 @@ do
     if [[ ! -d $i ]]; then
         mkdir $i
     fi
-    cp incar.in kpoints.in run_slurm.sh $p$i.in $p$i.data $i
+    
+    cp incar.in kpoints.in run_slurm.sh $p$i.xyz $p$i.data $i
     cp $p$i.in $i/poscar.in
     cd $i
     cat incar.in poscar.in kpoints.in > qe-relax.in
