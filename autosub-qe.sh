@@ -23,7 +23,7 @@ grep --colour tot_charge incar.in
 
 read -p "lattice parameter (A): " a
 python ~/bin/orange/xyz2cif.py $a
-if [[ ! $a =~ . ]]; then
+if [[ ! $a =~ '.' ]]; then
     a=$a.0
 fi
 
@@ -67,7 +67,7 @@ do
     sed -i "/ntyp/c\    ntyp = $ntyp" incar.in
     
     sed -i '1,2d' $p$i.xyz
-    sed -i '1,19d' '/ATOMIC_POSITIONS/,$d' $p$i.in
+    sed -i -e '1,19d' '/ATOMIC_POSITIONS/,$d' $p$i.in
     sed -i 's/H_PSEUDO/H.pbe-kjpaw_psl.1.0.0.UPF/' $p$i.in
     sed -i 's/O_PSEUDO/O.pbe-nl-kjpaw_psl.1.0.0.UPF/' $p$i.in
     sed -i 's/Li_PSEUDO/Li.pbe-sl-kjpaw_psl.1.0.0.UPF/' $p$i.in
@@ -79,7 +79,7 @@ CELL_PARAMETERS
     0. 0. $a" >> incar.in
 
     cat incar.in $p$i.in $p$i.xyz kpoints.in > qe-relax.in
-    sed -i -e "1i\$nat" "1i\$nat" $p$i.xyz
+    sed -i -e "1i\\$nat" "1i\\$nat" $p$i.xyz
     sh ~/bin/orange/jobname.sh $n$i
     cd ..
 done
