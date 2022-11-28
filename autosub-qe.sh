@@ -85,7 +85,7 @@ CELL_PARAMETERS {angstrom}
     sh ~/bin/orange/jobname.sh $n$i
     cd ..
 done
-grep --colour chemical_formula */*.cif
+grep --colour chemical_formula_sum */*.cif
 
 read -p 'do you want to submit jobs? [y/n] (default: n) ' submit
 if [[ $submit =~ 'y' ]]; then
