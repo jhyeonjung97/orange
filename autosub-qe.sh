@@ -78,7 +78,8 @@ CELL_PARAMETERS {angstrom}
     $a 0. 0.
     0. $a 0.
     0. 0. $a" >> incar.in
-
+    
+    cp $p$i.in potcar.in
     cat incar.in $p$i.in $p$i.xyz kpoints.in > qe-relax.in
     sed -i "1i\\$nat" $p$i.xyz
     sh ~/bin/orange/jobname.sh $n$i
