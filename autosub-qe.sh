@@ -84,9 +84,12 @@ CELL_PARAMETERS
     cd ..
 done
 
-cd *
-grep nat $p*.data
-grep nat incar.in
-grep ntyp $p*.data
-grep ntyp incar.in
-cd ..
+read -p 'do you want to submit jobs? [y/n] (default: y) ' submit
+if [[ ! $submit =~ 'n' ]]; then
+    for i in $SET
+    do
+        cd $i
+        sh ~/bin/orange/sub.sh
+        cd ..
+    done
+fi
