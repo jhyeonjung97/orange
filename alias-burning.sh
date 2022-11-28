@@ -8,7 +8,8 @@ alias mystat='qstat -u hyeonjung | grep --colour g1
 qstat -u hyeonjung | grep --colour g2
 qstat -u hyeonjung | grep --colour g3
 qstat -u hyeonjung | grep --colour g4
-qstat -u hyeonjung | grep --colour g5'
+qstat -u hyeonjung | grep --colour g5
+qstat -u hyeonjung | grep --colour gpu'
 alias g1='qstat | grep -i "Q g1" '
 alias g2='qstat | grep -i "Q g2" '
 alias g3='qstat | grep -i "Q g3" '
