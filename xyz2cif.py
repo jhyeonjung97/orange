@@ -1,8 +1,8 @@
 from ase.io import read, write
+from sys import argv
 import os
-import sys.argv
 
-a = sys.argv[1]
+a = argv[1]
 if a == '':
     print('use default lattice parameter, 30 A ...')
     a = 30.

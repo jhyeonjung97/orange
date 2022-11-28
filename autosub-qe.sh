@@ -19,6 +19,8 @@ elif [[ -z $1 ]]; then
     echo 'usage: autosub (directory#1) [directory#2]'
 fi
 
+grep --colour tot_charge incar.in
+
 read -p "lattice parameter (A): " a
 python ~/bin/orange/xyz2cif.py $a
 if [[ ! $a =~ . ]]; then
