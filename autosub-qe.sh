@@ -25,6 +25,7 @@ read -p "lattice parameter (A): " a
 python ~/bin/orange/xyz2cif.py $a
 if [[ ! $a =~ . ]]; then
     a=$a.0
+fi
 
 if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
     SET=${@:2}
