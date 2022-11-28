@@ -22,10 +22,13 @@ fi
 grep --colour tot_charge incar.in
 
 read -p "lattice parameter (A): " a
-python ~/bin/orange/xyz2cif.py $a
-if [[ ! $a =~ '.' ]]; then
+if [[ -z $a ]]; then
+    echo 'use default lattice parameter, 30 A ...'
+    a=30.
+elif [[ ! $a =~ '.' ]]; then
     a=$a.
 fi
+python ~/bin/orange/xyz2cif.py $a
 
 if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
     SET=${@:2}
