@@ -94,3 +94,5 @@ if [[ $submit =~ 'y' ]]; then
         cd ..
     done
 fi
+
+grep chemical_formula */*.cif
