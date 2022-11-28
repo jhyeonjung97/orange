@@ -4,11 +4,17 @@ alias cdw='cd ~/scratch'
 alias run='sh run-burning.sh'
 
 alias idle='pestat -s idle'
-alias mystat='qstat -u hyeonjung | grep --colour g1
+alias mystat='echo "g1"
+qstat -u hyeonjung | grep --colour g1
+echo "g2"
 qstat -u hyeonjung | grep --colour g2
+echo "g3"
 qstat -u hyeonjung | grep --colour g3
+echo "g4"
 qstat -u hyeonjung | grep --colour g4
+echo "g5"
 qstat -u hyeonjung | grep --colour g5
+echo "gpu"
 qstat -u hyeonjung | grep --colour gpu'
 alias g1='qstat | grep -i "Q g1" '
 alias g2='qstat | grep -i "Q g2" '
