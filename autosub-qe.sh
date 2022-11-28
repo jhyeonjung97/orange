@@ -46,6 +46,9 @@ fi
     
 read -p "poscars starts with: " p
 read -p "job name: " n
+if [[ -z $n ]]; then
+    n=$p
+fi
 
 for i in $SET
 do
