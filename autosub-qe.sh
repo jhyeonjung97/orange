@@ -26,6 +26,7 @@ if [[ -z $a ]]; then
     echo 'use default lattice parameter, 30 A ...'
     a=30.
 elif [[ ! $a =~ '.' ]]; then
+    echo 'use poscar name as jobname ...'
     a=$a.
 fi
 python ~/bin/orange/xyz2cif.py $a
