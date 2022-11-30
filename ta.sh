@@ -4,7 +4,7 @@ if [[ $1 =~ q ]]; then
     for dir in */
     do
         cd $dir
-        if [[ -e stdout.log ]]
+        if [[ -e stdout.log ]]; then
             echo $dir$(grep '!    total energy' stdout.log | tail -n 1)
         else
             echo $dir
