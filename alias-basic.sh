@@ -32,7 +32,7 @@ grep ntyp *.data | head -n 1'
 #OUTPUT
 alias e='grep E0 stdout*'
 alias ee='grep E0 stdout* | tail -n 3'
-alias ta='sh ~/bin/playground/ta.sh'
+alias ta='sh ~/bin/orange/ta.sh'
 alias te='sh ~/bin/playground/te.sh'
 alias fermi='grep E-fermi OUTCAR | tail -n 1'
 alias kpoint='grep subdivisionlength vasprun.xml -A 1'
