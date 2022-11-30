@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $1 =~ q ]] || [[ -e */qe-relax.in ]]; then
+if [[ $1 =~ q ]] || [[ -n $(grep qe-relax.in run_slurm.sh) ]]; then
     for dir in */
     do
         cd $dir
