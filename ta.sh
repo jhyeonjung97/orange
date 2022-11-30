@@ -8,6 +8,7 @@ if [[ $1 =~ q ]]; then
             echo $dir$(grep '!    total energy' stdout.log | tail -n 1)
         else
             echo $dir
+        fi
         cd ..
     done
 else
