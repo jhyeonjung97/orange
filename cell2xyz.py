@@ -3,8 +3,8 @@ from sys import argv, exit
 import os
 
 # usage: cell2xyz.py [file_in] [file_out] [lattice_a] [format]
-file_in = str(argv[1])
-file_out = str(argv[2])
+file_in = argv[1]
+file_out = argv[2]
 a = float(argv[3])
 # format = argv[4]
 

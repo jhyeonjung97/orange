@@ -12,6 +12,11 @@ read -ra ntyp_arr <<< $ntyp_tag
 ntyp=${ntyp_arr[2]}
 # echo $ntyp
 
+cell_tag=$(grep CELL_PARAMETERS qe-relax.in -A 1 | tail -n 1)
+IFS=' '
+read -ra cell <<< $cell_tag
+# echo $cell
+
 atoms=$(grep ATOMIC_POSITIONS stdout.log -A $nat | tail -n $nat )
 
 if [[ -e contcar.in ]]; then
@@ -21,25 +26,24 @@ sed '/ATOMIC_POSITIONS/,$d' poscar.in >> contcar.in
 echo 'ATOMIC_POSITIONS (crystal)' >> contcar.in
 echo $atoms >> contcar.in
 
-if [[ -e .contcar.xyz ]]; then
-    rm .contcar.xyz
+if [[ -e '.contcar.xyz' ]]; then
+    rm '.contcar.xyz'
 fi
-echo $nat >> .contcar.xyz
-echo $PWD >> .contcar.xyz
-echo $atoms >> .contcar.xyz
+echo $nat >> '.contcar.xyz'
+echo $PWD >> '.contcar.xyz'
+echo $atoms >> '.contcar.xyz'
 
-a=40
-python ~/bin/orange/cell2xyz.py '.contcar.xyz' 'contcar.xyz' $a
+python ~/bin/orange/cell2xyz.py '.contcar.xyz' 'contcar.xyz' $cell
 sed -i -e "1a$nat" -e '2d' contcar.xyz
 
-atoms=$(grep ATOMIC_POSITIONS qe-relax.in -A $nat | tail -n $nat )
+# atoms=$(grep ATOMIC_POSITIONS qe-relax.in -A $nat | tail -n $nat )
 
-if [[ -e .poscar.xyz ]]; then
-    rm .poscar.xyz
-fi
-echo $nat >> .poscar.xyz
-echo $PWD >> .poscar.xyz
-echo $atoms >> .poscar.xyz
+# if [[ -e '.poscar.xyz' ]]; then
+#     rm '.poscar.xyz'
+# fi
+# echo $nat >> '.poscar.xyz'
+# echo $PWD >> '.poscar.xyz'
+# echo $atoms >> '.poscar.xyz'
 
-python ~/bin/orange/cell2xyz.py '.poscar.xyz' 'poscar.xyz' $a
-sed -i -e "1a$nat" -e '2d' poscar.xyz
+# python ~/bin/orange/cell2xyz.py '.poscar.xyz' 'poscar.xyz' $a
+# sed -i -e "1a$nat" -e '2d' poscar.xyz
