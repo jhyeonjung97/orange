@@ -34,7 +34,9 @@ echo $PWD >> '.contcar.xyz'
 echo $atoms >> '.contcar.xyz'
 
 python ~/bin/orange/cell2xyz.py '.contcar.xyz' 'contcar.xyz' $cell
-sed -i -e "1a$nat" -e '2d' contcar.xyz
+file=$(ls *.cif)
+filename="${file%.*}"
+sed -i -e "1a$filename" -e '2d' contcar.xyz
 
 # atoms=$(grep ATOMIC_POSITIONS qe-relax.in -A $nat | tail -n $nat )
 
