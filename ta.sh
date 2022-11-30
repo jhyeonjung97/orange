@@ -9,6 +9,7 @@ if [[ $1 =~ q ]] || [[ -n $(grep qe-relax.in run_slurm.sh) ]]; then
             grep --colour '!    total energy' stdout.log | tail -n 1
         else
             echo $dir
+            echo '!'
         fi
         cd ..
     done
