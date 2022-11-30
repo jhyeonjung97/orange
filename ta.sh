@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $1 =~ q ]]; then
+if [[ $1 =~ q ]] || [[ -e */qe-relax.in ]]; then
     for dir in */
     do
         cd $dir
