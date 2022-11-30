@@ -5,6 +5,7 @@ if [[ $1 =~ q ]] || [[ -n $(grep qe-relax.in run_slurm.sh) ]]; then
     do
         cd $dir
         if [[ -e stdout.log ]]; then
+            echo $dir$(grep 'Total force' stdout.log | tail -n 1)
             echo $dir$(grep '!    total energy' stdout.log | tail -n 1)
         else
             echo $dir
