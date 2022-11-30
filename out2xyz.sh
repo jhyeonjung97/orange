@@ -12,9 +12,28 @@ read -ra ntyp_arr <<< $ntyp_tag
 ntyp=${ntyp_arr[2]}
 # echo $ntyp
 
-cell_tag=$(grep CELL_PARAMETERS qe-relax.in -A 1 | tail -n 1)
-IFS=' '
-read -ra cell <<< $cell_tag
+unit=$(grep CELL_PARAMETERS qe-relax.in)
+if [[ $unit =~ crystal ]] || [[ $unit =~ alat ]]; then
+    alat=$(grep 'A =' qe-relax.in)
+    celldm=$(grep 'celldm(1)' qe-relax.in)
+    if [[ -n $alat ]]; then
+        alat_tag=$(grep 'A =' qe-relax.in | sed 's/\t/ /')
+        IFS=' '
+        read -ra alat_arr <<< $alat_tag
+        cell=${alat_arr[2]}
+    elif [[ -n $celldm ]]; then
+        celldm_tag=$(grep 'A =' qe-relax.in | sed 's/\t/ /')
+        IFS=' '
+        read -ra celldm_arr <<< $celldm_tag
+        cell=${celldm_arr[2]}
+    else    
+        cell_tag=$(grep CELL_PARAMETERS qe-relax.in -A 1 | tail -n 1)
+        IFS=' '
+        read -ra cell <<< $cell_tag
+    fi
+else
+    cell=1
+fi
 # echo $cell
 
 atoms=$(grep ATOMIC_POSITIONS stdout.log -A $nat | tail -n $nat )
