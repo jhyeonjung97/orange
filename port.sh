@@ -3,8 +3,8 @@ if [[ $1 == 'p' ]] || [[ $1 == 'pos' ]]; then
 elif [[ $1 == 'c' ]] || [[ $1 == 'con' ]]; then
     file='CONTCAR'
 else
-    file=$1
+    file=$@
 fi
 
-echo $1
-cp $1 ~/port/
+echo $file
+cp $file ~/port/
