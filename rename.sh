@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ -z $1 ]] || [[ -z $2 ]]; then
+    echo 'wrong usage...'
+    exit 1
+fi
+
 extension1="${1##*.}"
 filename1="${1%.*}"
 
