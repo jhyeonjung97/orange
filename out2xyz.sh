@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function out2xyz {
-    if [[ -z $(grep ATOMIC_POSITIONS stdout.log) ]]; then
+    if [[ ! -f stdout.log ]] || [[ -z $(grep ATOMIC_POSITIONS stdout.log) ]]; then
         echo $PWD': no contcar data...'
         return 0
     fi
