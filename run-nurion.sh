@@ -24,8 +24,8 @@ else
     q='normal'
 fi
 
-sed -i "/ncpus/c\#PBS -l select=1:ncpus=$node:mpiprocs=$node:ompthreads=1" run_slurm.sh
-sed -i "/partition/c\#PBS -q $q" run_slurm.sh
+sed -i "/#PBS -l/c\#PBS -l select=1:ncpus=$node:mpiprocs=$node:ompthreads=1" run_slurm.sh
+sed -i "/#PBS -q/c\#PBS -q $q" run_slurm.sh
 
 function in_array {
     ARRAY=$2
