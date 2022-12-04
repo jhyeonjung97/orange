@@ -87,7 +87,7 @@ else
 fi
 
 read -p 'gather contcar.xyz? [y/n] (default: y) ' gather
-if [[ $gather =! n* ]]; then
+if [[ $gather != n* ]]; then
     sh ~/bin/orange/gather.sh contcar.xyz
 fi
 # atoms=$(grep ATOMIC_POSITIONS qe-relax.in -A $nat | tail -n $nat )
