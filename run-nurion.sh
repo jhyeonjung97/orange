@@ -8,7 +8,7 @@ fi
 cp ~/input_files/run_slurm.sh .
 
 read -p 'which queue? (normal, skl, long): ' q
-echo -n 'which type? (beef, vtst, vaspsol, gam): '
+echo -n 'which type? (beef, vtst, vaspsol, gam, qe): '
 read -a type
 
 if [[ $q == l* ]]; then
@@ -37,6 +37,11 @@ function in_array {
     done
     return 1
 }
+
+if in_array "qe" "${type[*]}"; then
+    sed -i '/mpirun/c\mpirun -np 8 pw.x -in qe-relax.in > stdout.log' run_slurm.sh
+    sed -i '/mpirun/i\cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
+fi
 
 if in_array "beef" "${type[*]}"; then
     sed -i '/mpirun/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
