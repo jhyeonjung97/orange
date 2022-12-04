@@ -9,6 +9,8 @@ alias ....='cd ../../..'
 alias cal='bc -l'
 alias bin='cd ~/bin'
 alias py3='conda activate py3'
+alias sfile='du -sh ./'
+alias nfile='find . -type f | wc -l'
 
 alias zip='tar -cvzf'
 alias unzip='tar -xvf'
