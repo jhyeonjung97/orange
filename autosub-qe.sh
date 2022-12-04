@@ -94,11 +94,6 @@ done
 grep --colour chemical_formula_sum */*.cif
 
 read -p 'do you want to submit jobs? [y/n] (default: n) ' submit
-if [[ $submit =~ 'y' ]]; then
-    for i in $SET
-    do
-        cd $i
-        sh ~/bin/orange/sub.sh
-        cd ..
-    done
+if [[ $submit == y* ]]; then
+    sh ~/bin/orange/sub.sh -s $SET
 fi
