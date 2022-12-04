@@ -7,11 +7,15 @@ fi
 
 cp ~/input_files/run_slurm.sh .
 
-read -p 'which queue? (normal, skl): ' q
+read -p 'which queue? (normal, skl, long): ' q
 echo -n 'which type? (beef, vtst, vaspsol, gam): '
 read -a type
 
-if [[ $q =~ 's' ]]; then
+if [[ $q == l* ]]; then
+    node=64
+    q='long'
+    sed -i 's/walltime=48/walltime=120' run_slurm.sh
+elif [[ $q == s* ]]; then
     node=40
     q='norm_skl'
     sed -i 's/KNL_XeonPhi/SKL_Skylake' run_slurm.sh
