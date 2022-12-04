@@ -91,8 +91,10 @@ if [[ $gather != n* ]]; then
     for dir in */
     do
         cd $dir
-        numb=$(echo $dir | cut -c 1)
-        cp contcar.xyz ../contcar$numb.xyz
+        if [[ -f contcar.xyz ]]; then
+            numb=$(echo $dir | cut -c 1)
+            cp contcar.xyz ../contcar$numb.xyz
+        fi
         cd ..
     done
 fi
