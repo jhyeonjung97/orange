@@ -13,7 +13,6 @@ elif [[ ! -e "run_slurm.sh" ]]; then
         sh ~/bin/orange/run-burning.sh
     elif [[ $here == 'kisti' ]] || [[ $here == 'nurion' ]]; then
         sh ~/bin/orange/run-nurion.sh
-    fi
     exit 3
 elif [[ -z $1 ]]; then
     echo 'usage: autosub (directory#1) [directory#2]'
@@ -26,7 +25,6 @@ if [[ -z $a ]]; then
     echo 'use default lattice parameter, 30 A ...'
     a=30.
 elif [[ ! $a =~ '.' ]]; then
-    echo 'use poscar name as jobname ...'
     a=$a.
 fi
 python ~/bin/orange/xyz2cif.py $a
@@ -44,10 +42,11 @@ elif [[ -z $2 ]]; then
 else
     SET=$(seq $1 $2)
 fi
-    
+
 read -p "poscars starts with: " p
 read -p "job name: " n
 if [[ -z $n ]]; then
+    echo 'use poscar name as jobname ...'
     n=$p
 fi
 
