@@ -1,6 +1,11 @@
 #!/bin/bash
 
 function out2xyz {
+    if [[ -z $(grep ATOMIC_POSITIONS stdout.log) ]]; then
+        echo 'no contcar data...'
+        return 0
+    fi
+
     nat_tag=$(grep nat qe-relax.in | sed 's/\t/ /')
     IFS=' '
     read -ra nat_arr <<< $nat_tag
