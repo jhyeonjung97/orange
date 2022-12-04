@@ -73,7 +73,7 @@ do
     ntyp=${ntyp_arr[2]}
     sed -i "/ntyp/c\    ntyp = $ntyp" incar.in
     
-    sh ~/bin/orange/pseudopotential.sh
+    sh ~/bin/orange/pseudopotential.sh $p$i.in
     sed -i -e '1,19d' -e '/ATOMIC_POSITIONS/,$d' $p$i.in
     sed -i '1,2d' $p$i.xyz
     sed -i '1i\ATOMIC_POSITIONS {angstrom}' $p$i.xyz
