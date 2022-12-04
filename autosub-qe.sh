@@ -14,6 +14,7 @@ elif [[ ! -e "run_slurm.sh" ]]; then
     elif [[ $here == 'kisti' ]] || [[ $here == 'nurion' ]]; then
         sh ~/bin/orange/run-nurion.sh
     exit 3
+    fi
 elif [[ -z $1 ]]; then
     echo 'usage: autosub (directory#1) [directory#2]'
 fi
