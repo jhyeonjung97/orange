@@ -7,8 +7,9 @@ if not argv[2]:
     exit()
 
 name, ext = os.path.splitext(argv[2])
+print(ext)
 
-a == argv[3]
+a = argv[3]
 if a == '':
     a = input("lattice parameter? ")
 if a == '':
@@ -19,4 +20,4 @@ if a == '':
 atoms = read(argv[1])
 atoms.set_cell([a, a, a])
 atoms.center()
-write(argv[2], atoms, format=ext)
+write(argv[2], atoms, ext)
