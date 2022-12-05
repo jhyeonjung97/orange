@@ -108,7 +108,7 @@ function qe {
     mv * $save
     cd $save/
     mv */ ..
-    cp poscar.in ../initial.in
+    cp qe-relax.in ../initial.in
     cp poscar.in contcar.in incar.in kpoints.in potcar.in run_slurm.sh initial.in ..
     cd ..
 
