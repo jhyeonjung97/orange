@@ -10,9 +10,9 @@ name, ext = os.path.splitext(argv[2])
 ext = ext.replace('.','')
 # print(ext)
 
-a = argv[3]
+a = float(argv[3])
 if a == '':
-    a = input("lattice parameter? ")
+    a = float(input("lattice parameter? "))
 if a == '':
     print('use default lattice parameter, 30 A ...')
     a = 30.
