@@ -61,11 +61,6 @@ function conti-qe {
     fi
 }
 
-if [[ $1 == '-qe' ]]; then
-    sh ~/bin/conti-qe.sh ${@:2}
-    exit 1
-fi
-
 if [[ -z $1 ]]; then # simple conti
     if [[ -z $(grep pw.x run_slurm.sh) ]]; then
         conti
