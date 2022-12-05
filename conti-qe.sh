@@ -8,16 +8,17 @@ function conti {
         i=$(($i+1))
         save="conti_$i"
     done
+    sh out2xyz.sh
     mkdir $save
     mv * $save
     cd $save/
     mv */ ..
-    cp POSCAR ../initial.vasp
-    cp POSCAR CONTCAR INCAR KPOINTS POTCAR run_slurm.sh initial.vasp ..
+    cp poscar.in ../initial.in
+    cp poscar.in contcar.in incar.in kpoints.in potcar.in run_slurm.sh initial.in ..
     cd ..
 
-    if [[ -s CONTCAR ]]; then
-        mv CONTCAR POSCAR
+    if [[ -s contcar.in ]]; then
+        mv contcar.in poscar.in
     fi
 
     if [[ ${here} == 'burning' ]]; then
@@ -25,15 +26,10 @@ function conti {
     elif [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
         qsub run_slurm.sh
     else
-        echo 'where am i..? please modify [con2pos.sh] code'
+        echo 'where am i..? please modify [conti-qe.sh] code'
         exit 1
     fi
 }
-
-if [[ $1 == '-qe' ]]; then
-    sh ~/bin/conti-qe.sh ${@:2}
-    exit 1
-fi
 
 if [[ -z $1 ]]; then # simple conti
     conti

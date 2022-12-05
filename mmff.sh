@@ -25,10 +25,10 @@ for i in {0..9}
 do
     if [[ -f $name$i.$ext ]]; then
         python ~/bin/orange/cluster.py $name$i.$ext $name$i.cif $a
-        echo "python ~/bin/orange/cluster.py $name$i.$ext $name$i.cif $a"
+        # echo "python ~/bin/orange/cluster.py $name$i.$ext $name$i.cif $a"
         obabel $name$i.cif -O $name$i.mol2
-        echo "obabel $name$i.cif -O $name$i.mol2"
+        # echo "obabel $name$i.cif -O $name$i.mol2"
         obminimize -n 100000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb
-        # python ~/bin/orange/cluster.py $name$i.pdb $name$i.xyz $a
+        python ~/bin/orange/cluster.py $name$i.pdb $name$i.xyz $a
     fi
 done
