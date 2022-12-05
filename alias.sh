@@ -11,6 +11,7 @@ alias bin='cd ~/bin'
 alias py3='conda activate py3'
 alias sfile='du -sh ./'
 alias nfile='find . -type f | wc -l'
+alias mmff='sh ~/bin/orange/mmff.sh'
 
 alias zip='tar -cvzf'
 alias unzip='tar -xvf'
