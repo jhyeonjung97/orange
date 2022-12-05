@@ -7,7 +7,8 @@ if not argv[2]:
     exit()
 
 name, ext = os.path.splitext(argv[2])
-print(ext)
+ext = ext.replace('.','')
+# print(ext)
 
 a = argv[3]
 if a == '':

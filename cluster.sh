@@ -21,5 +21,6 @@ for i in {0..9}
 do
     if [[ -e $name1$i.$ext1 ]]; then
         python ~/bin/orange/cluster.py $name1$i.$ext1 $name2$i.$ext2 $3
+        # echo "python ~/bin/orange/cluster.py $name1$i.$ext1 $name2$i.$ext2 $3"
     fi
 done
