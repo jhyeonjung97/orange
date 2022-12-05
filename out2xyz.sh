@@ -85,20 +85,22 @@ else
         out2xyz
         cd ..
     done
+    
+    read -p 'gather contcar.xyz? [y/n] (default: y) ' gather
+    if [[ $gather != n* ]]; then
+        for dir in */
+        do
+            cd $dir
+            if [[ -f contcar.xyz ]]; then
+                numb=$(echo $dir | cut -c 1)
+                cp contcar.xyz ../contcar$numb.xyz
+            fi
+            cd ..
+        done
+    fi
 fi
 
-read -p 'gather contcar.xyz? [y/n] (default: y) ' gather
-if [[ $gather != n* ]]; then
-    for dir in */
-    do
-        cd $dir
-        if [[ -f contcar.xyz ]]; then
-            numb=$(echo $dir | cut -c 1)
-            cp contcar.xyz ../contcar$numb.xyz
-        fi
-        cd ..
-    done
-fi
+
 # atoms=$(grep ATOMIC_POSITIONS qe-relax.in -A $nat | tail -n $nat )
 
 # if [[ -e '.poscar.xyz' ]]; then
