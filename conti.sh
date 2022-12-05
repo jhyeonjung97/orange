@@ -95,7 +95,7 @@ function conti {
     fi
 }
 
-function conti-qe {
+function qe {
     i=1
     save="conti_$i"
     while [[ -d "conti_$i" ]]
@@ -130,7 +130,7 @@ if [[ -z $1 ]]; then # simple conti
     if [[ -z $(grep pw.x run_slurm.sh) ]]; then
         conti
     else
-        conti-qe
+        qe
     fi
 else
     if [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
@@ -150,7 +150,7 @@ else
         if [[ -z $(grep pw.x run_slurm.sh) ]]; then
             conti
         else
-            conti-qe
+            qe
         fi
         cd ..
     done
