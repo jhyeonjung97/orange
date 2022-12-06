@@ -9,5 +9,6 @@ file = argv[1]
 atoms = read(file)
 # angle=input('angle? ')
 # axis=input('axis? (x, y, z) ')
-atoms.rotate(180, 'y', center=(0, 0, 0))
+atoms.rotate(180, 'z', center=(0, 0, 0))
+# atoms.rotate(180, 'y', center=(0, 0, 0))
 write(file, atoms, format='vasp')
