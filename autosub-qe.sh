@@ -26,6 +26,13 @@ if [[ -n $tot_charge ]]; then
     grep --colour tot_charge incar.in
 fi
 
+if [[ ${here} == 'burning' ]]; then
+    sed -i -e "/pseudo_dir/c\pseudo_dir = '/home/hyeonjung/q-e-qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
+elif [[ ${here} == 'nurion' ]]; then
+    sed -i -e "/pseudo_dir/c\pseudo_dir = '/home01/x2347a10/qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
+elif [[ ${here} == 'kisti' ]]; then
+    sed -i -e "/pseudo_dir/c\pseudo_dir = '/home01/x2431a10/qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
+fi
 
 read -p "lattice parameter (A): " a
 if [[ -z $a ]]; then
@@ -50,7 +57,7 @@ else
     SET=$(seq $1 $2)
 fi
 
-read -p "poscars starts with: " p
+read -p "poscars starts with (*.xyz): " p
 read -p "jobname if you want to specify: " n
 if [[ -z $n ]]; then
     echo 'use poscar name as jobname ...'
@@ -96,9 +103,9 @@ CELL_PARAMETERS {angstrom}
     cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
     sh ~/bin/orange/jobname.sh $n$i
     
-    if [[ ${here} == 'nurion' ]]; then
+    if [[ ${here} == 'kisti' ]]; then
         sed -i -e 's/x2431a10/x2347a10/' *
-    elif [[ ${here} == 'kisti' ]]; then
+    elif [[ ${here} == 'nurion' ]]; then
         sed -i -e 's/x2347a10/x2431a10/' *
     fi
     cd ..
