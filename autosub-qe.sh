@@ -20,6 +20,12 @@ elif [[ -z $1 ]]; then
 fi
 
 grep --colour tot_charge incar.in
+read -p 'change tot_charge? (press enter to skip) ' tot_charge
+if [[ -n $tot_charge ]]; then
+    sed -i -e "/tot_charge/c\    tot_charge = $tot_charge" incar.in
+    grep --colour tot_charge incar.in
+fi
+
 
 read -p "lattice parameter (A): " a
 if [[ -z $a ]]; then
