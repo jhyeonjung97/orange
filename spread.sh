@@ -12,10 +12,11 @@ else
 fi
 
 for dir in $SET; do
-    if [[ $file =~ '*' ]]; then
-        name=${file%'*'.*}
+    if [[ ! -e $file ]]; then
+        name=${file%.*}
         ext=${file##*.}
         numb=$(echo $dir | cut -c 1)
+        # echo $name $ext $numb
         cp $name$numb.$ext $dir$name.$ext
     else
         cp $file $dir

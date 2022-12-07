@@ -7,7 +7,7 @@ if [[ $1 =~ q ]] || [[ -n $(grep pw.x run_slurm.sh) ]]; then
         if [[ -e stdout.log ]]; then
             echo $dir$(grep 'Total force' stdout.log | tail -n 1)
             grep --colour 'NOT' stdout.log | tail -n 1 
-            grep --colour 'total energy' stdout.log | tail -n 1
+            grep --colour 'total energy' stdout.log | grep Ry | tail -n 1
             
         else
             echo $dir

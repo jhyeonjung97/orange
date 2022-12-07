@@ -23,7 +23,6 @@ alias vasp524='sed -i -e '1h' -e '5G' POSCAR'
 alias chdo='sh ~/bin/orange/chgdos.sh'
 alias run1='sh ~/bin/orange/run1.sh'
 alias cell='sh ~/bin/orange/cell.sh'
-alias duplicate='sh ~/bin/orange/duplicate.sh'
 alias relax='sh ~/bin/orange/relax.sh'
 alias n='grep nat incar.in
 grep nat *.data | head -n 1
@@ -43,8 +42,6 @@ date +"%Y-%m-%d %H:%M:%S" >> nebef.txt
 ~/bin/vtstscripts/nebef.pl
 ~/bin/vtstscripts/nebef.pl >> nebef.txt'
 alias z='python3 ~/bin/orange/z-position.py'
-alias gather='sh ~/bin/orange/gather.sh'
-alias spread='sh ~/bin/orange/spread.sh'
 alias energy='ag -t -g "i,e" OUTCAR > '
 
 #RUN_SLURM.SH
