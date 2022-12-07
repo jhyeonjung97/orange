@@ -27,11 +27,11 @@ if [[ -n $tot_charge ]]; then
 fi
 
 if [[ ${here} == 'burning' ]]; then
-    sed -i -e "/pseudo_dir/c\pseudo_dir = '/home/hyeonjung/q-e-qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
+    sed -i -e "/pseudo_dir/c\    pseudo_dir = '/home/hyeonjung/q-e-qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
 elif [[ ${here} == 'nurion' ]]; then
-    sed -i -e "/pseudo_dir/c\pseudo_dir = '/home01/x2347a10/qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
+    sed -i -e "/pseudo_dir/c\    pseudo_dir = '/home01/x2347a10/qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
 elif [[ ${here} == 'kisti' ]]; then
-    sed -i -e "/pseudo_dir/c\pseudo_dir = '/home01/x2431a10/qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
+    sed -i -e "/pseudo_dir/c\    pseudo_dir = '/home01/x2431a10/qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
 fi
 
 read -p "lattice parameter (A): " a
