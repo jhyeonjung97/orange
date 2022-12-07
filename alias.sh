@@ -16,6 +16,8 @@ alias cluster='sh ~/bin/orange/cluster.sh'
 alias center='python ~/bin/orange/center.py'
 alias rotate='python ~/bin/orange/rotate.py'
 alias flip='python ~/bin/orange/flip.py'
+alias gather='sh ~/bin/orange/gather.sh'
+alias spread='sh ~/bin/orange/spread.sh'
 alias duplicate='sh ~/bin/orange/duplicate.sh'
 
 alias zip='tar -cvzf'
