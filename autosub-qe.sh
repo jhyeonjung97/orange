@@ -89,6 +89,12 @@ CELL_PARAMETERS {angstrom}
     sed -i "1i\\$nat" $p$i.xyz
     cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
     sh ~/bin/orange/jobname.sh $n$i
+    
+    if [[ ${here} == 'nurion' ]]; then
+        sed -i -e 's/x2431a10/x2347a10/' *
+    elif [[ ${here} == 'kisti' ]]; then
+        sed -i -e 's/x2347a10/x2431a10/' *
+    fi
     cd ..
 done
 grep --colour chemical_formula_sum */*.cif
