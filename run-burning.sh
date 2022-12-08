@@ -50,41 +50,54 @@ function in_array {
 }
 
 if in_array "qe" "${type[*]}"; then
-    sed -i 's/\/TGM\/Apps\/VASP\/VASP_BIN\/6.3.2\/vasp.6.3.2.std.x/pw.x -in qe-relax.in/' run_slurm.sh
-    sed -i 's/-np $SLURM_NTASKS/-np 4/' run_slurm.sh
     sed -i '/mpiexec/i\cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
+    sed -i 's/custom/4 qe-relax.in/' run_slurm.sh
+else
+    if in_array "beef" "${type[*]}"; then
+        sed -i '/mpiexec/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
+        # sed -i 's/std/beef.std/' run_slurm.sh
+        total+='beef' 
+        echo 'rm vdw_kernel.bindat' >> run_slurm.sh
+    elif in_array "dftd4" "${type[*]}"; then
+        # sed -i 's/std/dftd4.std/' run_slurm.sh
+        total+='dftd4'
+    fi
+    if in_array "vaspsol" "${type[*]}"; then
+        # sed -i 's/std/vaspsol.std/' run_slurm.sh
+        total+='.vaspsol'
+    elif in_array "vtst" "${type[*]}"; then
+        # sed -i 's/std/vtst.std/' run_slurm.sh
+        total+='.vtst'
+    elif in_array "wan90v3" "${type[*]}"; then
+        # sed -i 's/std/wan90v3.std/' run_slurm.sh
+        total+='.wan90v3'
+    fi
+    if in_array "gam" "${type[*]}"; then
+        # sed -i 's/std.x/gam.x/' run_slurm.sh
+        total+='.gam'
+    elif in_array "ncl" "${type[*]}"; then
+        # sed -i 's/std.x/ncl.x/' run_slurm.sh
+        total+='.ncl'
+    else
+        total+='.std'
+    fi
+    echo $total
+    if [[ -e /TGM/Apps/VASP/VASP_BIN/6.3.2/vasp.6.3.2.$total.x ]]; then
+        $total='$SLURM_NTASKS vasp.6.3.2.'$total
+        sed -i "s/custom/$total"
+    else
+        echo 'there is no corroesponding version...'
+        exit 1
+    fi
+    # if [[ -n $(grep beef run_slurm.sh) ]]
+    #     sed -n '16,18p' run_slurm.sh > .run_conti.sh
+    # else
+    #     sed -n '16p' run_slurm.sh > .run_conti.sh
+    # fi
+
+    # echo '
+    # sh ~/bin/orange/relax_error.sh' >> run_slurm.sh
 fi
-
-if in_array "vtst" "${type[*]}"; then
-    sed -i 's/std/vtst.std/' run_slurm.sh
-fi
-
-if in_array "beef" "${type[*]}"; then
-    sed -i '/mpiexec/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
-    sed -i 's/vasp.6.3.2./vasp.6.3.2.beef./' run_slurm.sh
-    echo 'rm vdw_kernel.bindat' >> run_slurm.sh
-elif in_array "vaspsol" "${type[*]}"; then
-    sed -i 's/vasp.6.3.2./vasp.6.3.2.vaspsol./' run_slurm.sh
-elif in_array "dftd4" "${type[*]}"; then
-    sed -i 's/vasp.6.3.2./vasp.6.3.2.dftd4./' run_slurm.sh
-fi
-
-if in_array "gam" "${type[*]}"; then
-    sed -i 's/std/gam/' run_slurm.sh
-    sed -i 's/gamout/stdout/' run_slurm.sh
-elif in_array "ncl" "${type[*]}"; then
-    sed -i 's/std/ncl/' run_slurm.sh
-    sed -i 's/nclout/stdout/' run_slurm.sh
-fi
-
-# if [[ -n $(grep beef run_slurm.sh) ]]
-#     sed -n '16,18p' run_slurm.sh > .run_conti.sh
-# else
-#     sed -n '16p' run_slurm.sh > .run_conti.sh
-# fi
-
-# echo '
-# sh ~/bin/orange/relax_error.sh' >> run_slurm.sh
 
 if [[ $jobname == 'n' ]] || [[ $jobname == '0' ]]; then
     jobname=''
