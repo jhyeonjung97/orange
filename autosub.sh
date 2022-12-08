@@ -49,7 +49,9 @@ do
     cd $i
     python ~/bin/pyband/xcell.py #XCELL
     mv out*.vasp POSCAR #XCELL
-    python3 ~/bin/orange/magmom.py
+    if [[ -n $(grep ISPIN INCAR | grep 2) ]]; then
+        python3 ~/bin/orange/magmom.py
+    fi
     sh ~/bin/orange/vasp5.sh
     python3 ~/bin/shoulder/potcar_ara.py
     sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
