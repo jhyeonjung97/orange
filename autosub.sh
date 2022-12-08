@@ -52,7 +52,7 @@ do
     python3 ~/bin/orange/magmom.py
     sh ~/bin/orange/vasp5.sh
     python3 ~/bin/shoulder/potcar_ara.py
-    sh ~/bin/orange/jobname.sh $n$i
+    sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
     cd ..
 done
 
