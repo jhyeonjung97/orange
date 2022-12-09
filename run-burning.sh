@@ -84,7 +84,7 @@ else
     echo $total
     if [[ -e /TGM/Apps/VASP/VASP_BIN/6.3.2/vasp.6.3.2.$total.x ]]; then
         total='$SLURM_NTASKS vasp.6.3.2.'$total
-        sed -i "s/custom/$total"
+        sed -i "s/custom/$total" run_slurm.sh
     else
         echo 'there is no corroesponding version...'
         exit 1
