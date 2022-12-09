@@ -81,8 +81,8 @@ else
     else
         total+='.std'
     fi
-    total='/TGM/Apps/VASP/VASP_BIN/6.3.2/vasp.6.3.2.'$total.x
-    if [[ -e $total ]]; then
+    total='/TGM/Apps/VASP/VASP_BIN/6.3.2/vasp.6.3.2.'$total'.x'
+        if [[ -e $total ]]; then
         total='$SLURM_NTASKS '$total
         sed -i "s/custom/$total/" run_slurm.sh
     else
