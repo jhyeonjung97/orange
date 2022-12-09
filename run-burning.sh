@@ -82,7 +82,7 @@ else
         total+='.std'
     fi
     if [[ -e '/TGM/Apps/VASP/VASP_BIN/6.3.2/vasp.6.3.2.'$total'.x' ]]; then
-        custom='\$SLURM_NTASKS \/TGM\/Apps\/VASP\/VASP_BIN\/6.3.2\/vasp.6.3.2.\/'
+        custom='\$SLURM_NTASKS \/TGM\/Apps\/VASP\/VASP_BIN\/6.3.2\/vasp.6.3.2.'
         sed -i "s/custom/$custom$total.x/" run_slurm.sh
     else
         echo 'there is no corroesponding version...'
