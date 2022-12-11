@@ -9,7 +9,7 @@ y2=''
 hl=4.4
 step=0.1
 diff=2.0
-error=0.005
+error=0.02
 unset map
 declare -A map
 grep mpiexe run_slurm.sh > cep.sh
