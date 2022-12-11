@@ -94,10 +94,11 @@ else
             echo 'use default value -0.6 V...'
             goal='-0.6'
         fi
-        echo "sh ~/bin/orange/cep.sh $goal" >> run_slurm.sh
+        sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
         sh ~/bin/orange/modify.sh INCAR IDIPOL 3
         sh ~/bin/orange/modify.sh INCAR LDIPOL
         sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
+        sh ~/bin/orange/modify.sh INCAR LWAVE
     fi
     # if [[ -n $(grep beef run_slurm.sh) ]]
     #     sed -n '16,18p' run_slurm.sh > .run_conti.sh
