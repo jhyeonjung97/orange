@@ -8,6 +8,9 @@ declare -A map
 grep mpiexe run_slurm.sh > run_cep.sh
 
 function cep_out {
+    nes=$(grep NELECT OUTCAR)
+    read -ra nea <<< $nes
+    ne=${nea[2]}
     vls=$(vaspkit -task 426 | grep Vacuum | grep eV)
     read -ra vla <<< $vls
     vl=${vla[2]}
@@ -51,10 +54,6 @@ function linear {
 }
 
 cep_out
-nes=$(grep NELECT INCAR)
-read -ra nea <<< $nes
-ne=${nea[2]}
-
 if [[ 'echo "$ep < $goal" | bc' -eq 1 ] s]; then
     x1=$ne
     y1=$ep

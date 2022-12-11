@@ -66,6 +66,9 @@ else
         goal='-0.6'
         read -p 'goal electrode potential? (default: -0.6V) ' goal
         echo "sh ~/bin/orange/cep.sh $goal" >> run_slurm.sh
+        sh ~/bin/orange/modify.sh INCAR IDIPOL 3
+        sh ~/bin/orange/modify.sh INCAR LDIPOL
+        sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
     fi
     # if [[ -n $(grep beef run_slurm.sh) ]]
     #     sed -n '11,13p' run_slurm.sh > .run_conti.sh
@@ -75,8 +78,6 @@ else
     # echo '
     # sh ~/bin/orange/relax_error.sh' >> run_slurm.sh
 fi
-
-
 
 read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then
