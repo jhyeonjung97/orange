@@ -3,6 +3,7 @@
 goal=$1
 hl=4.4
 step=0.1
+diff=2.0
 error=0.005
 unset map
 declare -A map
@@ -26,6 +27,12 @@ function cep_out {
     map+=([$ne]=$ep)
 }
 
+function update {
+    x1=$x2
+    y1=$y2
+    x2=$ne
+    y2=$ep
+}
 function linear {
     n=${#map[@]}
     echo $n
@@ -75,8 +82,8 @@ function linear {
 }
 
 cep_out
-echo ${map[@]}
-echo ${!map[@]}
+x2=$ne
+y2=$ep
 # if [[ `echo "$ep < $goal" | bc` -eq 1 ]]; then
 #     x1=$ne
 #     y1=$ep
@@ -95,20 +102,22 @@ do
     cp * nelect_$ne
     mv CONTCAR POSCAR
     if [[ ${#map[@]} == 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
-        new=$(echo "$ne $step" | awk '{print $1 - $2}')
+        diff=-$step
     elif [[ ${#map[@]} == 1 ]] && [[ `echo "$ep > $goal" | bc` == 1 ]]; then
-        new=$(echo "$ne $step" | awk '{print $1 + $2}')
+        diff=+$step
     else
-        eq1=$(echo "$x2 $x1" | awk '{print $1 - $2}')
-        eq2=$(echo "$y2 $y1" | awk '{print $1 - $2}')
-        eq3=$(echo "$goal $y1" | awk '{print $1 - $2}')
-        eq4=$(echo "$eq1 $eq2 $eq3" | awk '{print $1 / $2 * $3}')
-        new=$(echo "$eq4 $x1" | awk '{print $1 + $2}')        
+        grad=$(echo "$x1 $x2 $y1 $y2" | awk '{print ($1 - $2) / ($3 - $4)}')
+        diff=$(echo "$grad $goal $x1 $y1" | awk '{print $1 * ($2 - $3) + $4}')
+        if [[ `echo "$diff > 2.0" | bc` == 1 ]]; then
+            diff=+$step
+        elif [[ `echo "$diff < -2.0" | bc` == 1 ]]; then
+            diff=-$step
+        fi
     fi
+    new=$(echo "$ne $diff" | awk '{print $1 + $2}')
     sh ~/bin/orange/modify.sh INCAR NELECT $new
     sh cep.sh
     cep_out
-    echo ${map[@]}
-    echo ${!map[@]}
-    linear
+    update
+    # linear
 done
