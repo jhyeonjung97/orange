@@ -65,10 +65,11 @@ else
     if in_array 'cep' "${type[*]}"; then
         goal='-0.6'
         read -p 'goal electrode potential? (default: -0.6V) ' goal
-        echo "sh ~/bin/orange/cep.sh $goal" >> run_slurm.sh
+        sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
         sh ~/bin/orange/modify.sh INCAR IDIPOL 3
         sh ~/bin/orange/modify.sh INCAR LDIPOL
         sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
+        sh ~/bin/orange/modify.sh INCAR LWAVE
     fi
     # if [[ -n $(grep beef run_slurm.sh) ]]
     #     sed -n '11,13p' run_slurm.sh > .run_conti.sh
