@@ -4,11 +4,13 @@ goal=$1
 hl=4.4
 step=0.5
 error=0.005
+unset map
 declare -A map
 grep mpiexe run_slurm.sh > cep.sh
 echo 'NELECT WF EP' > out.log
 
 function cep_out {
+    IFS=' '
     nes=$(grep NELECT OUTCAR)
     read -ra nea <<< $nes
     ne=${nea[2]}
@@ -21,7 +23,7 @@ function cep_out {
     wf=$(echo "$vl $fl" | awk '{print $1 - $2}')
     ep=$(echo "$wf $hl" | awk '{print $1 - $2}')
     echo $ne $wf $ep >> out.log
-    map[ne]=$ep
+    map+=([$ne]=$ep)
 }
 
 function linear {
