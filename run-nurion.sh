@@ -69,7 +69,7 @@ else
         sh ~/bin/orange/modify.sh INCAR IDIPOL 3
         sh ~/bin/orange/modify.sh INCAR LDIPOL
         sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
-        sh ~/bin/orange/modify.sh INCAR LWAVE
+        sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
     fi
     # if [[ -n $(grep beef run_slurm.sh) ]]
     #     sed -n '11,13p' run_slurm.sh > .run_conti.sh
