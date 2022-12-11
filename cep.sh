@@ -32,10 +32,10 @@ function linear {
     if [[ $x1 == $x2 ]] || [[ $mn == 1 ]]; then
         echo 'something goes wrong...'
         exit 1
-    elif [[ 'echo "$goal < $y1" | bc' -eq 1 ]]; then
+    elif [[ `echo "$goal < $y1" | bc` -eq 1 ]]; then
         y2=$(printf "%s\n" ${map[@]} | sort -n | head -n 2 | tail -n 1)
         x2=${!map[$y2]}
-    elif [[ 'echo "$y2 < $goal" | bc' -eq 1 ]]; then
+    elif [[ `echo "$y2 < $goal" | bc` -eq 1 ]]; then
         y1=$(printf "%s\n" ${map[@]} | sort -n | tail -n 2 | head -n 1)
         x1=${!map[$y1]}
     else
@@ -43,7 +43,7 @@ function linear {
         do
             y2=$(printf "%s\n" ${map[@]} | sort -n | sed -n "$i"p)
             x2=${!map[$y2]}
-            if [[ 'echo "$y2 > $goal" | bc' -eq 1 ]]; then
+            if [[ `echo "$y2 > $goal" | bc` -eq 1 ]]; then
                 j=$(($i-1))
                 y1=$(printf "%s\n" ${map[@]} | sort -n | sed -n "$j"p)
                 x1=${!map[$y1]}
@@ -54,10 +54,10 @@ function linear {
 }
 
 cep_out
-if [[ "echo \"$ep < $goal\" | bc" -eq 1 ]]; then
+if [[ `echo "$ep < $goal" | bc` -eq 1 ]]; then
     x1=$ne
     y1=$ep
-elif [[ "echo \"$ep > $goal\" | bc" -eq 1 ]]; then
+elif [[ `echo \"$ep > $goal\" | bc` -eq 1 ]]; then
     x2=$ne
     y2=$ep
 else
@@ -66,7 +66,7 @@ fi
 
 range0=$(echo "$goal $error" | awk '{print $1 - $2}')
 range1=$(echo "$goal $error" | awk '{print $1 + $2}')
-until [[ 'echo "$range0 < $ep" | bc' -eq 1 ]] && [[ 'echo "$ep < $range1" | bc' -eq 1 ]] 
+until [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` -eq 1 ]] 
 do
     mkdir nelect_$ne
     cp * nelect_$ne
