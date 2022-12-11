@@ -8,7 +8,7 @@ fi
 cp ~/input_files/run_slurm.sh .
 
 read -p 'which queue? (normal, skl, long): ' q
-echo -n 'which type? (beef, vtst, vaspsol, gam, qe): '
+echo -n 'which type? (beef, vtst, vaspsol, gam, qe, cep): '
 read -a type
 
 if [[ $q == l* ]]; then
@@ -38,42 +38,45 @@ function in_array {
     return 1
 }
 
-if in_array "qe" "${type[*]}"; then
+if in_array 'qe' "${type[*]}"; then
     sed -i '/mpirun/c\mpirun -np 8 pw.x -in qe-relax.in > stdout.log' run_slurm.sh
     sed -i '/mpirun/i\cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
     echo 'if [[ -z $(grep DONE stdout.log) ]]; then' >> run_slurm.sh
     echo '    sh ~/bin/orange/restart.sh' >> run_slurm.sh
     echo 'fi' >> run_slurm.sh
-fi
-
-if in_array "beef" "${type[*]}"; then
-    sed -i '/mpirun/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
-    sed -i 's/std/beef.std/' run_slurm.sh
-    echo 'rm vdw_kernel.bindat' >> run_slurm.sh
-
-    if (in_array "vaspsol" "${type[*]}") || (in_array "sol" "${type[*]}") ; then
-        sed -i 's/std/vaspsol.std/' run_slurm.sh
-    else
-        sed -i 's/beef/vtst179.beef/' run_slurm.sh
+else
+    if in_array 'beef' "${type[*]}"; then
+        sed -i '/mpirun/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
+        sed -i 's/std/beef.std/' run_slurm.sh
+        echo 'rm vdw_kernel.bindat' >> run_slurm.sh
+        if (in_array 'vaspsol' "${type[*]}") || (in_array "sol" "${type[*]}") ; then
+            sed -i 's/std/vaspsol.std/' run_slurm.sh
+        else
+            sed -i 's/beef/vtst179.beef/' run_slurm.sh
+        fi
+    elif in_array 'vtst' "${type[*]}"; then
+        sed -i 's/std/vtst179.beef.std/' run_slurm.sh
     fi
-elif in_array "vtst" "${type[*]}"; then
-    sed -i 's/std/vtst179.beef.std/' run_slurm.sh
+    if in_array 'gam' "${type[*]}"; then
+        sed -i 's/std/gam/' run_slurm.sh
+    elif in_array 'ncl' "${type[*]}"; then
+        sed -i 's/std/ncl/' run_slurm.sh
+    fi
+    if in_array 'cep' "${type[*]}"; then
+        goal='-0.6'
+        read -p 'goal electrode potential? (default: -0.6V) ' goal
+        echo "sh ~/bin/orange/cep.sh $goal" >> run_slurm.sh
+    fi
+    # if [[ -n $(grep beef run_slurm.sh) ]]
+    #     sed -n '11,13p' run_slurm.sh > .run_conti.sh
+    # else
+    #     sed -n '11p' run_slurm.sh > .run_conti.sh
+    # fi
+    # echo '
+    # sh ~/bin/orange/relax_error.sh' >> run_slurm.sh
 fi
 
-if in_array "gam" "${type[*]}"; then
-    sed -i 's/std/gam/' run_slurm.sh
-elif in_array "ncl" "${type[*]}"; then
-    sed -i 's/std/ncl/' run_slurm.sh
-fi
 
-# if [[ -n $(grep beef run_slurm.sh) ]]
-#     sed -n '11,13p' run_slurm.sh > .run_conti.sh
-# else
-#     sed -n '11p' run_slurm.sh > .run_conti.sh
-# fi
-    
-# echo '
-# sh ~/bin/orange/relax_error.sh' >> run_slurm.sh
 
 read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then
