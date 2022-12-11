@@ -76,7 +76,6 @@ do
     elif [[ -z $x1 ]] || [[ -z $y1 ]]; then
         new=$(echo "$ne $step" | awk '{print $1 + $2}')
     else
-        linear
         eq1=$(echo "$x2 $x1" | awk '{print $1 - $2}')
         eq2=$(echo "$y2 $y1" | awk '{print $1 - $2}')
         eq3=$(echo "$goal $y1" | awk '{print $1 - $2}')
@@ -86,4 +85,5 @@ do
     sh ~/bin/orange/modify.sh INCAR NELECT $new
     sh cep.sh
     cep_out
+    linear
 done
