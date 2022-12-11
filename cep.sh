@@ -77,12 +77,11 @@ do
         new=$(echo "$ne $step" | awk '{print $1 + $2}')
     else
         linear
-        new=$(bc << EOF
-        scale=6
-        ($x2-$x2)/($y2-$y1)*($goal-$y1)+$x1
-        EOF
-        )
-        # eq1=$(echo "$ne $step" | awk '{print $1 + $2}')
+        eq1=$(echo "$x2 $x1" | awk '{print $1 - $2}')
+        eq2=$(echo "$y2 $y1" | awk '{print $1 - $2}')
+        eq3=$(echo "$goal $y1" | awk '{print $1 - $2}')
+        eq4=$(echo "$eq1 $eq2 $eq3" | awk '{print $1 / $2 * $3}')
+        new=$(echo "$eq4 $x1" | awk '{print $1 + $2}')        
     fi
     sh ~/bin/orange/modify.sh INCAR NELECT $new
     sh cep.sh
