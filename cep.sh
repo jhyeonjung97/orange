@@ -31,18 +31,34 @@ function linear {
     echo $n
     y1=$(printf "%s\n" ${map[@]} | sort -n | head -n 1)
     y2=$(printf "%s\n" ${map[@]} | sort -n | tail -n 1)
-    x1=${!map[$y1]}
-    x2=${!map[$y2]}
+    for key in "${!map[@]}"
+    do
+        if [[ ${map[$key]} == $y1 ]]; then
+            x1=$key
+        elif [[ ${map[$key]} == $y2 ]]; then
+            x2=$key
+        fi
+    done
     echo $y1 $y2 $x1 $x2
     if [[ $x1 == $x2 ]] || [[ $n == 1 ]]; then
         echo 'something goes wrong...'
         exit 1
     elif [[ `echo "$goal < $y1" | bc` -eq 1 ]]; then
         y2=$(printf "%s\n" ${map[@]} | sort -n | head -n 2 | tail -n 1)
-        x2=${!map[$y2]}
+        for key in "${!map[@]}"
+        do
+            if [[ ${map[$key]} == $y2 ]]; then
+                x2=$key
+            fi
+        done
     elif [[ `echo "$y2 < $goal" | bc` -eq 1 ]]; then
         y1=$(printf "%s\n" ${map[@]} | sort -n | tail -n 2 | head -n 1)
-        x1=${!map[$y1]}
+        for key in "${!map[@]}"
+        do
+            if [[ ${map[$key]} == $y1 ]]; then
+                x1=$key
+            fi
+        done
     else
         for i in $(seq 1 $n)
         do
@@ -59,15 +75,17 @@ function linear {
 }
 
 cep_out
-if [[ `echo "$ep < $goal" | bc` -eq 1 ]]; then
-    x1=$ne
-    y1=$ep
-elif [[ `echo "$ep > $goal" | bc` -eq 1 ]]; then
-    x2=$ne
-    y2=$ep
-else
-    exit 0
-fi
+echo ${map[@]}
+echo ${!map[@]}
+# if [[ `echo "$ep < $goal" | bc` -eq 1 ]]; then
+#     x1=$ne
+#     y1=$ep
+# elif [[ `echo "$ep > $goal" | bc` -eq 1 ]]; then
+#     x2=$ne
+#     y2=$ep
+# else
+#     exit 0
+# fi
 
 range0=$(echo "$goal $error" | awk '{print $1 - $2}')
 range1=$(echo "$goal $error" | awk '{print $1 + $2}')
@@ -76,11 +94,14 @@ do
     mkdir nelect_$ne
     cp * nelect_$ne
     mv CONTCAR POSCAR
-    if [[ -z $x2 ]] || [[ -z $y2 ]]; then
+    if [[ ${#map[@]} == 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
+        echo hello1
         new=$(echo "$ne $step" | awk '{print $1 - $2}')
-    elif [[ -z $x1 ]] || [[ -z $y1 ]]; then
+    elif [[ ${#map[@]} == 1 ]] && [[ `echo "$ep > $goal" | bc` == 1 ]]; then
         new=$(echo "$ne $step" | awk '{print $1 + $2}')
+        echo hello2
     else
+        echo hello3
         eq1=$(echo "$x2 $x1" | awk '{print $1 - $2}')
         eq2=$(echo "$y2 $y1" | awk '{print $1 - $2}')
         eq3=$(echo "$goal $y1" | awk '{print $1 - $2}')
