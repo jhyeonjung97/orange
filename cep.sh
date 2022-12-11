@@ -19,7 +19,7 @@ function cep_out {
     fl=${fla[2]}
     wf=$(echo "$vl $fl" | awk '{print $1 - $2}')
     ep=$(echo "$wf $hl" | awk '{print $1 - $2}')
-    # echo $wf $ep
+    echo $wf $ep >> out.log
     map[ne]=$ep
 }
 
