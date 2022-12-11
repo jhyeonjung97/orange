@@ -6,6 +6,7 @@ step=0.5
 error=0.005
 declare -A map
 grep mpiexe run_slurm.sh > cep.sh
+echo 'NELECT WF EP' > out.log
 
 function cep_out {
     nes=$(grep NELECT OUTCAR)
@@ -19,16 +20,18 @@ function cep_out {
     fl=${fla[2]}
     wf=$(echo "$vl $fl" | awk '{print $1 - $2}')
     ep=$(echo "$wf $hl" | awk '{print $1 - $2}')
-    echo $wf $ep >> out.log
+    echo $ne $wf $ep >> out.log
     map[ne]=$ep
 }
 
 function linear {
     n=${#map[@]}
+    echo $n
     y1=$(printf "%s\n" ${map[@]} | sort -n | head -n 1)
     y2=$(printf "%s\n" ${map[@]} | sort -n | tail -n 1)
     x1=${!map[$y1]}
     x2=${!map[$y2]}
+    echo $y1 $y2 $x1 $x2
     if [[ $x1 == $x2 ]] || [[ $n == 1 ]]; then
         echo 'something goes wrong...'
         exit 1
@@ -85,5 +88,7 @@ do
     sh ~/bin/orange/modify.sh INCAR NELECT $new
     sh cep.sh
     cep_out
+    echo ${map[@]}
+    echo ${!map[@]}
     linear
 done
