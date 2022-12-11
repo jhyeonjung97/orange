@@ -54,10 +54,10 @@ function linear {
 }
 
 cep_out
-if [[ 'echo "$ep < $goal" | bc' -eq 1 ]]; then
+if [[ "echo \"$ep < $goal\" | bc" -eq 1 ]]; then
     x1=$ne
     y1=$ep
-elif [[ 'echo "$ep > $goal" | bc' -eq 1 ]]; then
+elif [[ "echo \"$ep > $goal\" | bc" -eq 1 ]]; then
     x2=$ne
     y2=$ep
 else
