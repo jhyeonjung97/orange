@@ -29,7 +29,7 @@ function linear {
     y2=$(printf "%s\n" ${map[@]} | sort -n | tail -n 1)
     x1=${!map[$y1]}
     x2=${!map[$y2]}
-    if [[ $x1 == $x2 ]] || [[ $mn == 1 ]]; then
+    if [[ $x1 == $x2 ]] || [[ $n == 1 ]]; then
         echo 'something goes wrong...'
         exit 1
     elif [[ `echo "$goal < $y1" | bc` -eq 1 ]]; then
