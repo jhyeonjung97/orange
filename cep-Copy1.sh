@@ -2,7 +2,7 @@
 
 goal=$1
 hl=4.4
-step=0.1
+step=0.5
 error=0.005
 unset map
 declare -A map
@@ -95,10 +95,13 @@ do
     cp * nelect_$ne
     mv CONTCAR POSCAR
     if [[ ${#map[@]} == 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
+        echo hello1
         new=$(echo "$ne $step" | awk '{print $1 - $2}')
     elif [[ ${#map[@]} == 1 ]] && [[ `echo "$ep > $goal" | bc` == 1 ]]; then
         new=$(echo "$ne $step" | awk '{print $1 + $2}')
+        echo hello2
     else
+        echo hello3
         eq1=$(echo "$x2 $x1" | awk '{print $1 - $2}')
         eq2=$(echo "$y2 $y1" | awk '{print $1 - $2}')
         eq3=$(echo "$goal $y1" | awk '{print $1 - $2}')
