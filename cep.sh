@@ -5,7 +5,7 @@ hl=4.4
 step=0.5
 error=0.005
 declare -A map
-grep mpiexe run_slurm.sh > run_cep.sh
+grep mpiexe run_slurm.sh > cep.sh
 
 function cep_out {
     nes=$(grep NELECT OUTCAR)
@@ -20,7 +20,7 @@ function cep_out {
     wf=$(echo "$vl $fl" | awk '{print $1 - $2}')
     ep=$(echo "$wf $hl" | awk '{print $1 - $2}')
     # echo $wf $ep
-    map[$ne]=$ep
+    map[ne]=$ep
 }
 
 function linear {
@@ -85,6 +85,6 @@ do
         # eq1=$(echo "$ne $step" | awk '{print $1 + $2}')
     fi
     sh ~/bin/orange/modify.sh INCAR NELECT $new
-    sh run_cep.sh
+    sh cep.sh
     cep_out
 done
