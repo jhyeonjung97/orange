@@ -118,7 +118,11 @@ function qe {
 
     if [[ ${here} == 'burning' ]]; then
         sbatch run_slurm.sh
-    elif [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
+    elif [[ ${here} == 'nurion' ]]; then
+        sed -i -e 's/x2431a10/x2347a10/' *
+        qsub run_slurm.sh
+    elif [[ ${here} == 'kisti' ]]; then
+        sed -i -e 's/x2347a10/x2431a10/' *
         qsub run_slurm.sh
     else
         echo 'where am i..? please modify [conti-qe.sh] code'
