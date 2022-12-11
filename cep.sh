@@ -1,6 +1,11 @@
 #!/bin/bash
 
 goal=$1
+# goal=-0.6
+x1=''
+x2=''
+y1=''
+y2=''
 hl=4.4
 step=0.1
 diff=2.0
@@ -10,7 +15,7 @@ declare -A map
 grep mpiexe run_slurm.sh > cep.sh
 echo 'NELECT WF EP' > out.log
 
-function cep_out {
+function update {
     IFS=' '
     nes=$(grep NELECT OUTCAR)
     read -ra nea <<< $nes
@@ -25,14 +30,12 @@ function cep_out {
     ep=$(echo "$wf $hl" | awk '{print $1 - $2}')
     echo $ne $wf $ep >> out.log
     map+=([$ne]=$ep)
-}
-
-function update {
     x1=$x2
     y1=$y2
     x2=$ne
     y2=$ep
 }
+
 function linear {
     n=${#map[@]}
     echo $n
@@ -81,7 +84,7 @@ function linear {
     fi
 }
 
-cep_out
+update
 x2=$ne
 y2=$ep
 # if [[ `echo "$ep < $goal" | bc` -eq 1 ]]; then
@@ -102,22 +105,26 @@ do
     cp * nelect_$ne
     mv CONTCAR POSCAR
     if [[ ${#map[@]} == 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
+        echo hello1
         diff=-$step
     elif [[ ${#map[@]} == 1 ]] && [[ `echo "$ep > $goal" | bc` == 1 ]]; then
+        echo hello2
         diff=+$step
     else
         grad=$(echo "$x1 $x2 $y1 $y2" | awk '{print ($1 - $2) / ($3 - $4)}')
         diff=$(echo "$grad $goal $x1 $y1" | awk '{print $1 * ($2 - $3) + $4}')
         if [[ `echo "$diff > 2.0" | bc` == 1 ]]; then
+            echo hello3
             diff=+$step
         elif [[ `echo "$diff < -2.0" | bc` == 1 ]]; then
+            echo hello4
             diff=-$step
         fi
     fi
     new=$(echo "$ne $diff" | awk '{print $1 + $2}')
+    echo $diff $new
     sh ~/bin/orange/modify.sh INCAR NELECT $new
     sh cep.sh
-    cep_out
     update
     # linear
 done
