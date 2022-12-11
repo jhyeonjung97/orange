@@ -41,6 +41,9 @@ function in_array {
 if in_array "qe" "${type[*]}"; then
     sed -i '/mpirun/c\mpirun -np 8 pw.x -in qe-relax.in > stdout.log' run_slurm.sh
     sed -i '/mpirun/i\cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
+    echo 'if [[ -z $(grep DONE stdout.log) ]]; then' >> run_slurm.sh
+    echo '    sh ~/bin/orange/restart.sh' >> run_slurm.sh
+    echo 'fi' >> run_slurm.sh
 fi
 
 if in_array "beef" "${type[*]}"; then
