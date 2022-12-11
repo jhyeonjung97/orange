@@ -17,7 +17,7 @@ fi
 if [[ $type == 'n' ]] || [[ $type == '0' ]]; then
     type=''
 elif [[ -z $type ]]; then
-    echo -n "which type? (beef, vtst, vaspsol, gam, qe): "
+    echo -n "which type? (beef, vtst, vaspsol, gam, qe, cep): "
     read -a type
 fi
 
@@ -87,6 +87,17 @@ else
     else
         echo 'there is no corroesponding version...'
         exit 1
+    fi
+    if in_array 'cep' "${type[*]}"; then
+        read -p 'goal electrode potential? (default: -0.6 V) ' goal
+        if [[ -z $goal ]]; then
+            echo 'use default value -0.6 V...'
+            goal='-0.6'
+        fi
+        echo "sh ~/bin/orange/cep.sh $goal" >> run_slurm.sh
+        sh ~/bin/orange/modify.sh INCAR IDIPOL 3
+        sh ~/bin/orange/modify.sh INCAR LDIPOL
+        sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
     fi
     # if [[ -n $(grep beef run_slurm.sh) ]]
     #     sed -n '16,18p' run_slurm.sh > .run_conti.sh
