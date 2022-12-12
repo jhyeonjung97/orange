@@ -8,7 +8,6 @@ y1=''
 y2=''
 hl=4.4
 step=0.1
-diff=2.0
 error=0.02
 unset map
 declare -A map
@@ -84,6 +83,16 @@ function linear {
     fi
 }
 
+function in_map {
+    for e in ${map[*]}
+    do
+        if [[ $e == $1 ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
 update
 x2=$ne
 y2=$ep
@@ -105,24 +114,35 @@ do
     cp * nelect_$ne
     mv CONTCAR POSCAR
     if [[ ${#map[@]} == 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
-        echo hello1
+        echo diff1 $diff
         diff=-$step
     elif [[ ${#map[@]} == 1 ]] && [[ `echo "$ep > $goal" | bc` == 1 ]]; then
-        echo hello2
+        echo diff2 $diff
         diff=+$step
     else
         grad=$(echo "$x1 $x2 $y1 $y2" | awk '{print ($1 - $2) / ($3 - $4)}')
         diff=$(echo "$grad $goal $x1 $y1" | awk '{print $1 * ($2 - $3) + $4}')
-        if [[ `echo "$diff > 2.0" | bc` == 1 ]]; then
-            echo hello3
+        if [[ `echo "$diff > 2.5" | bc` == 1 ]]; then
+            echo diff3 $diff
             diff=+$step
-        elif [[ `echo "$diff < -2.0" | bc` == 1 ]]; then
-            echo hello4
+        elif [[ `echo "$diff < -2.5" | bc` == 1 ]]; then
+            echo diff4 $diff
             diff=-$step
+        else
+            echo diff5 $diff
         fi
     fi
     new=$(echo "$ne $diff" | awk '{print $1 + $2}')
-    echo $diff $new
+    echo new $new
+    while in_map $new; then
+    do
+        if [[ `echo "$diff < 0" | bc` == 1 ]]; then
+            new=$(echo "$new $step" | awk '{print $1 - $2}')
+        else
+            new=$(echo "$new $step" | awk '{print $1 + $2}')
+        fi
+        echo updated $diff $new
+    done
     sh ~/bin/orange/modify.sh INCAR NELECT $new
     sh cep.sh
     update
