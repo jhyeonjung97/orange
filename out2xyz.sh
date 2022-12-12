@@ -1,7 +1,8 @@
 #!/bin/bash
 
 function out2xyz {
-    if [[ ! -f stdout.log ]] || [[ -z $(grep ATOMIC_POSITIONS stdout.log) ]]; then
+    atomic=$(grep ATOMIC_POSITIONS stdout.log | tail -n 1)
+    if [[ ! -f stdout.log ]] || [[ -z $atomic ]]; then
         echo $PWD': no contcar data...'
         cp poscar.in contcar.in
         return 0
@@ -49,7 +50,7 @@ function out2xyz {
         rm contcar.in
     fi
     sed '/ATOMIC_POSITIONS/,$d' poscar.in >> contcar.in
-    echo 'ATOMIC_POSITIONS (crystal)' >> contcar.in
+    echo "$atomic" >> contcar.in
     echo $atoms >> contcar.in
 
     if [[ -e '.contcar.xyz' ]]; then

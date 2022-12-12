@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ -z $(grep DONE stdout.log) ]]; then
-    sed -i 's/from_scratch/restart/' incar.in
+    sed -i 's/restart/from_scratch/' */incar.in
     sed -i 's/from_scratch/restart/' qe-relax.in
     i=1
     while [[ -f "stdout$i.log" ]] || [[ -f "contcar$i.xyz" ]]
