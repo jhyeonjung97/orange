@@ -134,7 +134,7 @@ do
     fi
     new=$(echo "$ne $diff" | awk '{print $1 + $2}')
     echo new $new
-    while in_map $new; then
+    while in_map $new
     do
         if [[ `echo "$diff < 0" | bc` == 1 ]]; then
             new=$(echo "$new $step" | awk '{print $1 - $2}')
