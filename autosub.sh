@@ -61,6 +61,7 @@ do
     vaspkit -task 103 | grep --colour POTCAR
     sh ~/bin/orange/nelect.sh
     sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
+    sed -i "/#PBS -N/c\#PBS -N $n$i" run_slurm.sh
     cd ..
 done
 
