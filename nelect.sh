@@ -13,6 +13,7 @@ nelect=0
 for i in $(seq 1 $ntyp)
 do
     j=$(echo "$i $step" | awk '{print $1 - $2}')
+    echo $i $j
     typ=${ntyp_arr[$j]}
     nat=${nat_arr[$j]}
     zval_tag=$(grep ZVAL POTCAR | sed 's/\t/ /g' | sed -n "$i"p)
