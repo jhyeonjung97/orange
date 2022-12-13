@@ -19,6 +19,7 @@ alias flip='python ~/bin/orange/flip.py'
 alias gather='sh ~/bin/orange/gather.sh'
 alias spread='sh ~/bin/orange/spread.sh'
 alias duplicate='sh ~/bin/orange/duplicate.sh'
+alias xyz2vasp='python ~/bin/orange/xyz2vasp.py'
 
 alias zip='tar -cvzf'
 alias unzip='tar -xvf'

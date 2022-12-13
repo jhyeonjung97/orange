@@ -1,20 +1,18 @@
-#!/usr/bin/env python
-import aselite
-import numpy as np
-from sys import argv, exit
+from ase.io import read, write
+from sys import argv
+import os
 
-#if len(argv) < 3 or '-h' in argv:
-#    print "usage: xyz2vasp FILENAME a b c\n"
-#    exit(0)
-    
-filename = argv[1]
-atoms = aselite.read_xyz(filename)
+a = argv[1]
+if a == '':
+    print('use default lattice parameter, 30 A ...')
+    a = 30.
 
-atoms.positions -= np.min(atoms.positions)
-#a = float(argv[2])
-#b = float(argv[3])
-#c = float(argv[4])
-atoms.set_cell((20,20,20))
-
-
-aselite.write_con(filename.replace('xyz', 'vasp'), atoms)
+# iterating over all files
+for files in os.listdir('./'):
+    if files.endswith('.xyz'):
+        atoms = read(files)
+        atoms.set_cell([a, a, a])
+        atoms.center()
+        write(files.replace('xyz', 'vasp'), atoms, format='vasp')
+    else:
+        continue
