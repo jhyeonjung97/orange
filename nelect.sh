@@ -1,5 +1,3 @@
-charge=$1
-
 nchg_tag=$(grep NETCHG INCAR | sed 's/\t/ /g')
 IFS=' '
 read -ra nchg_arr <<< $nchg_tag
