@@ -7,6 +7,9 @@ ntyp=${#ntyp_arr[@]}
 nat_tag=$(sed -n 7p POSCAR | sed 's/\t/ /g')
 IFS=' '
 read -ra nat_arr <<< $nat_tag
+
+echo $ntyp_arr
+echo $nat_arr
     
 for i in $(seq 1 $ntyp)
 do
