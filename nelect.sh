@@ -28,4 +28,4 @@ done
 
 nelect0=$(echo "$nelect $nchg" | awk '{print $1 + $2}')
 sh ~/bin/orange/modify.sh INCAR NELECT $nelect0
-echo NELECT_neutral: $nelect, NELECT: $nelect0 (net_charge: $nchg)
+echo "NELECT_neutral: $nelect, NELECT: $nelect0, net_charge: $nchg"
