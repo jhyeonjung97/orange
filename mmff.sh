@@ -35,5 +35,4 @@ do
         # python ~/bin/orange/cluster.py $name$i.pdb $name$i.xyz $a
     fi
 done
-
 python ~/bin/orange/convert.py pdb xyz $a
