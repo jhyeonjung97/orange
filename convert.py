@@ -8,7 +8,7 @@ if not argv[2]:
     exit()
 
 if len(argv) == 4:
-    a = float(argv[4])
+    a = float(argv[3])
 else:
     print('use default lattice parameter, 30 A ...')
     a = 30.
@@ -22,7 +22,7 @@ for file in os.listdir('./'):
         atoms.set_cell([a, a, a])
         # atoms.set_cell([30., 30., 30., 90., 90., 90.])
         atoms.center()
-        write(file.replace('%s', '%s') %(argv[1], argv[2]), atoms, format='%s' %argv[2])
+        write(file.replace('%s' %argv[1], '%s' %argv[2]), atoms, format='%s' %argv[2])
         # obabel -
     else:
         continue
