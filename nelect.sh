@@ -7,15 +7,11 @@ ntyp=${#ntyp_arr[@]}
 nat_tag=$(sed -n 7p POSCAR | sed 's/\t/ /g')
 IFS=' '
 read -ra nat_arr <<< $nat_tag
-
-echo $ntyp_arr[@]
-echo $nat_arr
     
 for i in $(seq 1 $ntyp)
 do
-    # j=$(echo "$i 1" | awk '{print $1 - $2}')
-    typ=${ntyp_arr[$(($i - 1))]}
-    nat=${nat_arr[$(($i - 1))]}
+    typ=${ntyp_arr[`expr $i + 1`]}
+    nat=${nat_arr[`expr $i + 1`]}
     zval_tag=$(grep ZVAL POTCAR | sed 's/\t/ /g' | sed -n "$i"p)
     IFS=' '
     read -ra zval_arr <<< $zval_tag
