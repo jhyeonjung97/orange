@@ -13,14 +13,15 @@ echo $nat_arr
     
 for i in $(seq 1 $ntyp)
 do
-    typ=${ntyp_arr[$(($i-1))]}
-    nat=${nat_arr[$(($i-1))]}
+    j=$(($i-1))
+    typ=${ntyp_arr[$j]}
+    nat=${nat_arr[$j]}
     zval_tag=$(grep ZVAL POTCAR | sed 's/\t/ /g' | sed -n "$i"p)
     IFS=' '
     read -ra zval_arr <<< $zval_tag
     zval=${zval_arr[5]}
     nelect+=$(echo "$nat $zval" | awk '{print $1 * $2}')
-    echo $i $typ $nat $zval $nelect
+    echo $i $j $typ $nat $zval $nelect
 done
 
 sh ~/bin/orange/modify.sh NELECT $nelect
