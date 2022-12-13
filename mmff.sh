@@ -21,7 +21,6 @@ if [[ -f $name.$ext ]]; then
         obabel $name.$ext -O $name.mol2
     fi
     obminimize -n 100000 -sd -c 1e-10 -ff MMFF94s $name.mol2 > $name.pdb
-    python ~/bin/orange/cluster.py $name.pdb $name.xyz $a
 fi
     
 for i in {0..9}
@@ -33,6 +32,8 @@ do
             obabel $name$i.$ext -O $name$i.mol2
         fi
         obminimize -n 100000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb
-        python ~/bin/orange/cluster.py $name$i.pdb $name$i.xyz $a
+        # python ~/bin/orange/cluster.py $name$i.pdb $name$i.xyz $a
     fi
 done
+
+python ~/bin/orange/convert.py pdb xyz $a

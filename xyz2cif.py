@@ -1,4 +1,5 @@
 from ase.io import read, write
+from ase.build import sort
 from sys import argv
 import os
 
@@ -12,6 +13,7 @@ else:
 for files in os.listdir('./'):
     if files.endswith('.xyz'):
         atoms = read(files)
+        atoms = sort(atoms)
         atoms.set_cell([a, a, a])
         atoms.center()
         write(files.replace('xyz', 'cif'), atoms, format='cif')
