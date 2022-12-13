@@ -55,6 +55,7 @@ do
     sh ~/bin/orange/vasp5.sh
     # python3 ~/bin/shoulder/potcar_ara.py
     vaspkit -task 103 | grep --colour POTCAR
+    sh ~/bin/orange/nelect.sh
     sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
     cd ..
 done
