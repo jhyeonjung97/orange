@@ -12,7 +12,7 @@ for i in $(seq 1 $ntyp)
 do
     typ=${ntyp_arr[`expr $i + 1`]}
     nat=${nat_arr[`expr $i + 1`]}
-    zval_tag=$(grep ZVAL POTCAR | sed 's/\t/ /g' | sed -n "$i"p)
+    zval_tag=$(grep ZVAL POTCAR | sed 's/\t/ /g' | sed -n "$i{p}")
     IFS=' '
     read -ra zval_arr <<< $zval_tag
     zval=${zval_arr[5]}
