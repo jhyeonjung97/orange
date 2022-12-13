@@ -7,7 +7,7 @@ fi
 
 cp ~/input_files/run_slurm.sh .
 
-read -p 'which queue? (normal, skl, long): ' q
+read -p 'which queue? (normal, skl, long, flat): ' q
 echo -n 'which type? (beef, vtst, vaspsol, gam, qe, cep): '
 read -a type
 
