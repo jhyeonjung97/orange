@@ -14,7 +14,7 @@ read -a type
 if [[ $q == l* ]]; then
     node=64
     q='long'
-    sed -i 's/walltime=48/walltime=120/' run_slurm.sh
+    sed -i 's/walltime=48/walltime=120/g' run_slurm.sh
 elif [[ $q == s* ]]; then
     node=40
     q='norm_skl'
