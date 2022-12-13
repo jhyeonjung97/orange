@@ -13,7 +13,7 @@ echo $nat_arr
     
 for i in $(seq 1 $ntyp)
 do
-    j=$(($i-1))
+    j=$(echo "$i 1" | awk '{print $1 - $2}')
     typ=${ntyp_arr[$j]}
     nat=${nat_arr[$j]}
     zval_tag=$(grep ZVAL POTCAR | sed 's/\t/ /g' | sed -n "$i"p)
