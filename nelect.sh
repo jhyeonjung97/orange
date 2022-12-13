@@ -20,4 +20,4 @@ do
     echo $i $typ $nat $zval $nelect
 done
 
-sh ~/bin/orange/incar.sh NELECT $nelect
+sh ~/bin/orange/modify.sh NELECT $nelect
