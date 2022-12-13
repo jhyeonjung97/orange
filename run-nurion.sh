@@ -18,7 +18,7 @@ if [[ $q == l* ]]; then
 elif [[ $q == s* ]]; then
     node=40
     q='norm_skl'
-    sed -i 's/KNL_XeonPhi/SKL_Skylake/' run_slurm.sh
+    sed -i 's/KNL_XeonPhi/SKL_Skylake/g' run_slurm.sh
 else
     node=64
     q='normal'
