@@ -2,7 +2,7 @@ nchg_tag=$(grep NETCHG INCAR | sed 's/\t/ /g')
 IFS=' '
 read -ra nchg_arr <<< $nchg_tag
 nchg=${nchg_arr[2]}
-sed -i -e '/NETCHG/d' INCAR
+sed -i -e 's/^NETCHG/#NETCHG/g' INCAR
 
 ntyp_tag=$(sed -n 6p POSCAR | sed 's/\t/ /g')
 IFS=' '
