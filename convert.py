@@ -20,6 +20,7 @@ for file in os.listdir('./'):
         # del atoms[[atom.symbol == 'Li' for atom in atoms]]
         atoms = sort(atoms)
         atoms.set_cell([a, a, a])
+        # atoms.set_cell([30., 30., 30., 90., 90., 90.])
         atoms.center()
         write(file.replace('%s', '%s') %(argv[1], argv[2]), atoms, format='%s' %argv[2])
         # obabel -
