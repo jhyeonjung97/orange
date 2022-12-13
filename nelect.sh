@@ -7,21 +7,17 @@ ntyp=${#ntyp_arr[@]}
 nat_tag=$(sed -n 7p POSCAR | sed 's/\t/ /g')
 IFS=' '
 read -ra nat_arr <<< $nat_tag
-    
-step=1
+
+i=1
 nelect=0
-for i in $(seq 1 $ntyp)
+for nat in ${nat_arr[@]}
 do
-    j=$(echo "$i $step" | awk '{print $1 - $2}')
-    echo $i $j
-    typ=${ntyp_arr[$j]}
-    nat=${nat_arr[$j]}
     zval_tag=$(grep ZVAL POTCAR | sed 's/\t/ /g' | sed -n "$i"p)
     IFS=' '
     read -ra zval_arr <<< $zval_tag
     zval=${zval_arr[5]}
     nelect=$(echo "$nelect $nat $zval" | awk '{print $1 + ($2 * $3)}')
-    echo $i $typ $nat $zval $nelect
+    i=$(($i+1))
 done
 
-sh ~/bin/orange/modify.sh NELECT $nelect
+sh ~/bin/orange/modify.sh INCAR NELECT $nelect
