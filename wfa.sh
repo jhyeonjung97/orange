@@ -18,20 +18,19 @@ function update {
 
 echo -e "NELECT\tVacuum\tFermi\tWork.F\tE.Potential"
 
-if [[ -z $1 ]]; then # simple submit
+if [[ -f OUTCAR ]]; then # simple submit
     update
 else
-    if [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
-        DIR='*/'
-    elif [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
-        DIR=${@:2}
-    elif [[ -z $2 ]]; then
-        DIR=$(seq 1 $1)
-    else
-        DIR=$(seq $1 $2)
-    fi
-    
-    for i in $DIR
+#     if [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
+#         DIR='*/'
+#     elif [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
+#         DIR=${@:2}
+#     elif [[ -z $2 ]]; then
+#         DIR=$(seq 1 $1)
+#     else
+#         DIR=$(seq $1 $2)
+#     fi
+    for i in '*/'
     do
         i=${i%/}
         cd $i*
