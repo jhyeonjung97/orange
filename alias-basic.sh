@@ -28,7 +28,7 @@ alias n='grep nat incar.in
 grep nat *.data | head -n 1
 grep ntyp incar.in
 grep ntyp *.data | head -n 1'
-alias wfa='sh ~/bin/orange/wfa.sh'
+alias wf='sh ~/bin/orange/wf.sh'
 
 #OUTPUT
 alias e='grep E0 stdout*'
