@@ -14,10 +14,9 @@ function update {
     fl=${fla[2]}
     wf=$(echo "$vl $fl" | awk '{print $1 - $2}')
     ep=$(echo "$wf $hl" | awk '{print $1 - $2}')
-    echo -e "$ne\t$vl\t$fl\t$wf\t$ep"
 }
 
-echo -e "NELECT\tVacuum\tFermi\tWork.F\tE.Potential"
+echo -e "Dir\tNELECT\tVacuum\tFermi\tWork.F\tE.Potential"
 
 # if [[ -f OUTCAR ]]; then # simple submit
 #     update
@@ -35,7 +34,7 @@ for i in */
 do
     i=${i%/}
     cd $i*
-    update
+    echo -e "$i\t$ne\t$vl\t$fl\t$wf\t$ep"
     cd ..
 done
 # fi
