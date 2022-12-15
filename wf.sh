@@ -8,12 +8,12 @@ function update {
     ne=$(echo ${nea[2]} | cut -c -6)
     vls=$(vaspkit -task 426 | grep Vacuum | grep eV)
     read -ra vla <<< $vls
-    vl=${vla[2]}
+    vl=$(echo ${vla[2]} | cut -c -6)
     fls=$(grep E-fermi OUTCAR | tail -n 1)
     read -ra fla <<< $fls
-    fl=${fla[2]}
-    wf=$(echo "$vl $fl" | awk '{print $1 - $2}')
-    ep=$(echo "$wf $hl" | awk '{print $1 - $2}')
+    fl=$(echo ${fla[2]} | cut -c -6)
+    wf=$(echo "$vl $fl" | awk '{print $1 - $2}' | cut -c -6)
+    ep=$(echo "$wf $hl" | awk '{print $1 - $2}' | cut -c -6)
 }
 
 echo -e "Dir\tNELECT\tVacuum\tFermi\tWork.F\tE.Potential"
