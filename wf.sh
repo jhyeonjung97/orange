@@ -4,7 +4,7 @@ function update {
     IFS=' '
     nes=$(grep NELECT OUTCAR)
     read -ra nea <<< $nes
-    ne=$(echo ${nea[2]} | cut -c 6)
+    ne=$(echo ${nea[2]} | cut -c -6)
     vls=$(vaspkit -task 426 | grep Vacuum | grep eV)
     read -ra vla <<< $vls
     vl=${vla[2]}
