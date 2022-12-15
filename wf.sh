@@ -1,5 +1,6 @@
 #!/bin/bash
 
+hl=4.4
 function update {
     IFS=' '
     nes=$(grep NELECT OUTCAR)
