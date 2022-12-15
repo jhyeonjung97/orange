@@ -34,7 +34,10 @@ for i in */
 do
     i=${i%/}
     cd $i*
-    echo -e "$i\t$ne\t$vl\t$fl\t$wf\t$ep"
+    if [[ -f OUTCAR ]]; then
+        update
+        echo -e "$i\t$ne\t$vl\t$fl\t$wf\t$ep"
+    fi
     cd ..
 done
 # fi
