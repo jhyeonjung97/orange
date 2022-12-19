@@ -124,10 +124,10 @@ do
         diff=$(echo "$grad $goal $x1 $y1" | awk '{print $1 * ($2 - $4) + $3}')
         if [[ `echo "$diff > 2.5" | bc` == 1 ]]; then
             echo diff3 $diff
-            diff=+$step
+            diff=+1.0
         elif [[ `echo "$diff < -2.5" | bc` == 1 ]]; then
             echo diff4 $diff
-            diff=-$step
+            diff=-1.0
         else
             echo diff5 $diff
         fi
