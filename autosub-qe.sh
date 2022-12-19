@@ -91,6 +91,9 @@ do
     sed -i '1,2d' $p$i.xyz
     sed -i '1i\ATOMIC_POSITIONS {angstrom}' $p$i.xyz
     
+    if [[ -n $(grep CELL_PARAMETERS incar.in) ]]; then
+        sed -i '/CELL/,$d' incar.in
+    fi
     echo "
 CELL_PARAMETERS {angstrom}
     $a 0. 0.

@@ -116,7 +116,7 @@ function qe {
     if [[ -s contcar.in ]]; then
         mv contcar.in poscar.in
     fi
-
+    cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
     if [[ ${here} == 'burning' ]]; then
         sbatch run_slurm.sh
     elif [[ ${here} == 'nurion' ]]; then
