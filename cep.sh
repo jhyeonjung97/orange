@@ -12,7 +12,7 @@ error=0.02
 unset map
 declare -A map
 grep mpiexe run_slurm.sh > cep.sh
-echo 'NELECT WF EP' > out.log
+echo -e "DF\tNE\tVL\tFL\tWF\tEP" > out.log
 
 function update {
     IFS=' '
@@ -27,7 +27,7 @@ function update {
     fl=${fla[2]}
     wf=$(echo "$vl $fl" | awk '{print $1 - $2}')
     ep=$(echo "$wf $hl" | awk '{print $1 - $2}')
-    echo $ne $wf $ep >> out.log
+    echo -e "$diff\t$ne\t$vl\t$fl\t$wf\t$ep" >> out.log
     map+=([$ne]=$ep)
     x1=$x2
     y1=$y2
