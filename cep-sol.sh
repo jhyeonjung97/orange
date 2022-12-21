@@ -76,7 +76,7 @@ do
         diff=+$step
     else
         grad=$(echo "$x1 $x2 $y1 $y2" | awk '{print ($1 - $2) / ($3 - $4)}')
-        diff=$(echo "$grad $goal $x1 $y1" | awk '{print $1 * ($2 - $4) + $3}')
+        diff=$(echo "$grad $goal $y2" | awk '{print $1 * ($2 - $3)}')
         echo -e "$x1\t$x2\t$y1\t$y2\t$grad\t$goal\t$diff" >> check.log
         if [[ `echo "$diff > 2.5" | bc` == 1 ]]; then
             type=type3
