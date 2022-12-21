@@ -19,7 +19,7 @@ error=0.02
 unset map
 declare -A map
 if [[ -z run_cep.sh ]]; then
-    grep mpiexe run_slurm.sh > run_cep.sh
+    grep mpiexe run_slurm.sh >> run_cep.sh
 fi
 echo -e "Type\tDiff\tNelect\tShift\tFermi\tWork.F\tPotential" >> cepout.log
 echo -e "x1\tx2\ty1\ty2\tgrad\tgoal\tdiff" >> check.log
