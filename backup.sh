@@ -45,9 +45,9 @@ do
     dir+='/*'
     for file in $dir
     do
-        if [[ $file == initial.vasp ]] || [[ $file == run_slurm.sh ]]; then
-        elif [[ $file == vasprun.xml ]] || [[ $file == OUTCAR ]] || [[ $file == stdout.* ]]; then
-        elif [[ -d $file ]] && [[ $file == conti_* ]]; then
+        # if [[ $file == initial.vasp ]] || [[ $file == run_slurm.sh ]]; then
+        # elif [[ $file == vasprun.xml ]] || [[ $file == OUTCAR ]] || [[ $file == stdout.* ]]; then
+        if [[ -d $file ]] && [[ $file == conti_* ]]; then
             rm -r $file
         elif [[ -d $file ]]; then
             deep=1
