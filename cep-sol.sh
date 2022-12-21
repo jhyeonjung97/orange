@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mkdir 0
-cp * 0
+mkdir wave
+cp * wave
 sh ~/bin/orange/modify.sh INCAR ISTART 1
 sh ~/bin/orange/modify.sh INCAR LWAVE
 sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
