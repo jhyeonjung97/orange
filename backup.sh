@@ -1,11 +1,11 @@
 #!/bin/bash
 
-read -p 'are you sure for backup? [y/n] (default: n) ' yn
-read -p 'how about big files (CHG, DOS)? [y/n] (default: y) ' big
+# read -p 'are you sure for backup? [y/n] (default: n) ' yn
+# read -p 'how about big files (CHG, DOS)? [y/n] (default: y) ' big
 
-if [[ ! yn == y* ]]; then
-    exit 1
-fi
+# if [[ ! yn == y* ]]; then
+#     exit 1
+# fi
 
 if [[ ${here} == nurion ]]; then
     echo "cp -r $PWD /scratch/x2347a10/backup"
@@ -57,7 +57,7 @@ do
         elif [[ $(stat -c%s $file) -eq $zero ]]; then
             echo 'number 3'
             rm $file
-        elif [[ ! $big == n* ]] && [[ $(stat -c%s $file) -ge $size ]] ; then
+        elif [[ $(stat -c%s $file) -ge $size ]] ; then  # [[ ! $big == n* ]] && 
             echo 'number 4'
             rm $file
         fi
