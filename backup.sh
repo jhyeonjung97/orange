@@ -10,7 +10,7 @@ fi
 dir='.'
 save=$PWD
 deep=1
-while [[ deep == 1 ]]
+while [[ $deep == 1 ]]
 do
     deep=0
     rm $dir/CHG*
