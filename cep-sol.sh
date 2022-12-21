@@ -3,10 +3,8 @@
 mkdir wave
 cp * wave
 sh ~/bin/orange/modify.sh INCAR ISTART 1
-sh ~/bin/orange/modify.sh INCAR LWAVE
 sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
 
-            
 goal=$1
 # goal=-0.6
 x1=''
@@ -67,6 +65,9 @@ do
     cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log $ne
     mv CONTCAR POSCAR
     
+    if [[ ${#map[@]} -eq 1 ]]; then
+        type=type0
+        diff=0
     if [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
         type=type1
         diff=-$step
@@ -79,10 +80,10 @@ do
         echo -e "$x1\t$x2\t$y1\t$y2\t$grad\t$goal\t$diff" >> check.log
         if [[ `echo "$diff > 2.5" | bc` == 1 ]]; then
             type=type3
-            diff=+1.0
+            diff=+2.5
         elif [[ `echo "$diff < -2.5" | bc` == 1 ]]; then
             type=type4
-            diff=-1.0
+            diff=-2.5
         else
             type=type5
         fi
