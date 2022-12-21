@@ -32,11 +32,11 @@ do
     rm $dir/CHG*
     rm $dir/DOS*
     rm $dir/*.err
-    rm $dir/INCAR
-    rm $dir/KPOINTS
-    rm $dir/POTCAR
-    rm $dir/POSCAR
-    rm $dir/CONTCAR
+    # rm $dir/INCAR
+    # rm $dir/KPOINTS
+    # rm $dir/POTCAR
+    # rm $dir/POSCAR
+    # rm $dir/CONTCAR
     rm $dir/PCDAT
     rm $dir/REPORT
     rm $dir/IBZKPT
