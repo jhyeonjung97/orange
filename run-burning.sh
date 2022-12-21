@@ -62,7 +62,7 @@ else
         # sed -i 's/std/dftd4.std/' run_slurm.sh
         total+='dftd4'
     fi
-    if in_array "vaspsol" "${type[*]}"; then
+    if [[ in_array "vaspsol" "${type[*]}" ]] || [[ in_array "sol" "${type[*]}" ]]; then
         # sed -i 's/std/vaspsol.std/' run_slurm.sh
         total+='.vaspsol'
     elif in_array "vtst" "${type[*]}"; then
@@ -94,11 +94,18 @@ else
             echo 'use default value -0.6 V...'
             goal='-0.6'
         fi
-        sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
         sh ~/bin/orange/modify.sh INCAR IDIPOL 3
         sh ~/bin/orange/modify.sh INCAR LDIPOL
-        sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
-        sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
+        if [[ in_array "vaspsol" "${type[*]}" ]] || [[ in_array "sol" "${type[*]}" ]]; then
+            sh ~/bin/orange/modify.sh INCAR LVHAR
+            sh ~/bin/orange/modify.sh INCAR LWAVE
+            sh ~/bin/orange/modify.sh INCAR LSOL
+            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
+        else
+            sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
+            sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
+            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
+        fi
     fi
     # if [[ -n $(grep beef run_slurm.sh) ]]
     #     sed -n '16,18p' run_slurm.sh > .run_conti.sh
