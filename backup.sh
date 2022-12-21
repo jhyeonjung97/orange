@@ -22,10 +22,9 @@ else
 fi
 
 dir='.'
-save=$PWD
 deep=1
 zero=0
-size=104857600
+size=10485760
 while [[ $deep == 1 ]]
 do
     deep=0
@@ -55,12 +54,11 @@ do
         elif [[ -d $file ]]; then
             deep=1
         elif [[ $(stat -c%s $file) -eq $zero ]]; then
-            echo 'number 3'
             rm $file
         elif [[ $(stat -c%s $file) -ge $size ]] ; then  # [[ ! $big == n* ]] && 
-            echo 'number 4'
             rm $file
         fi
     done
 done
-du -sh $save
+find . -empty -type d -delete
+du -sh ./
