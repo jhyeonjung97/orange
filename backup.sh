@@ -7,6 +7,17 @@ if [[ ! yn == y* ]]; then
     exit 1
 fi
 
+if [[ ${here} == nurion ]]; then
+    cp -r $PWD /scratch/x2347a10/backup
+elif [[ ${here} == kisti ]]; then
+    cp -r $PWD /scratch/x2431a10/backup
+elif [[ ${here} == burning ]]; then
+    cp -r $PWD ~/backup
+else
+    echo 'where are you?'
+    exit 2
+fi
+
 dir='.'
 save=$PWD
 deep=1
@@ -35,7 +46,7 @@ do
             continue
         elif [[ $file == vasprun.xml ]] || [[ $file == OUTCAR ]] || [[ $file == stdout.* ]]; then
             continue
-        elif [[ -d $file ]] || [[ $file == conti_* ]]; then
+        elif [[ -d $file ]] && [[ $file == conti_* ]]; then
             rm -r $file
         elif [[ -d $file ]]; then
             deep=1
