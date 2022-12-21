@@ -24,6 +24,7 @@ fi
 dir='.'
 save=$PWD
 deep=1
+zero=0
 size=104857600
 while [[ $deep == 1 ]]
 do
@@ -53,10 +54,10 @@ do
             rm -r $file
         elif [[ -d $file ]]; then
             deep=1
-        elif [[ $(stat -c%s $file) == 0 ]]; then
+        elif [[ $(stat -c%s $file) -eq $zero ]]; then
             echo 'number 3'
             rm $file
-        elif [[ ! $big == n* ]] && [[ $(stat -c%s $file) > $size ]] ; then
+        elif [[ ! $big == n* ]] && [[ $(stat -c%s $file) -ge $size ]] ; then
             echo 'number 4'
             rm $file
         fi
