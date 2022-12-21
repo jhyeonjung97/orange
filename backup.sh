@@ -45,7 +45,7 @@ do
     dir+='/*'
     for file in $dir
     do
-        echo $(stat -c%s $file)
+        echo $file $(stat -c%s $file)
         # if [[ $file == initial.vasp ]] || [[ $file == run_slurm.sh ]]; then
         # elif [[ $file == vasprun.xml ]] || [[ $file == OUTCAR ]] || [[ $file == stdout.* ]]; then
         if [[ -d $file ]] && [[ $file == conti_* ]]; then
@@ -53,8 +53,10 @@ do
         elif [[ -d $file ]]; then
             deep=1
         elif [[ $(stat -c%s $file) == 0 ]]; then
+            echo 'number 3'
             rm $file
         elif [[ ! $big == n* ]] && [[ $(stat -c%s $file) > 104857600 ]] ; then
+            echo 'number 4'
             rm $file
         fi
     done
