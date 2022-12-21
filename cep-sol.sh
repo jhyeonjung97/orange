@@ -1,8 +1,11 @@
 #!/bin/bash
 
+mkdir 0
+cp * 0
 sh ~/bin/orange/modify.sh INCAR ISTART 1
 sh ~/bin/orange/modify.sh INCAR LWAVE
 sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
+
             
 goal=$1
 # goal=-0.6
@@ -15,9 +18,11 @@ step=0.1
 error=0.02
 unset map
 declare -A map
-grep mpiexe run_slurm.sh > run_cep.sh
-echo -e "Type\tDiff\tNelect\tShift\tFermi\tWork.F\tPotential" > cepout.log
-echo -e "x1\tx2\ty1\ty2\tgrad\tgoal\tdiff" > check.log
+if [[ -z run_cep.sh ]]; then
+    grep mpiexe run_slurm.sh > run_cep.sh
+fi
+echo -e "Type\tDiff\tNelect\tShift\tFermi\tWork.F\tPotential" >> cepout.log
+echo -e "x1\tx2\ty1\ty2\tgrad\tgoal\tdiff" >> check.log
 
 function update {
     IFS=' '
@@ -56,26 +61,26 @@ y2=$ep
 
 range0=$(echo "$goal $error" | awk '{print $1 - $2}')
 range1=$(echo "$goal $error" | awk '{print $1 + $2}')
-until [[ $range0 -lt $ep ]] && [[ $ep -gt $range1 ]]
+until [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` -eq 1 ]] 
 do
     mkdir $ne
     cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log $ne
     mv CONTCAR POSCAR
     
-    if [[ ${#map[@]} -eq 1 ]] && [[ $ep -lt $goal ]]; then
+    if [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
         type=type1
         diff=-$step
-    elif [[ ${#map[@]} -eq 1 ]] && [[ $ep -gt $goal ]]; then
+    elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep > $goal" | bc` == 1 ]]; then
         type=type2
         diff=+$step
     else
         grad=$(echo "$x1 $x2 $y1 $y2" | awk '{print ($1 - $2) / ($3 - $4)}')
         diff=$(echo "$grad $goal $x1 $y1" | awk '{print $1 * ($2 - $4) + $3}')
         echo -e "$x1\t$x2\t$y1\t$y2\t$grad\t$goal\t$diff" >> check.log
-        if [[ $diff -gt 2.5 ]]; then
+        if [[ `echo "$diff > 2.5" | bc` == 1 ]]; then
             type=type3
             diff=+1.0
-        elif [[ $diff -lt -2.5 ]]; then
+        elif [[ `echo "$diff < -2.5" | bc` == 1 ]]; then
             type=type4
             diff=-1.0
         else
@@ -86,7 +91,7 @@ do
     echo new $new
     while in_map $new
     do
-        if [[ $diff -lt 0 ]]; then
+        if [[ `echo "$diff < 0" | bc` == 1 ]]; then
             new=$(echo "$new $step" | awk '{print $1 - $2}')
         else
             new=$(echo "$new $step" | awk '{print $1 + $2}')
