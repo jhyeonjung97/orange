@@ -46,9 +46,7 @@ do
     for file in $dir
     do
         if [[ $file == initial.vasp ]] || [[ $file == run_slurm.sh ]]; then
-            continue
         elif [[ $file == vasprun.xml ]] || [[ $file == OUTCAR ]] || [[ $file == stdout.* ]]; then
-            continue
         elif [[ -d $file ]] && [[ $file == conti_* ]]; then
             rm -r $file
         elif [[ -d $file ]]; then
