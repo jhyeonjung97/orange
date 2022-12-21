@@ -16,8 +16,8 @@ step=0.1
 error=0.02
 unset map
 declare -A map
-if [[ -z run_cep.sh ]]; then
-    grep mpiexe run_slurm.sh >> run_cep.sh
+if [[ ! -e mpiexe.sh ]]; then
+    grep mpiexe run_slurm.sh >> mpiexe.sh
 fi
 echo -e "Type\tDiff\tNelect\tShift\tFermi\tWork.F\tPotential" >> cepout.log
 echo -e "x1\tx2\ty1\ty2\tgrad\tgoal\tdiff" >> check.log
@@ -68,7 +68,7 @@ do
     if [[ ${#map[@]} -eq 1 ]]; then
         type=type0
         diff=0
-    if [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
+    elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
         type=type1
         diff=-$step
     elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep > $goal" | bc` == 1 ]]; then
@@ -100,7 +100,7 @@ do
         echo updated $diff $new
     done
     sh ~/bin/orange/modify.sh INCAR NELECT $new
-    sh run_cep.sh
+    sh mpiexe.sh
     update
     # linear
 done
