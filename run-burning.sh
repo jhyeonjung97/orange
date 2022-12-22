@@ -108,6 +108,7 @@ else
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
         fi
         if [[ -s WAVECAR ]]; then
+            grep mpiexe run_slurm.sh >> mpiexe.sh
             sed -i -e '/mpiexe/d' run_slurm.sh
         fi
     fi
