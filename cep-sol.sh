@@ -2,7 +2,6 @@
 
 mkdir wave
 cp * wave
-rm STD*
 sh ~/bin/orange/modify.sh INCAR ISTART 1
 sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
 
