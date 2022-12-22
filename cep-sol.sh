@@ -38,11 +38,6 @@ function update {
     wf=$(echo "$fl $sh" | awk '{printf "%.4f", $1 + $2}')
     ep=$(echo "$hl $wf" | awk '{printf "%.4f", $1 - $2}')
     echo -e "$type\t$diff\t$ne\t$sh\t$fl\t$wf\t$ep" >> cepout.log
-    map+=([$ne]=$ep)
-    x1=$x2
-    y1=$y2
-    x2=$ne
-    y2=$ep
 }
 
 function in_map {
@@ -67,7 +62,7 @@ do
     cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log $ne
     mv CONTCAR POSCAR
     
-    if [[ ${#map[@]} -eq 1 ]]; then
+    if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
         diff=0
     elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
@@ -104,5 +99,10 @@ do
     sh ~/bin/orange/modify.sh INCAR NELECT $new
     sh mpiexe.sh
     update
+    map+=([$ne]=$ep)
+    x1=$x2
+    y1=$y2
+    x2=$ne
+    y2=$ep
     # linear
 done
