@@ -94,6 +94,7 @@ else
             echo 'use default value -0.6 V...'
             goal='-0.6'
         fi
+        cp INCAR .INCAR_old
         sh ~/bin/orange/modify.sh INCAR IDIPOL 3
         sh ~/bin/orange/modify.sh INCAR LDIPOL
         if in_array "sol" "${type[*]}"; then
@@ -105,6 +106,9 @@ else
             sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
             sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
+        fi
+        if [[ -s WAVECAR ]]; then
+            sed -i -e '/mpiexe/d' run_slurm.sh
         fi
     fi
     # if [[ -n $(grep beef run_slurm.sh) ]]
