@@ -59,6 +59,8 @@ else
     fi
     if in_array 'sol' "${type[*]}"; then
         total+='.vaspsol'
+    elif in_array 'cep' "${type[*]}"; then
+        total+='.vaspsol'
     fi
     if in_array 'gam' "${type[*]}"; then
         total+='.gam'
