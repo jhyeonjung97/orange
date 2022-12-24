@@ -14,9 +14,9 @@ if [[ $1 =~ qe ]] || [[ -n $(grep pw.x run_slurm.sh) ]]; then
         read -ra energy_arr <<< $energy_tag
         energy=${energy_arr[3]}
         if [[ -n $(grep 'JOB DONE' stdout.log) ]]; then
-            stat=DONE
+            stat='DONE'
         else
-            stat=Not DONE
+            stat='Not DONE'
         fi
         printf '%-5s %-13s %-14s %-8s' $dir $force $energy $stat
     done
