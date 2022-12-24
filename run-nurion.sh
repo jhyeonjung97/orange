@@ -71,7 +71,7 @@ else
     fi
     if [[ -e "/home01/${account}/KISTI_VASP/KNL_XeonPhi/vasp.5.4.4.pl2.KISTI.KNL_XeonPhi$total.x" ]]; then
         custom='KISTI_VASP/KNL_XeonPhi/vasp.5.4.4.pl2.KISTI.KNL_XeonPhi'
-        sed -i "s/custom/$node \/home01\/${account}\/$custom$total.x/" run_slurm.sh
+        sed -i -e "s/custom/$node \/home01\/${account}\/$custom$total.x/" run_slurm.sh
     else
         echo 'there is no corroesponding version...'
         exit 1
