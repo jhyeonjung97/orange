@@ -13,7 +13,7 @@ if [[ $1 =~ qe ]] || [[ -n $(grep pw.x run_slurm.sh) ]]; then
         energy_tag=$(grep 'total energy' stdout.log | grep Ry | tail -n 1 | sed 's/\t/ /')
         read -ra energy_arr <<< $energy_tag
         energy=${energy_arr[3]}
-        if [[ -e stdout.log) ]] && [[ -n $(grep 'JOB DONE' stdout.log) ]]; then
+        if [[ -e stdout.log ]] && [[ -n $(grep 'JOB DONE' stdout.log) ]]; then
             stat='DONE'
         else
             stat='Not DONE'
