@@ -11,6 +11,12 @@ function update {
     else
         energy=${energy_arr[3]}
     fi
+    if [[ -z $force ]]; then
+        force='-'
+    fi
+    if [[ -z $energy ]]; then
+        energy='-'
+    fi
 }
 
 IFS=' '
@@ -37,8 +43,8 @@ if [[ $1 =~ qe ]] || [[ -n $(grep pw.x run_slurm.sh) ]]; then
             done
             update $conti/stdout.log
         else
-            force=''
-            energy=''
+            force='-'
+            energy='-'
             stat='no_data'
         fi
         printf '%-5s %-13s %-14s %-8s\n' $dir $force $energy $stat
