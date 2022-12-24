@@ -24,7 +24,7 @@ if [[ $1 =~ qe ]] || [[ -n $(grep pw.x run_slurm.sh) ]]; then
             if [[ -n $(grep 'JOB DONE' stdout.log) ]]; then
                 stat='DONE'
             else
-                stat='Not DONE'
+                stat='Not_DONE'
             fi
             update stdout.log
         elif [[ -f conti_1/stdout.log ]]; then
@@ -39,7 +39,7 @@ if [[ $1 =~ qe ]] || [[ -n $(grep pw.x run_slurm.sh) ]]; then
         else
             force=''
             energy=''
-            stat='no data'
+            stat='no_data'
         fi
         printf '%-5s %-13s %-14s %-8s\n' $dir $force $energy $stat
         cd ..
