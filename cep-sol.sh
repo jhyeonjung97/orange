@@ -21,8 +21,8 @@ if [[ ! -e mpiexe.sh ]]; then
 fi
 date >> cepout.log
 date >> check.log
-echo -e "Nelect\tShift\tFermi\tWork.F\tPotential" >> cepout.log
-echo -e "x1\tx2\ty1\ty2\tgrad\tgoal\ttype\tdiff" >> check.log
+echo -e "Nelect\tType\tShift\tFermi\tWork.F\tPotential" >> cepout.log
+# echo -e "x1\tx2\ty1\ty2\tgrad\tgoal\ttype\tdiff" >> check.log
 
 function update {
     IFS=' '
@@ -37,7 +37,7 @@ function update {
     fl=${fla[2]}
     wf=$(echo "$fl $sh" | awk '{printf "%.4f", $1 + $2}')
     ep=$(echo "$hl $wf" | awk '{printf "%.4f", $1 - $2}')
-    echo -e "$ne\t$sh\t$fl\t$wf\t$ep" >> cepout.log
+    echo -e "$ne\t$type\t$sh\t$fl\t$wf\t$ep" >> cepout.log
 }
 
 function in_map {
@@ -84,7 +84,7 @@ do
             type=type5
         fi
     fi
-    echo -e "$x1\t$x2\t$y1\t$y2\t$grad\t$goal\t$type\t$diff" >> check.log
+    # echo -e "$x1\t$x2\t$y1\t$y2\t$grad\t$goal\t$type\t$diff" >> check.log
     new=$(echo "$ne $diff" | awk '{print $1 + $2}')
     while in_map $new
     do
