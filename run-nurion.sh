@@ -14,11 +14,11 @@ read -a type
 if [[ $q == l* ]]; then
     node=64
     q='long'
-    sed -i 's/walltime=48/walltime=120/g' run_slurm.sh
+    sed -i -e 's/walltime=48/walltime=120/g' run_slurm.sh
 elif [[ $q == s* ]]; then
     node=40
     q='norm_skl'
-    sed -i 's/KNL_XeonPhi/SKL_Skylake/g' run_slurm.sh
+    sed -i -e 's/KNL_XeonPhi/SKL_Skylake/g' run_slurm.sh
 elif [[ $q == f* ]]; then
     node=64
     q='flat'
@@ -53,7 +53,7 @@ else
         total+='.vtst179'
     fi
     if in_array 'beef' "${type[*]}"; then
-        sed -i '/mpiexe/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
+        sed -i -e '/mpiexe/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
         echo 'rm vdw_kernel.bindat' >> run_slurm.sh
         total+='.beef'
     fi
