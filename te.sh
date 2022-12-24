@@ -19,6 +19,7 @@ if [[ $1 =~ qe ]] || [[ -n $(grep pw.x run_slurm.sh) ]]; then
             stat='Not DONE'
         fi
         printf '%-5s %-13s %-14s %-8s' $dir $force $energy $stat
+        cd ..
     done
 else
     sh ~/bin/playground/te.sh
