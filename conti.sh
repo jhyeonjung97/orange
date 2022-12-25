@@ -131,6 +131,23 @@ function qe {
     fi
 }
 
+function cep {
+    cp POSCAR .POSCAR
+    if [[ -s CONTCAR ]]; then
+        mv CONTCAR POSCAR
+    fi
+    rm STD*
+    sed -i -e '/mpiexe/d' run_slurm.sh
+    if [[ ${here} == 'burning' ]]; then
+        sbatch run_slurm.sh
+    elif [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
+        qsub run_slurm.sh
+    else
+        echo 'where am i..? please modify [con2pos.sh] code'
+        exit 1
+    fi
+}
+
 if [[ -z $1 ]]; then # simple conti
     if [[ -z $(grep pw.x run_slurm.sh) ]]; then
         conti
