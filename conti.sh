@@ -149,10 +149,12 @@ function cep {
 }
 
 if [[ -z $1 ]]; then # simple conti
-    if [[ -z $(grep pw.x run_slurm.sh) ]]; then
-        conti
-    else
+    if [[ -n $(grep pw.x run_slurm.sh) ]]; then
         qe
+    elif [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
+        cep
+    else
+        conti
     fi
 else
     if [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
@@ -169,10 +171,12 @@ else
     do
         i=${i%/}
         cd $i*
-        if [[ -z $(grep pw.x run_slurm.sh) ]]; then
-            conti
-        else
+        if [[ -n $(grep pw.x run_slurm.sh) ]]; then
             qe
+        elif [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
+            cep
+        else
+            conti
         fi
         cd ..
     done
