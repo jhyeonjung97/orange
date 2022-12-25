@@ -54,6 +54,8 @@ else
     fi
     if in_array "sol" "${type[*]}"; then
         total+='.vaspsol'
+    elif in_array 'cep' "${type[*]}"; then
+        total+='.vaspsol'
     elif in_array "vtst" "${type[*]}"; then
         total+='.vtst'
     elif in_array "wan90v3" "${type[*]}"; then
@@ -95,6 +97,10 @@ else
         if [[ -s WAVECAR ]]; then
             grep mpiexe run_slurm.sh >> mpiexe.sh
             sed -i -e '/mpiexe/d' run_slurm.sh
+        elif [[ -s CONTCAR ]]; then
+            mkdir geo
+            cp * geo
+            mv CONTCAR POSCAR
         fi
     fi
 fi
