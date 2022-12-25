@@ -17,7 +17,7 @@ error=0.02
 unset map
 declare -A map
 if [[ ! -e mpiexe.sh ]]; then
-    grep mpiexe run_slurm.sh >> mpiexe.sh
+    grep mpiexe run_slurm.sh > mpiexe.sh
 fi
 date >> cepout.log
 # date >> check.log
