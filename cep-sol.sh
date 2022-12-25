@@ -60,7 +60,9 @@ until [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` 
 do
     mkdir $ne
     cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log $ne
-    mv CONTCAR POSCAR
+    if [[ -s CONTCAR ]]; then
+        mv CONTCAR POSCAR
+    fi
     
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
