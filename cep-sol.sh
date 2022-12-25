@@ -20,7 +20,7 @@ if [[ ! -e mpiexe.sh ]]; then
     grep mpiexe run_slurm.sh >> mpiexe.sh
 fi
 date >> cepout.log
-date >> check.log
+# date >> check.log
 echo -e "Nelect\tType\tShift\tFermi\tWork.F\tPotential" >> cepout.log
 # echo -e "x1\tx2\ty1\ty2\tgrad\tgoal\ttype\tdiff" >> check.log
 
