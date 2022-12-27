@@ -97,6 +97,14 @@ function conti {
 }
 
 function qe {
+    i=1
+    while [[ -f "stdout$i.log" ]] || [[ -f "contcar$i.xyz" ]]
+    do
+        i=$(($i+1))
+    done
+    sh ~/bin/orange/out2xyz.sh
+    cp contcar.xyz contcar$i.xyz
+    cp stdout.log stdout$i.log
     if [[ -s contcar.in ]]; then
         mv contcar.in poscar.in
     fi
