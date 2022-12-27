@@ -98,12 +98,12 @@ do
     else
         grad=$(echo "$x1 $x2 $y1 $y2" | awk '{print ($1 - $2) / ($3 - $4)}')
         diff=$(echo "$grad $goal $y2" | awk '{print $1 * ($2 - $3)}')
-        if [[ `echo "$diff > 5.0" | bc` == 1 ]]; then
+        if [[ `echo "$diff > 10.0" | bc` == 1 ]]; then
             type=type3
-            diff=+5.0
-        elif [[ `echo "$diff < -5.0" | bc` == 1 ]]; then
+            diff=+10.0
+        elif [[ `echo "$diff < -10.0" | bc` == 1 ]]; then
             type=type4
-            diff=-5.0
+            diff=-10.0
         else
             type=type5
         fi
