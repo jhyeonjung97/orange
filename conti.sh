@@ -108,6 +108,10 @@ function qe {
     if [[ -s contcar.in ]]; then
         mv contcar.in poscar.in
     fi
+    if [[ -n $(grep Maximum stdout.log) ]] && [[ -n $(grep DONE stdout.log) ]]; then
+        sed -i 's/from_scratch/restart/g' */incar.in
+        sed -i 's/from_scratch/restart/g' qe-relax.in
+    fi
     cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
     if [[ ${here} == 'burning' ]]; then
         sbatch run_slurm.sh
