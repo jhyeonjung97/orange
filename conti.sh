@@ -113,11 +113,11 @@ function qe {
         sed -i 's/from_scratch/restart/g' qe-relax.in
     fi
     if [[ -n $(grep walltime run_slurm.sh | grep 120) ]]; then
-        sed -i 's/170000/430000/' incar.in
-        sed -i 's/170000/430000/' qe-relax.in
+        sed -i 's/max_seconds = 170000/max_seconds = 430000/' incar.in
+        sed -i 's/max_seconds = 170000/max_seconds = 430000/' qe-relax.in
     elif [[ -n $(grep walltime run_slurm.sh | grep 48) ]]; then
-        sed -i 's/430000/170000/' incar.in
-        sed -i 's/430000/170000/' qe-relax.in
+        sed -i 's/max_seconds = 430000/max_seconds = 170000/' incar.in
+        sed -i 's/max_seconds = 430000/max_seconds = 170000/' qe-relax.in
     fi
     cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
     if [[ ${here} == 'burning' ]]; then
