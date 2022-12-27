@@ -24,6 +24,28 @@ date >> cepout.log
 echo -e "Nelect\tType\tShift\tFermi\tWork.F\tPotential" >> cepout.log
 # echo -e "x1\tx2\ty1\ty2\tgrad\tgoal\ttype\tdiff" >> check.log
 
+while read line
+do
+    read -a line <<< $line
+    head=${line[0]}
+    head=${head#-}
+    head=${head//[0-9]/}
+    head=${head#.}
+    # echo $head
+    # echo ${#line[@]}
+    if [[ -z $head ]] && [[ ${#line[@]} == 6 ]]; then
+        ne=${line[0]}
+        ep=${line[5]}
+        map+=([$ne]=$ep)
+        x1=$x2
+        y1=$y2
+        x2=$ne
+        y2=$ep
+        echo ${line[@]}
+        echo $x1 $x2 $y1 $y2
+    fi
+done < cepout.log
+
 function update {
     IFS=' '
     nes=$(grep NELECT OUTCAR)
@@ -76,12 +98,12 @@ do
     else
         grad=$(echo "$x1 $x2 $y1 $y2" | awk '{print ($1 - $2) / ($3 - $4)}')
         diff=$(echo "$grad $goal $y2" | awk '{print $1 * ($2 - $3)}')
-        if [[ `echo "$diff > 2.5" | bc` == 1 ]]; then
+        if [[ `echo "$diff > 5.0" | bc` == 1 ]]; then
             type=type3
-            diff=+2.5
-        elif [[ `echo "$diff < -2.5" | bc` == 1 ]]; then
+            diff=+5.0
+        elif [[ `echo "$diff < -5.0" | bc` == 1 ]]; then
             type=type4
-            diff=-2.5
+            diff=-5.0
         else
             type=type5
         fi
