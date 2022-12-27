@@ -27,7 +27,9 @@ if [[ $1 =~ qe ]] || [[ -n $(grep pw.x run_slurm.sh) ]]; then
     do
         cd $dir
         if [[ -e stdout.log ]]; then
-            if [[ -n $(grep 'JOB DONE' stdout.log) ]]; then
+            if [[ -n $(grep 'Maximum CPU time exceeded' stdout.log) ]]; then
+                stat='TIME_exceeded'
+            elif [[ -n $(grep 'JOB DONE' stdout.log) ]]; then
                 stat='DONE'
             else
                 stat='Not_DONE'
