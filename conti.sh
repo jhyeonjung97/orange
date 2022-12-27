@@ -109,8 +109,13 @@ function qe {
         mv contcar.in poscar.in
     fi
     if [[ -n $(grep Maximum stdout.log) ]] && [[ -n $(grep DONE stdout.log) ]]; then
-        sed -i 's/from_scratch/restart/g' */incar.in
+        sed -i 's/from_scratch/restart/g' incar.in
         sed -i 's/from_scratch/restart/g' qe-relax.in
+    fi
+    if [[ -n $(grep walltime run_slurm.sh | grep 120) ]]; then
+        sed -i 's/170000/430000/' incar.in
+    elif [[ -n $(grep walltime run_slurm.sh | grep 48) ]]; then
+        sed -i 's/430000/170000/' incar.in
     fi
     cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
     if [[ ${here} == 'burning' ]]; then

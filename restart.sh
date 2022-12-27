@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sed -i 's/from_scratch/restart/g' */incar.in
+sed -i 's/from_scratch/restart/g' incar.in
 sed -i 's/from_scratch/restart/g' qe-relax.in
 i=1
 while [[ -f "stdout$i.log" ]] || [[ -f "contcar$i.xyz" ]]
