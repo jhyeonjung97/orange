@@ -45,7 +45,7 @@ total=''
 if in_array 'qe' "${type[*]}"; then
     sed -i '/mpiexe/i\cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
     sed -i 's/custom/8 pw.x -in qe-relax.in/' run_slurm.sh
-    echo "if [[ -n $(grep 'Maximum CPU time exceeded' stdout.log) ]]; then" >> run_slurm.sh
+    echo 'if [[ -n $(grep \'Maximum CPU time exceeded\' stdout.log) ]]; then' >> run_slurm.sh
     echo '    sh ~/bin/orange/restart.sh' >> run_slurm.sh
     echo 'fi' >> run_slurm.sh
 else
