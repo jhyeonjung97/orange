@@ -97,22 +97,6 @@ function conti {
 }
 
 function qe {
-    i=1
-    save="conti_$i"
-    while [[ -d "conti_$i" ]]
-    do
-        i=$(($i+1))
-        save="conti_$i"
-    done
-    out2xyz
-    mkdir $save
-    mv * $save
-    cd $save/
-    mv */ ..
-    cp qe-relax.in ../initial.in
-    cp poscar.in contcar.in incar.in kpoints.in potcar.in run_slurm.sh initial.in ..
-    cd ..
-
     if [[ -s contcar.in ]]; then
         mv contcar.in poscar.in
     fi
