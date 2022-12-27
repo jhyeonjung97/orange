@@ -4,6 +4,7 @@ mkdir wave
 cp * wave
 sh ~/bin/orange/modify.sh INCAR ISTART 1
 sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
+sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
 
 goal=$1
 # goal=-0.6
@@ -82,9 +83,9 @@ until [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` 
 do
     mkdir $ne
     cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log $ne
-    if [[ -s CONTCAR ]]; then
-        mv CONTCAR POSCAR
-    fi
+    # if [[ -s CONTCAR ]]; then
+    #     mv CONTCAR POSCAR
+    # fi
     
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
