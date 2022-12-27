@@ -175,7 +175,9 @@ else
         i=${i%/}
         cd $i*
         if [[ -n $(grep pw.x run_slurm.sh) ]]; then
-            qe
+            if [[ -z $(grep Maximum stdout.log) ]] && [[ -n $(grep DONE stdout.log) ]]; then
+                qe
+            fi
         elif [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
             cep
         else
