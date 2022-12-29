@@ -89,7 +89,14 @@ do
     
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
-        diff=0.0
+        if [[ -n $(grep '#NEDIFF' INCAR) ]]; then
+            diff=0.0
+        elif [[ -n $(grep NEDIFF INCAR) ]]; then
+            read -ra nediff <<< $(grep NEDIFF INCAR)
+            diff=${nediff[2]}
+        else
+            diff=0.0
+        fi
     elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
         type=type1
         diff=-$step
