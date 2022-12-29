@@ -33,8 +33,6 @@ alias wf='sh ~/bin/orange/wf.sh'
 #OUTPUT
 alias e='grep E0 stdout*'
 alias ee='grep E0 stdout* | tail -n 3'
-alias ta='tail -n 6 */stdout.log'
-alias taa='tail -n 6 */*/stdout*'
 alias te='sh ~/bin/orange/te.sh'
 alias fermi='grep E-fermi OUTCAR | tail -n 1'
 alias kpoint='grep subdivisionlength vasprun.xml -A 1'
