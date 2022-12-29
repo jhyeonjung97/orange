@@ -5,7 +5,7 @@ function usage_error {
     exit 1
 }
 
-if [[ $1 =~ '-h' ]] || [[ $1 =~ '--h' ]] || [[ -z $1 ]]; then
+if [[ $1 == '-*h*' ]] || [[ -z $1 ]]; then
     usage_error
 fi
 
