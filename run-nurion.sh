@@ -102,6 +102,7 @@ else
             mkdir geo
             cp * geo
             mv CONTCAR POSCAR
+            rm STD*
         fi
     fi
 fi
