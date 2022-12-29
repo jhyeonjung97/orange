@@ -95,8 +95,6 @@ else
         #     sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
         # fi
         if [[ -s WAVECAR ]]; then
-            grep mpiexe run_slurm.sh > mpiexe.sh
-            sed -i -e '/mpiexe/d' run_slurm.sh
             rm STD*
         elif [[ -s CONTCAR ]]; then
             mkdir geo
@@ -106,6 +104,9 @@ else
         fi
     fi
 fi
+
+grep mpiexe run_slurm.sh > mpiexe.sh
+sed -i -e '/mpiexe/c\sh mpiexe.sh' run_slurm.sh
 
 read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then
