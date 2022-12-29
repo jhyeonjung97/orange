@@ -81,11 +81,13 @@ range0=$(echo "$goal $error" | awk '{print $1 - $2}')
 range1=$(echo "$goal $error" | awk '{print $1 + $2}')
 until [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` -eq 1 ]] 
 do
-    mkdir $ne
-    cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log $ne
-    # if [[ -s CONTCAR ]]; then
-    #     mv CONTCAR POSCAR
-    # fi
+    if [[ ${#map[@]} -ne 0 ]]; then
+        mkdir $ne
+        cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log $ne
+        # if [[ -s CONTCAR ]]; then
+        #     mv CONTCAR POSCAR
+        # fi
+    fi
     
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
@@ -127,7 +129,11 @@ do
         fi
     done
     sh ~/bin/orange/modify.sh INCAR NELECT $new
-    sh mpiexe.sh
+    if [[ -s POSCAR ]] && [[ -s WAVECAR ]]; then
+        sh mpiexe.sh
+    else
+        exit 1
+    fi
     update
     map+=([$ne]=$ep)
     x1=$x2
