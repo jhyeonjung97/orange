@@ -8,7 +8,6 @@ sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
 sh ~/bin/orange/modify.sh INCAR NSW
 sh ~/bin/orange/modify.sh INCAR IBRION
 
-
 goal=$1
 # goal=-0.6
 x1=''
@@ -146,8 +145,44 @@ do
     # linear
 done
 
+x1=''
+x2=''
+y1=''
+y2=''
+unset map
+declare -A map
 sh ~/bin/orange/modify.sh INCAR NSW 600
 sh ~/bin/orange/modify.sh INCAR IBRION 2
+date >> optout.log
+# date >> check.log
+echo -e "Nelect\tType\tShift\tFermi\tWork.F\tPotential" >> optout.log
+
+while read line
+do
+    read -a line <<< $line
+    head=${line[0]}
+    head=${head#-}
+    head=${head//[0-9]/}
+    head=${head#.}
+    # echo $head
+    # echo ${#line[@]}
+    if [[ -z $head ]] && [[ ${#line[@]} == 6 ]]; then
+        ne=${line[0]}
+        ep=${line[5]}
+        map+=([$ne]=$ep)
+        x1=$x2
+        y1=$y2
+        x2=$ne
+        y2=$ep
+        echo ${line[@]}
+        echo $x1 $x2 $y1 $y2
+    fi
+done < optout.log
+
+update
+x2=$ne
+y2=$ep
+
 if [[ -s POSCAR ]] && [[ -s WAVECAR ]]; then
     sh mpiexe.sh
 else
