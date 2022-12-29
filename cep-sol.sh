@@ -7,7 +7,7 @@ sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
 sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
 sh ~/bin/orange/modify.sh INCAR NSW
 sh ~/bin/orange/modify.sh INCAR IBRION
-sh ~/bin/orange/modify.sh INCAR NEDIFF -15.0
+# sh ~/bin/orange/modify.sh INCAR NEDIFF -15.0
 
 goal=$1
 # goal=-0.6
