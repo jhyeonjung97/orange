@@ -97,10 +97,12 @@ else
         if [[ -s WAVECAR ]]; then
             grep mpiexe run_slurm.sh > mpiexe.sh
             sed -i -e '/mpiexe/d' run_slurm.sh
+            rm STD*
         elif [[ -s CONTCAR ]]; then
             mkdir geo
             cp * geo
             mv CONTCAR POSCAR
+            rm STD*
         fi
     fi
 fi
