@@ -5,9 +5,21 @@ if [[ ! -d /TGM/Apps/VASP/VASP_BIN/6.3.2 ]]; then
     exit 1
 fi
 
-cp ~/input_files/run_slurm.sh .
+if [[ -z $(pestat -s idle | grep g1) ]] && [[ -z $(pestat -s idle | grep g2) ]] && [[ -z $(pestat -s idle | grep g3) ]] && [[ -z $(pestat -s idle | grep g4) ]] && [[ -z $(pestat -s idle | grep g5) ]]; then
+    echo -e "\033[1mg1:\033[0m"
+    qstat | grep -i "Q g1"
+    echo -e "\033[1mg2:\033[0m"
+    qstat | grep -i "Q g2"
+    echo -e "\033[1mg3:\033[0m"
+    qstat | grep -i "Q g3"
+    echo -e "\033[1mg4:\033[0m"
+    qstat | grep -i "Q g4"
+    echo -e "\033[1mg5:\033[0m"
+    qstat | grep -i "Q g5"
+else
+    pestat -s idle
+fi
 
-pestat -s idle
 read -p "which queue? (g1~g5, gpu): " q
 echo -n "which type? (beef, vtst, sol, gam, qe, cep): "
 read -a type
@@ -25,6 +37,7 @@ else
     node=20
 fi
 
+cp ~/input_files/run_slurm.sh .
 sed -i "/ntasks-per-node/c\#SBATCH --ntasks-per-node=$node" run_slurm.sh
 sed -i "/partition/c\#SBATCH --partition=$q" run_slurm.sh
 
