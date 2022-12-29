@@ -100,6 +100,7 @@ do
         elif [[ -n $(grep NEDIFF INCAR) ]]; then
             read -ra nediff <<< $(grep NEDIFF INCAR)
             diff=${nediff[2]}
+            sh ~/bin/orange/modify.sh INCAR NEDIFF
         else
             diff=0.0
         fi
@@ -156,6 +157,7 @@ unset map
 declare -A map
 sh ~/bin/orange/modify.sh INCAR NSW 600
 sh ~/bin/orange/modify.sh INCAR IBRION 2
+sh ~/bin/orange/modify.sh INCAR NEDIFF
 date >> optout.log
 # date >> check.log
 echo -e "Nelect\tType\tShift\tFermi\tWork.F\tPotential" >> optout.log
