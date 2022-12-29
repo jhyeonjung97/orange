@@ -25,7 +25,7 @@ if [[ ! -e mpiexe.sh ]]; then
 fi
 date >> cepout.log
 # date >> check.log
-echo -e "Nelect\tType\tShift\tFermi\tWork.F\tPotential" >> cepout.log
+echo -e "Nelect\tType\tDiff\tShift\tFermi\tWork.F\tPotential" >> cepout.log
 # echo -e "x1\tx2\ty1\ty2\tgrad\tgoal\ttype\tdiff" >> check.log
 
 while read line
@@ -37,9 +37,9 @@ do
     head=${head#.}
     # echo $head
     # echo ${#line[@]}
-    if [[ -z $head ]] && [[ ${#line[@]} == 6 ]]; then
+    if [[ -z $head ]] && [[ ${#line[@]} == 7 ]]; then
         ne=${line[0]}
-        ep=${line[5]}
+        ep=${line[6]}
         map+=([$ne]=$ep)
         x1=$x2
         y1=$y2
@@ -63,7 +63,7 @@ function update {
     fl=${fla[2]}
     wf=$(echo "$fl $sh" | awk '{printf "%.4f", $1 + $2}')
     ep=$(echo "$hl $wf" | awk '{printf "%.4f", $1 - $2}')
-    echo -e "$ne\t$type\t$sh\t$fl\t$wf\t$ep" >> cepout.log
+    echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
 }
 
 function in_map {
@@ -167,9 +167,9 @@ do
     head=${head#.}
     # echo $head
     # echo ${#line[@]}
-    if [[ -z $head ]] && [[ ${#line[@]} == 6 ]]; then
+    if [[ -z $head ]] && [[ ${#line[@]} == 7 ]]; then
         ne=${line[0]}
-        ep=${line[5]}
+        ep=${line[6]}
         map+=([$ne]=$ep)
         x1=$x2
         y1=$y2
