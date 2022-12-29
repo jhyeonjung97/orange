@@ -106,7 +106,7 @@ else
 fi
 
 grep mpiexe run_slurm.sh > mpiexe.sh
-sed -i -e '/mpiexe/c\sh mpiexe.sh' run_slurm.sh
+sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
 
 read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then
