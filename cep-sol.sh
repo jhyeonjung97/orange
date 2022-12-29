@@ -63,7 +63,6 @@ function update {
     fl=${fla[2]}
     wf=$(echo "$fl $sh" | awk '{printf "%.4f", $1 + $2}')
     ep=$(echo "$hl $wf" | awk '{printf "%.4f", $1 - $2}')
-    echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
 }
 
 function in_map {
@@ -77,6 +76,7 @@ function in_map {
 }
 
 update
+echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
 x2=$ne
 y2=$ep
 
@@ -138,6 +138,7 @@ do
         exit 1
     fi
     update
+    echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
     map+=([$ne]=$ep)
     x1=$x2
     y1=$y2
@@ -181,6 +182,7 @@ do
 done < optout.log
 
 update
+echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> optout.log
 x2=$ne
 y2=$ep
 
@@ -239,6 +241,7 @@ do
         exit 3
     fi
     update
+    echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> optout.log
     map+=([$ne]=$ep)
     x1=$x2
     y1=$y2
