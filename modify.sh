@@ -13,4 +13,4 @@ function modify {
 }
 
 modify $1 $2 $3
-grep $2 $1
+grep "$2 " $1
