@@ -63,6 +63,7 @@ function update {
     fl=${fla[2]}
     wf=$(echo "$fl $sh" | awk '{printf "%.4f", $1 + $2}')
     ep=$(echo "$hl $wf" | awk '{printf "%.4f", $1 - $2}')
+    diff=$(echo $diff | awk '{printf "%.2f", $1}')
 }
 
 function in_map {
