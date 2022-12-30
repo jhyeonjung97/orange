@@ -88,6 +88,7 @@ do
     if [[ ${#map[@]} -ne 0 ]]; then
         mkdir cep_$ne
         cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log cep_$ne
+        sh ~/bin/orange/modify.sh INCAR NEDIFF
         # if [[ -s CONTCAR ]]; then
         #     mv CONTCAR POSCAR
         # fi
@@ -157,7 +158,6 @@ unset map
 declare -A map
 sh ~/bin/orange/modify.sh INCAR NSW 600
 sh ~/bin/orange/modify.sh INCAR IBRION 2
-sh ~/bin/orange/modify.sh INCAR NEDIFF
 date >> optout.log
 # date >> check.log
 echo -e "Nelect\tType\tShift\tFermi\tWork.F\tPotential" >> optout.log
