@@ -211,7 +211,7 @@ else
     # fi
 fi
     
-until [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` -eq 1 ]] && [[ ${#map[@]} -ne 0 ]]
+until [[ ${#map[@]} -ne 0 ]] && [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` -eq 1 ]]
 do    
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
