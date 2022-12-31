@@ -218,10 +218,10 @@ do
         diff=0.0
     elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
         type=type1
-        diff=-$step
+        diff=-0.1
     elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep > $goal" | bc` == 1 ]]; then
         type=type2
-        diff=+$step
+        diff=+0.1
     else
         grad=$(echo "$x1 $x2 $y1 $y2" | awk '{print ($1 - $2) / ($3 - $4)}')
         diff=$(echo "$grad $goal $y2" | awk '{print $1 * ($2 - $3)}')
