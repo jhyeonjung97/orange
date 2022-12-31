@@ -85,6 +85,7 @@ function in_map {
 
 if [[ ${#map[@]} -eq 0 ]]; then
     update
+    echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> optout.log
     x2=$ne
     y2=$ep
 else
