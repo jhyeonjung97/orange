@@ -18,7 +18,7 @@ y2=''
 hl=-4.43
 step=0.1
 error=0.02
-nediff=-15.0
+# nediff=-15.0
 unset map
 declare -A map
 if [[ ! -s mpiexe.sh ]]; then
@@ -98,26 +98,27 @@ echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
 range0=$(echo "$goal $error" | awk '{print $1 - $2}')
 range1=$(echo "$goal $error" | awk '{print $1 + $2}')
 until [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` -eq 1 ]] 
-do 
+do
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
-        if [[ -n $(grep '#NEDIFF' INCAR) ]]; then
-            diff=0.0
-        elif [[ -n $(grep NEDIFF INCAR) ]]; then
-            read -ra nediff_tag <<< $(grep NEDIFF INCAR)
-            diff=${nediff_tag[2]}
-            sh ~/bin/orange/modify.sh INCAR NEDIFF
-        elif [[ -n $nediff ]]; then
-            diff=$nediff
-        else
-            diff=0.0
-        fi
+        diff=0.0
+        # if [[ -n $(grep '#NEDIFF' INCAR) ]]; then
+        #     diff=0.0
+        # elif [[ -n $(grep NEDIFF INCAR) ]]; then
+        #     read -ra nediff_tag <<< $(grep NEDIFF INCAR)
+        #     diff=${nediff_tag[2]}
+        #     sh ~/bin/orange/modify.sh INCAR NEDIFF
+        # elif [[ -n $nediff ]]; then
+        #     diff=$nediff
+        # else
+        #     diff=0.0
+        # fi
     elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
         type=type1
-        diff=-$step
+        diff=-1.0
     elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep > $goal" | bc` == 1 ]]; then
         type=type2
-        diff=+$step
+        diff=+1.0
     else
         grad=$(echo "$x1 $x2 $y1 $y2" | awk '{print ($1 - $2) / ($3 - $4)}')
         diff=$(echo "$grad $goal $y2" | awk '{print $1 * ($2 - $3)}')
