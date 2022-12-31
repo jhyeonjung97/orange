@@ -8,7 +8,11 @@ function submit {
         grep Selective POSCAR
         grep MAGMOM INCAR 
     fi
-    if [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
+    if [[ ${here} == 'nurion' ]]; then
+        sed -i -e 's/x2431a10/x2347a10/g' *
+        qsub run_slurm.sh
+    elif [[ ${here} == 'kisti' ]]; then
+        sed -i -e 's/x2347a10/x2431a10/g' *
         qsub run_slurm.sh
     else
         sbatch run_slurm.sh
