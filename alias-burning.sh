@@ -36,8 +36,8 @@ echo -e "\033[1mg5:\033[0m"
 g5
 echo -e "\033[1midle:\033[0m"
 idle'
-alias ta='tail -n 6 */stdout*.out'
-alias taa='tail -n 6 */*/stdout*.out'
+alias ta='tail -n 6 */stdout.log'
+alias taa='tail -n 6 */*/stdout.log'
 
 alias priority='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q"'
 alias p1='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g1'
