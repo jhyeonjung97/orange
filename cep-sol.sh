@@ -7,7 +7,7 @@ sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
 sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
 sh ~/bin/orange/modify.sh INCAR NSW
 sh ~/bin/orange/modify.sh INCAR IBRION
-# sh ~/bin/orange/modify.sh INCAR NEDIFF -15.0
+sh ~/bin/orange/modify.sh INCAR NEDIFF -15.0
 
 goal=$1
 # goal=-0.6
@@ -20,7 +20,7 @@ step=0.1
 error=0.02
 unset map
 declare -A map
-if [[ ! -e mpiexe.sh ]]; then
+if [[ ! -s mpiexe.sh ]]; then
     grep mpiexe run_slurm.sh > mpiexe.sh
 fi
 date >> cepout.log
@@ -40,15 +40,19 @@ do
     if [[ -z $head ]] && [[ ${#line[@]} == 7 ]]; then
         ne=${line[0]}
         ep=${line[6]}
-        map+=([$ne]=$ep)
         x1=$x2
         y1=$y2
         x2=$ne
         y2=$ep
-        echo ${line[@]}
-        echo $x1 $x2 $y1 $y2
+        if [[ "$x1" == "$x2" ]]; then
+            x1=''
+            y1=''
+        else
+            map+=([$ne]=$ep)
+        fi
     fi
 done < cepout.log
+# echo $x1 $x2 $y1 $y2 ${map[@]}
 
 function update {
     IFS=' '
@@ -76,24 +80,24 @@ function in_map {
     return 1
 }
 
-update
-echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
-x2=$ne
-y2=$ep
+if [[ ${#map[@]} -eq 0 ]]; then
+    update
+    x2=$ne
+    y2=$ep
+else
+    mkdir cep_$ne
+    cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log cep_$ne
+    sh ~/bin/orange/modify.sh INCAR NEDIFF
+    # if [[ -s CONTCAR ]]; then
+    #     mv CONTCAR POSCAR
+    # fi
+fi
 
+echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
 range0=$(echo "$goal $error" | awk '{print $1 - $2}')
 range1=$(echo "$goal $error" | awk '{print $1 + $2}')
 until [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` -eq 1 ]] 
-do
-    if [[ ${#map[@]} -ne 0 ]]; then
-        mkdir cep_$ne
-        cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log cep_$ne
-        sh ~/bin/orange/modify.sh INCAR NEDIFF
-        # if [[ -s CONTCAR ]]; then
-        #     mv CONTCAR POSCAR
-        # fi
-    fi
-    
+do 
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
         if [[ -n $(grep '#NEDIFF' INCAR) ]]; then
