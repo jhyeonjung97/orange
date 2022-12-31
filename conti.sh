@@ -136,11 +136,13 @@ function qe {
 
 function cep {
     cp POSCAR .POSCAR
+    rm STD*
     if [[ -s CONTCAR ]]; then
         mv CONTCAR POSCAR
     fi
-    rm STD*
-    sed -i -e '/mpiexe/d' run_slurm.sh
+    if [[ -s WAVECAR ]]; then
+        sed -i -e '/mpiexe/d' run_slurm.sh
+    fi
     if [[ ${here} == 'burning' ]]; then
         sbatch run_slurm.sh
     elif [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
