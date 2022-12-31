@@ -1,8 +1,10 @@
 #!/bin/bash
 OIFS=$IFS
 
-mkdir wave
-cp * wave
+if [[ ! -d wave ]]; then
+    mkdir wave
+    cp * wave
+fi
 sh ~/bin/orange/modify.sh INCAR ISTART 1
 sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
 sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
