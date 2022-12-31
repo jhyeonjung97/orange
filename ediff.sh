@@ -1,6 +1,6 @@
 #!/bin/bash
 j=1
-while [[ -n $(grep EDIFF stdout.log) ]]; then
+while [[ -n $(grep EDIFF stdout.log) ]]
 do 
     i=1
     save="conti_$i"
