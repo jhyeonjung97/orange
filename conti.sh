@@ -137,10 +137,9 @@ function qe {
 function cep {
     cp POSCAR .POSCAR
     rm STD*
-    if [[ -s CONTCAR ]]; then
+    if [[ ! -s WAVECAR ]] && [[ -s CONTCAR ]]; then
         mv CONTCAR POSCAR
-    fi
-    if [[ -s WAVECAR ]]; then
+    elif [[ -s WAVECAR ]]; then
         sed -i -e '/mpiexe/d' run_slurm.sh
     fi
     if [[ ${here} == 'burning' ]]; then
