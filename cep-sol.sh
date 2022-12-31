@@ -11,8 +11,15 @@ sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
 sh ~/bin/orange/modify.sh INCAR NSW
 sh ~/bin/orange/modify.sh INCAR IBRION
 
-goal=$1
-# goal=-0.6
+if [[ -n $1 ]]; then
+    goal=$1
+elif [[ -n $(echo $PWD | grep 1_Au) ]]; then
+    goal=-0.6
+elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
+    goal=-0.1
+else
+    goal=-0.6
+if 
 x1=''
 x2=''
 y1=''
