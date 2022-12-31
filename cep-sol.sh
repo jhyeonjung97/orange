@@ -1,4 +1,5 @@
 #!/bin/bash
+OIFS=$IFS
 
 mkdir wave
 cp * wave
@@ -30,7 +31,7 @@ echo -e "Nelect\tType\tDiff\tShift\tFermi\tWork.F\tPotential" >> cepout.log
 
 while read line
 do
-    read -a line <<< $line
+    IFS=$'\t' read -r -a line <<< $line
     head=${line[0]}
     head=${head#-}
     head=${head//[0-9]/}
@@ -52,7 +53,7 @@ do
         fi
     fi
 done < cepout.log
-# echo $x1 $x2 $y1 $y2 ${map[@]}
+# echo $x1 $x2 $y1 $y2 ${#map[@]}
 
 function update {
     IFS=' '
