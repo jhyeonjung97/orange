@@ -89,10 +89,16 @@ else
         exit 1
     fi
     if in_array 'cep' "${type[*]}"; then
-        read -p 'goal electrode potential? (default: -0.6 V) ' goal
+        read -p 'goal electrode potential? ' goal
         if [[ -z $goal ]]; then
-            echo 'use default value -0.6 V...'
-            goal='-0.6'
+            if [[ -n $(echo $PWD | grep 1_Au) ]]; then
+                goal=-0.6
+            elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
+                goal=-0.1
+            else
+                goal=-0.6
+            if
+            echo "use default value $goal V..."
         fi
         cp INCAR .INCAR_old
         sh ~/bin/orange/modify.sh INCAR IDIPOL 3
