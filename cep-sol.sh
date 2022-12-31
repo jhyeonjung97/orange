@@ -198,27 +198,21 @@ do
     fi
 done < optout.log
 
-update
-echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> optout.log
-x2=$ne
-y2=$ep
-
-if [[ -s POSCAR ]] && [[ -s WAVECAR ]]; then
-    sh mpiexe.sh
+if [[ ${#map[@]} -eq 0 ]]; then
+    update
+    # echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> optout.log
+    x2=$ne
+    y2=$ep
 else
-    exit 2
+    mkdir opt_$ne
+    cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log opt_$ne
+    # if [[ -s CONTCAR ]]; then
+    #     mv CONTCAR POSCAR
+    # fi
 fi
-
-until [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` -eq 1 ]] 
-do
-    if [[ ${#map[@]} -ne 0 ]]; then
-        mkdir opt_$ne
-        cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log opt_$ne
-        # if [[ -s CONTCAR ]]; then
-        #     mv CONTCAR POSCAR
-        # fi
-    fi
     
+until [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` -eq 1 ]] && [[ ${#map[@]} -ne 0 ]]
+do    
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
         diff=0.0
