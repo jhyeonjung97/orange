@@ -1,14 +1,14 @@
 # functions
 function modify {
     if [[ -z $(grep $2 $1) ]]; then
-        echo $2 >> $1
+        echo "$2 " >> $1
     fi
     
     if [[ -z $3 ]]; then
-        sed -i "s/#$2/$2/" $1
-        sed -i "s/$2/#$2/" $1
+        sed -i "s/#$2 /$2 /" $1
+        sed -i "s/$2 /#$2 /" $1
     else
-        sed -i "/$2/c\\$2 = $3" $1
+        sed -i "/$2 /c\\$2 = $3" $1
     fi
 }
 
