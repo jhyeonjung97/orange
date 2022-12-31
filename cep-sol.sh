@@ -19,7 +19,7 @@ elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
     goal=-0.1
 else
     goal=-0.6
-if 
+fi
 x1=''
 x2=''
 y1=''
