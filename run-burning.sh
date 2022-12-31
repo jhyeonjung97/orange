@@ -97,7 +97,7 @@ else
                 goal=-0.1
             else
                 goal=-0.6
-            if
+            fi
             echo "use default value $goal V..."
         fi
         cp INCAR .INCAR_old
