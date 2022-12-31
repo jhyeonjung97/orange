@@ -7,7 +7,6 @@ sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
 sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
 sh ~/bin/orange/modify.sh INCAR NSW
 sh ~/bin/orange/modify.sh INCAR IBRION
-sh ~/bin/orange/modify.sh INCAR NEDIFF -15.0
 
 goal=$1
 # goal=-0.6
@@ -18,6 +17,7 @@ y2=''
 hl=-4.43
 step=0.1
 error=0.02
+nediff=-15.0
 unset map
 declare -A map
 if [[ ! -s mpiexe.sh ]]; then
@@ -103,9 +103,11 @@ do
         if [[ -n $(grep '#NEDIFF' INCAR) ]]; then
             diff=0.0
         elif [[ -n $(grep NEDIFF INCAR) ]]; then
-            read -ra nediff <<< $(grep NEDIFF INCAR)
-            diff=${nediff[2]}
+            read -ra nediff_tag <<< $(grep NEDIFF INCAR)
+            diff=${nediff_tag[2]}
             sh ~/bin/orange/modify.sh INCAR NEDIFF
+        elif [[ -n $nediff ]]; then
+            diff=$nediff
         else
             diff=0.0
         fi
