@@ -83,25 +83,24 @@ function in_map {
     return 1
 }
 
-if [[ ${#map[@]} -eq 0 ]]; then
-    update
-    echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
-    x2=$ne
-    y2=$ep
-else
-    mkdir cep_$ne
-    cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log cep_$ne
-    sh ~/bin/orange/modify.sh INCAR NEDIFF
-    # if [[ -s CONTCAR ]]; then
-    #     mv CONTCAR POSCAR
-    # fi
-fi
-
 echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
 range0=$(echo "$goal $error" | awk '{print $1 - $2}')
 range1=$(echo "$goal $error" | awk '{print $1 + $2}')
 until [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` -eq 1 ]] 
 do
+    if [[ ${#map[@]} -eq 0 ]]; then
+        update
+        echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
+        x2=$ne
+        y2=$ep
+    else
+        mkdir cep_$ne
+        cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log cep_$ne
+        sh ~/bin/orange/modify.sh INCAR NEDIFF
+        # if [[ -s CONTCAR ]]; then
+        #     mv CONTCAR POSCAR
+        # fi
+    fi
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
         diff=0.0
@@ -197,22 +196,21 @@ do
         fi
     fi
 done < optout.log
-
-if [[ ${#map[@]} -eq 0 ]]; then
-    update
-    # echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> optout.log
-    x2=$ne
-    y2=$ep
-else
-    mkdir opt_$ne
-    cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log opt_$ne
-    # if [[ -s CONTCAR ]]; then
-    #     mv CONTCAR POSCAR
-    # fi
-fi
     
 until [[ ${#map[@]} -ne 0 ]] && [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` -eq 1 ]]
 do    
+    if [[ ${#map[@]} -eq 0 ]]; then
+        update
+        # echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> optout.log
+        x2=$ne
+        y2=$ep
+    else
+        mkdir opt_$ne
+        cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log opt_$ne
+        # if [[ -s CONTCAR ]]; then
+        #     mv CONTCAR POSCAR
+        # fi
+    fi
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
         diff=0.0
