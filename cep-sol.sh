@@ -175,6 +175,7 @@ unset map
 declare -A map
 sh ~/bin/orange/modify.sh INCAR NSW 600
 sh ~/bin/orange/modify.sh INCAR IBRION 2
+sh ~/bin/orange/modify.sh INCAR LWAVE
 date >> optout.log
 # date >> check.log
 echo -e "Nelect\tType\tShift\tFermi\tWork.F\tPotential" >> optout.log
@@ -205,7 +206,10 @@ do
 done < optout.log
     
 until [[ ${#map[@]} -ne 0 ]] && [[ `echo "$range0 < $ep" | bc` -eq 1 ]] && [[ `echo "$ep < $range1" | bc` -eq 1 ]]
-do    
+do
+    if [[ -s CONTCAR ]]; then
+        mv CONTCAR POSCAR
+    fi
     if [[ ${#map[@]} -eq 0 ]]; then
         update
         # echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> optout.log
@@ -213,10 +217,7 @@ do
         y2=$ep
     else
         mkdir opt_$ne
-        cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log opt_$ne
-        # if [[ -s CONTCAR ]]; then
-        #     mv CONTCAR POSCAR
-        # fi
+        cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR WAVECAR vasprun.xml stdout.log opt_$ne
     fi
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
