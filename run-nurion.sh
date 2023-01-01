@@ -69,6 +69,7 @@ else
     else
         total+='.std'
     fi
+    echo "/home01/${account}/KISTI_VASP/KNL_XeonPhi/vasp.5.4.4.pl2.KISTI.KNL_XeonPhi$total.x"
     if [[ -e "/home01/${account}/KISTI_VASP/KNL_XeonPhi/vasp.5.4.4.pl2.KISTI.KNL_XeonPhi$total.x" ]]; then
         custom='KISTI_VASP\/KNL_XeonPhi\/vasp.5.4.4.pl2.KISTI.KNL_XeonPhi'
         sed -i -e "s/custom/$node \/home01\/${account}\/$custom$total.x/" run_slurm.sh
