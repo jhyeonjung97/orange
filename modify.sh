@@ -1,7 +1,7 @@
 # functions
 function modify {
     if [[ -z $(grep $2 $1) ]]; then
-        echo "#$2 " >> $1
+        echo "#$2 =" >> $1
     fi
     if [[ -z $3 ]]; then
         sed -i "s/#$2 /$2 /" $1
