@@ -124,19 +124,19 @@ do
         # fi
     elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
         type=type1
-        diff=-0.1
+        diff=-1.0
     elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep > $goal" | bc` == 1 ]]; then
         type=type2
-        diff=+0.1
+        diff=+1.0
     else
         grad=$(echo "$x1 $x2 $y1 $y2" | awk '{print ($1 - $2) / ($3 - $4)}')
         diff=$(echo "$grad $goal $y2" | awk '{print $1 * ($2 - $3)}')
-        if [[ `echo "$diff > 1.0" | bc` == 1 ]]; then
+        if [[ `echo "$diff > 10.0" | bc` == 1 ]]; then
             type=type3
-            diff=+1.0
-        elif [[ `echo "$diff < -1.0" | bc` == 1 ]]; then
+            diff=+10.0
+        elif [[ `echo "$diff < -10.0" | bc` == 1 ]]; then
             type=type4
-            diff=-1.0
+            diff=-10.0
         else
             type=type5
         fi
