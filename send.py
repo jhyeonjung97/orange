@@ -32,9 +32,9 @@ if surv=='burning':
     surv='hyeonjung@burning.postech.ac.kr:'
 elif surv=='mac':
     surv='hailey@134.79.69.172:~/Desktop/'
-elif surv=='kisti':
+elif surv=='x2431':
     surv='x2431a10@nurion.ksc.re.kr:'
-elif surv=='nurion':
+elif surv=='x2347':
     surv='x2347a10@nurion.ksc.re.kr:'
 elif surv=='cori':
     surv='jiuy97@cori.nersc.gov:'

@@ -24,10 +24,10 @@ do
     elif [[ $i == 'burning' ]]; then
         port='-P 1234 '
         srvr='hyeonjung@burning.postech.ac.kr:'
-    elif [[ $i == 'kisti' ]]; then
+    elif [[ $i == 'x2431' ]]; then
         port=''
         srvr='x2431a10@nurion.ksc.re.kr:'
-    elif [[ $i == 'nurion' ]]; then
+    elif [[ $i == 'x2347' ]]; then
         port=''
         srvr='x2347a10@nurion.ksc.re.kr:'
     elif [[ $i == 'cori' ]]; then

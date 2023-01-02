@@ -48,11 +48,11 @@ elif [[ $send =~ 'w' ]]; then
     echo "scp *.vasp jhyeo@192.168.1.251:~/Desktop/$send"
     scp *.vasp jhyeo@192.168.1.251:~/Desktop/$send
     rm *.vasp
-elif [[ $send =~ 'nurion' ]]; then
+elif [[ $send =~ 'x2347' ]]; then
     echo "scp *.vasp x2347a10@nurion.ksc.re.kr:~/vis"
     scp *.vasp x2347a10@nurion.ksc.re.kr:~/vis
     rm *.vasp
-elif [[ $send =~ 'kisti' ]]; then
+elif [[ $send =~ 'x2431' ]]; then
     echo "scp *.vasp x2431a10@nurion.ksc.re.kr:~/vis"
     scp *.vasp x2431a10@nurion.ksc.re.kr:~/vis
     rm *.vasp

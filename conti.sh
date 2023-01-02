@@ -88,7 +88,7 @@ function conti {
 
     if [[ ${here} == 'burning' ]]; then
         sbatch run_slurm.sh
-    elif [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
+    elif [[ ${here} == 'kisti' ]]; then
         qsub run_slurm.sh
     else
         echo 'where am i..? please modify [con2pos.sh] code'
@@ -122,10 +122,10 @@ function qe {
     cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
     if [[ ${here} == 'burning' ]]; then
         sbatch run_slurm.sh
-    elif [[ ${here} == 'nurion' ]]; then
+    elif [[ ${account} == 'x2347a10' ]]; then
         sed -i -e 's/x2431a10/x2347a10/g' *
         qsub run_slurm.sh
-    elif [[ ${here} == 'kisti' ]]; then
+    elif [[ ${here} == 'x2431a10' ]]; then
         sed -i -e 's/x2347a10/x2431a10/g' *
         qsub run_slurm.sh
     else
@@ -144,7 +144,7 @@ function cep {
     fi
     if [[ ${here} == 'burning' ]]; then
         sbatch run_slurm.sh
-    elif [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
+    elif [[ ${here} == 'kisti' ]]; then
         qsub run_slurm.sh
     else
         echo 'where am i..? please modify [con2pos.sh] code'

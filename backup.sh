@@ -7,12 +7,9 @@
 #     exit 1
 # fi
 
-if [[ ${here} == nurion ]]; then
-    echo "cp -r $PWD /scratch/x2347a10/backup"
-    cp -r $PWD /scratch/x2347a10/backup
-elif [[ ${here} == kisti ]]; then
-    echo "cp -r $PWD /scratch/x2431a10/backup"
-    cp -r $PWD /scratch/x2431a10/backup
+if [[ ${here} == kisti ]]; then
+    echo "cp -r $PWD /scratch/${account}/backup"
+    cp -r $PWD /scratch/${account}/backup
 elif [[ ${here} == burning ]]; then
     echo "cp -r $PWD ~/backup"
     cp -r $PWD ~/backup

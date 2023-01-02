@@ -70,7 +70,7 @@ if [[ ${here} == 'burning' ]]; then
     else
         sed -n '16p' run_slurm.sh > temp1
     fi
-elif [[ ${here} == 'kisti' ]] || [[ ${here} == 'nurion' ]]; then
+elif [[ ${here} == 'kisti' ]]; then
     if [[ -n $(grep beef run_slurm.sh) ]]; then
         sed -n '11,13p' run_slurm.sh > temp1
     else
@@ -85,7 +85,7 @@ if [[ $geo != 'y' ]]; then
     cp * geo
     if [[ ${here} == 'burning' ]]; then
         sed -i '16,$d' run_slurm.sh
-    elif [[ ${here} == 'kisti' ]] || [[ ${here} == 'nurion' ]]; then
+    elif [[ ${here} == 'kisti' ]]; then
         sed -i '11,$d' run_slurm.sh
     fi
 fi

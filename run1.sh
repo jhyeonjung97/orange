@@ -9,7 +9,7 @@ do
     if [[ $i == 0 ]]; then
         if [[ ${here} == 'burning' ]]; then
             sed -n '1,15p' run_slurm.sh > ../head.sh
-        elif [[ ${here} == 'kisti' ]] || [[ ${here} == 'nurion' ]]; then
+        elif [[ ${here} == 'kisti' ]]; then
             sed -n '1,10p' run_slurm.sh > ../head.sh
         else
             echo 'where am i..? please modify [run1.sh] code'
@@ -25,7 +25,7 @@ do
     # tail
     if [[ ${here} == 'burning' ]]; then
         sed -n '16,$p' run_slurm.sh > ../tail.sh
-    elif [[ ${here} == 'kisti' ]] || [[ ${here} == 'nurion' ]]; then
+    elif [[ ${here} == 'kisti' ]]; then
         sed -n '11,$p' run_slurm.sh > ../tail.sh
     else
         echo 'where am i..? please modify [combine.sh] code'

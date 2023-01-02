@@ -11,8 +11,8 @@ elif [[ ! -e "run_slurm.sh" ]]; then
     echo "don't forget run_slurm.sh.."
     if [[ $here == 'burning' ]]; then
         sh ~/bin/orange/run-burning.sh
-    elif [[ $here == 'kisti' ]] || [[ $here == 'nurion' ]]; then
-        sh ~/bin/orange/run-nurion.sh
+    elif [[ $here == 'kisti' ]]; then
+        sh ~/bin/orange/run-kisti.sh
     exit 3
     fi
 elif [[ -z $1 ]]; then
@@ -28,10 +28,8 @@ fi
 
 if [[ ${here} == 'burning' ]]; then
     sed -i -e "/pseudo_dir/c\    pseudo_dir = '/home/hyeonjung/q-e-qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
-elif [[ ${here} == 'nurion' ]]; then
-    sed -i -e "/pseudo_dir/c\    pseudo_dir = '/home01/x2347a10/qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
 elif [[ ${here} == 'kisti' ]]; then
-    sed -i -e "/pseudo_dir/c\    pseudo_dir = '/home01/x2431a10/qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
+    sed -i -e "/pseudo_dir/c\    pseudo_dir = '/home01/${account}/qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
 fi
 
 read -p "lattice parameter (A): " a
@@ -106,9 +104,9 @@ CELL_PARAMETERS {angstrom}
     cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
     sh ~/bin/orange/jobname.sh $n$i
     
-    if [[ ${here} == 'kisti' ]]; then
+    if [[ ${account} == 'x2347a10' ]]; then
         sed -i -e 's/x2431a10/x2347a10/' *
-    elif [[ ${here} == 'nurion' ]]; then
+    elif [[ ${account} == 'x2431a10' ]]; then
         sed -i -e 's/x2347a10/x2431a10/' *
     fi
     cd ..

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function resub {
-    if [[ ${here} == 'nurion' ]] || [[ ${here} == 'kisti' ]]; then
+    if [[ ${here} == 'kisti' ]]; then
         rm *.e* *.o*
     else
         rm STD* std*

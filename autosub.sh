@@ -14,8 +14,8 @@ elif [[ ! -e "run_slurm.sh" ]]; then
     echo "don't forget run_slurm.sh.."
     if [[ $here == 'burning' ]]; then
         sh ~/bin/orange/run-burning.sh
-    elif [[ $here == 'kisti' ]] || [[ $here == 'nurion' ]]; then
-        sh ~/bin/orange/run-nurion.sh
+    elif [[ $here == 'kisti' ]]; then
+        sh ~/bin/orange/run-kisti.sh
     fi
     exit 3
 elif [[ -z $1 ]]; then
