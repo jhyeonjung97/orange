@@ -45,8 +45,8 @@ do
     head=${head#-}
     head=${head//[0-9]/}
     head=${head#.}
-    echo $head
-    echo ${#line[@]}
+    # echo $head
+    # echo ${#line[@]}
     if [[ -z $head ]] && [[ ${#line[@]} == 7 ]]; then
         ne=${line[0]}
         ep=${line[6]}
