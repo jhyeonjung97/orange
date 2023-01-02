@@ -253,7 +253,7 @@ do
     done
     sh ~/bin/orange/modify.sh INCAR NELECT $new
     if [[ -s POSCAR ]] && [[ -s WAVECAR ]]; then
-        sh mpiexe.sh
+        sh mpiexe.sh; sh ~/bin/orange/ediff.sh
     else
         exit 3
     fi
