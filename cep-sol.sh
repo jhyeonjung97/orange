@@ -40,13 +40,13 @@ echo -e "Nelect\tType\tDiff\tShift\tFermi\tWork.F\tPotential" >> cepout.log
 
 while read line
 do
-    IFS=$'\t' read -r -a line <<< $line
+    IFS=' ' read -r -a line <<< $line
     head=${line[0]}
     head=${head#-}
     head=${head//[0-9]/}
     head=${head#.}
-    # echo $head
-    # echo ${#line[@]}
+    echo $head
+    echo ${#line[@]}
     if [[ -z $head ]] && [[ ${#line[@]} == 7 ]]; then
         ne=${line[0]}
         ep=${line[6]}
@@ -62,7 +62,7 @@ do
         fi
     fi
 done < cepout.log
-# echo $x1 $x2 $y1 $y2 ${#map[@]}
+echo $x1 $x2 $y1 $y2 ${#map[@]}
 
 function update {
     IFS=' '
@@ -80,13 +80,15 @@ function update {
     diff=$(echo $diff | awk '{printf "%.2f", $1}')
 }
 
-function in_map {
-    for e in ${map[*]}
+function in_array {
+    ARRAY=$2
+    for e in ${ARRAY[*]}
     do
         if [[ $e == $1 ]]; then
             return 0
         fi
     done
+
     return 1
 }
 
@@ -143,7 +145,7 @@ do
     fi
     # echo -e "$x1\t$x2\t$y1\t$y2\t$grad\t$goal\t$type\t$diff" >> check.log
     new=$(echo "$ne $diff" | awk '{print $1 + $2}')
-    while in_map $new
+    while in_map "$new" "${!map[*]}"
     do
         if [[ `echo "$diff < 0" | bc` == 1 ]]; then
             new=$(echo "$new $step" | awk '{print $1 - $2}')
@@ -182,7 +184,7 @@ echo -e "Nelect\tType\tShift\tFermi\tWork.F\tPotential" >> optout.log
 
 while read line
 do
-    IFS=$'\t' read -r -a line <<< $line
+    IFS=' ' read -r -a line <<< $line
     head=${line[0]}
     head=${head#-}
     head=${head//[0-9]/}
