@@ -125,7 +125,7 @@ function qe {
     elif [[ ${account} == 'x2347a10' ]]; then
         sed -i -e 's/x2431a10/x2347a10/g' *
         qsub run_slurm.sh
-    elif [[ ${here} == 'x2431a10' ]]; then
+    elif [[ ${account} == 'x2431a10' ]]; then
         sed -i -e 's/x2347a10/x2431a10/g' *
         qsub run_slurm.sh
     else
