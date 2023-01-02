@@ -62,7 +62,7 @@ do
         fi
     fi
 done < cepout.log
-echo $x1 $x2 $y1 $y2 ${#map[@]}
+# echo $x1 $x2 $y1 $y2 ${#map[@]}
 
 function update {
     IFS=' '
@@ -145,7 +145,7 @@ do
     fi
     # echo -e "$x1\t$x2\t$y1\t$y2\t$grad\t$goal\t$type\t$diff" >> check.log
     new=$(echo "$ne $diff" | awk '{print $1 + $2}')
-    while in_map "$new" "${!map[*]}"
+    while in_array "$new" "${!map[*]}"
     do
         if [[ `echo "$diff < 0" | bc` == 1 ]]; then
             new=$(echo "$new $step" | awk '{print $1 - $2}')
