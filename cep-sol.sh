@@ -148,8 +148,10 @@ do
     while in_array "$new" "${!map[*]}"
     do
         if [[ `echo "$diff < 0" | bc` == 1 ]]; then
+            type=type6
             new=$(echo "$new $step" | awk '{print $1 - $2}')
         else
+            type=type7
             new=$(echo "$new $step" | awk '{print $1 + $2}')
         fi
     done
