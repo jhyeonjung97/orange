@@ -145,8 +145,12 @@ else
         i=${i%/}
         cd $i*
         if [[ -n $(grep pw.x run_slurm.sh) ]]; then
-            if [[ -z $(grep Maximum stdout.log) ]] && [[ -n $(grep DONE stdout.log) ]]; then
-                echo 'DONE!'
+            if [[ -n $(grep Maximum stdout.log) ]] && [[ -n $(grep request stdout.log) ]]; then
+                if [[ -n $(grep DONE stdout.log) ]]; then
+                    echo 'DONE!'
+                else
+                    qe
+                fi
             else
                 qe
             fi
