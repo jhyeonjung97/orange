@@ -61,7 +61,7 @@ do
     fi
     sh ~/bin/orange/vasp5.sh
     vaspkit -task 103
-    if [[ ! -s POTCAR ]]; then
+    if [[ ! -s $i/POTCAR ]]; then
         python3 ~/bin/shoulder/potcar_ara.py
     fi
     grep --colour POTCAR
