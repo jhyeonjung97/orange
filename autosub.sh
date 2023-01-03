@@ -60,11 +60,10 @@ do
         python3 ~/bin/orange/magmom.py
     fi
     sh ~/bin/orange/vasp5.sh
-    vaspkit -task 103
-    if [[ ! -s $i/POTCAR ]]; then
+    vaspkit -task 103 | grep --colour POTCAR
+    if [[ ! -s POTCAR ]]; then
         python3 ~/bin/shoulder/potcar_ara.py
     fi
-    grep --colour POTCAR
     if [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
         sh ~/bin/orange/nelect.sh
     fi
