@@ -1,5 +1,6 @@
 #!/bin/bash
 
+rm mpiexe.sh run_slurm.sh
 if [[ ! -d /TGM/Apps/VASP/VASP_BIN/6.3.2 ]]; then
     echo "Here is not burning.postech.ac.kr..."
     exit 1
@@ -115,8 +116,6 @@ else
         # fi
         if [[ -s WAVECAR ]]; then
             rm STD*
-            grep mpiexe run_slurm.sh > mpiexe.sh
-            sed -i -e '/mpiexe/d' run_slurm.sh
         elif [[ -s CONTCAR ]]; then
             mkdir geo
             cp * geo
@@ -126,10 +125,8 @@ else
     fi
 fi
 
-if [[ ! -s mpiexe.sh ]]; then
-    grep mpiexe run_slurm.sh > mpiexe.sh
-    sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
-fi
+grep mpiexe run_slurm.sh > mpiexe.sh
+sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
 
 read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then

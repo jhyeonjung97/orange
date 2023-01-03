@@ -7,7 +7,6 @@ function submit {
         grep NPAR INCAR
         grep Selective POSCAR
         grep MAGMOM INCAR
-    elif [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
         if [[ -n $(grep walltime run_slurm.sh | grep 120) ]]; then
             sed -i 's/max_seconds = 170000/max_seconds = 430000/' incar.in
             sed -i 's/max_seconds = 170000/max_seconds = 430000/' qe-relax.in
