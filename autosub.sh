@@ -48,7 +48,10 @@ do
     if [[ ! -d $i ]]; then
         mkdir $i
     fi
-    cp INCAR KPOINTS mpiexe.sh run_slurm.sh $i
+    cp INCAR KPOINTS run_slurm.sh $i
+    if [[ -s mpiexe.sh ]]; then
+        cp mpiexe.sh $i
+    fi
     cp $p$i.vasp $i/POSCAR
     cd $i
     python ~/bin/pyband/xcell.py #XCELL
