@@ -85,15 +85,7 @@ function conti {
     if [[ -s CONTCAR ]]; then
         mv CONTCAR POSCAR
     fi
-
-    if [[ ${here} == 'burning' ]]; then
-        sbatch run_slurm.sh
-    elif [[ ${here} == 'kisti' ]]; then
-        qsub run_slurm.sh
-    else
-        echo 'where am i..? please modify [con2pos.sh] code'
-        exit 1
-    fi
+    sh ~/bin/orange/sub.sh
 }
 
 function qe {
@@ -120,20 +112,7 @@ function qe {
         sed -i 's/max_seconds = 430000/max_seconds = 170000/' qe-relax.in
     fi
     cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
-    if [[ ${here} == 'burning' ]]; then
-        sbatch run_slurm.sh
-    elif [[ ${account} == 'x2347a10' ]]; then
-        sed -i -e 's/x2431a10/x2347a10/g' incar.in
-        sed -i -e 's/x2431a10/x2347a10/g' qe-relax.in
-        qsub run_slurm.sh
-    elif [[ ${account} == 'x2431a10' ]]; then
-        sed -i -e 's/x2347a10/x2431a10/g' incar.in
-        sed -i -e 's/x2347a10/x2431a10/g' qe-relax.in
-        qsub run_slurm.sh
-    else
-        echo 'where am i..? please modify [conti.sh] code'
-        exit 1
-    fi
+    sh ~/bin/orange/sub.sh
 }
 
 function cep {
@@ -144,14 +123,7 @@ function cep {
     elif [[ -s WAVECAR ]]; then
         sed -i -e '/mpiexe/d' run_slurm.sh
     fi
-    if [[ ${here} == 'burning' ]]; then
-        sbatch run_slurm.sh
-    elif [[ ${here} == 'kisti' ]]; then
-        qsub run_slurm.sh
-    else
-        echo 'where am i..? please modify [con2pos.sh] code'
-        exit 1
-    fi
+    sh ~/bin/orange/sub.sh
 }
 
 if [[ -z $1 ]]; then # simple conti
