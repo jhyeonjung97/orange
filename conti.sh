@@ -123,10 +123,12 @@ function qe {
     if [[ ${here} == 'burning' ]]; then
         sbatch run_slurm.sh
     elif [[ ${account} == 'x2347a10' ]]; then
-        sed -i -e 's/x2431a10/x2347a10/g' *
+        sed -i -e 's/x2431a10/x2347a10/g' incar.in
+        sed -i -e 's/x2431a10/x2347a10/g' qe-relax.in
         qsub run_slurm.sh
     elif [[ ${account} == 'x2431a10' ]]; then
-        sed -i -e 's/x2347a10/x2431a10/g' *
+        sed -i -e 's/x2347a10/x2431a10/g' incar.in
+        sed -i -e 's/x2347a10/x2431a10/g' qe-relax.in
         qsub run_slurm.sh
     else
         echo 'where am i..? please modify [conti.sh] code'
