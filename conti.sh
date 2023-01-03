@@ -100,9 +100,11 @@ function qe {
     if [[ -s contcar.in ]]; then
         mv contcar.in poscar.in
     fi
-    if [[ -n $(grep Maximum stdout.log) ]] && [[ -n $(grep DONE stdout.log) ]]; then
-        sed -i 's/from_scratch/restart/g' incar.in
-        sed -i 's/from_scratch/restart/g' qe-relax.in
+    if [[ -n $(grep DONE stdout.log) ]]; then
+        if [[ -n $(grep Maximum stdout.log) ]] || [[ -n $(grep request stdout.log) ]]; then
+            sed -i 's/from_scratch/restart/g' incar.in
+            sed -i 's/from_scratch/restart/g' qe-relax.in
+        fi
     fi
     cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
     sh ~/bin/orange/sub.sh
