@@ -17,10 +17,10 @@ function submit {
         fi
     fi
     if [[ ${account} == 'x2347a10' ]]; then
-        sed -i -e 's/x2431a10/x2347a10/g' *
+        sed -i -e 's/x2431a10/x2347a10/g' run_slurm.sh
         qsub run_slurm.sh
     elif [[ ${account} == 'x2431a10' ]]; then
-        sed -i -e 's/x2347a10/x2431a10/g' *
+        sed -i -e 's/x2347a10/x2431a10/g' run_slurm.sh
         qsub run_slurm.sh
     else
         sbatch run_slurm.sh
