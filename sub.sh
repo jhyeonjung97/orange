@@ -6,7 +6,15 @@ function submit {
         sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
         grep NPAR INCAR
         grep Selective POSCAR
-        grep MAGMOM INCAR 
+        grep MAGMOM INCAR
+    elif [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
+        if [[ -n $(grep walltime run_slurm.sh | grep 120) ]]; then
+            sed -i 's/max_seconds = 170000/max_seconds = 430000/' incar.in
+            sed -i 's/max_seconds = 170000/max_seconds = 430000/' qe-relax.in
+        elif [[ -n $(grep walltime run_slurm.sh | grep 48) ]]; then
+            sed -i 's/max_seconds = 430000/max_seconds = 170000/' incar.in
+            sed -i 's/max_seconds = 430000/max_seconds = 170000/' qe-relax.in
+        fi
     fi
     if [[ ${account} == 'x2347a10' ]]; then
         sed -i -e 's/x2431a10/x2347a10/g' *
