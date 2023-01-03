@@ -59,7 +59,9 @@ do
     sh ~/bin/orange/vasp5.sh
     # python3 ~/bin/shoulder/potcar_ara.py
     vaspkit -task 103 | grep --colour POTCAR
-    sh ~/bin/orange/nelect.sh
+    if [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
+        sh ~/bin/orange/nelect.sh
+    fi
     sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
     sed -i "/#PBS -N/c\#PBS -N $n$i" run_slurm.sh
     cd ..
