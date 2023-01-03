@@ -129,7 +129,7 @@ function qe {
         sed -i -e 's/x2347a10/x2431a10/g' *
         qsub run_slurm.sh
     else
-        echo 'where am i..? please modify [conti-qe.sh] code'
+        echo 'where am i..? please modify [conti.sh] code'
         exit 1
     fi
 }
