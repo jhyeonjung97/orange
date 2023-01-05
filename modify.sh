@@ -13,9 +13,7 @@ function modify {
 }
 
 # prepare input files
-if [[ -s $1 ]]; then
-    modify $1 $2 $3
-elif [[ $1 == 'chg' ]]; then
+if [[ $1 == 'chg' ]] || ([[ $2 == INCAR ]] && [[ $3 == chg ]]); then
     cp INCAR .INCAR
     modify INCAR NSW
     modify INCAR IBRION
@@ -23,7 +21,8 @@ elif [[ $1 == 'chg' ]]; then
     modify INCAR LCHARG
     modify INCAR LAECHG .TRUE.
     modify INCAR LORBIT
-elif [[ $1 == 'dos' ]]; then
+    sed -i '/#PBS -N/s/$/-chg/' run_slurm.sh
+elif [[ $1 == 'dos' ]] || ([[ $2 == INCAR ]] && [[ $3 == dos ]]); then
     cp INCAR .INCAR
     modify INCAR ICHARG 11
     modify INCAR NSW
@@ -35,4 +34,8 @@ elif [[ $1 == 'dos' ]]; then
     modify INCAR LAECHG
     modify INCAR LORBIT 11
     sed -i "s/Monk-horst/Gamma-only/" KPOINTS
+    sed -i '/#PBS -N/s/-dos//g' run_slurm.sh
+    sed -i '/#PBS -N/s/$/-dos/' run_slurm.sh
+else
+    modify $1 $2 $3
 fi
