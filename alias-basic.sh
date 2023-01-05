@@ -10,6 +10,7 @@ alias pos2cif='~/bin/vtstscripts/pos2cif.pl POSCAR'
 alias con2cif='~/bin/vtstscripts/pos2cif.pl CONTCAR'
 alias out2xyz='sh ~/bin/orange/out2xyz.sh'
 alias rmport='~/bin/rm_mv ~/bin/port/*'
+alias lsport='ls ~/bin/port/'
 alias rmtemp='~/bin/rm_mv ~/bin/temp.sh'
 alias vitemp='vi ~/bin/temp.sh'
 
