@@ -16,6 +16,9 @@ else
     pattern=$f
 fi
 
+list=''
+read -p 'vaspsend destination (enter for skip): ' send
+
 for dir in */
 do
     cd $dir
@@ -31,39 +34,36 @@ do
                 else
                     cp $pattern ../$filename$numb.vasp
                 fi
+                list+="$filename$numb.vasp "
             elif [[ $pattern == 'CHGCAR' ]]; then
                 cp $file ../chgcar$numb.vasp
+                list+="chgcar$numb.vasp "
             elif [[ "${file##*.}" == "${pattern##*.}" ]]; then
                 filename="${file%.*}"
                 extension="${file##*.}"
                 cp $file ../$filename$numb.$extension
+                list+="$filename$numb.$extension "
             fi
         fi
     done
     cd ..
 done
 
-read -p 'vaspsend destination (enter for skip): ' send
 if [[ $send == 'port' ]]; then
-    cp *.vasp ~/port/
+    cp $list ~/port/
 elif [[ $send =~ 'w' ]]; then
-    echo "scp *.vasp jhyeo@192.168.1.251:~/Desktop/$send"
-    scp *.vasp jhyeo@192.168.1.251:~/Desktop/$send
-    rm *.vasp
+    echo "scp $list jhyeo@192.168.1.251:~/Desktop/$send"
+    scp $list jhyeo@192.168.1.251:~/Desktop/$send
 elif [[ $send =~ 'x2347' ]]; then
-    echo "scp *.vasp x2347a10@nurion.ksc.re.kr:~/vis"
-    scp *.vasp x2347a10@nurion.ksc.re.kr:~/vis
-    rm *.vasp
+    echo "scp $list x2347a10@nurion.ksc.re.kr:~/vis"
+    scp $list x2347a10@nurion.ksc.re.kr:~/vis
 elif [[ $send =~ 'x2431' ]]; then
-    echo "scp *.vasp x2431a10@nurion.ksc.re.kr:~/vis"
-    scp *.vasp x2431a10@nurion.ksc.re.kr:~/vis
-    rm *.vasp
+    echo "scp $list x2431a10@nurion.ksc.re.kr:~/vis"
+    scp $list x2431a10@nurion.ksc.re.kr:~/vis
 elif [[ $send =~ 'cori' ]]; then
-    echo "scp *.vasp jiuy97@cori.nersc.gov:~/vis"
-    scp *.vasp jiuy97@cori.nersc.gov:~/vis
-    rm *.vasp
+    echo "scp $list jiuy97@cori.nersc.gov:~/vis"
+    scp $list jiuy97@cori.nersc.gov:~/vis
 elif [[ -n $send ]]; then
-    echo "scp *.vasp hailey@134.79.69.172:~/Desktop/$send"
-    scp *.vasp hailey@134.79.69.172:~/Desktop/$send
-    rm *.vasp
+    echo "scp $list hailey@134.79.69.172:~/Desktop/$send"
+    scp $list hailey@134.79.69.172:~/Desktop/$send
 fi
