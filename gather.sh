@@ -31,6 +31,8 @@ do
                 else
                     cp $pattern ../$filename$numb.vasp
                 fi
+            elif [[ $pattern == 'CHGCAR' ]]; then
+                cp $file ../chgcar$numb.vasp
             elif [[ "${file##*.}" == "${pattern##*.}" ]]; then
                 filename="${file%.*}"
                 extension="${file##*.}"
