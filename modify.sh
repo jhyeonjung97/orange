@@ -13,7 +13,7 @@ function modify {
 }
 
 # prepare input files
-if [[ $1 == 'chg' ]] || ([[ $2 == INCAR ]] && [[ $3 == chg ]]); then
+if [[ $1 == 'chg' ]] || ([[ $1 == INCAR ]] && [[ $3 == chg ]]); then
     cp INCAR .INCAR
     modify INCAR NSW
     modify INCAR IBRION
@@ -22,7 +22,7 @@ if [[ $1 == 'chg' ]] || ([[ $2 == INCAR ]] && [[ $3 == chg ]]); then
     modify INCAR LAECHG .TRUE.
     modify INCAR LORBIT
     sed -i '/#PBS -N/s/$/-chg/' run_slurm.sh
-elif [[ $1 == 'dos' ]] || ([[ $2 == INCAR ]] && [[ $3 == dos ]]); then
+elif [[ $1 == 'dos' ]] || ([[ $1 == INCAR ]] && [[ $3 == dos ]]); then
     cp INCAR .INCAR
     modify INCAR ICHARG 11
     modify INCAR NSW
