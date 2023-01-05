@@ -2,10 +2,10 @@
 
 numb=$2
 if [[ -z $numb ]]; then
-    file=${@:1}
+    file=${1:@}
     SET='*/'
 elif [[ -z ${numb//[0-9]/} ]]; then
-    file=${@:2}
+    file=${2:@}
     for i in $(seq 2 $1); do
         SET+='*/'
     done
