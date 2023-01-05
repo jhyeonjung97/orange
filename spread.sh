@@ -1,7 +1,7 @@
 #!/bin/bash
 
 numb=$1
-if [[ -z ${numb//[0-9]/} ]]; then
+if [[ -n ${numb//[0-9]/} ]]; then
     file=${@:1}
     SET='*/'
 else
