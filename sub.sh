@@ -2,11 +2,7 @@
 
 
 function submit {
-    if [[ -z $(grep pw.x run_slurm.sh) ]] ; then
-        sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
-        grep NPAR INCAR
-        grep Selective POSCAR
-        grep MAGMOM INCAR
+    if [[ -n $(grep pw.x run_slurm.sh) ]] ; then
         if [[ -n $(grep walltime run_slurm.sh | grep 120) ]]; then
             sed -i 's/max_seconds = 170000/max_seconds = 430000/' incar.in
             sed -i 's/max_seconds = 170000/max_seconds = 430000/' qe-relax.in
@@ -14,6 +10,11 @@ function submit {
             sed -i 's/max_seconds = 430000/max_seconds = 170000/' incar.in
             sed -i 's/max_seconds = 430000/max_seconds = 170000/' qe-relax.in
         fi
+    else
+        sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
+        grep NPAR INCAR
+        grep Selective POSCAR
+        grep MAGMOM INCAR
     fi
     if [[ ${account} == 'x2347a10' ]]; then
         sed -i -e 's/x2431a10/x2347a10/g' run_slurm.sh
