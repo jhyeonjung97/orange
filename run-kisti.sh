@@ -50,17 +50,17 @@ if in_array 'qe' "${type[*]}"; then
     echo 'fi' >> run_slurm.sh
 else
     if in_array 'vtst' "${type[*]}"; then
-        total+='.vtst179'
-    fi
-    if in_array 'beef' "${type[*]}"; then
+        total+='.vtst179.beef'
+    elif in_array 'sol' "${type[*]}"; then
+        total+='.beef.vaspsol'
+    elif in_array 'beef' "${type[*]}"; then
+        total+='.vtst179.beef'
         sed -i -e '/mpiexe/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
         echo 'rm vdw_kernel.bindat' >> run_slurm.sh
-        total+='.beef'
-    fi
-    if in_array 'sol' "${type[*]}"; then
-        total+='.vaspsol'
     elif in_array 'cep' "${type[*]}"; then
-        total+='.vaspsol'
+        total+='.beef.vaspsol'
+        sed -i -e '/mpiexe/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
+        echo 'rm vdw_kernel.bindat' >> run_slurm.sh
     fi
     if in_array 'gam' "${type[*]}"; then
         total+='.gam'
