@@ -1,6 +1,13 @@
 #!/bin/bash
 OIFS=$IFS
 
+x1=''
+x2=''
+y1=''
+y2=''
+hl=-4.43
+step=0.1
+error=0.02
 if [[ ! -d wave ]]; then
     mkdir wave
     cp * wave
@@ -20,14 +27,7 @@ elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
 else
     goal=-0.6
 fi
-x1=''
-x2=''
-y1=''
-y2=''
-hl=-4.43
-step=0.1
-error=0.02
-# nediff=-15.0
+
 unset map
 declare -A map
 if [[ ! -s mpiexe.sh ]]; then
