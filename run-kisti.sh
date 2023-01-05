@@ -63,6 +63,8 @@ else
         echo 'rm vdw_kernel.bindat' >> run_slurm.sh
     fi
     if in_array 'gam' "${type[*]}"; then
+        sed -i -e "3c\Gamma-only" KPOINTS
+        sed -i -e "4c\1\t1\t1" KPOINTS
         total+='.gam'
     elif in_array 'ncl' "${type[*]}"; then
         total+='.ncl'
