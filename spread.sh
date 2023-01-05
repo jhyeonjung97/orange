@@ -3,11 +3,13 @@
 numb=$2
 if [[ -z $numb ]]; then
     file=${1:@}
-    echo $file
+    echo ${1:@}
+    echo ${@:1}
     SET='*/'
 elif [[ -z ${numb//[0-9]/} ]]; then
     file=${2:@}
-    echo $file
+    echo ${2:@}
+    echo ${@:2}
     for i in $(seq 2 $1); do
         SET+='*/'
     done
