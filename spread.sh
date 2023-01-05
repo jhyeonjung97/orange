@@ -2,14 +2,10 @@
 
 numb=$1
 if [[ -z ${numb//[0-9]/} ]]; then
-    file=${1:@}
-    echo ${1:@}
-    echo ${@:1}
+    file=${@:1}
     SET='*/'
 else
-    file=${2:@}
-    echo ${2:@}
-    echo ${@:2}
+    file=${@:2}
     for i in $(seq 2 $1); do
         SET+='*/'
     done
