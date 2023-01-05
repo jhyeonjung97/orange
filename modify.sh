@@ -35,4 +35,4 @@ elif [[ $1 == 'dos' ]]; then
     modify INCAR LAECHG
     modify INCAR LORBIT 11
     sed -i "s/Monk-horst/Gamma-only/" KPOINTS
-else
+fi
