@@ -9,12 +9,12 @@ function modify {
     else
         sed -i "/$2 /c\\$2 = $3" $1
     fi
+    grep "$2 " $1
 }
 
 # prepare input files
 if [[ -s $1 ]]; then
     modify $1 $2 $3
-    grep "$2 " $1
 elif [[ $1 == 'chg' ]]; then
     cp INCAR .INCAR
     modify INCAR NSW
