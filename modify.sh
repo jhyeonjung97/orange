@@ -12,7 +12,7 @@ function modify {
 }
 
 # prepare input files
-if [[ -f $1 ]]; then
+if [[ -s $1 ]]; then
     modify $1 $2 $3
     grep "$2 " $1
 elif [[ $1 == 'chg' ]]; then
