@@ -3,9 +3,11 @@
 numb=$2
 if [[ -z $numb ]]; then
     file=${1:@}
+    echo $file
     SET='*/'
 elif [[ -z ${numb//[0-9]/} ]]; then
     file=${2:@}
+    echo $file
     for i in $(seq 2 $1); do
         SET+='*/'
     done
