@@ -1,6 +1,11 @@
 #!/bin/bash
 
-rm mpiexe.sh run_slurm.sh
+if [[ -s mpiexe.sh ]]; then
+    rm mpiexe.sh
+fi
+if [[ -s run_slurm.sh ]]; then
+    rm run_slurm.sh
+fi
 if [[ ! -d /TGM/Apps/VASP/VASP_BIN/6.3.2 ]]; then
     echo "Here is not burning.postech.ac.kr..."
     exit 1
