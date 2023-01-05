@@ -1,7 +1,7 @@
 #!/bin/bash
 
-numb=$2
-if [[ -z $numb ]]; then
+numb=$1
+if [[ -z $2 ]]; then
     file=${1:@}
     echo ${1:@}
     echo ${@:1}
