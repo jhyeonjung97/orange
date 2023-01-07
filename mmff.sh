@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo $1 $2
 if [[ $1 =~ '-h' ]]; then
     echo 'usage: mmff [filename.extention]'
 fi
