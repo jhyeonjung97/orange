@@ -16,20 +16,21 @@ if [[ -z $a ]]; then
     a=50.
 fi
 
-if [[ -f $name.$ext ]]; then
-    # python ~/bin/orange/cluster.py $name.$ext $name.xyz $a
-    # obabel $name.xyz -O $name.mol2
-    if [[ $ext != 'mol2' ]]; then
-        obabel $name.$ext -O $name.mol2
-    fi
-    obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name.mol2 > $name.pdb
-fi
+# if [[ -f $name.$ext ]]; then
+#     # python ~/bin/orange/cluster.py $name.$ext $name.xyz $a
+#     # obabel $name.xyz -O $name.mol2
+#     if [[ $ext != 'mol2' ]]; then
+#         obabel $name.$ext -O $name.mol2
+#     fi
+#     obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name.mol2 > $name.pdb
+# fi
     
-for i in {0..9}
+for file in *
 do
-    if [[ -f $name$i.$ext ]]; then
+    if [[ $file == "$name*.$ext" ]]; then
         # python ~/bin/orange/cluster.py $name$i.$ext $name$i.xyz $a
         # obabel $name$i.xyz -O $name$i.mol2
+        i=${file//[$name,'.',$ext]/}
         if [[ $ext != 'mol2' ]]; then
             obabel $name$i.$ext -O $name$i.mol2
         fi
