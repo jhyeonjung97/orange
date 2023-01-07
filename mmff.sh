@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $1 =~ '-h' ]]; then
-    echo 'usage: mmff [file]'
+    echo 'usage: mmff [filename.extention]'
 fi
 
 name="${1%.*}"
