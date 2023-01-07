@@ -5,19 +5,28 @@ if [[ $1 =~ '-h' ]]; then
     exit 1
 fi
 
-if [[ -z $3 ]]; then
+if [[ -z $2 ]]; then
+    echo 'use default seed, 1'
+elif [[ -z $3 ]]; then
     SET=$(seq 1 $2)
 else
     SET=$(seq $2 $3)
 fi
 
 filename="${1%.*}"
-for i in $SET
-do
-    sed -i -e "/output/c\output $filename$i.xyz" $1
-    sed -i -e "/seed/c\seed $i" $1
+
+if [[ -z $2 ]]; then
+    sed -i -e "/output/c\output $filename.xyz" $1
+    sed -i -e "/seed/c\seed 1" $1
     ~/bin/packmol/packmol < $1
-done
+else
+    for i in $SET
+    do
+        sed -i -e "/output/c\output $filename$i.xyz" $1
+        sed -i -e "/seed/c\seed $i" $1
+        ~/bin/packmol/packmol < $1
+    done
+fi
 
 read -p "lattice parameter (A): " a
 if [[ -z $a ]]; then
