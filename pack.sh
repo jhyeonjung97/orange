@@ -17,7 +17,7 @@ filename="${1%.*}"
 
 if [[ -z $2 ]]; then
     sed -i -e "/output/c\output $filename\0.xyz" $1
-    sed -i -e "/seed/c\seed 1" $1
+    sed -i -e "/seed/c\seed 0" $1
     ~/bin/packmol/packmol < $1
 else
     for i in $SET
