@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo $1 $2
 if [[ $1 =~ '-h' ]]; then
     echo 'usage: mmff [filename.extention]'
 fi
@@ -37,9 +36,10 @@ do
         if [[ $ext != 'mol2' ]]; then
             obabel $name$i.$ext -O $name$i.mol2
         fi
+        echo $file
         obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb
         # python ~/bin/orange/cluster.py $name$i.pdb $name$i.xyz $a
     fi
 done
 
-python ~/bin/orange/convert.py pdb xyz $a
+python3 ~/bin/orange/convert.py pdb xyz $a
