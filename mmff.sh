@@ -28,7 +28,9 @@ fi
     
 for file in *
 do
-    if [[ $file == "$name*.$ext" ]]; then
+    name0="${file%.*}"
+    ext0="${file##*.}"
+    if [[ $name0 =~ $name ]] && [[ $ext0 == $ext ]]; then
         # python ~/bin/orange/cluster.py $name$i.$ext $name$i.xyz $a
         # obabel $name$i.xyz -O $name$i.mol2
         i=${file//[$name,'.',$ext]/}
