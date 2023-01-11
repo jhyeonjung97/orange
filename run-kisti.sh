@@ -8,7 +8,7 @@ fi
 cp ~/input_files/run_slurm.sh .
 
 read -p 'which queue? (normal, skl, long, flat): ' q
-echo -n 'which type? (beef, vtst, sol, gam, qe, cep): '
+echo -n 'which type? (beef, vtst, sol, gam, qe, cep, lobster): '
 read -a type
 
 if [[ $q == l* ]]; then
@@ -78,6 +78,15 @@ else
     else
         echo 'there is no corroesponding version...'
         exit 1
+    fi
+    if in_array 'lobster' "${type[*]}"; then
+        echo '
+#OpenMP settings:
+export OMP_NUM_THREADS=$SLURM_NTASKS
+export OMP_PLACES=threads
+export OMP_PROC_BIND=spread
+
+~/bin/lobster/lobster' >> run_slurm.sh
     fi
     if in_array 'cep' "${type[*]}"; then
         read -p 'goal electrode potential? (default: -0.6 V) ' goal
