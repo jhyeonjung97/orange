@@ -79,15 +79,6 @@ else
         echo 'there is no corroesponding version...'
         exit 1
     fi
-    if in_array 'lobster' "${type[*]}"; then
-        echo '
-#OpenMP settings:
-export OMP_NUM_THREADS=$SLURM_NTASKS
-export OMP_PLACES=threads
-export OMP_PROC_BIND=spread
-
-~/bin/lobster/lobster' >> run_slurm.sh
-    fi
     if in_array 'cep' "${type[*]}"; then
         read -p 'goal electrode potential? (default: -0.6 V) ' goal
         if [[ -z $goal ]]; then
@@ -120,8 +111,18 @@ export OMP_PROC_BIND=spread
     fi
 fi
 
-grep mpiexe run_slurm.sh > mpiexe.sh
-sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
+if in_array 'lobster' "${type[*]}"; then
+    echo '
+#OpenMP settings:
+export OMP_NUM_THREADS=$SLURM_NTASKS
+export OMP_PLACES=threads
+export OMP_PROC_BIND=spread
+
+~/bin/lobster/lobster' >> run_slurm.sh
+else
+    grep mpiexe run_slurm.sh > mpiexe.sh
+    sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
+fi
 
 read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then
