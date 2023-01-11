@@ -67,8 +67,7 @@ alias ma='grep MAGMOM */INCAR'
 alias modify='sh ~/bin/orange/modify.sh'
 
 #LOBSTERIN
-alias lobin='python3 ~/bin/shoulder/lobin.py
-cp ~/input_files/submit_lobster.sh .'
+alias lobin='python3 ~/bin/shoulder/lobin.py'
 alias lobsub='sbatch submit_lobster.sh'
 alias cohp='mkdir cohp
 cd elf
