@@ -11,7 +11,7 @@ a=$2
 b=$3
 c=$4
 if [[ -z $a ]]; then
-    read -p 'lattice parameter? (A) ' a
+    read -p 'lattice parameter? (A) ' a b c
 fi
 if [[ -z $a ]]; then
     echo 'use default lattice parameter 50 A...'
@@ -47,7 +47,7 @@ done
 
 python3 ~/bin/orange/convert.py pdb xyz $a $b $c
 
-if [[ -n $(grep mmff.sh run_slurm.sh) ]]; then
+if [[ -n $(grep mmff.sh run_slurm.sh) ]] && [[ -n $(grep mpiexe run_slurm.sh) ]]; then
     python3 ~/bin/orange/convert.py xyz vasp $a $b $c
     cp $name$i.vasp POSCAR
     python ~/bin/pyband/xcell.py #XCELL
