@@ -50,7 +50,11 @@ if in_array 'qe' "${type[*]}"; then
     echo 'fi' >> run_slurm.sh
 else
     if in_array 'mmff' "${type[*]}"; then
-        read -p '[filename.extention]? ' file
+        file=''
+        la=''
+        lb=''
+        lc=''
+        read -p '[filename.extention] and lattice a, b, c? ' file la lb lc
         sed -i -e "/mpiexe/i\sh ~\/bin\/orange\/mmff.sh $file" run_slurm.sh
     fi
     if in_array 'vtst' "${type[*]}"; then
