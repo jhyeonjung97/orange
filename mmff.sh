@@ -46,3 +46,5 @@ do
 done
 
 python3 ~/bin/orange/convert.py pdb xyz $a $b $c
+python3 ~/bin/orange/convert.py xyz vasp $a $b $c
+cp $name$i.vasp POSCAR
