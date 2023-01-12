@@ -8,7 +8,7 @@ fi
 cp ~/input_files/run_slurm.sh .
 
 read -p 'which queue? (normal, skl, long, flat): ' q
-echo -n 'which type? (beef, vtst, sol, gam, qe, cep, lobster): '
+echo -n 'which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster): '
 read -a type
 
 if [[ $q == l* ]]; then
@@ -50,7 +50,8 @@ if in_array 'qe' "${type[*]}"; then
     echo 'fi' >> run_slurm.sh
 else
     if in_array 'mmff' "${type[*]}"; then
-        sed -i -e '/mpiexe/i\sh ~\/bin\/orange\/mmff.sh' run_slurm.sh
+        read -p '[filename.extention]? ' file
+        sed -i -e "/mpiexe/i\sh ~\/bin\/orange\/mmff.sh $file" run_slurm.sh
     fi
     if in_array 'vtst' "${type[*]}"; then
         total+='.vtst179.beef'
