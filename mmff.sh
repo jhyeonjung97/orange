@@ -8,6 +8,8 @@ name="${1%.*}"
 ext="${1##*.}"
 
 a=$2
+b=$3
+c=$4
 if [[ -z $a ]]; then
     read -p 'lattice parameter? (A) ' a
 fi
