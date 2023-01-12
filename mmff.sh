@@ -46,5 +46,21 @@ do
 done
 
 python3 ~/bin/orange/convert.py pdb xyz $a $b $c
-python3 ~/bin/orange/convert.py xyz vasp $a $b $c
-cp $name$i.vasp POSCAR
+
+if [[ -n $(grep mmff.sh run_slurm.sh) ]]; then
+    python3 ~/bin/orange/convert.py xyz vasp $a $b $c
+    cp $name$i.vasp POSCAR
+    python ~/bin/pyband/xcell.py #XCELL
+    mv out*.vasp POSCAR #XCELL
+    sh ~/bin/orange/vasp5.sh
+    if [[ -s POTCAR ]]; then
+        rm POTCAR
+    fi
+    vaspkit -task 103 | grep --colour POTCAR
+    if [[ ! -s POTCAR ]]; then
+        python3 ~/bin/shoulder/potcar_ara.py
+    fi
+    if [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
+        sh ~/bin/orange/nelect.sh
+    fi
+fi

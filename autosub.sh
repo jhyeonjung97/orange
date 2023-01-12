@@ -52,7 +52,12 @@ do
     if [[ -s mpiexe.sh ]]; then
         cp mpiexe.sh $i
     fi
-    cp $p$i.vasp $i/POSCAR
+    if [[ -n $(grep mmff run_slurm.sh) ]]; then
+        sed -i -e "s/mmff.sh a.vasp/mmff.sh $p.vasp/" run_slurm.sh
+        cp $p$i.vasp $i
+    else
+        cp $p$i.vasp $i/POSCAR
+    fi
     cd $i
     if [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
         sed -i '/MAGMOM/d' INCAR
@@ -60,18 +65,17 @@ do
         python ~/bin/pyband/xcell.py #XCELL
         mv out*.vasp POSCAR #XCELL
         python3 ~/bin/orange/magmom.py
-    fi
-    sh ~/bin/orange/vasp5.sh
-    vaspkit -task 103 | grep --colour POTCAR
-    if [[ ! -s POTCAR ]]; then
-        python3 ~/bin/shoulder/potcar_ara.py
-    fi
-    if [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
-        sh ~/bin/orange/nelect.sh
-    fi
-    if [[ -n $(grep mmff run_slurm.sh) ]]; then
-        sed -i -e "s/mmff.sh a.vasp/mmff.sh $p.vasp/" run_slurm.sh
-        cp POSCAR $p$i.vasp
+        sh ~/bin/orange/vasp5.sh
+        if [[ -s POTCAR ]]; then
+            rm POTCAR
+        fi
+        vaspkit -task 103 | grep --colour POTCAR
+        if [[ ! -s POTCAR ]]; then
+            python3 ~/bin/shoulder/potcar_ara.py
+        fi
+        if [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
+            sh ~/bin/orange/nelect.sh
+        fi
     fi
     sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
     sed -i "/#PBS -N/c\#PBS -N $n$i" run_slurm.sh
