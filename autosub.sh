@@ -54,7 +54,11 @@ do
     fi
     cp $p$i.vasp $i/POSCAR
     cd $i
-    python ~/bin/pyband/xcell.py #XCELL
+    if [[ -n $(grep #ISPIN INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
+        sed -i '/MAGMOM/d' INCAR
+    else
+        python ~/bin/pyband/xcell.py #XCELL
+    fi
     mv out*.vasp POSCAR #XCELL
     if [[ -n $(grep ISPIN INCAR | grep 2) ]]; then
         python3 ~/bin/orange/magmom.py
