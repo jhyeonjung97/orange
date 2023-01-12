@@ -27,7 +27,7 @@ else
 fi
 
 read -p "which queue? (g1~g5, gpu): " q
-echo -n "which type? (beef, vtst, sol, gam, qe, cep): "
+echo -n "which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster): "
 read -a type
 
 if [[ $q == 'g1' ]]; then
@@ -64,6 +64,14 @@ if in_array "qe" "${type[*]}"; then
     sed -i '/mpiexec/i\cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
     sed -i 's/custom/4 pw.x -in qe-relax.in/' run_slurm.sh
 else
+    if in_array 'mmff' "${type[*]}"; then
+        file=''
+        la=''
+        lb=''
+        lc=''
+        read -p '[filename.extention] and lattice a, b, c? ' file la lb lc
+        sed -i -e "/mpiexe/i\sh ~\/bin\/orange\/mmff.sh $file $la $lb $lc" run_slurm.sh
+    fi
     if in_array "beef" "${type[*]}"; then
         sed -i '/mpiexec/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
         echo 'rm vdw_kernel.bindat' >> run_slurm.sh
