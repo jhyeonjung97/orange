@@ -71,6 +71,10 @@ else
         lc=''
         read -p '[filename.extention] and lattice a, b, c? ' file la lb lc
         sed -i -e "/mpiexe/i\sh ~\/bin\/orange\/mmff.sh $file $la $lb $lc" run_slurm.sh
+        if [[ ${#type[*]} == 1 ]]; then
+            sed -i '/mpiexe/d' run_slurm.sh
+            exit 5
+        fi
     fi
     if in_array "beef" "${type[*]}"; then
         sed -i '/mpiexec/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
