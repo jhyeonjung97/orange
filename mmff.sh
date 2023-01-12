@@ -47,4 +47,4 @@ do
     fi
 done
 
-python3 ~/bin/orange/convert.py pdb xyz $a
+python3 ~/bin/orange/convert.py pdb xyz $a $b $c
