@@ -52,7 +52,12 @@ do
     if [[ -s mpiexe.sh ]]; then
         cp mpiexe.sh $i
     fi
-    cp $p$i.vasp $i/POSCAR
+    if [[ -n $(grep mmff run_slurm.sh) ]]; then
+        sed -i -e "s/mmff.sh a.vasp/mmff.sh $p.vasp/" run_slurm.sh
+        cp $p$i.vasp $i
+    else
+        cp $p$i.vasp $i/POSCAR
+    fi
     cd $i
     if [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
         sed -i '/MAGMOM/d' INCAR
