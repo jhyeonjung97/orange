@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $1 =~ '-h' ]]; then
-    echo 'usage: mmff [filename.extention]'
+    echo 'usage: mmff [filename.extention] lattice a, b, c'
 fi
 
 name="${1%.*}"
@@ -56,7 +56,7 @@ if [[ -n $(grep mmff.sh run_slurm.sh) ]]; then
     if [[ -s POTCAR ]]; then
         rm POTCAR
     fi
-    vaspkit -task 103 | grep --colour POTCAR
+    vaspkit -task 103
     if [[ ! -s POTCAR ]]; then
         python3 ~/bin/shoulder/potcar_ara.py
     fi
