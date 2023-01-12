@@ -46,9 +46,9 @@ do
 done
 
 python3 ~/bin/orange/convert.py pdb xyz $a $b $c
+python3 ~/bin/orange/convert.py xyz vasp $a $b $c
 
 if [[ -n $(grep mmff.sh run_slurm.sh) ]] && [[ -n $(grep mpiexe run_slurm.sh) ]]; then
-    python3 ~/bin/orange/convert.py xyz vasp $a $b $c
     cp $name$i.vasp POSCAR
     python ~/bin/pyband/xcell.py #XCELL
     mv out*.vasp POSCAR #XCELL
