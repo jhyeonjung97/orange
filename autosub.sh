@@ -54,7 +54,7 @@ do
     fi
     cp $p$i.vasp $i/POSCAR
     cd $i
-    if [[ -n $(grep #ISPIN INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
+    if [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
         sed -i '/MAGMOM/d' INCAR
     else
         python ~/bin/pyband/xcell.py #XCELL
