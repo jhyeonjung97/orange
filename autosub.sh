@@ -52,20 +52,13 @@ do
     if [[ -s mpiexe.sh ]]; then
         cp mpiexe.sh $i
     fi
-    if [[ -n $(grep mmff run_slurm.sh) ]]; then
-        sed -i -e "s/mmff.sh a.vasp/mmff.sh $p.vasp/" run_slurm.sh
-        cp $p$i.vasp $i
-    else
-        cp $p$i.vasp $i/POSCAR
-    fi
+    cp $p$i.vasp $i/POSCAR
     cd $i
     if [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
         sed -i '/MAGMOM/d' INCAR
     else
         python ~/bin/pyband/xcell.py #XCELL
-    fi
-    mv out*.vasp POSCAR #XCELL
-    if [[ -n $(grep ISPIN INCAR | grep 2) ]]; then
+        mv out*.vasp POSCAR #XCELL
         python3 ~/bin/orange/magmom.py
     fi
     sh ~/bin/orange/vasp5.sh
@@ -75,6 +68,10 @@ do
     fi
     if [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
         sh ~/bin/orange/nelect.sh
+    fi
+    if [[ -n $(grep mmff run_slurm.sh) ]]; then
+        sed -i -e "s/mmff.sh a.vasp/mmff.sh $p.vasp/" run_slurm.sh
+        cp POSCAR $p$i.vasp
     fi
     sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
     sed -i "/#PBS -N/c\#PBS -N $n$i" run_slurm.sh
