@@ -151,6 +151,9 @@ else
     sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
 fi
 
+if [[ -z $(grep stdout run_slurm.sh) ]]; then
+    sed -i 's/STDOUT/stdout/' run_slurm.sh
+fi
 
 read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then
