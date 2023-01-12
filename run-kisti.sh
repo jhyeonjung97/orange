@@ -49,7 +49,9 @@ if in_array 'qe' "${type[*]}"; then
     echo '    sh ~/bin/orange/conti.sh' >> run_slurm.sh
     echo 'fi' >> run_slurm.sh
 else
-    if in_array 'vtst' "${type[*]}"; then
+    if in_array 'mmff' "${type[*]}"; then
+        sed -i -e '/mpiexe/i\sh ~\/bin\/orange\/mmff.sh' run_slurm.sh
+    elif in_array 'vtst' "${type[*]}"; then
         total+='.vtst179.beef'
     elif in_array 'sol' "${type[*]}"; then
         total+='.beef.vaspsol' 1ora
