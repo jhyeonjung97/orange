@@ -6,6 +6,7 @@ fi
 
 name="${1%.*}"
 ext="${1##*.}"
+echo $name $ext
 
 a=$2
 b=$3
@@ -31,6 +32,7 @@ for file in *
 do
     name0="${file%.*}"
     ext0="${file##*.}"
+    echo $name0 $ext0
     if [[ $name0 =~ $name ]] && [[ $ext0 == $ext ]]; then
         # python ~/bin/orange/cluster.py $name$i.$ext $name$i.xyz $a
         # obabel $name$i.xyz -O $name$i.mol2
