@@ -36,7 +36,7 @@ do
     if [[ $name0 =~ $name ]] && [[ $ext0 == $ext ]]; then
         # python ~/bin/orange/cluster.py $name$i.$ext $name$i.xyz $a
         # obabel $name$i.xyz -O $name$i.mol2
-        i=${file//[$name,'.',$ext]/}
+        i=${name0//$name/}
         if [[ $ext != 'mol2' ]]; then
             echo "obabel $name$i.$ext -O $name$i.mol2"
             obabel $name$i.$ext -O $name$i.mol2
