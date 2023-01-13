@@ -38,11 +38,11 @@ do
         # obabel $name$i.xyz -O $name$i.mol2
         i=${file//[$name,'.',$ext]/}
         if [[ $ext != 'mol2' ]]; then
-            obabel $name$i.$ext -O $name$i.mol2
             echo "obabel $name$i.$ext -O $name$i.mol2"
+            obabel $name$i.$ext -O $name$i.mol2
         fi
-        obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb
         echo "obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb"
+        obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb
         # obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s a1.mol2 > a1.pdb
         # python ~/bin/orange/cluster.py $name$i.pdb $name$i.xyz $a
     fi
