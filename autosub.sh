@@ -65,6 +65,7 @@ do
         python ~/bin/pyband/xcell.py #XCELL
         mv out*.vasp POSCAR #XCELL
         python3 ~/bin/orange/magmom.py
+    fi
         sh ~/bin/orange/vasp5.sh
         if [[ -s POTCAR ]]; then
             rm POTCAR
@@ -76,7 +77,6 @@ do
         if [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
             sh ~/bin/orange/nelect.sh
         fi
-    fi
     sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
     sed -i "/#PBS -N/c\#PBS -N $n$i" run_slurm.sh
     cd ..
