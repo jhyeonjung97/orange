@@ -25,10 +25,10 @@ do
         srvr='hyeonjung@burning.postech.ac.kr:'
     elif [[ $i == 'x2431' ]]; then
         port=''
-        srvr='x2431a10@nurion.ksc.re.kr:'
+        srvr='x2431a10@nurion-dm.ksc.re.kr:'
     elif [[ $i == 'x2347' ]]; then
         port=''
-        srvr='x2347a10@nurion.ksc.re.kr:'
+        srvr='x2347a10@nurion-dm.ksc.re.kr:'
     elif [[ $i == 'cori' ]]; then
         port=''
         srvr='jiuy97@cori.nersc.gov:'

@@ -55,10 +55,10 @@ elif [[ $send =~ 'w' ]]; then
     echo "scp $list jhyeo@192.168.1.251:~/Desktop/$send"
     scp $list jhyeo@192.168.1.251:~/Desktop/$send
 elif [[ $send =~ 'x2347' ]]; then
-    echo "scp $list x2347a10@nurion.ksc.re.kr:~/vis"
+    echo "scp $list x2347a10@nurion-dm.ksc.re.kr:~/vis"
     scp $list x2347a10@nurion.ksc.re.kr:~/vis
 elif [[ $send =~ 'x2431' ]]; then
-    echo "scp $list x2431a10@nurion.ksc.re.kr:~/vis"
+    echo "scp $list x2431a10@nurion-dm.ksc.re.kr:~/vis"
     scp $list x2431a10@nurion.ksc.re.kr:~/vis
 elif [[ $send =~ 'cori' ]]; then
     echo "scp $list jiuy97@cori.nersc.gov:~/vis"
