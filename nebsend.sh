@@ -15,4 +15,4 @@ cp 0$(($1+1))/POSCAR $f-c$(($1+1)).vasp
 
 read -p "to where?: " p
 
-scp *.vasp hailey@134.79.69.172:~/Desktop/$p
+scp *.vasp hailey@172.30.1.14:~/Desktop/$p

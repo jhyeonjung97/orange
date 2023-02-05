@@ -64,6 +64,6 @@ elif [[ $send =~ 'cori' ]]; then
     echo "scp $list jiuy97@cori.nersc.gov:~/vis"
     scp $list jiuy97@cori.nersc.gov:~/vis
 elif [[ -n $send ]]; then
-    echo "scp $list hailey@134.79.69.172:~/Desktop/$send"
-    scp $list hailey@134.79.69.172:~/Desktop/$send
+    echo "scp $list hailey@172.30.1.14:~/Desktop/$send"
+    scp $list hailey@172.30.1.14:~/Desktop/$send
 fi

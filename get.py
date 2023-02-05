@@ -28,7 +28,7 @@ if surv=='burning':
     p='-P 1234'
     surv='hyeonjung@burning.postech.ac.kr:'
 elif surv=='mac':
-    surv='hailey@134.79.69.172:~/Desktop/'
+    surv='hailey@172.30.1.14:~/Desktop/'
 elif surv=='kisti':
     surv='x2431a10@nurion.ksc.re.kr:'
 elif surv=='cori':

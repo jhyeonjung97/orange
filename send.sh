@@ -5,7 +5,7 @@ if [[ ${here} == 'mac' ]]; then
     port=' -P 1234'
     srvr='hyeonjung@burning.postech.ac.kr:'
 else
-    srvr='hailey@134.79.69.172:~/Desktop/'
+    srvr='hailey@172.30.1.14:~/Desktop/'
 fi
 
 # Let's check the input values
@@ -19,7 +19,7 @@ do
     # specific destination server
     elif [[ $i == 'mac' ]]; then
         port=''
-        srvr='hailey@134.79.69.172:~/Desktop/'
+        srvr='hailey@172.30.1.14:~/Desktop/'
     elif [[ $i == 'burning' ]]; then
         port=' -P 1234'
         srvr='hyeonjung@burning.postech.ac.kr:'
@@ -56,7 +56,7 @@ read -p "to where?: " path
 if [[ -z $file ]]; then
     echo 'Please let me know which file to send..'
     exit 1
-elif [[ -z $path ]] && [[ $srvr != 'hailey@134.79.69.172:~/Desktop/' ]]; then
+elif [[ -z $path ]] && [[ $srvr != 'hailey@172.30.1.14:~/Desktop/' ]]; then
     echo 'Files/Directories will be sent to home directory..'
 fi
 
