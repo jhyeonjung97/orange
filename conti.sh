@@ -79,7 +79,7 @@ function conti {
     cd $save/
     mv */ ..
     cp POSCAR ../initial.vasp
-    cp POSCAR CONTCAR INCAR KPOINTS POTCAR run_slurm.sh initial.vasp ..
+    cp POSCAR CONTCAR INCAR KPOINTS POTCAR run_slurm.sh initial.vasp mpiexe.sh ..
     cd ..
 
     if [[ -s CONTCAR ]]; then
