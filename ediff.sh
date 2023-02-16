@@ -10,12 +10,9 @@ do
         save="conti_$i"
     done
     mkdir $save
-    mv * $save
-    cd $save/
-    mv */ ..
-    cp POSCAR ../.POSCAR_ediff
-    cp POSCAR CONTCAR INCAR KPOINTS POTCAR run_slurm.sh .POSCAR_ediff ..
-    cd ..
+    cp * $save
+    cp POSCAR .POSCAR
+    cp CONTCAR POSCAR
     ediff=$(grep 'EDIFF ' INCAR | tail -c 2)
     if [[ $j -eq 2 ]]; then
         sh ~/bin/orange/modify.sh INCAR EDIFF 1E-0$(($ediff+1))
