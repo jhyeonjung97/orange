@@ -13,6 +13,7 @@ alias rmport='~/bin/rm_mv ~/port/*'
 alias lsport='ls ~/port/'
 alias rmtemp='~/bin/rm_mv ~/bin/temp.sh'
 alias vitemp='vi ~/bin/temp.sh'
+alias multiple='sh ~/bin/orange/multiple.sh'
 
 alias nebsend='sh ~/bin/orange/nebsend.sh'
 alias vaspsend='sh ~/bin/orange/vaspsend.sh'
