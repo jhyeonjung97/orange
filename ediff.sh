@@ -13,8 +13,9 @@ do
     mv * $save
     cd $save/
     mv */ ..
-    cp POSCAR ../.POSCAR_ediff
-    cp POSCAR CONTCAR INCAR KPOINTS POTCAR run_slurm.sh .POSCAR_ediff mpiexe.sh ..
+    cp POSCAR ../.POSCAR
+    cp CONTCAR ../POSCAR
+    cp INCAR KPOINTS POTCAR run_slurm.sh .POSCAR mpiexe.sh vdw_kernel.bindat ..
     cd ..
     ediff=$(grep 'EDIFF ' INCAR | tail -c 2)
     if [[ $j -eq 2 ]]; then
