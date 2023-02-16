@@ -1,5 +1,4 @@
 from ase.io.vasp import read_vasp_xdatcar
-import matplotlib.pyplot as plt
 from statistics import mean
 import numpy as np
 import sys
