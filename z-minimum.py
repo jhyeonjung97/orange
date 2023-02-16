@@ -17,18 +17,6 @@ for atoms in traj:
     list = [atom.z for atom in atoms if atom.symbol == element]
     i = i+1
     x.append(i)
-    y.append(mean(list))
+    y.append(min(list))
 
-np.savetxt("z-%s-avg.csv" % element, [x, y], delimiter =", ", fmt ='% s')
-    
-plt.figure(figsize=(4.5, 3.5))
-plt.plot(x, y)
-plt.xlabel('iteration (1 fs)')
-if len(list) == 1:
-    plt.ylabel('average z-position of %s atom (A)' % element)
-else:
-    plt.ylabel('average z-position of %s atoms (A)' % element)
-plt.xlim([0, 8000])
-plt.ylim([y1, y2])
-plt.tight_layout()
-plt.savefig('z-%s-avg.png' % element)
+np.savetxt("z-%s-avg.csv" % element, np.transpose[x, y], delimiter =", ", fmt ='% s')
