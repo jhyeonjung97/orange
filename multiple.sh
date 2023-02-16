@@ -31,6 +31,7 @@ do
     echo "cp $i/* ." >> run_slurm.sh
     more fragment.sh >> run_slurm.sh
     echo "cp * $i/" >> run_slurm.sh
+    echo "mv conti*/ $i/" >> run_slurm.sh
     echo " " >> run_slurm.sh
 done
 if [[ -n $(grep vdw_kernel.bindat run_slurm.sh) ]]; then
