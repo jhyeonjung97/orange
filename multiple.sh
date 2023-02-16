@@ -19,11 +19,22 @@ if [[ -s fragment.sh ]]; then
 fi
 sed '1,15d' run_slurm.sh > fragment.sh
 cp run_slurm.sh .run_slurm.sh
-sed -e '16,$d' run_slurm.sh
+sed -i '16,$d' run_slurm.sh
+
+if [[ -n $(grep vdw_kernel.bindat run_slurm.sh) ]]; then
+    sed -i '/vdw_kernel.bindat/d' run_slurm.sh
+fi
 
 for i in $SET
 do
-    echo "cp $i* ." >> run_slurm.sh
+    if [[ -n $(grep vdw_kernel.bindat mpiexe.sh) ]]; then
+        echo 'cp /TGM/Apps/VASP/vdw_kernel.bindat .' >> run_slurm.sh
+    fi
+    echo "cp $i/* ." >> run_slurm.sh
     more fragment.sh >> run_slurm.sh
-    echo "cp * $i" >> run_slurm.sh
+    echo "cp * $i/" >> run_slurm.sh
+    echo " " >> run_slurm.sh
+    if [[ -n $(grep vdw_kernel.bindat mpiexe.sh) ]]; then
+        echo 'rm vdw_kernel.bindat' >> run_slurm.sh
+    fi
 done
