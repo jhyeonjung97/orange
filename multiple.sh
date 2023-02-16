@@ -28,6 +28,8 @@ if [[ -n $(grep vdw_kernel.bindat .run_slurm.sh) ]]; then
 fi
 for i in $SET
 do
+    rm $i/mpiexe.sh
+    rm $i/run_slurm.sh
     echo "cp $i/* ." >> run_slurm.sh
     more fragment.sh >> run_slurm.sh
     echo "cp * $i/" >> run_slurm.sh
