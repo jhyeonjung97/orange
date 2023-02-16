@@ -17,4 +17,4 @@ for atoms in traj:
     x.append(i)
     y.append(min(list))
 
-np.savetxt("%s.csv" % filename, np.transpose[x, y], delimiter =", ", fmt ='% s')
+np.savetxt("%s.csv" % filename, np.transpose([x, y]), delimiter =", ", fmt ='% s')
