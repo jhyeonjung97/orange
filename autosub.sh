@@ -83,8 +83,8 @@ do
 done
 
 grep --colour NETCHG INCAR
-read -p 'do you want to submit jobs? [y/n] (default: y) ' submit
-if [[ ! $submit =~ 'n' ]]; then
+read -p 'do you want to submit jobs? [y/n] (default: n) ' submit
+if [[ $submit =~ 'y' ]]; then
     for i in $SET
     do
         cd $i
