@@ -36,6 +36,7 @@ do
     echo "mv conti*/ $i/" >> run_slurm.sh
     echo " " >> run_slurm.sh
 done
+rm fragment.sh
 if [[ -n $(grep vdw_kernel.bindat run_slurm.sh) ]]; then
     echo 'rm vdw_kernel.bindat' >> run_slurm.sh
 fi
