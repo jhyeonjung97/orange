@@ -5,8 +5,8 @@ import numpy as np
 import sys
 
 element = input("which element? ")
-y1 = float(input("z-position range from [A]: "))
-y2 = float(input("z-position range to [A]: "))
+y1 = float(input("z-position axis from [A]: "))
+y2 = float(input("z-position axis to [A]: "))
 traj = read_vasp_xdatcar('XDATCAR', index = 0)
 
 i = 0
