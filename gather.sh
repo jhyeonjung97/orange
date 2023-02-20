@@ -76,10 +76,10 @@ elif [[ $send =~ 'x2431' ]]; then
 elif [[ $send =~ 'cori' ]]; then
     echo "scp $list jiuy97@cori.nersc.gov:~/vis"
     scp $list jiuy97@cori.nersc.gov:~/vis
-elif [[ -n $send mac ]]; then
+elif [[ $send =~ 'mac' ]]; then
     echo "scp $list hailey@172.30.1.14:~/Desktop/$send"
     scp $list hailey@172.30.1.14:~/Desktop/$send
-elif [[ -n $send mini ]]; then
+elif [[ $send =~ 'mini' ]]; then
     echo "scp $list hailey@192.168.0.241:~/Desktop/$send"
     scp $list hailey@192.168.0.241:~/Desktop/$send
 fi
