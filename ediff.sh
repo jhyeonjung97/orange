@@ -14,9 +14,8 @@ do
     cp * $save
     cp POSCAR .POSCAR
     cp CONTCAR POSCAR
-    ediff=$(grep 'EDIFF ' INCAR | tail -c 2)
     if [[ $j -eq 2 ]]; then
-        sh ~/bin/orange/modify.sh INCAR EDIFF 1E-0$(($ediff+1))
+        sh ~/bin/orange/modify.sh INCAR EDIFF 1E-05
     fi
     sh mpiexe.sh
     j=$(($j+1))
