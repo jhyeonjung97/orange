@@ -2,6 +2,19 @@
 
 if [[ -z $1 ]]; then
     read -p 'which files? ' f
+elif [[ $1 == '-n' ]] || [[ $1 == 'neb' ]]; then
+    # usage: sh gather.sh -n IMAGES
+    read -p "files starts with: " f
+    for i in $(seq 1 $2)
+    do
+        cp 0$i/POSCAR $f-p$i.vasp
+        cp 0$i/CONTCAR $f-c$i.vasp
+    done
+    cp 00/POSCAR $f-p0.vasp
+    cp 0$(($2+1))/POSCAR $f-p$(($2+1)).vasp
+    cp 00/POSCAR $f-c0.vasp
+    cp 0$(($2+1))/POSCAR $f-c$(($2+1)).vasp
+    exit 1
 else
     f=$1
 fi
@@ -51,9 +64,9 @@ done
 
 if [[ $send == 'port' ]]; then
     cp $list ~/port/
-elif [[ $send =~ 'w' ]]; then
-    echo "scp $list jhyeo@192.168.1.251:~/Desktop/$send"
-    scp $list jhyeo@192.168.1.251:~/Desktop/$send
+# elif [[ $send =~ 'window' ]]; then
+#     echo "scp $list jhyeo@192.168.1.251:~/Desktop/$send"
+#     scp $list jhyeo@192.168.1.251:~/Desktop/$send
 elif [[ $send =~ 'x2347' ]]; then
     echo "scp $list x2347a10@nurion-dm.ksc.re.kr:~/vis"
     scp $list x2347a10@nurion.ksc.re.kr:~/vis
@@ -63,7 +76,10 @@ elif [[ $send =~ 'x2431' ]]; then
 elif [[ $send =~ 'cori' ]]; then
     echo "scp $list jiuy97@cori.nersc.gov:~/vis"
     scp $list jiuy97@cori.nersc.gov:~/vis
-elif [[ -n $send ]]; then
+elif [[ -n $send mac ]]; then
     echo "scp $list hailey@172.30.1.14:~/Desktop/$send"
     scp $list hailey@172.30.1.14:~/Desktop/$send
+elif [[ -n $send mini ]]; then
+    echo "scp $list hailey@192.168.0.241:~/Desktop/$send"
+    scp $list hailey@192.168.0.241:~/Desktop/$send
 fi

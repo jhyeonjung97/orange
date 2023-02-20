@@ -4,8 +4,6 @@
 if [[ ${here} == 'mac' ]]; then
     port=' -P 1234'
     srvr='hyeonjung@burning.postech.ac.kr:'
-else
-    srvr='hailey@172.30.1.14:~/Desktop/'
 fi
 
 # Let's check the input values
@@ -20,6 +18,9 @@ do
     elif [[ $i == 'mac' ]]; then
         port=''
         srvr='hailey@172.30.1.14:~/Desktop/'
+    elif [[ $i == 'mini' ]]; then
+        port=''
+        srvr='hailey@192.168.0.241:~/Desktop/'
     elif [[ $i == 'burning' ]]; then
         port=' -P 1234'
         srvr='hyeonjung@burning.postech.ac.kr:'
