@@ -23,7 +23,7 @@ sed -i '/vdw_kernel.bindat/d' run_slurm.sh
 if [[ ${here} == 'burning' ]]; then
     sed '1,15d' run_slurm.sh > fragment.sh
     sed -i '16,$d' run_slurm.sh
-elif [[ ${here} == 'x2431' ]]; then
+elif [[ ${here} == 'kisti' ]]; then
     sed '1,10d' run_slurm.sh > fragment.sh
     sed -i '11,$d' run_slurm.sh
 else
