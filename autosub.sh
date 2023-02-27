@@ -22,6 +22,7 @@ elif [[ -z $1 ]]; then
     echo 'usage: autosub (directory#1) [directory#2]'
 fi
 
+
 if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
     SET=${@:2}
 elif [[ $1 == '-n' ]] || [[ $1 == '-non' ]]; then
@@ -35,7 +36,8 @@ elif [[ -z $2 ]]; then
 else
     SET=$(seq $1 $2)
 fi
-    
+
+ls
 read -p "POSCARs starts with: " p
 read -p "job name: " n
 
