@@ -85,7 +85,6 @@ function conti {
     if [[ -s CONTCAR ]]; then
         mv CONTCAR POSCAR
     fi
-    sh ~/bin/orange/sub.sh
 }
 
 function qe {
@@ -107,7 +106,6 @@ function qe {
         fi
     fi
     cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
-    sh ~/bin/orange/sub.sh
 }
 
 function cep {
@@ -118,10 +116,20 @@ function cep {
     elif [[ -s WAVECAR ]]; then
         sed -i -e '/mpiexe/d' run_slurm.sh
     fi
-    sh ~/bin/orange/sub.sh
 }
 
 if [[ -z $1 ]]; then # simple conti
+    if [[ -n $(grep pw.x run_slurm.sh) ]]; then
+        qe
+        sh ~/bin/orange/sub.sh
+    elif [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
+        cep
+        sh ~/bin/orange/sub.sh
+    else
+        conti
+        sh ~/bin/orange/sub.sh
+    fi
+elif [[ $1 == '-n' ]]; then
     if [[ -n $(grep pw.x run_slurm.sh) ]]; then
         qe
     elif [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
@@ -150,14 +158,18 @@ else
                     echo 'DONE!'
                 else
                     qe
+                    sh ~/bin/orange/sub.sh
                 fi
             else
                 qe
+                sh ~/bin/orange/sub.sh
             fi
         elif [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
             cep
+            sh ~/bin/orange/sub.sh
         else
             conti
+            sh ~/bin/orange/sub.sh
         fi
         cd ..
     done
