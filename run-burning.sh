@@ -46,7 +46,7 @@ fi
 cp ~/input_files/run_slurm.sh .
 sed -i "/ntasks-per-node/c\#SBATCH --ntasks-per-node=$node" run_slurm.sh
 sed -i "/partition/c\#SBATCH --partition=$q" run_slurm.sh
-f
+
 function in_array {
     ARRAY=$2
     for e in ${ARRAY[*]}
