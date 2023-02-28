@@ -46,7 +46,7 @@ fi
 cp ~/input_files/run_slurm.sh .
 sed -i "/ntasks-per-node/c\#SBATCH --ntasks-per-node=$node" run_slurm.sh
 sed -i "/partition/c\#SBATCH --partition=$q" run_slurm.sh
-
+f
 function in_array {
     ARRAY=$2
     for e in ${ARRAY[*]}
@@ -159,6 +159,7 @@ if [[ -z $(grep stdout run_slurm.sh) ]]; then
     sed -i 's/STDOUT/stdout/' run_slurm.sh
 fi
 
+echo $PWD
 read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then
     sh ~/bin/orange/jobname.sh $jobname
