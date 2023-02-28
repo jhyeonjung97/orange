@@ -15,6 +15,12 @@ elif [[ $1 == '-n' ]] || [[ $1 == 'neb' ]]; then
     cp 00/POSCAR $f-c0.vasp
     cp 0$(($2+1))/POSCAR $f-c$(($2+1)).vasp
     exit 1
+elif [[ $1 == '-c' ]]; then
+    if [[ -z $2 ]]; then
+        read -p 'which files? ' f
+    else
+        f=$2
+    fi
 else
     f=$1
 fi
@@ -35,7 +41,9 @@ read -p 'vaspsend destination (enter for skip): ' send
 for dir in */
 do
     cd $dir
-    numb=$(echo $dir | cut -c 1)
+    if [[ $1 == '-c' ]]; then
+        numb=$(echo $dir | cut -c 1)
+    fi
     for file in *
     do
         if [[ $file =~ $pattern ]]; then
