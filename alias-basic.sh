@@ -5,9 +5,8 @@ alias i='cp ~/input_files/INCAR .'
 alias ii='sed -i -e "s/  //g" INCAR
 sed -i -e "s/=/ = /" INCAR
 sed -i -e "s/!/ !/" INCAR
-sed -i -e "s/^ !/!/" INCAR
 sed -i -e "s/#/ # /" INCAR
-sed -i -e "s/^ # /#/" INCAR'
+sed -i -e "s/^ *//" INCAR'
 alias k='cp ~/input_files/KPOINTS .'
 alias potcar='sh ~/bin/orange/potcar.sh'
 alias PBE='grep TITEL POTCAR'
