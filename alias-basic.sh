@@ -3,7 +3,7 @@
 #INPUT
 alias i='cp ~/input_files/INCAR .'
 alias ii='sed -i -e "s/  //g" INCAR
-sed -i -e "s/=/ = /" INCAR
+sed -i -e "s/*=*/ = /" INCAR
 sed -i -e "s/!/ !/" INCAR
 sed -i -e "s/#/ # /" INCAR
 sed -i -e "s/^ *//" INCAR'
