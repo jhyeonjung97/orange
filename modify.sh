@@ -13,9 +13,12 @@ function modify {
 }
 
 function organize {
-    sed -i -e 's/ //g' $1
-    sed -i -e 's/=/ = /' $1
-    sed -i -e 's/!/ ! /' $1
+    sed -i -e "s/ //g" $1
+    sed -i -e "s/=/ = /" $1
+    sed -i -e "s/!/ ! /" $1
+    sed -i -e "s/^ !/!/" $1
+    sed -i -e "s/#/ # /" $1
+    sed -i -e "s/^ # /#/" $1
 }
 
 # prepare input files
