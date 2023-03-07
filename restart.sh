@@ -11,6 +11,7 @@ sh ~/bin/orange/out2xyz.sh
 cp contcar.xyz contcar$i.xyz
 cp stdout.log stdout$i.log
 if [[ ${here} == 'burning' ]]; then
+    sed -i -e "s/  / /g" INCAR
     sbatch run_slurm.sh
 elif [[ ${account} == 'x2347a10' ]]; then
     sed -i -e 's/x2431a10/x2347a10/g' *

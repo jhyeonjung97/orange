@@ -21,6 +21,7 @@ function submit {
         sed -i -e "s/x2431a10/${account}/g" run_slurm.sh
         qsub run_slurm.sh
     else
+        sed -i -e "s/  / /g" INCAR
         sbatch run_slurm.sh
     fi
     }
