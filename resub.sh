@@ -6,6 +6,7 @@ function resub {
     else
         rm STD* std*
     fi
+    find . -size +10000000c -type f -delete
     if [[ -d pwscf.save ]]; then
         rm -r pwscf.save
     fi
