@@ -43,6 +43,8 @@ do
     cd $dir
     if [[ $1 == '-c' ]]; then
         numb=$(echo $dir | cut -c 1)
+    else
+        numb=$dir
     fi
     for file in *
     do
