@@ -53,7 +53,7 @@ do
                 elif [[ $pattern == 'CONTCAR' ]] && [[ ! -s $file ]]; then
                     cp POSCAR ../$filename$numb.vasp
                 else
-                    cp $pattern ../$filename$numb.vasp
+                    cp $pattern ../$f$numb
                 fi
                 list+="$filename$numb.vasp "
             elif [[ $pattern == 'CHGCAR' ]]; then
