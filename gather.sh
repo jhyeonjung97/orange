@@ -62,8 +62,13 @@ do
             elif [[ "${file##*.}" == "${pattern##*.}" ]]; then
                 filename="${file%.*}"
                 extension="${file##*.}"
-                cp $file ../$filename$numb.$extension
-                list+="$filename$numb.$extension "
+                if [[ $filename == $extension ]]; then
+                    cp $file ../$filename$numb
+                    list+="$filename$numb "
+                else
+                    cp $file ../$filename$numb.$extension
+                    list+="$filename$numb.$extension "
+                fi
             fi
         fi
     done
