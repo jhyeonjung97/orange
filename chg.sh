@@ -15,4 +15,4 @@ sed -i -e '$d' ACF*.dat
 sed -i -e '$d' ACF*.dat
 sed -i -e '$d' ACF*.dat
 
-python ~/bin/orange/chg.py $filename
+python ~/bin/orange/chg.py $i $filename
