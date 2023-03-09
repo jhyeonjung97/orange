@@ -4,7 +4,7 @@ import numpy as np
 import sys
 
 #element = input("which element? ")
-filename = input("filename? ")
+# filename = input("filename? ")
 traj = read_vasp_xdatcar('XDATCAR', index = 0)
 
 i = 0
@@ -18,4 +18,4 @@ for atoms in traj:
     y.append(min(list))
     print(min(list))
 
-#np.savetxt("%s.csv" % filename, np.transpose([x, y]), delimiter =", ", fmt ='% s')
+# np.savetxt("%s.csv" % filename, np.transpose([x, y]), delimiter =", ", fmt ='% s')
