@@ -19,5 +19,8 @@ for file in os.listdir('./'):
 
 data.shape
 data.ndim
-reshape.data(data.ndim,max(length))
+reshape.data(-1,-1)
+data.shape
+data.ndim
+# reshape.data(data.ndim,max(length))
 # np.savetxt("%s.csv" % filename, np.transpose(data), delimiter =", ", fmt ='% s')
