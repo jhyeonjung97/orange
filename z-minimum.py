@@ -19,7 +19,7 @@ y = []
 #     y.append(min(list))
 #     print(min(list))
 
-atoms = read(CONTCAR)
+atoms = read('CONTCAR')
 list = [atom.z for atom in atoms if atom.symbol == 'H']
 print(min(list))
     
