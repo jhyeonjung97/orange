@@ -32,7 +32,11 @@ else
 fi
 
 if [[ -n $(grep vdw_kernel.bindat .run_slurm.sh) ]]; then
-    echo 'cp /TGM/Apps/VASP/vdw_kernel.bindat .' >> run_slurm.sh
+    if [[ ${here} == 'burning' ]]; then
+        echo 'cp /TGM/Apps/VASP/vdw_kernel.bindat .' >> run_slurm.sh
+    elif [[ ${here} == 'kisti' ]]; then
+        echo 'cp ~/KISTI_VASP/vdw_kernel.bindat .' >> run_slurm.sh
+    fi
 fi
 for i in $SET
 do
