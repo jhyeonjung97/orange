@@ -15,4 +15,5 @@ for file in os.listdir('./'):
         chg = np.loadtxt(file, dtype=str)[:,4]
         data.append(chg)
 
+print(data)
 np.savetxt("%s.csv" % filename, np.transpose(data), delimiter =", ", fmt ='% s')
