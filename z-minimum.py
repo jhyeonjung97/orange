@@ -12,7 +12,7 @@ x = []
 y = []
 
 for atoms in traj:
-    list = [atom.z for atom in atoms if atom.symbol == 'O']
+    list = [atom.z for atom in atoms if atom.symbol == 'H']
     i = i+1
     x.append(i)
     y.append(min(list))
