@@ -11,7 +11,8 @@ filename = argv[2]
 #     data.append(chg)
 
 for file in os.listdir('./'):
-    chg = np.loadtxt(file, dtype=str)[:,4]
-    data.append(chg)
+    if file.startswith('ACF') and file.endswith('.dat'):
+        chg = np.loadtxt(file, dtype=str)[:,4]
+        data.append(chg)
 
 np.savetxt("%s.csv" % filename, np.transpose(data), delimiter =", ", fmt ='% s')
