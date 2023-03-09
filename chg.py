@@ -16,4 +16,4 @@ for file in os.listdir('./'):
         data.append(chg)
 
 print(data)
-np.savetxt("%s.csv" % filename, np.transpose(data), delimiter =", ", fmt ='% s')
+# np.savetxt("%s.csv" % filename, np.transpose(data), delimiter =", ", fmt ='% s')
