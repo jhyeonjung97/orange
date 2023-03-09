@@ -20,7 +20,7 @@ y = []
 #     print(mean(list))
 
 atoms = read('CONTCAR')
-list = [atom.z for atom in atoms if atom.symbol == 'H']
+list = [atom.z for atom in atoms if atom.symbol == 'H' and 7 < atom.z < 7.5]
 print(min(list))
     
 # np.savetxt("%s.csv" % filename, np.transpose([x, y]), delimiter =", ", fmt ='% s')
