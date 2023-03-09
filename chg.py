@@ -3,6 +3,7 @@ import numpy as np
 from sys import argv
 
 data = [] 
+length = []
 number = int(argv[1])
 filename = argv[2]
 
@@ -13,7 +14,9 @@ filename = argv[2]
 for file in os.listdir('./'):
     if file.startswith('ACF') and file.endswith('.dat'):
         chg = np.loadtxt(file, dtype=str)[:,4]
+        length.append(len(chg))
         data.append(chg)
-
-print(data)
+        
+print(length)
+print(max(length))
 # np.savetxt("%s.csv" % filename, np.transpose(data), delimiter =", ", fmt ='% s')
