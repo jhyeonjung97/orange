@@ -19,7 +19,7 @@ for file in os.listdir('./'):
 
 # data.shape
 # data.ndim
-reshape.data(-1,-1)
+data.reshape(-1,-1)
 data.shape
 data.ndim
 # reshape.data(data.ndim,max(length))
