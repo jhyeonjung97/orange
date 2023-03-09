@@ -17,8 +17,8 @@ for file in os.listdir('./'):
         length.append(len(chg))
         data.append(chg)
 
-data.shape
-data.ndim
+# data.shape
+# data.ndim
 reshape.data(-1,-1)
 data.shape
 data.ndim
