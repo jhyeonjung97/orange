@@ -18,9 +18,9 @@ filename = argv[2]
 #         length.append(len(chg))
 
 for i in range(1,number+1):
-    print("ACF%d.dat" % i)
+    # print("ACF%d.dat" % i)
     chg = np.loadtxt("ACF%d.dat" % i, dtype=str)[:,4]
-    print(chg)
+    # print(chg)
     data.append(chg)
 
 # for file in os.listdir('./'):
