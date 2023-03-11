@@ -16,7 +16,7 @@ filename = argv[2]
 #         chg = np.loadtxt(file, dtype=str)[:,4]
 #         chg.shape
 #         length.append(len(chg))
-        
+
 for i in range(1,number+1):
     print("ACF%d.csv" % i)
     chg = np.loadtxt("ACF%d.csv" % i, dtype=str)[:,4]

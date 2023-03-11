@@ -6,7 +6,7 @@ alias ii='sed -i -e "s/  / /g" INCAR'
 alias k='cp ~/input_files/KPOINTS .'
 alias potcar='sh ~/bin/orange/potcar.sh'
 alias PBE='grep TITEL POTCAR'
-alias acf='sh ~/bin/orange/chg.sh'
+alias acf='sh ~/bin/orange/acf.sh'
 
 alias pos2cif='~/bin/vtstscripts/pos2cif.pl POSCAR'
 alias con2cif='~/bin/vtstscripts/pos2cif.pl CONTCAR'
