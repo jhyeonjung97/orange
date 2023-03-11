@@ -5,7 +5,7 @@ for dir in */
 do
     numb=$(echo $dir | cut -c 1)
     cp $dir/ACF.dat ACF$numb.dat
-    i=i+1
+    i=$(($i+1))
 done
 
 sed -i -e '1,2d' ACF*.dat
