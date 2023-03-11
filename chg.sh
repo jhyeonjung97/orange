@@ -7,7 +7,6 @@ do
 done
 
 sed -i -e '1,2d' ACF*.dat
-sed -i -e '1,2d' ACF*.dat
 sed -i -e '$d' ACF*.dat
 sed -i -e '$d' ACF*.dat
 sed -i -e '$d' ACF*.dat
