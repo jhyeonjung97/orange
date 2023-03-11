@@ -4,7 +4,7 @@ from sys import argv
 
 data = [] 
 length = []
-number = int(argv[1])
+number = int(float(argv[1]))
 filename = argv[2]
 
 # for i in range(1,number+1):
