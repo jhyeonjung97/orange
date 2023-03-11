@@ -14,5 +14,5 @@ sed -i -e '$d' ACF*.dat
 sed -i -e '$d' ACF*.dat
 sed -i -e '$d' ACF*.dat
 
-echo $i
+# echo $i
 python ~/bin/orange/acf.py $i $filename
