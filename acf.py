@@ -18,8 +18,8 @@ filename = argv[2]
 #         length.append(len(chg))
 
 for i in range(1,number+1):
-    print("ACF%d.csv" % i)
-    chg = np.loadtxt("ACF%d.csv" % i, dtype=str)[:,4]
+    print("ACF%d.dat" % i)
+    chg = np.loadtxt("ACF%d.dat" % i, dtype=str)[:,4]
     print(chg)
     data.append(chg)
 
