@@ -5,7 +5,7 @@ import numpy as np
 import sys
 
 # element = input("which element? ")
-# filename = input("filename? ")
+filename = input("filename? ")
 traj = read_vasp_xdatcar('XDATCAR', index = 0)
 
 i = 0
