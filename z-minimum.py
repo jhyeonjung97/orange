@@ -30,6 +30,6 @@ for atoms in traj:
 # atoms = read('CONTCAR')
 # #list = [atom.z for atom in atoms if atom.symbol == 'H' and atom.z > 7]
 # list = [atoms[0].z, atoms[1].z]
-# print(min(list))
+print(mean(y))
     
 np.savetxt("%s.csv" % filename, np.transpose([x, y]), delimiter =", ", fmt ='% s')
