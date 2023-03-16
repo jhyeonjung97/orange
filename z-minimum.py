@@ -20,7 +20,7 @@ for atoms in traj:
     #         atoms[78].z,atoms[77].z,atoms[75].z,atoms[82].z,atoms[73].z,atoms[80].z,atoms[84].z]
     list = [atoms[90].z,atoms[92].z,atoms[106].z,atoms[82].z,atoms[99].z,atoms[77].z,atoms[111].z,atoms[101].z,
             atoms[96].z,atoms[88].z,atoms[108].z,atoms[84].z,atoms[100].z,atoms[83].z,atoms[109].z,atoms[105].z,
-            z,atoms[75].z,atoms[78].z,atoms[97].z,atoms[104].z,atoms[89].z,atoms[94].z]
+            atoms[75].z,atoms[78].z,atoms[97].z,atoms[104].z,atoms[89].z,atoms[94].z]
 
 
     
