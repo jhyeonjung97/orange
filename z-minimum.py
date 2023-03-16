@@ -22,14 +22,14 @@ for atoms in traj:
             atoms[71].z, 
             atoms[76].z]
     # list = [atom.z for atom in atoms if atom.symbol == 'H' and atom.z < 8]
-    # i = i+1
-    # x.append(i)
-    # y.append(min(list))
-    print(mean(list))
+    i = i+1
+    x.append(i)
+    y.append(min(list))
+    # print(mean(list))
 
 # atoms = read('CONTCAR')
 # #list = [atom.z for atom in atoms if atom.symbol == 'H' and atom.z > 7]
 # list = [atoms[0].z, atoms[1].z]
 # print(min(list))
     
-# np.savetxt("%s.csv" % filename, np.transpose([x, y]), delimiter =", ", fmt ='% s')
+np.savetxt("%s.csv" % filename, np.transpose([x, y]), delimiter =", ", fmt ='% s')
