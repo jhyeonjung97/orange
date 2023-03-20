@@ -21,6 +21,7 @@ alias spread='sh ~/bin/orange/spread.sh'
 alias duplicate='sh ~/bin/orange/duplicate.sh'
 alias xyz2vasp='python ~/bin/orange/xyz2vasp.py'
 alias backup='sh ~/bin/orange/backup.sh'
+alias clone='sh ~/bin/orange/clone.sh'
 
 alias zip='tar -cvzf'
 alias unzip='tar -xvf'
