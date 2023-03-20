@@ -1,7 +1,7 @@
 # usage: sh clone.sh a2.vasp b3 -> b1.vasp b2.vasp b3.vasp
 #      : sh clone.sh a.vasp c.vasp
 
-if [[ -n $(echo $2 | grep .) ]]; then
+if [[ -n $(echo $2 | grep '\.') ]]; then
     filename=${1%.*}
     ext=${1##*.}
     mkdir clone_temp
