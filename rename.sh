@@ -6,10 +6,12 @@ if [[ -z $1 ]] || [[ -z $2 ]]; then
 fi
 
 if [[ $1 == '-ase' ]] || [[ $1 == '-a' ]]; then
-    extension="${2##*.}"
-    filename="${2%.*}"
+    extension=${2##*.}
+    filename=${2%.*}
+    echo $extension $filename
     for file in $filename*.$extenstion
     do
+        echo $file
         # name=$(echo $file | rev | cut -c 6- | rev)
         numb=$(echo $file | rev | cut -c -5 | rev)
         if [[ $numb == 00000 ]]; then
@@ -23,10 +25,10 @@ if [[ $1 == '-ase' ]] || [[ $1 == '-a' ]]; then
         fi
     done
 else
-    extension1="${1##*.}"
-    filename1="${1%.*}"
-    extension2="${2##*.}"
-    filename2="${2%.*}"
+    extension1=${1##*.}
+    filename1=${1%.*}
+    extension2=${2##*.}
+    filename2=${2%.*}
     for i in {0..9}
     do
         if [[ -e $filename1$i.$extension1 ]]; then
