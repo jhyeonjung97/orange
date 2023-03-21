@@ -17,17 +17,19 @@ if [[ $1 == '-ase' ]] || [[ $1 == '-a' ]]; then
             numb=$(echo $name | rev | cut -c -5 | rev)
             # echo $numb
             if [[ $numb =~ '00000' ]]; then
-                cp $file $filename'1'.$extension
+                mv $file $filename'1'.$extension
                 # echo $i
                 # echo "cp $file $filename'1'.$extension"
             elif [[ $numb =~ '0000' ]]; then
                 i=$(echo $numb | rev | cut -c -1 | rev)
-                cp $file $filename$i.$extension
+                j=$(($i+1))
+                mv $file $filename$j.$extension
                 # echo $i
                 # echo "cp $file $filename$i.$extension"
             elif [[ $numb =~ '000' ]]; then
                 i=$(echo $numb | rev | cut -c -2 | rev)
-                cp $file $filename$i.$extension
+                j=$(($i+1))
+                mv $file $filename$j.$extension
                 # echo $i
                 # echo "cp $file $filename$i.$extension"
             fi
