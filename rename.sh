@@ -9,19 +9,21 @@ if [[ $1 == '-ase' ]] || [[ $1 == '-a' ]]; then
     extension=${2##*.}
     filename=${2%.*}
     echo $extension $filename
-    for file in $filename*.$extenstion
-    do
-        echo $file
-        # name=$(echo $file | rev | cut -c 6- | rev)
-        numb=$(echo $file | rev | cut -c -5 | rev)
-        if [[ $numb == 00000 ]]; then
-            cp $file "$filename"1.$extension
-        elif [[ $numb == 0000* ]]; then
-            i = $(echo $file | rev | cut -c -1 | rev)
-            cp $file $filename$i.$extension
-        elif [[ $numb == 000* ]]; then
-            i = $(echo $file | rev | cut -c -2 | rev)
-            cp $file $filename$i.$extension
+    for file in *."$extension"
+    do  
+        name=$(echo $file | rev | cut -c 6- | rev)
+        if [[ $filename == $name ]]; then
+            echo $file
+            # numb=$(echo $file | rev | cut -c -5 | rev)
+            # if [[ $numb == 00000 ]]; then
+            #     cp $file "$filename"1.$extension
+            # elif [[ $numb == 0000* ]]; then
+            #     i = $(echo $file | rev | cut -c -1 | rev)
+            #     cp $file $filename$i.$extension
+            # elif [[ $numb == 000* ]]; then
+            #     i = $(echo $file | rev | cut -c -2 | rev)
+            #     cp $file $filename$i.$extension
+            # fi
         fi
     done
 else
