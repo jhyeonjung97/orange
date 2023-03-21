@@ -15,8 +15,9 @@ if [[ $1 == '-ase' ]] || [[ $1 == '-a' ]]; then
         if [[ $name =~ $filename ]]; then
             # echo $file
             numb=$(echo $file | rev | cut -c -5 | rev)
+            echo $numb
             if [[ $numb == 00000 ]]; then
-                cp $file "$filename"1.$extension
+                cp $file $filename'1'.$extension
             elif [[ $numb == 0000* ]]; then
                 i = $(echo $file | rev | cut -c -1 | rev)
                 cp $file $filename$i.$extension
