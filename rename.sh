@@ -18,18 +18,18 @@ if [[ $1 == '-ase' ]] || [[ $1 == '-a' ]]; then
             # echo $numb
             if [[ $numb =~ '00000' ]]; then
                 cp $file $filename'1'.$extension
-                echo $i
-                echo "cp $file $filename'1'.$extension"
+                # echo $i
+                # echo "cp $file $filename'1'.$extension"
             elif [[ $numb =~ '0000' ]]; then
                 i=$(echo $numb | rev | cut -c -1 | rev)
                 cp $file $filename$i.$extension
-                echo $i
-                echo "cp $file $filename$i.$extension"
+                # echo $i
+                # echo "cp $file $filename$i.$extension"
             elif [[ $numb =~ '000' ]]; then
                 i=$(echo $numb | rev | cut -c -2 | rev)
                 cp $file $filename$i.$extension
-                echo $i
-                echo "cp $file $filename$i.$extension"
+                # echo $i
+                # echo "cp $file $filename$i.$extension"
             fi
         fi
     done
