@@ -14,8 +14,8 @@ data = []
 # Loop through each subdirectory and concatenate the CSV files
 for subdir in subdirs:
     subdir_path = os.path.join(parent_dir, subdir)
-    print(subdir_path)
     for f in os.listdir(subdir_path):
+        print(f)
         if os.path.isfile(os.path.join(subdir_path, f)) and f.endswith('.csv'):
             print(f)
             subdir_data = np.transpose(np.transpose(np.loadtxt(f, dtype=str, delimiter=','))[0])
