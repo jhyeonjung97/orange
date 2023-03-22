@@ -7,7 +7,7 @@ parent_dir = './'
 
 # Get a list of all the subdirectories in the parent directory
 subdirs = [d for d in os.listdir(parent_dir) if os.path.isdir(os.path.join(parent_dir, d))]
-
+print(subdirs)
 # Create an empty list to store the concatenated data
 data = []
 
