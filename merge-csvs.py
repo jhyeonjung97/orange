@@ -16,7 +16,9 @@ for subdir in subdirs:
     subdir_path = os.path.join(parent_dir, subdir)
     for f in os.listdir(subdir_path):
         if os.path.isfile(os.path.join(subdir_path, f)) and f.endswith('.csv'):
+            print(f)
             subdir_data = np.loadtxt(f, dtype=str)
+            print(subdir_data)
             data.append(subdir_data)
             
 # for i in range(1,1+1):
