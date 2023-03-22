@@ -16,11 +16,16 @@ for subdir in subdirs:
     subdir_csv_files = [f for f in os.listdir(subdir_path) if os.path.isfile(os.path.join(subdir_path, f)) and f.endswith('.csv')]
     print(f"Concatenating CSV files in subdirectory {subdir}...")
     df_csv_concat = pd.concat([pd.read_csv(os.path.join(subdir_path, file)) for file in subdir_csv_files ], ignore_index=True)
-    print(f"Saving concatenated data for subdirectory {subdir}...")
-    df_csv_concat.to_csv(f"{subdir}_concatenated.csv", index=False)
     data.append(df_csv_concat)
 
+# Concatenate all the data into a single DataFrame
+df_all_data = pd.concat(data, ignore_index=True)
+
+# Save the concatenated data to a single CSV file
+output_name = "merged.csv"
+print(f"Saving merged data to {output_name}...")
+df_all_data.to_csv(output_name, index=False)
+
 # Display the concatenated data for all subdirectories
-for i, df in enumerate(data):
-    print(f"Concatenated data for subdirectory {subdirs[i]}:")
-    print(df)
+print("Merged data:")
+print(df_all_data)
