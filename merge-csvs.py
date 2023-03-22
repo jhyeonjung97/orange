@@ -19,7 +19,7 @@ for subdir in subdirs:
     data.append(df_csv_concat)
 
 # Concatenate all the data into a single DataFrame
-df_all_data = pd.concat(data, ignore_index=True)
+df_all_data = pd.concat(data)
 
 # Save the concatenated data to a single CSV file
 output_name = "merged.csv"
