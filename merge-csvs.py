@@ -18,7 +18,8 @@ for subdir in subdirs:
         print(f)
         if os.path.isfile(os.path.join(subdir_path, f)) and f.endswith('.csv'):
             print(f)
-            subdir_data = np.transpose(np.transpose(np.loadtxt(os.path.join(subdir_path, f), dtype=str, delimiter=','))[0])
+            subdir_data = np.loadtxt(os.path.join(subdir_path, f), dtype=str, delimiter=',')
+            print(os.path.join(subdir_path, f))
             print(subdir_data)
             data.append(subdir_data)
             
