@@ -16,7 +16,7 @@ for subdir in subdirs:
     subdir_path = os.path.join(parent_dir, subdir)
     for f in os.listdir(subdir_path):
         if os.path.isfile(os.path.join(subdir_path, f)) and f.endswith('.csv'):
-            subdir_data = np.loadtxt(f, dtype=float)[0]
+            subdir_data = np.loadtxt(f, dtype=str)[0]
             data.append(subdir_data)
         
 np.savetxt("merged.csv", np.transpose(data), delimiter =", ", fmt ='% s')
