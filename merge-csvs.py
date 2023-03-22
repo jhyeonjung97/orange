@@ -11,13 +11,20 @@ subdirs = [d for d in os.listdir(parent_dir) if os.path.isdir(os.path.join(paren
 # Create an empty list to store the concatenated data
 data = []
 
-# Loop through each subdirectory and concatenate the CSV files
-for subdir in subdirs:
-    subdir_path = os.path.join(parent_dir, subdir)
-    for f in os.listdir(subdir_path):
-        if os.path.isfile(os.path.join(subdir_path, f)) and f.endswith('.csv'):
-            subdir_data = np.loadtxt(f, dtype=str)[0]
+# # Loop through each subdirectory and concatenate the CSV files
+# for subdir in subdirs:
+#     subdir_path = os.path.join(parent_dir, subdir)
+#     for f in os.listdir(subdir_path):
+#         if os.path.isfile(os.path.join(subdir_path, f)) and f.endswith('.csv'):
+#             subdir_data = np.loadtxt(f, dtype=str)[0]
+#             data.append(subdir_data)
+            
+for i in range(1,number+1):
+    path = "./{i}/"
+    for f in os.listdir(path):
+        if os.path.isfile(os.path.join(path, f)) and f.endswith('.csv'):
+            chg = np.loadtxt(f, dtype=str)
             data.append(subdir_data)
-        
+
 np.savetxt("merged.csv", np.transpose(data), delimiter =", ", fmt ='% s')
 print(data)
