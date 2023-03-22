@@ -7,13 +7,14 @@ parent_dir = './'
 
 # Get a list of all the subdirectories in the parent directory
 subdirs = [d for d in os.listdir(parent_dir) if os.path.isdir(os.path.join(parent_dir, d))]
-print(subdirs)
+
 # Create an empty list to store the concatenated data
 data = []
 
 # Loop through each subdirectory and concatenate the CSV files
 for subdir in subdirs:
     subdir_path = os.path.join(parent_dir, subdir)
+    print(subdir_path)
     for f in os.listdir(subdir_path):
         if os.path.isfile(os.path.join(subdir_path, f)) and f.endswith('.csv'):
             print(f)
