@@ -3,11 +3,11 @@ from ase.io.vasp import read_vasp_xdatcar
 import numpy as np
 
 # Define the cation symbols and their corresponding cutoff distances
-cation_cutoffs = {'Li': 2.60087,
-                  'Na': 2.95693,
-                  'K': 3.25142,
-                  'Rb': 3.43945,
-                  'Cs': 3.53642}
+cation_cutoffs = {'Li': 2.5,
+                  'Na': 3.0,
+                  'K' : 3.5,
+                  'Rb': 3.8,
+                  'Cs': 4.1}
 
 # Read the XDATCAR file
 structures = read_vasp_xdatcar('XDATCAR', index=0)
