@@ -2,7 +2,7 @@ import os
 import numpy as np
 
 # Set the parent directory path where the CSV files are located to the current working directory
-parent_dir = './'
+parent_dir = '././'
 
 # Get a list of all the subdirectories in the parent directory
 subdirs = sorted([d for d in os.listdir(parent_dir) if os.path.isdir(os.path.join(parent_dir, d))])
