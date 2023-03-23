@@ -26,7 +26,6 @@ min_z_positions = []
 for atoms in structures:
     min_z_position = [atom.position[2] for atom in atoms if atom.symbol == cation]
     min_z_positions.append(min_z_position)
-    print(f"Iteration {i}: {min_z_position}")
 
 # Save the minimum z-positions as a csv file
 np.savetxt(f'min_z_positions_{cation}.csv', min_z_positions, delimiter=',')
