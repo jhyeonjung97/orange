@@ -58,10 +58,10 @@ for i, atoms in enumerate(structures):
 #                             cation_position -= hexagonal_cell[m]
 #             dr = water_position - cation_position
             
-             if i == 0 and water_oxygen_index == 33:
+            if i == 0 and water_oxygen_index == 33:
 #                 print('revised_water', water_position)
 #                 print('revised_cation', cation_position)
-                 print(dr)
+                print(dr)
 
             # Apply minimum image convention to account for periodic boundary conditions
             for m in range(2):
