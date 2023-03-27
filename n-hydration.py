@@ -60,3 +60,10 @@ for i, atoms in enumerate(structures):
 
 # Save the minimum z-positions as a csv file
 np.savetxt(f'numb_hydrations_{cation}.csv', numb_hydrations, delimiter=',')
+
+
+[-2.06254193  7.08107473  8.098294  ] [1.46552445 0.78722884 9.2878904 ]
+0 -3.52806638464258
+1 6.2938458923487 3.8652945
+1 -1.4367431076513002
+33 [-3.52806638 -1.43674311 -1.1895964 ] 3.990817305605637
