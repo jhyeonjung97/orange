@@ -28,7 +28,7 @@ fi
 if [[ $1 == '-s' ]]; then
     dirs='*/*/'
     destination='../../'
-elif
+else
     dirs='*/'
     destination='../'
 fi
