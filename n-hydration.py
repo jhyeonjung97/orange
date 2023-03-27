@@ -49,7 +49,7 @@ for i, atoms in enumerate(structures):
                         else:
                             water_position -= boundary_cell
                 while cation_position[m] < 0 or cation_position[m] >= cell[m,m]:
-                        if cation_position < 0:
+                        if cation_position[m] < 0:
                             cation_position += boundary_cell
                         else:
                             cation_position -= boundary_cell
