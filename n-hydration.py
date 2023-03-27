@@ -23,13 +23,13 @@ for atom in structures[0]:
 else:
     raise ValueError('Could not find cation in XDATCAR')
 
-min_z_positions = []
+numb_hydrations = []
 for i, atoms in enumerate(structures):
     # Get the indices of cation and water oxygen atoms
     cation_indices = [j for j, atom in enumerate(atoms) if atom.symbol == cation]
     water_oxygen_indices = [j for j, atom in enumerate(atoms) if atom.symbol == 'O']
 
-    min_z_position = None
+    numb_hydration = None
     for cation_index in cation_indices:
         for water_oxygen_index in water_oxygen_indices:
             # Calculate the distance between cation and water oxygen
