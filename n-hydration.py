@@ -56,7 +56,7 @@ for i, atoms in enumerate(structures):
 #                             cation_position += hexagonal_cell[m]
 #                         else:
 #                             cation_position -= hexagonal_cell[m]
-#             dr = water_position - cation_position
+            dr = water_position - cation_position
             
             if i == 0 and water_oxygen_index == 33:
 #                 print('revised_water', water_position)
