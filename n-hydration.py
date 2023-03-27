@@ -38,38 +38,38 @@ for i, atoms in enumerate(structures):
             cation_position = atoms[cation_index].position
             
             if i == 0 and water_oxygen_index == 33:
-                print(water_position)
-                print(cation_position)
+                print('initial_water', water_position)
+                print('initial_cation', cation_position)
             
             for m in range(2):
                 while water_position[m] < 0 or water_position[m] >= cell[m,m]:
                         if water_position[m] < 0:
-                            water_position[m] += cell[m,m]
+                            water_position += hexagonal_cell
                         else:
-                            water_position[m] -= cell[m,m]
+                            water_position -= hexagonal_cell
                 while cation_position[m] < 0 or cation_position[m] >= cell[m,m]:
-                        if cation_position[m] < 0:
-                            cation_position[m] += cell[m,m]
+                        if cation_position < 0:
+                            cation_position += hexagonal_cell
                         else:
-                            cation_position[m] -= cell[m,m]
+                            cation_position -= hexagonal_cell
             dr = water_position - cation_position
             
             if i == 0 and water_oxygen_index == 33:
-                print(water_position)
-                print(cation_position)
+                print('revised_water', water_position)
+                print('revised_cation', cation_position)
                 print(dr)
 
             # Apply minimum image convention to account for periodic boundary conditions
             for m in range(2):
-                while abs(dr[m]) > abs(cell[m,m]/2):
+                while abs(dr[m]) > cell[m,m]/2:
                     if dr[m] > 0:
                         dr[m] = cell[m,m] - dr[m]
                     else:
                         dr[m] = cell[m,m] + dr[m]
                         
             if i == 0 and water_oxygen_index == 33:
-                print(water_position)
-                print(cation_position)
+                print('final_water', water_position)
+                print('final_cation', cation_position)
                 print(dr)
                 
             distance = np.linalg.norm(dr)
