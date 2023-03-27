@@ -4,8 +4,8 @@ import numpy as np
 # Set the parent directory path where the CSV files are located to the current working directory
 parent_dir = './'
 
-# Get a list of all the subdirectories in the parent directory
-subdirs = sorted([d for d in os.listdir(parent_dir) if os.path.isdir(os.path.join(parent_dir, d))])
+# Get a list of all the subdirectories in the parent directory that start with a number
+subdirs = sorted([d for d in os.listdir(parent_dir) if os.path.isdir(os.path.join(parent_dir, d)) and d[0].isdigit()])
 
 # Loop through each subdirectory and show the list of CSV files
 for subdir in subdirs:
