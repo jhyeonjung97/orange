@@ -33,6 +33,7 @@ elif [[ $1 == '-s' ]]; then
     for subdir in $subdirs; do
         subdir_path="$subdir/"
         for file in "$subdir_path"*; do
+            echo "$subdir_path"*
             if [[ $file =~ $pattern ]]; then
                 if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
                     if [[ $pattern == 'POSCAR' ]] && [[ -e initial.vasp ]]; then
