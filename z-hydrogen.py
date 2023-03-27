@@ -59,11 +59,10 @@ for i, atoms in enumerate(structures):
                                         dr += cell[m]
                             if np.linalg.norm(dr) <= 1.2:
                                 cation_hydrogen_indices.append(hydrogen_index)
-
-    # Get the minimum z-position of hydrogen atoms in the water molecule
-    min_z_position = min([atoms[j].position[2] for j in cation_hydrogen_indices])
-    min_z_positions.append(min_z_position)
-    print(f"Iteration {i}: {min_z_position}")
+        # Get the minimum z-position of hydrogen atoms in the water molecule
+        min_z_position = min([atoms[j].position[2] for j in cation_hydrogen_indices])
+        min_z_positions.append(min_z_position)
+        print(f"Iteration {i}: {min_z_position}")
     
 # Save the minimum z-positions as a csv file
 np.savetxt(f'min_z_positions_{cation}.csv', min_z_positions, delimiter=',')
