@@ -79,6 +79,15 @@ do
     if [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
         sh ~/bin/orange/nelect.sh
     fi
+    if grep -q '^[^#]*IBRION\s*=\s*0' INCAR && \
+       grep -q '^[^#]*POTIM\s*=\s*1' INCAR && \
+       grep -q '^[^#]*TEBEG\s*=\s*300' INCAR && \
+       grep -q '^[^#]*SMASS\s*=\s*0' INCAR && \
+       grep -q '^[^#]*MDALGO\s*=\s*2' INCAR
+    then
+        echo "Note: This is MD calculation"
+        sh ~/bin/orange/pomass.sh
+    fi
     sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
     sed -i "/#PBS -N/c\#PBS -N $n$i" run_slurm.sh
     cd ..
