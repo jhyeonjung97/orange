@@ -7,4 +7,4 @@ elif [[ $1 =~ l ]]; then
 fi
 
 sed -i "/queue/c\#PBS -q $q" run_slurm.sh
-grep queue run_slurm.sh
+grep '#PBS -q' run_slurm.sh
