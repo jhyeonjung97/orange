@@ -43,13 +43,11 @@ for i, atoms in enumerate(structures):
             
             # Apply minimum image convention to account for periodic boundary conditions
             for m in range(2):
-                print(water_oxygen_index, m, dr)
                 while abs(dr[m]) > cell[m,m]/2:
                     if dr[m] > 0:
                         dr -= cell[m]
                     else:
                         dr += cell[m]
-                    print(water_oxygen_index, m, dr)
                     
             distance = np.linalg.norm(dr)
             
