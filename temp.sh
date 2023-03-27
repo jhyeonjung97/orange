@@ -5,6 +5,8 @@ if [[ -z $1 ]]; then # simple submit
 else
     if [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
         DIR='*/'
+    elif [[ $1 == '-rr' ]]; then
+        DIR='*/*/'
     elif [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
         DIR=${@:2}
     elif [[ -z $2 ]]; then
