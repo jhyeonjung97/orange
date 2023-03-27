@@ -49,7 +49,7 @@ read -p 'vaspsend destination (enter for skip): ' send
 for dir in $dirs
 do
     cd $dir
-    if [[ $1 == '-c' ]]; then
+    if [[ $1 == '-c' ]] || [[ $1 == '-s' ]]; then
         numb=$(echo $dir | cut -c 1)
     else
         numb=${dir%/}
