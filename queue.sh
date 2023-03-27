@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if $2 =~ 'n'; then
+if [[ $2 =~ n ]]; then
     q='normal'
-elif $2 =~ 'l'; then
+elif [[ $2 =~ l ]]; then
     q='long'
 fi
 
