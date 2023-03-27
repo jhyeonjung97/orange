@@ -50,6 +50,8 @@ for i, atoms in enumerate(structures):
 
             if distance <= cutoff:
                 numb_hydration += 1
+                if i == 6999:
+                    print(water_oxygen_index)
 
     numb_hydrations.append(numb_hydration)
     # print(f"Iteration {i}: {numb_hydration}")
