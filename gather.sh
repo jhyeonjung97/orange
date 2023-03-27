@@ -57,7 +57,6 @@ do
     for file in *
     do
         if [[ $file =~ $pattern ]]; then
-            echo $file
             if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
                 if [[ $pattern == 'POSCAR' ]] && [[ -e initial.vasp ]]; then
                     cp initial.vasp $destination$filename$numb.vasp
