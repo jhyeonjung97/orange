@@ -36,7 +36,7 @@ for i, atoms in enumerate(structures):
             water_position = atoms[water_oxygen_index].position
             cation_position = atoms[cation_index].position
             
-            if i == 0:
+            if i == 0 and water_oxygen_index == 33:
                 print(water_position)
                 print(cation_position)
             
