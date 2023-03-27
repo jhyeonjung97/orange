@@ -22,10 +22,10 @@ for atom in structures[0]:
 else:
     raise ValueError('Could not find cation in XDATCAR')
 
-min_z_positions = []
+cation_z_positions = []
 for atoms in structures:
-    min_z_position = [atom.position[2] for atom in atoms if atom.symbol == cation]
-    min_z_positions.append(min_z_position)
+    cation_z_position = [atom.position[2] for atom in atoms if atom.symbol == cation]
+    cation_z_positions.append(cation_z_position)
 
 # Save the minimum z-positions as a csv file
-np.savetxt(f'min_z_positions_{cation}.csv', min_z_positions, delimiter=',')
+np.savetxt(f'cation_z_positions_{cation}.csv', cation_z_positions, delimiter=',')
