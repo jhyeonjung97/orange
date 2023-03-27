@@ -27,6 +27,7 @@ min_z_positions = []
 for i, atoms in enumerate(structures):
     
     if i == 0:
+        min_z_position = 0
         cation_hydrogen_indices = []
         # Get the indices of cation and water oxygen atoms
         cation_indices = [j for j, atom in enumerate(atoms) if atom.symbol == cation]
@@ -61,7 +62,6 @@ for i, atoms in enumerate(structures):
 
     # Get the minimum z-position of hydrogen atoms in the water molecule
     min_z_position = min([atoms[j].position[2] for j in cation_hydrogen_indices])
-    if min_z_position == None
     min_z_positions.append(min_z_position)
     print(f"Iteration {i}: {min_z_position}")
     
