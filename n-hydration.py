@@ -28,29 +28,35 @@ for i, atoms in enumerate(structures):
     # Get the indices of cation and water oxygen atoms
     cation_indices = [j for j, atom in enumerate(atoms) if atom.symbol == cation]
     water_oxygen_indices = [j for j, atom in enumerate(atoms) if atom.symbol == 'O']
+    
+    if i == 0:
+        print(cell)
+        
+        numb_hydration = 0
+        for cation_index in cation_indices:
+            for water_oxygen_index in water_oxygen_indices:
+                # Calculate the distance between cation and water oxygen
+                dr = atoms[water_oxygen_index].position - atoms[cation_index].position
+                print(atoms[water_oxygen_index].position, atoms[cation_index].position)
 
-    numb_hydration = 0
-    for cation_index in cation_indices:
-        for water_oxygen_index in water_oxygen_indices:
-            # Calculate the distance between cation and water oxygen
-            dr = atoms[water_oxygen_index].position - atoms[cation_index].position
+                # Apply minimum image convention to account for periodic boundary conditions
+                for m in range(2):
+                    while abs(dr[m]) > cell[m,m]/2:
+                        print(m, dr[m])
+                        if dr[m] > 0:
+                            dr[m] -= cell[m,m]
+                        else:
+                            dr[m] += cell[m,m]
+                    print(m, dr[m])
+                
+                distance = np.linalg.norm(dr)
+                print(water_oxyge_index, dr, distance)
 
-            # Apply minimum image convention to account for periodic boundary conditions
-            for m in range(2):
-                while abs(dr[m]) > cell[m,m]/2:
-                    if dr[m] > 0:
-                        dr[m] -= cell[m,m]
-                    else:
-                        dr[m] += cell[m,m]
-
-            distance = np.linalg.norm(dr)
-            if i == 1:
-                print(water_oxygen_index, distance)
-            if distance <= cutoff:
-                numb_hydration += 1
+                if distance <= cutoff:
+                    numb_hydration += 1
 
     numb_hydrations.append(numb_hydration)
-    # print(f"Iteration {i}: {numb_hydration}")
+    print(f"Iteration {i}: {numb_hydration}")
 
 # Save the minimum z-positions as a csv file
 np.savetxt(f'numb_hydrations_{cation}.csv', numb_hydrations, delimiter=',')
