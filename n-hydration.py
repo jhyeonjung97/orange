@@ -36,6 +36,10 @@ for i, atoms in enumerate(structures):
             water_position = atoms[water_oxygen_index].position
             cation_position = atoms[cation_index].position
             
+            if i == 0:
+                print(water_position)
+                print(cation_position)
+            
             for m in range(2):
                 while water_position[m] < 0 or water_position[m] >= cell[m,m]:
                         if water_position[m] < 0:
@@ -48,6 +52,11 @@ for i, atoms in enumerate(structures):
                         else:
                             cation_position[m] -= cell[m,m]
             dr = water_position - cation_position
+            
+            if i == 0:
+                print(water_position)
+                print(cation_position)
+                print(dr)
 
             # Apply minimum image convention to account for periodic boundary conditions
             for m in range(2):
@@ -56,7 +65,12 @@ for i, atoms in enumerate(structures):
                         dr[m] -= cell[m,m]
                     else:
                         dr[m] += cell[m,m]
-
+                        
+            if i == 0:
+                print(water_position)
+                print(cation_position)
+                print(dr)
+                
             distance = np.linalg.norm(dr)
 
             if distance <= cutoff:
