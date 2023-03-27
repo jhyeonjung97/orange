@@ -29,7 +29,7 @@ for i, atoms in enumerate(structures):
     cation_indices = [j for j, atom in enumerate(atoms) if atom.symbol == cation]
     water_oxygen_indices = [j for j, atom in enumerate(atoms) if atom.symbol == 'O']
 
-    numb_hydration = None
+    numb_hydration = 0
     for cation_index in cation_indices:
         for water_oxygen_index in water_oxygen_indices:
             # Calculate the distance between cation and water oxygen
