@@ -69,8 +69,6 @@ for i, atoms in enumerate(structures):
 
     min_z_positions.append(min_z_position)
     print(f"Iteration {i}: {min_z_position}")
-
-print(min_z_positions)
     
 # Save the minimum z-positions as a csv file
 np.savetxt(f'min_z_positions_{cation}.csv', min_z_positions, delimiter=',')
