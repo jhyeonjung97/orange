@@ -11,13 +11,13 @@ cation_cutoffs = {'Li': 2.5,
 
 # Read the XDATCAR file
 structures = read_vasp_xdatcar('XDATCAR', index=0)
-hexagonal_cell = structures[0].cell
+cell = structures[0].cell
 
 # Define the transformation matrix
 transformation_matrix = np.array([[1.0, -0.5, 0.0], [0.0, np.sqrt(3)/2, 0.0], [0.0, 0.0, 1.0]])
 
-# Multiply the hexagonal cell with the transformation matrix to get the rectangular cell
-cell = np.dot(hexagonal_cell, transformation_matrix)
+# # Multiply the hexagonal cell with the transformation matrix to get the rectangular cell
+# cell = np.dot(hexagonal_cell, transformation_matrix)
 
 # Find the cation symbol
 cation = None
@@ -36,14 +36,18 @@ for i, atoms in enumerate(structures):
     water_oxygen_indices = [j for j, atom in enumerate(atoms) if atom.symbol == 'O']
     
     if i == 0:
-        print(cell)
+        print('cell:' cell)
         
         numb_hydration = 0
         for cation_index in cation_indices:
             for water_oxygen_index in water_oxygen_indices:
                 # Calculate the distance between cation and water oxygen
-                dr = atoms[water_oxygen_index].position - atoms[cation_index].position
+                water_position = np.dot(atoms[water_oxygen_index].position, transformation_matrix)
+                cation_position = np.dot(atoms[cation_index].position, transformation_matrix)
+                dr = water_position - cation_position
                 print(atoms[water_oxygen_index].position, atoms[cation_index].position)
+                print(water_position, cation_position, dr)
+
                 
                 if water_oxygen_index == 33:
                     # Apply minimum image convention to account for periodic boundary conditions
