@@ -7,7 +7,7 @@ pomass_line=$(echo $pomass)
 # check if POMASS line exists in INCAR
 if grep -q 'POMASS' INCAR; then
   # replace POMASS line in INCAR with POMASS data from POTCAR
-  sed -i "s/POMASS/POMASS = $pomass_line/" INCAR
+  sed -i "/POMASS/c\POMASS = $pomass_line" INCAR
 else
   # add POMASS line to INCAR with POMASS data from POTCAR
   echo "POMASS = $pomass_line" >> INCAR
