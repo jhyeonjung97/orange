@@ -38,19 +38,26 @@ for i, atoms in enumerate(structures):
                 # Calculate the distance between cation and water oxygen
                 dr = atoms[water_oxygen_index].position - atoms[cation_index].position
                 print(atoms[water_oxygen_index].position, atoms[cation_index].position)
-
-                # Apply minimum image convention to account for periodic boundary conditions
-                for m in range(2):
-                    while abs(dr[m]) > abs(cell[m,m]/2):
-                        print(m, dr[m], cell[m,m]/2)
-                        if dr[m] > 0:
-                            dr[m] -= cell[m,m]
-                        else:
-                            dr[m] += cell[m,m]
-                    print(m, dr[m])
                 
+                # Apply minimum image convention to account for periodic boundary conditions
+                cell_inv = np.linalg.inv(cell.T)
+                dr = np.dot(dr, cell_inv)
+                for i in range(3):
+                    dr -= np.round(dr[i]) * cell[:,i]
                 distance = np.linalg.norm(dr)
                 print(water_oxygen_index, dr, distance)
+                
+                # # Apply minimum image convention to account for periodic boundary conditions
+                # for m in range(2):
+                #     while abs(dr[m]) > abs(cell[m,m]/2):
+                #         print(m, dr[m], cell[m,m]/2)
+                #         if dr[m] > 0:
+                #             dr[m] -= cell[m,m]
+                #         else:
+                #             dr[m] += cell[m,m]
+                #     print(m, dr[m])
+                # distance = np.linalg.norm(dr)
+                # print(water_oxygen_index, dr, distance)
 
                 if distance <= cutoff:
                     numb_hydration += 1
