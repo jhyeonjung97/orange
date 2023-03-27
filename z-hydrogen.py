@@ -11,10 +11,7 @@ cation_cutoffs = {'Li': 2.5,
 
 # Read the XDATCAR file
 structures = read_vasp_xdatcar('XDATCAR', index=0)
-hexagonal_cell = structures[0].cell
-cell = np.array([[hexagonal_cell[0,0], 0, 0],
-                 [0, hexagonal_cell[1,1], 0],
-                 [0, 0, hexagonal_cell[2,2]]])
+cell = structures[0].cell
 
 # Find the cation symbol
 cation = None
@@ -42,7 +39,7 @@ for i, atoms in enumerate(structures):
             dr = atoms[water_oxygen_index].position - atoms[cation_index].position
             
             # Apply minimum image convention to account for periodic boundary conditions
-            for m in range(2):
+            for m in [1, 0]:
                 while abs(dr[m]) > cell[m,m]/2:
                     if dr[m] > 0:
                         dr -= cell[m]
@@ -56,7 +53,7 @@ for i, atoms in enumerate(structures):
                 hydrogen_indices = [j for j, atom in enumerate(atoms) if atom.symbol == 'H']
                 for hydrogen_index in hydrogen_indices:
                         dr = atoms[hydrogen_index].position - atoms[water_oxygen_index].position
-                        for m in range(2):
+                        for m in [1, 0]:
                             while abs(dr[m]) > cell[m,m]/2:
                                 if dr[m] > 0:
                                     dr -= cell[m]
