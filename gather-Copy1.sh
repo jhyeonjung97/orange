@@ -1,6 +1,65 @@
 #!/bin/bash
 
-if [[ $1 == '-n' ]] || [[ $1 == 'neb' ]]; then
+#!/bin/bash
+
+option_cut=1
+option_sub=1
+
+#!/bin/bash
+
+# set default values for options
+option_cut=1
+option_sub=1
+pattern=""
+
+# loop over arguments
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+    case $key in
+        -s)
+            option_sub=0
+            shift
+            dir_depth="$1"
+            shift
+            ;;
+        -c)
+            option_cut=0
+            shift
+            ;;
+        *)
+            pattern="$key"
+            shift
+            ;;
+    esac
+done
+
+# echo "option_cut: $option_cut"
+# echo "option_sub: $option_sub"
+# echo "pattern: $pattern"
+# echo "sub_value: $sub_value"
+
+# Your code goes here
+
+
+contains_word() {
+    word=$1
+    shift
+    for arg in "$@"; do
+        if [[ "$arg" == *"$word"* ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+option_cut=1
+option_sub=1
+
+if [[ -z $1 ]]; then
+    read -p 'which files? ' f
+
+if contains_word "-n" "$@" || contains_word "neb" "$@"; then
     # usage: sh gather.sh -n IMAGES
     read -p "files starts with: " f
     for i in $(seq 1 $2)
@@ -13,24 +72,36 @@ if [[ $1 == '-n' ]] || [[ $1 == 'neb' ]]; then
     cp 00/POSCAR $f-c0.vasp
     cp 0$(($2+1))/POSCAR $f-c$(($2+1)).vasp
     exit 1
-elif [[ $1 == '-c' ]] || [[ $1 == '-s' ]]; then
-    if [[ -z $2 ]]; then
+elif contains_word "-c" "$@"; then
+    shift
+    pattern="$1"
+    set -- "${@/-c/}"
+    option_cut=0
+elif contains_word "-s" "$@"; then
+    shift
+    pattern="$1"
+    set -- "${@/-s/}"
+    option_sub=0
+
+
+
+    if [[ -z $1 ]]; then
         read -p 'which files? ' f
     else
-        f=$2
+        f=$1
     fi
-elif [[ -z $1 ]]; then
-    read -p 'which files? ' f
+
+    if [[ "$@" =~ "-c" ]]; then
+        # Shift to remove -c option and get next argument as pattern
+
+    fi
+
+    # Remove -c option from $@
+    
+    
+    
 else
     f=$1
-fi
-
-if [[ $1 == '-s' ]]; then
-    dirs='*/*/'
-    destination='../../'
-elif
-    dirs='*/'
-    destination='../'
 fi
     
 if [[ $f == 'p' ]] || [[ $f == 'pos' ]]; then
@@ -59,30 +130,30 @@ do
         if [[ $file =~ $pattern ]]; then
             if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
                 if [[ $pattern == 'POSCAR' ]] && [[ -e initial.vasp ]]; then
-                    cp initial.vasp $destination$filename$numb.vasp
+                    cp initial.vasp ../$filename$numb.vasp
                 elif [[ $pattern == 'CONTCAR' ]] && [[ ! -s $file ]]; then
-                    cp POSCAR $destination$filename$numb.vasp
+                    cp POSCAR ../$filename$numb.vasp
                 else
-                    cp $pattern $destination$filename$numb.vasp
+                    cp $pattern ../$filename$numb.vasp
                 fi
                 list+="$filename$numb.vasp "
             elif [[ $pattern == 'CHGCAR' ]]; then
-                cp $file $destination'chgcar'$numb.vasp
+                cp $file ../chgcar$numb.vasp
                 list+="chgcar$numb.vasp "
             elif [[ "${file##*.}" == "${pattern##*.}" ]]; then
                 filename="${file%.*}"
                 extension="${file##*.}"
                 if [[ $filename == $extension ]]; then
-                    cp $file $destination$filename$numb
+                    cp $file ../$filename$numb
                     list+="$filename$numb "
                 else
-                    cp $file $destination$filename$numb.$extension
+                    cp $file ../$filename$numb.$extension
                     list+="$filename$numb.$extension "
                 fi
             fi
         fi
     done
-    cd $destination
+    cd ..
 done
 
 if [[ $send == 'port' ]]; then
