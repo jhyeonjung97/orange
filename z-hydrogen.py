@@ -27,7 +27,7 @@ min_z_positions = []
 for i, atoms in enumerate(structures):
     
     if i == 0:
-        min_z_position = None
+        min_z_position = 0
         cation_hydrogen_indices = []
         # Get the indices of cation and water oxygen atoms
         cation_indices = [j for j, atom in enumerate(atoms) if atom.symbol == cation]
