@@ -23,6 +23,8 @@ alias xyz2vasp='python ~/bin/orange/xyz2vasp.py'
 alias backup='sh ~/bin/orange/backup.sh'
 alias clone='sh ~/bin/orange/clone.sh'
 alias pomass='sh ~/bin/orange/pomass.sh'
+alias walltime='sh ~/bin/orange/walltime.sh'
+alias queue='sh ~/bin/orange/queue.sh'
 
 alias zip='tar -cvzf'
 alias unzip='tar -xvf'
