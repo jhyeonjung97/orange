@@ -11,7 +11,7 @@ cation_cutoffs = {'Li': 2.5,
 
 # Read the XDATCAR file
 structures = read_vasp_xdatcar('XDATCAR', index=0)
-hexagonal_cell = structures[0].cell
+hexagonal_cell = structures[0].cell.reshape(3,3)
 cell = np.array([[hexagonal_cell[0,0], 0, 0], [0, hexagonal_cell[1,1], 0], [0, 0, hexagonal_cell[2,2]]])
 
 # Find the cation symbol
@@ -34,8 +34,8 @@ for i, atoms in enumerate(structures):
     for cation_index in cation_indices:
         for water_oxygen_index in water_oxygen_indices:
             # Calculate the distance between cation and water oxygen
-            water_position = atoms[water_oxygen_index].position
-            cation_position = atoms[cation_index].position
+            water_position = atoms[water_oxygen_index].position.reshape(3,3)
+            cation_position = atoms[cation_index].position.reshape(3,3)
             
             if i == 0 and water_oxygen_index == 33:
                 print('initial_water', water_position)
