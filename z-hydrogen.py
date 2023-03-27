@@ -38,13 +38,13 @@ for i, atoms in enumerate(structures):
                 dr = atoms[water_oxygen_index].position - atoms[cation_index].position
                 # Apply minimum image convention to account for periodic boundary conditions
                 for m in range(2):
-                    print(m, dr[m])
+                    print(water_oxygen_index, m, dr)
                     while abs(dr[m]) > cell[m,m]/2:
                         if dr[m] > 0:
                             dr -= cell[m]
                         else:
                             dr += cell[m]
-                        print(m, dr[m])
+                        print(water_oxygen_index, m, dr)
                 distance = np.linalg.norm(dr)
                 if distance <= cutoff:
                     # Get the indices of hydrogen atoms in the water molecule
