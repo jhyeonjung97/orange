@@ -36,7 +36,7 @@ for i, atoms in enumerate(structures):
     water_oxygen_indices = [j for j, atom in enumerate(atoms) if atom.symbol == 'O']
     
     if i == 0:
-        print('cell:' cell)
+        print('cell:', cell)
         
         numb_hydration = 0
         for cation_index in cation_indices:
