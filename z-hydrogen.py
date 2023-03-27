@@ -68,7 +68,7 @@ for i, atoms in enumerate(structures):
                         min_z_position = min_z
 
     min_z_positions.append(min_z_position)
-    # print(f"Iteration {i}: {min_z_position}")
+    print(f"Iteration {i}: {min_z_position}")
 
 print('are you oke')
     
