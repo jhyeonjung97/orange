@@ -50,7 +50,7 @@ for i, atoms in enumerate(structures):
                     print(m, dr[m])
                 
                 distance = np.linalg.norm(dr)
-                print(water_oxyge_index, dr, distance)
+                print(water_oxygen_index, dr, distance)
 
                 if distance <= cutoff:
                     numb_hydration += 1
