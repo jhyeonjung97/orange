@@ -25,6 +25,7 @@ else:
 
 min_z_positions = []
 for i, atoms in enumerate(structures):
+    cation_hydrogen_indices = []
     # Get the indices of cation and water oxygen atoms
     cation_indices = [j for j, atom in enumerate(atoms) if atom.symbol == cation]
     water_oxygen_indices = [j for j, atom in enumerate(atoms) if atom.symbol == 'O']
@@ -44,13 +45,13 @@ for i, atoms in enumerate(structures):
                         dr += cell[m]
 
             distance = np.linalg.norm(dr)
-
+            
             if distance <= cutoff:
                 # Get the indices of hydrogen atoms in the water molecule
-                hydrogen_indices = []
-                for j, atom in enumerate(atoms):
-                    if atom.symbol == 'H':
-                        dr = atom.position - atoms[water_oxygen_index].position
+                hydrogen_indices = [j for j, atom in enumerate(atoms) if atom.symbol == 'H']
+                
+                for hydrogen_index in hydrogen_indices:
+                        dr = atoms[hydrogen_index].position - atoms[water_oxygen_index].position
                         for m in range(2):
                             if abs(dr[m]) > cell[m,m]/2:
                                 if dr[m] > 0:
@@ -58,15 +59,10 @@ for i, atoms in enumerate(structures):
                                 else:
                                     dr += cell[m]
                         if np.linalg.norm(dr) <= 1.2:
-                            hydrogen_indices.append(j)
+                            cation_hydrogen_indices.append(hydrogen_index)
 
-                # Get the minimum z-position of hydrogen atoms in the water molecule
-                z_positions = [atoms[j].position[2] for j in hydrogen_indices]
-                if z_positions:
-                    min_z = min(z_positions)
-                    if min_z_position is None or min_z < min_z_position:
-                        min_z_position = min_z
-
+    # Get the minimum z-position of hydrogen atoms in the water molecule
+    min_z_position = min([atoms[j].position[2] for j in cation_hydrogen_indices])
     min_z_positions.append(min_z_position)
     print(f"Iteration {i}: {min_z_position}")
     
