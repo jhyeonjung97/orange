@@ -10,7 +10,7 @@ subdirs = sorted([d for d in os.listdir(parent_dir) if os.path.isdir(os.path.joi
 # Loop through each subdirectory and show the list of CSV files
 for subdir in subdirs:
     subdir_path = os.path.join(parent_dir, subdir)
-    csv_files = [f for f in sorted(os.listdir(subdir_path)) if os.path.isfile(os.path.join(subdir_path, f)) and f.endswith('.csv')]
+    csv_files = [os.path.splitext(f)[0] for f in sorted(os.listdir(subdir_path)) if os.path.isfile(os.path.join(subdir_path, f)) and f.endswith('.csv')]
     if csv_files:
         print(f"CSV files in {subdir_path}:")
         for csv_file in csv_files:
