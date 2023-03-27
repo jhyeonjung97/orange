@@ -11,7 +11,10 @@ cation_cutoffs = {'Li': 2.5,
 
 # Read the XDATCAR file
 structures = read_vasp_xdatcar('XDATCAR', index=0)
-cell = structures[0].cell
+hexagonal_cell = structures[0].cell
+cell = np.array([[hexagonal_cell[0,0], 0, 0],
+                 [0, hexagonal_cell[1,1], 0],
+                 [0, 0, hexagonal_cell[2,2]]])
 
 # Find the cation symbol
 cation = None
