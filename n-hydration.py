@@ -63,9 +63,9 @@ for i, atoms in enumerate(structures):
             for m in range(2):
                 while abs(dr[m]) > abs(cell[m,m]/2):
                     if dr[m] > 0:
-                        dr[m] -= cell[m,m]
+                        dr[m] = cell[m,m] - dr[m]
                     else:
-                        dr[m] += cell[m,m]
+                        dr[m] = cell[m,m] + dr[m]
                         
             if i == 0 and water_oxygen_index == 33:
                 print(water_position)
