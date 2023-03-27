@@ -11,12 +11,7 @@ cation_cutoffs = {'Li': 2.5,
 
 # Read the XDATCAR file
 structures = read_vasp_xdatcar('XDATCAR', index=0)
-hexagonal_cell = structures[0].cell
-print(hexagonal_cell[0])
-print(hexagonal_cell[1])
-print(hexagonal_cell[2])
-
-cell = np.array([[hexagonal_cell[0,0], 0, 0], [0, hexagonal_cell[1,1], 0], [0, 0, hexagonal_cell[2,2]]])
+cell = structures[0].cell
 
 # Find the cation symbol
 cation = None
@@ -38,43 +33,15 @@ for i, atoms in enumerate(structures):
     for cation_index in cation_indices:
         for water_oxygen_index in water_oxygen_indices:
             # Calculate the distance between cation and water oxygen
-            water_position = atoms[water_oxygen_index].position
-            cation_position = atoms[cation_index].position
-            
-#             if i == 0 and water_oxygen_index == 33:
-#                 print('initial_water', water_position)
-#                 print('initial_cation', cation_position)
-            
-#             for m in range(2):
-#                 while water_position[m] < 0 or water_position[m] >= cell[m,m]:
-#                         if water_position[m] < 0:
-#                             water_position += hexagonal_cell[m]
-#                         else:
-#                             water_position -= hexagonal_cell[m]
-#                 while cation_position[m] < 0 or cation_position[m] >= cell[m,m]:
-#                         if cation_position[m] < 0:
-#                             cation_position += hexagonal_cell[m]
-#                         else:
-#                             cation_position -= hexagonal_cell[m]
-            dr = water_position - cation_position
-            
-            if i == 0 and water_oxygen_index == 33:
-#                 print('revised_water', water_position)
-#                 print('revised_cation', cation_position)
-                print(dr)
+            dr = atoms[water_oxygen_index].position - atoms[cation_index].position
 
             # Apply minimum image convention to account for periodic boundary conditions
             for m in range(2):
                 while abs(dr[m]) > cell[m,m]/2:
                     if dr[m] > 0:
-                        dr -= hexagonal_cell[m]
+                        dr -= cell[m]
                     else:
-                        dr += hexagonal_cell[m]
-                        
-            if i == 0 and water_oxygen_index == 33:
-                # print('final_water', water_position)
-                # print('final_cation', cation_position)
-                print(dr)
+                        dr += cell[m]
                 
             distance = np.linalg.norm(dr)
 
