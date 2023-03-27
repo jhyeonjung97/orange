@@ -12,12 +12,7 @@ cation_cutoffs = {'Li': 2.5,
 # Read the XDATCAR file
 structures = read_vasp_xdatcar('XDATCAR', index=0)
 hexagonal_cell = structures[0].cell
-
-# Define the transformation matrix
-transformation_matrix = np.array([[1.0, -0.5, 0.0], [0.0, np.sqrt(3)/2, 0.0], [0.0, 0.0, 1.0]])
-
-# Multiply the hexagonal cell with the transformation matrix to get the rectangular cell
-cell = np.dot(hexagonal_cell, transformation_matrix)
+cell = np.array([[hexagonal_cell[0,0], 0, 0], [0, hexagonal_cell[1,1], 0], [0, 0, hexagonal_cell[2,2]]])
 
 # Find the cation symbol
 cation = None
