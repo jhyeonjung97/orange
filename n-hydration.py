@@ -11,7 +11,8 @@ cation_cutoffs = {'Li': 2.5,
 
 # Read the XDATCAR file
 structures = read_vasp_xdatcar('XDATCAR', index=0)
-hexagonal_cell = structures[0].cell.reshape(3,3)
+hexagonal_cell = structures[0].cell
+boundary_cell = np.array([hexagonal_cell[0,0], hexagonal_cell[1,1], hexagonal_cell[2,2]])
 cell = np.array([[hexagonal_cell[0,0], 0, 0], [0, hexagonal_cell[1,1], 0], [0, 0, hexagonal_cell[2,2]]])
 
 # Find the cation symbol
@@ -34,8 +35,8 @@ for i, atoms in enumerate(structures):
     for cation_index in cation_indices:
         for water_oxygen_index in water_oxygen_indices:
             # Calculate the distance between cation and water oxygen
-            water_position = atoms[water_oxygen_index].position.reshape(3,3)
-            cation_position = atoms[cation_index].position.reshape(3,3)
+            water_position = atoms[water_oxygen_index].position
+            cation_position = atoms[cation_index].position
             
             if i == 0 and water_oxygen_index == 33:
                 print('initial_water', water_position)
@@ -44,14 +45,14 @@ for i, atoms in enumerate(structures):
             for m in range(2):
                 while water_position[m] < 0 or water_position[m] >= cell[m,m]:
                         if water_position[m] < 0:
-                            water_position += hexagonal_cell
+                            water_position += boundary_cell
                         else:
-                            water_position -= hexagonal_cell
+                            water_position -= boundary_cell
                 while cation_position[m] < 0 or cation_position[m] >= cell[m,m]:
                         if cation_position < 0:
-                            cation_position += hexagonal_cell
+                            cation_position += boundary_cell
                         else:
-                            cation_position -= hexagonal_cell
+                            cation_position -= boundary_cell
             dr = water_position - cation_position
             
             if i == 0 and water_oxygen_index == 33:
