@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#!/bin/bash
+
 if [[ -z $1 ]]; then
     read -p 'which files? ' f
 elif [[ $1 == '-n' ]] || [[ $1 == 'neb' ]]; then
@@ -21,6 +23,50 @@ elif [[ $1 == '-c' ]]; then
     else
         f=$2
     fi
+elif [[ $1 == '-s' ]]; then
+    if [[ -z $2 ]]; then
+        read -p 'which files? ' f
+    else
+        f=$2
+    fi
+    subdirs=$(find . -maxdepth 2 -type d -name "[0-9]*")
+    for subdir in $subdirs; do
+        subdir_path="$subdir/"
+        for file in "$subdir_path"*; do
+            if [[ $file =~ $pattern ]]; then
+                if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
+                    if [[ $pattern == 'POSCAR' ]] && [[ -e initial.vasp ]]; then
+                        cp initial.vasp ../$filename$numb.vasp
+                    elif [[ $pattern == 'CONTCAR' ]] && [[ ! -s $file ]]; then
+                        cp POSCAR ../$filename$numb.vasp
+                    else
+                        cp $pattern ../$filename$numb.vasp
+                    fi
+                    list+="$filename$numb.vasp "
+                elif [[ $pattern == 'CHGCAR' ]]; then
+                    cp $file ../chgcar$numb.vasp
+                    list+="chgcar$numb.vasp "
+                elif [[ "${file##*.}" == "${pattern##*.}" ]]; then
+                    filename="${file%.*}"
+                    extension="${file##*.}"
+                    if [[ $filename == $extension ]]; then
+                        cp $file ../$filename$numb
+                        list+="$filename$numb "
+                    else
+                        cp $file ../$filename$numb.$extension
+                        list+="$filename$numb.$extension "
+                    fi
+                fi
+            fi
+        done
+    done
+    if [[ ! -z $list ]]; then
+        echo "The following files were copied:"
+        echo $list
+    else
+        echo "No files found matching pattern '$pattern'"
+    fi
+    exit 1
 else
     f=$1
 fi
