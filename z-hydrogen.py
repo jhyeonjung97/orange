@@ -39,9 +39,9 @@ for i, atoms in enumerate(structures):
             for m in range(2):
                 if abs(dr[m]) > cell[m,m]/2:
                     if dr[m] > 0:
-                        dr[m] -= cell[m,m]
+                        dr -= cell[m]
                     else:
-                        dr[m] += cell[m,m]
+                        dr += cell[m]
 
             distance = np.linalg.norm(dr)
 
@@ -54,9 +54,9 @@ for i, atoms in enumerate(structures):
                         for m in range(2):
                             if abs(dr[m]) > cell[m,m]/2:
                                 if dr[m] > 0:
-                                    dr[m] -= cell[m,m]
+                                    dr -= cell[m]
                                 else:
-                                    dr[m] += cell[m,m]
+                                    dr += cell[m]
                         if np.linalg.norm(dr) <= 1.2:
                             hydrogen_indices.append(j)
 
