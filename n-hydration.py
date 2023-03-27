@@ -12,7 +12,10 @@ cation_cutoffs = {'Li': 2.5,
 # Read the XDATCAR file
 structures = read_vasp_xdatcar('XDATCAR', index=0)
 hexagonal_cell = structures[0].cell
-boundary_cell = np.array([hexagonal_cell[0,0], hexagonal_cell[1,1], hexagonal_cell[2,2]])
+print(hexagonal_cell[0])
+print(hexagonal_cell[1])
+print(hexagonal_cell[2])
+
 cell = np.array([[hexagonal_cell[0,0], 0, 0], [0, hexagonal_cell[1,1], 0], [0, 0, hexagonal_cell[2,2]]])
 
 # Find the cation symbol
@@ -45,14 +48,14 @@ for i, atoms in enumerate(structures):
             for m in range(2):
                 while water_position[m] < 0 or water_position[m] >= cell[m,m]:
                         if water_position[m] < 0:
-                            water_position += boundary_cell
+                            water_position += hexagonal_cell[m]
                         else:
-                            water_position -= boundary_cell
+                            water_position -= hexagonal_cell[m]
                 while cation_position[m] < 0 or cation_position[m] >= cell[m,m]:
                         if cation_position[m] < 0:
-                            cation_position += boundary_cell
+                            cation_position += hexagonal_cell[m]
                         else:
-                            cation_position -= boundary_cell
+                            cation_position -= hexagonal_cell[m]
             dr = water_position - cation_position
             
             if i == 0 and water_oxygen_index == 33:
