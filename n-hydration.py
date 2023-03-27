@@ -53,7 +53,7 @@ for i, atoms in enumerate(structures):
                             cation_position[m] -= cell[m,m]
             dr = water_position - cation_position
             
-            if i == 0:
+            if i == 0 and water_oxygen_index == 33:
                 print(water_position)
                 print(cation_position)
                 print(dr)
@@ -66,7 +66,7 @@ for i, atoms in enumerate(structures):
                     else:
                         dr[m] += cell[m,m]
                         
-            if i == 0:
+            if i == 0 and water_oxygen_index == 33:
                 print(water_position)
                 print(cation_position)
                 print(dr)
