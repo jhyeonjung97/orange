@@ -25,12 +25,14 @@ else:
 
 min_z_positions = []
 for i, atoms in enumerate(structures):
+    
+    min_z_position = 40
     cation_hydrogen_indices = []
+    
     # Get the indices of cation and water oxygen atoms
     cation_indices = [j for j, atom in enumerate(atoms) if atom.symbol == cation]
     water_oxygen_indices = [j for j, atom in enumerate(atoms) if atom.symbol == 'O']
 
-    min_z_position = None
     for cation_index in cation_indices:
         for water_oxygen_index in water_oxygen_indices:
             # Calculate the distance between cation and water oxygen
@@ -38,7 +40,7 @@ for i, atoms in enumerate(structures):
 
             # Apply minimum image convention to account for periodic boundary conditions
             for m in range(2):
-                if abs(dr[m]) > cell[m,m]/2:
+                while abs(dr[m]) > cell[m,m]/2:
                     if dr[m] > 0:
                         dr -= cell[m]
                     else:
@@ -53,7 +55,7 @@ for i, atoms in enumerate(structures):
                 for hydrogen_index in hydrogen_indices:
                         dr = atoms[hydrogen_index].position - atoms[water_oxygen_index].position
                         for m in range(2):
-                            if abs(dr[m]) > cell[m,m]/2:
+                            while abs(dr[m]) > cell[m,m]/2:
                                 if dr[m] > 0:
                                     dr -= cell[m]
                                 else:
