@@ -6,7 +6,7 @@ parent_dir = './'
 
 # Get a list of all the subdirectories in the parent directory that start with a number
 subdirs = sorted([d for d in os.listdir(parent_dir) if os.path.isdir(os.path.join(parent_dir, d)) and d[0].isdigit()])
-
+print(subdirs)
 # Loop through each subdirectory and show the list of CSV files
 for subdir in subdirs:
     subdir_path = os.path.join(parent_dir, subdir)
