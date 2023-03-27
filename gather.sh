@@ -29,11 +29,10 @@ elif [[ $1 == '-s' ]]; then
     else
         f=$2
     fi
-    subdirs=$(find . -maxdepth 2 -type d -name "[0-9]*")
+    subdirs=$(find . -maxdepth 2 -type d)
     for subdir in $subdirs; do
         subdir_path="$subdir/"
         for file in "$subdir_path"*; do
-            echo "$subdir_path"*
             if [[ $file =~ $pattern ]]; then
                 if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
                     if [[ $pattern == 'POSCAR' ]] && [[ -e initial.vasp ]]; then
