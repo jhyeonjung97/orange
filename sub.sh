@@ -10,6 +10,7 @@ function submit {
         fi
         sed -i -e "s/x2347a10/${account}/g" incar.in
         sed -i -e "s/x2431a10/${account}/g" incar.in
+        sed -i -e "s/x2421a04/${account}/g" incar.in
     else
         sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
         grep NPAR INCAR
@@ -19,6 +20,7 @@ function submit {
     if [[ ${here} == 'kisti' ]]; then
         sed -i -e "s/x2347a10/${account}/g" run_slurm.sh
         sed -i -e "s/x2431a10/${account}/g" run_slurm.sh
+        sed -i -e "s/x2421a04/${account}/g" run_slurm.sh
         qsub run_slurm.sh
     else
         sed -i -e "s/  / /g" INCAR

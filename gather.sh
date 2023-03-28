@@ -102,6 +102,9 @@ elif [[ $send =~ 'x2347' ]]; then
 elif [[ $send =~ 'x2431' ]]; then
     echo "scp $list x2431a10@nurion-dm.ksc.re.kr:~/vis"
     scp $list x2431a10@nurion.ksc.re.kr:~/vis
+elif [[ $send =~ 'x2421' ]]; then
+    echo "scp $list x2421a04@nurion-dm.ksc.re.kr:~/vis"
+    scp $list x2431a10@nurion.ksc.re.kr:~/vis
 elif [[ $send =~ 'cori' ]]; then
     echo "scp $list jiuy97@cori.nersc.gov:~/vis"
     scp $list jiuy97@cori.nersc.gov:~/vis

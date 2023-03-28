@@ -15,9 +15,15 @@ if [[ ${here} == 'burning' ]]; then
     sbatch run_slurm.sh
 elif [[ ${account} == 'x2347a10' ]]; then
     sed -i -e 's/x2431a10/x2347a10/g' *
+    sed -i -e 's/x2421a04/x2347a10/g' *
     qsub run_slurm.sh
 elif [[ ${account} == 'x2431a10' ]]; then
     sed -i -e 's/x2347a10/x2431a10/g' *
+    sed -i -e 's/x2421a04/x2431a10/g' *
+    qsub run_slurm.sh
+elif [[ ${account} == 'x2421a04' ]]; then
+    sed -i -e 's/x2347a10/x2421a04/g' *
+    sed -i -e 's/x2431a10/x2421a04/g' *
     qsub run_slurm.sh
 else
     echo 'where am i..? please modify [conti-qe.sh] code'
