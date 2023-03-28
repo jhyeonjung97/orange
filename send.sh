@@ -26,7 +26,7 @@ do
         srvr='hyeonjung@burning.postech.ac.kr:'
     elif [[ $i == 'x2421' ]]; then
         port=''
-        srvr='x2421a10@nurion-dm.ksc.re.kr:'
+        srvr='x2421a04@nurion-dm.ksc.re.kr:'
     elif [[ $i == 'x2431' ]]; then
         port=''
         srvr='x2431a10@nurion-dm.ksc.re.kr:'
