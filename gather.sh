@@ -57,27 +57,32 @@ do
     for file in *
     do
         if [[ $file =~ $pattern ]]; then
-            echo $file
             if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
                 if [[ $pattern == 'POSCAR' ]] && [[ -e initial.vasp ]]; then
                     cp initial.vasp $destination$filename$numb.vasp
+                    echo "$dir'initial.vasp' $filename$numb.vasp"
                 elif [[ $pattern == 'CONTCAR' ]] && [[ ! -s $file ]]; then
                     cp POSCAR $destination$filename$numb.vasp
+                    echo "$dir'POSCAR' $filename$numb.vasp"
                 else
                     cp $pattern $destination$filename$numb.vasp
+                    echo "$dir$pattern $filename$numb.vasp"
                 fi
                 list+="$filename$numb.vasp "
             elif [[ $pattern == 'CHGCAR' ]]; then
                 cp $file $destination'chgcar'$numb.vasp
+                echo "$dir$file 'chgcar'$numb.vasp"
                 list+="chgcar$numb.vasp "
             elif [[ "${file##*.}" == "${pattern##*.}" ]]; then
                 filename="${file%.*}"
                 extension="${file##*.}"
                 if [[ $filename == $extension ]]; then
                     cp $file $destination$filename$numb
+                    echo "$dir$file $filename$numb"
                     list+="$filename$numb "
                 else
                     cp $file $destination$filename$numb.$extension
+                    echo "$dir$file $filename$numb.$extension"
                     list+="$filename$numb.$extension "
                 fi
             fi
