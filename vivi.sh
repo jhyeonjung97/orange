@@ -15,7 +15,7 @@ cp INCAR KPOINTS POTCAR CONTCAR run_slurm.sh mpiexe.sh freq/
 #     read - 'NPAR?' $npar 
 # fi
 
-cd freq/
+cd freq
 mv CONTCAR POSCAR
 sh ~/bin/orange/modify.sh INCAR IBRION 5
 sh ~/bin/orange/modify.sh INCAR POTIM 0.015
@@ -29,3 +29,4 @@ else
 fi
 
 sh ~/bin/orange/modify.sh INCAR NPAR $npar
+cd freq
