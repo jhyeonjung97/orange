@@ -93,9 +93,9 @@ alias vivi='mkdir freq
 cp INCAR KPOINTS POTCAR CONTCAR run_slurm.sh freq/
 cd freq/
 mv CONTCAR POSCAR
-sed -i "s/IBRION.*/IBRION = 5/g" INCAR
-sed -i "s/#POTIM.*/POTIM = 0.015/g" INCAR
-sed -i "s/NPAR.*/#NPAR/g" INCAR'
+sed -i "/IBRION/c\IBRION = 5" INCAR
+sed -i "/POTIM/c\POTIM = 0.015" INCAR
+sed -i "/NPAR/c\#NPAR" INCAR'
 alias freq='grep THz OUTCAR'
 alias vector='vasp2xsf.py'
 
