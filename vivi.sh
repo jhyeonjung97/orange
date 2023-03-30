@@ -29,3 +29,4 @@ else
 fi
 
 sh ~/bin/orange/modify.sh INCAR NPAR $npar
+sh ~/bin/orange/sub.sh
