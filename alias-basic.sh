@@ -89,13 +89,7 @@ alias xyz2hex='python3 ~/bin/orange/xyz2hex.py'
 alias xyz2vasp='python2 ~/bin/vtstscripts/xyz2vasp.py'
 
 #Vibrational frequency
-alias vivi='mkdir freq
-cp INCAR KPOINTS POTCAR CONTCAR run_slurm.sh mpiexe.sh freq/
-cd freq/
-mv CONTCAR POSCAR
-sed -i "/IBRION/c\IBRION = 5" INCAR
-sed -i "/POTIM/c\POTIM = 0.015" INCAR
-sed -i "/NPAR/c\#NPAR" INCAR'
+alias vivi='sh ~/bin/orange/vivi.sh'
 alias freq='grep THz OUTCAR'
 alias vector='vasp2xsf.py'
 
