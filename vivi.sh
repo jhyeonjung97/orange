@@ -29,4 +29,3 @@ else
 fi
 
 sh ~/bin/orange/modify.sh INCAR NPAR $npar
-cd freq

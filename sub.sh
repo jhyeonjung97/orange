@@ -12,7 +12,9 @@ function submit {
         sed -i -e "s/x2431a10/${account}/g" incar.in
         sed -i -e "s/x2421a04/${account}/g" incar.in
     else
-        sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
+        if [[ -z $(grep POTIM INCAR | grep 0.015) ]]; then
+            sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
+        fi
         grep NPAR INCAR
         grep Selective POSCAR
         grep MAGMOM INCAR
