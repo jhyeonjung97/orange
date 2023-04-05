@@ -23,7 +23,7 @@ elif [[ -z $1 ]]; then
     echo 'usage: autosub (directory#1) [directory#2]'
 fi
 
-if [[ $1 == '-xc' ]]; then
+if [[ $1 == '-x' ]] || [[ $1 == '-xc' ]]; then
     shift
     xc=1
 fi
