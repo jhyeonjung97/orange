@@ -69,7 +69,7 @@ do
     if [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
         sed -i '/MAGMOM/d' INCAR
     else
-        if $xc; then
+        if $xc ; then
             python ~/bin/pyband/xcell.py #XCELL
             mv out*.vasp POSCAR #XCELL
             echo 'xcell.py is applied'
