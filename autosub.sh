@@ -1,5 +1,6 @@
 #!/bin/bash
 
+xc=0
 # error cases
 if [[ $1 == '-qe' ]] || [[ $1 == 'qe' ]]; then
     sh ~/bin/orange/autosub-qe.sh ${@:2}
@@ -22,15 +23,19 @@ elif [[ -z $1 ]]; then
     echo 'usage: autosub (directory#1) [directory#2]'
 fi
 
+if [[ $1 == '-xc' ]]; then
+    shift
+    xc=1
+fi
 
 if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
     SET=${@:2}
-elif [[ $1 == '-n' ]] || [[ $1 == '-non' ]]; then
-    if [[ -z $3 ]]; then
-        SET=$(seq 1 $2)
-    else
-        SET=$(seq $2 $3)
-    fi
+# elif [[ $1 == '-n' ]] || [[ $1 == '-non' ]]; then
+#     if [[ -z $3 ]]; then
+#         SET=$(seq 1 $2)
+#     else
+#         SET=$(seq $2 $3)
+#     fi
 elif [[ -z $2 ]]; then
     SET=$(seq 1 $1)
 else
@@ -64,8 +69,11 @@ do
     if [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
         sed -i '/MAGMOM/d' INCAR
     else
-        python ~/bin/pyband/xcell.py #XCELL
-        mv out*.vasp POSCAR #XCELL
+        if $xc; then
+            python ~/bin/pyband/xcell.py #XCELL
+            mv out*.vasp POSCAR #XCELL
+            echo 'xcell.py is applied'
+        fi
         python3 ~/bin/orange/magmom.py
     fi
     sh ~/bin/orange/vasp5.sh
