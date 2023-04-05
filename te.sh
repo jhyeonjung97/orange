@@ -53,5 +53,5 @@ if [[ $1 =~ qe ]] || [[ -n $(grep pw.x run_slurm.sh) ]]; then
         cd ..
     done
 else
-    sh ~/bin/playground/te.sh
+    sh ~/bin/shoulder/te.sh
 fi
