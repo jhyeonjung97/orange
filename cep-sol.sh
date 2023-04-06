@@ -8,6 +8,9 @@ y2=''
 hl=-4.43
 step=0.1
 error=0.02
+
+# if [[ ! -s WAVECAR ]]; then
+    
 if [[ ! -d wave ]]; then
     mkdir wave
     cp * wave
@@ -15,6 +18,8 @@ fi
 sh ~/bin/orange/modify.sh INCAR ISTART 1
 sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
 sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
+sh ~/bin/orange/modify.sh INCAR LCHARG .FALSE.
+sh ~/bin/orange/modify.sh INCAR LAECHG
 sh ~/bin/orange/modify.sh INCAR NSW
 sh ~/bin/orange/modify.sh INCAR IBRION
 
