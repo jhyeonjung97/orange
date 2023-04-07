@@ -64,7 +64,7 @@ else
     if in_array 'vtst' "${type[*]}"; then
         total+='.vtst179.beef'
     elif in_array 'sol' "${type[*]}"; then
-        total+='.beef.vaspsol' 1ora
+        total+='.beef.vaspsol'
     elif in_array 'beef' "${type[*]}"; then
         total+='.vtst179.beef'
         sed -i -e '/mpiexe/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
