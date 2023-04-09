@@ -132,7 +132,7 @@ else
             sh ~/bin/orange/modify.sh INCAR LWAVE
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
             if [[ -d wave ]]; then
-                sed -i '/ediff.sh/d' run_slurm.sh
+                sed -i '/mpiexe/d' run_slurm.sh
             fi
         else
             sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
