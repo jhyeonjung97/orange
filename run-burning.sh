@@ -76,7 +76,7 @@ else
             exit 5
         fi
     fi
-    if in_array "beef" "${type[*]}"; then
+    if in_array beef ${type[*]}; then
         sed -i '/mpiexec/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
         echo 'rm vdw_kernel.bindat' >> run_slurm.sh
         total+='.beef' 
@@ -110,7 +110,7 @@ else
         echo 'there is no corroesponding version...'
         exit 1
     fi
-    if in_array 'cep' "${type[*]}"; then
+    if in_array cep ${type[*]}; then
         read -p 'goal electrode potential? ' goal
         if [[ -z $goal ]]; then
             if [[ -n $(echo $PWD | grep 1_Au) ]]; then
@@ -131,9 +131,6 @@ else
             sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
             sh ~/bin/orange/modify.sh INCAR LWAVE
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
-            if [[ -d wave ]]; then
-                sed -i '/mpiexe/d' run_slurm.sh
-            fi
         else
             sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
@@ -141,7 +138,7 @@ else
     fi
 fi
 
-if in_array 'lobster' "${type[*]}"; then
+if in_array lobster ${type[*]}; then
     echo '
 #OpenMP settings:
 export OMP_NUM_THREADS=$SLURM_NTASKS
@@ -154,6 +151,10 @@ else
     sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
 fi
 
+if [[ in_array cep ${type[*]} ]] && [[ in_array sol ${type[*]} ]] && [[ -d wave ]]; then
+    sed -i '/mpiexe/d' run_slurm.sh
+fi
+            
 if [[ -z $(grep stdout run_slurm.sh) ]]; then
     sed -i 's/STDOUT/stdout/' run_slurm.sh
 fi

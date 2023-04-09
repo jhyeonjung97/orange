@@ -8,8 +8,6 @@ y2=''
 hl=-4.43
 step=0.1
 error=0.02
-
-# if [[ ! -s WAVECAR ]]; then
     
 if [[ ! -d wave ]]; then
     mkdir wave
@@ -20,8 +18,6 @@ sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
 sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
 sh ~/bin/orange/modify.sh INCAR LCHARG .TRUE.
 sh ~/bin/orange/modify.sh INCAR LAECHG .TRUE.
-# sh ~/bin/orange/modify.sh INCAR NSW
-# sh ~/bin/orange/modify.sh INCAR IBRION
 
 if [[ -n $1 ]]; then
     goal=$1
@@ -93,7 +89,6 @@ function in_array {
             return 0
         fi
     done
-
     return 1
 }
 
