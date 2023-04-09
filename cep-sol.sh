@@ -107,9 +107,6 @@ do
         echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
         x2=$ne
         y2=$ep
-    else
-        mkdir cep_$ne
-        cp INCAR POSCAR OUTCAR OSZICAR vasprun.xml stdout.log cep_$ne
     fi
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
@@ -153,6 +150,8 @@ do
     update
     echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
     map+=([$ne]=$ep)
+    mkdir cep_$ne
+    cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log cep_$ne
     x1=$x2
     y1=$y2
     x2=$ne
