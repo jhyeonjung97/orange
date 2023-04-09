@@ -133,7 +133,7 @@ else
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
             if [[ -d wave ]]; then
                 sed -i -e "/ediff.sh/d" run_slurm.sh
-            elif
+            else
                 sh ~/bin/orange/modify.sh INCAR LWAVE
             fi
         else
