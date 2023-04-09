@@ -60,11 +60,11 @@ function in_array {
 }
 
 total=''
-if in_array 'qe' ${type[*]}; then
+if in_array 'qe' "${type[*]}"; then
     sed -i '/mpiexec/i\cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
     sed -i 's/custom/4 pw.x -in qe-relax.in/' run_slurm.sh
 else
-    if in_array 'mmff' ${type[*]}; then
+    if in_array 'mmff' "${type[*]}"; then
         file=''
         la=''
         lb=''
@@ -76,29 +76,29 @@ else
             exit 5
         fi
     fi
-    if in_array 'beef' ${type[*]}; then
+    if in_array 'beef' "${type[*]}"; then
         sed -i '/mpiexec/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
         echo 'rm vdw_kernel.bindat' >> run_slurm.sh
         total+='.beef' 
-    elif in_array 'dftd4' ${type[*]}; then
+    elif in_array 'dftd4' "${type[*]}"; then
         total+='.dftd4'
     fi
-    if in_array 'sol' ${type[*]}; then
+    if in_array 'sol' "${type[*]}"; then
         total+='.vaspsol'
         if [[ -d wave ]]; then
             cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR .
             cp wave/CONTCAR POSCAR
         fi
-    elif in_array 'cep' ${type[*]}; then
+    elif in_array 'cep' "${type[*]}"; then
         total+='.vaspsol'
-    elif in_array 'vtst' ${type[*]}; then
+    elif in_array 'vtst' "${type[*]}"; then
         total+='.vtst'
-    elif in_array 'wan90v3' ${type[*]}; then
+    elif in_array 'wan90v3' "${type[*]}"; then
         total+='.wan90v3'
     fi
-    if in_array 'gam' ${type[*]}; then
+    if in_array 'gam' "${type[*]}"; then
         total+='.gam'
-    elif in_array 'ncl' ${type[*]}; then
+    elif in_array 'ncl' "${type[*]}"; then
         total+='.ncl'
     else
         total+='.std'
@@ -110,7 +110,7 @@ else
         echo 'there is no corroesponding version...'
         exit 1
     fi
-    if in_array 'cep' ${type[*]}; then
+    if in_array 'cep' "${type[*]}"; then
         read -p 'goal electrode potential? ' goal
         if [[ -z $goal ]]; then
             if [[ -n $(echo $PWD | grep 1_Au) ]]; then
@@ -126,7 +126,7 @@ else
         sh ~/bin/orange/modify.sh INCAR IDIPOL 3
         sh ~/bin/orange/modify.sh INCAR LDIPOL
         sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
-        if in_array 'sol' ${type[*]}; then
+        if in_array 'sol' "${type[*]}"; then
             sh ~/bin/orange/modify.sh INCAR LVHAR
             sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
             sh ~/bin/orange/modify.sh INCAR LWAVE
@@ -138,7 +138,7 @@ else
     fi
 fi
 
-if in_array 'lobster' ${type[*]}; then
+if in_array 'lobster' "${type[*]}"; then
     echo '
 #OpenMP settings:
 export OMP_NUM_THREADS=$SLURM_NTASKS
