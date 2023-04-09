@@ -86,9 +86,8 @@ else
     if in_array 'sol' "${type[*]}"; then
         total+='.vaspsol'
         if [[ -d wave ]]; then
-            cp wave/* .
+            cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR .
             mv CONTCAR POSCAR
-            rm STD*
         fi
     elif in_array 'cep' "${type[*]}"; then
         total+='.vaspsol'
@@ -131,7 +130,7 @@ else
             sh ~/bin/orange/modify.sh INCAR LVHAR
             sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
             sh ~/bin/orange/modify.sh INCAR LWAVE
-            # sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
+            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
             if [[ -d wave ]]; then
                 sed -i -e "/ediff.sh/d" run_slurm.sh
             fi
