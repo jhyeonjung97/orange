@@ -127,14 +127,12 @@ else
         sh ~/bin/orange/modify.sh INCAR LDIPOL
         sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
         if in_array 'sol' "${type[*]}"; then
-            echo 'hello1'
             sh ~/bin/orange/modify.sh INCAR LVHAR
             sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
             sh ~/bin/orange/modify.sh INCAR LWAVE
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
             if [[ -d wave ]]; then
-                echo 'hello2'
-                sed -i -e '/ediff.sh/d' run_slurm.sh
+                # sed -i '/ediff.sh/d' run_slurm.sh
             fi
         else
             sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
