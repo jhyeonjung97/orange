@@ -146,7 +146,7 @@ do
     echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
     map+=([$ne]=$ep)
     mkdir cep_$ne
-    cp INCAR POSCAR CONTCAR XDATCAR OUTCAR OSZICAR vasprun.xml stdout.log cep_$ne
+    cp INCAR POSCAR CONTCAR XDATCAR CHGCAR OUTCAR OSZICAR vasprun.xml stdout.log cep_$ne
     x1=$x2
     y1=$y2
     x2=$ne
