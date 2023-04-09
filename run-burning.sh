@@ -132,9 +132,9 @@ else
             sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
             sh ~/bin/orange/modify.sh INCAR LWAVE
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
-            if [[ -d wave ]]; then
-                sed -i -e "/ediff.sh/d" run_slurm.sh
-            fi
+            # if [[ -d wave ]]; then
+            #     sed -i -e "/ediff.sh/d" run_slurm.sh
+            # fi
         else
             sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
