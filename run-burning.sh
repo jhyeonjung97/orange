@@ -83,8 +83,13 @@ else
     elif in_array "dftd4" "${type[*]}"; then
         total+='.dftd4'
     fi
-    if in_array "sol" "${type[*]}"; then
+    if in_array 'sol' "${type[*]}"; then
         total+='.vaspsol'
+        if [[ -d wave ]]; then
+            cp wave/* .
+            mv CONTCAR POSCAR
+            rm STD*
+        fi
     elif in_array 'cep' "${type[*]}"; then
         total+='.vaspsol'
     elif in_array "vtst" "${type[*]}"; then
@@ -121,21 +126,17 @@ else
         cp INCAR .INCAR_old
         sh ~/bin/orange/modify.sh INCAR IDIPOL 3
         sh ~/bin/orange/modify.sh INCAR LDIPOL
+        sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
         if in_array "sol" "${type[*]}"; then
             sh ~/bin/orange/modify.sh INCAR LVHAR
-            sh ~/bin/orange/modify.sh INCAR LWAVE
-            sh ~/bin/orange/modify.sh INCAR LSOL
+            sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
-            if [[ -s WAVECAR ]]; then
-                rm STD*
-            elif [[ -s CONTCAR ]]; then
-                mkdir geo
-                cp * geo
-                mv CONTCAR POSCAR
-                rm STD*
+            if [[ -d wave ]]; then
+                sed -i -e "/ediff.sh/d" run_slurm.sh
+            elif
+                sh ~/bin/orange/modify.sh INCAR LWAVE
             fi
         else
-            sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
             sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
         fi
