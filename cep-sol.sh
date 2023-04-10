@@ -13,6 +13,7 @@ if [[ ! -d wave ]]; then
     mkdir wave
     cp * wave
 fi
+cp wave/CONTCAR POSCAR
 sh ~/bin/orange/modify.sh INCAR ISTART 1
 sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
 sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
