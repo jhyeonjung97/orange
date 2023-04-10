@@ -65,10 +65,6 @@ else
         total+='.vtst179.beef'
     elif in_array 'sol' "${type[*]}"; then
         total+='.beef.vaspsol'
-        if [[ -d wave ]]; then
-            cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
-            cp wave/CONTCAR POSCAR
-        fi
     elif in_array 'beef' "${type[*]}"; then
         total+='.vtst179.beef'
         sed -i -e '/mpiexe/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
@@ -96,23 +92,37 @@ else
         exit 1
     fi
     if in_array 'cep' "${type[*]}"; then
-        read -p 'goal electrode potential? (default: -0.6 V) ' goal
+        read -p 'goal electrode potential? ' goal
         if [[ -z $goal ]]; then
-            echo 'use default value -0.6 V...'
-            goal='-0.6'
+            if [[ -n $(echo $PWD | grep 1_Au) ]]; then
+                goal=-0.6
+            elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
+                goal=-0.1
+            else
+                goal=-0.6
+            fi
+            echo "use default value $goal V..."
+        fi
+        if [[ -d wave ]]; then
+            cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
+            cp wave/CONTCAR POSCAR
         fi
         cp INCAR .INCAR_old
-        sh ~/bin/orange/modify.sh INCAR IDIPOL 3
-        sh ~/bin/orange/modify.sh INCAR LDIPOL
+        sh ~/bin/orange/modify.sh INCAR ISTART 0
         if in_array 'sol' "${type[*]}"; then
+            sh ~/bin/orange/modify.sh INCAR IDIPOL
+            sh ~/bin/orange/modify.sh INCAR LDIPOL
             sh ~/bin/orange/modify.sh INCAR LVHAR
-            sh ~/bin/orange/modify.sh INCAR LWAVE
             sh ~/bin/orange/modify.sh INCAR LSOL
-            sh ~/bin/orange/modify.sh INCAR ISTART 0
+            sh ~/bin/orange/modify.sh INCAR LWAVE
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
         else
-             sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
-             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
+            sh ~/bin/orange/modify.sh INCAR IDIPOL 3
+            sh ~/bin/orange/modify.sh INCAR LDIPOL .TRUE.
+            sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
+            sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.
+            sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
+            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
         fi
     fi
 fi
