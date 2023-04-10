@@ -151,9 +151,9 @@ else
     sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
 fi
 
-# if [[ -e mpiexe.sh ]] && [[ -s WAVECAR ]]; then
-#     sed -i -e '/mpiexe/d' run_slurm.sh
-# fi
+if [[ -e mpiexe.sh ]] && [[ -s WAVECAR ]]; then
+    sed -i -e '/mpiexe/d' run_slurm.sh
+fi
             
 if [[ -z $(grep stdout run_slurm.sh) ]]; then
     sed -i 's/STDOUT/stdout/' run_slurm.sh
