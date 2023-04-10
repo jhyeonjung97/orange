@@ -130,6 +130,7 @@ else
             sh ~/bin/orange/modify.sh INCAR LVHAR
             sh ~/bin/orange/modify.sh INCAR LSOL
             sh ~/bin/orange/modify.sh INCAR LWAVE
+            sh ~/bin/orange/modify.sh INCAR ISTART 0
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
         else
             sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
