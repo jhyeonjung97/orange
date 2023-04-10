@@ -85,10 +85,6 @@ else
     fi
     if in_array 'sol' "${type[*]}"; then
         total+='.vaspsol'
-        if [[ -d wave ]]; then
-            cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
-            cp wave/CONTCAR POSCAR
-        fi
     elif in_array 'cep' "${type[*]}"; then
         total+='.vaspsol'
     elif in_array 'vtst' "${type[*]}"; then
@@ -121,6 +117,10 @@ else
                 goal=-0.6
             fi
             echo "use default value $goal V..."
+        fi
+        if [[ -d wave ]]; then
+            cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
+            cp wave/CONTCAR POSCAR
         fi
         cp INCAR .INCAR_old
         sh ~/bin/orange/modify.sh INCAR IDIPOL 3
