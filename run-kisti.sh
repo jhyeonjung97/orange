@@ -100,7 +100,7 @@ else
         cp INCAR .INCAR_old
         sh ~/bin/orange/modify.sh INCAR IDIPOL 3
         sh ~/bin/orange/modify.sh INCAR LDIPOL
-        # if in_array "sol" "${type[*]}"; then
+        if in_array 'sol' "${type[*]}"; then
             sh ~/bin/orange/modify.sh INCAR LVHAR
             sh ~/bin/orange/modify.sh INCAR LWAVE
             sh ~/bin/orange/modify.sh INCAR LSOL
@@ -109,7 +109,7 @@ else
         #     sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
         #     sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
         #     sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
-        # fi
+        fi
         if [[ -s WAVECAR ]]; then
             grep mpiexe run_slurm.sh >> mpiexe.sh
             sed -i -e '/mpiexe/d' run_slurm.sh
