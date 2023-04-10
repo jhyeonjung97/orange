@@ -67,10 +67,10 @@ else
         total+='.beef.vaspsol'
     elif in_array 'beef' "${type[*]}"; then
         total+='.vtst179.beef'
-        sed -i -e '/mpiexe/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
-        echo 'rm vdw_kernel.bindat' >> run_slurm.sh
     elif in_array 'cep' "${type[*]}"; then
         total+='.beef.vaspsol'
+    fi
+    if [[ -n $(echo $total | grep beef) ]]; then
         sed -i -e '/mpiexe/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
         echo 'rm vdw_kernel.bindat' >> run_slurm.sh
     fi
