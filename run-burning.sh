@@ -106,16 +106,6 @@ else
     fi
     if in_array 'cep' "${type[*]}"; then
         read -p 'goal electrode potential? ' goal
-        if [[ -z $goal ]]; then
-            if [[ -n $(echo $PWD | grep 1_Au) ]]; then
-                goal=-0.6
-            elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
-                goal=-0.1
-            else
-                goal=-0.6
-            fi
-            echo "use default value $goal V..."
-        fi
         if [[ -d wave ]]; then
             cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
             cp wave/CONTCAR POSCAR
