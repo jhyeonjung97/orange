@@ -2,11 +2,11 @@
 
 function resub {
     if [[ ${here} == 'kisti' ]]; then
-        rm *.e* *.o*
+        rm *.e* *.o* *out.log
     else
-        rm STD* std*
+        rm STD* *out.log
     fi
-    find . -size +10000000c -type f -delete
+    # find . -size +10000000c -type f -delete
     if [[ -d pwscf.save ]]; then
         rm -r pwscf.save
     fi
