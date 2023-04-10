@@ -85,8 +85,8 @@ else
     fi
     if in_array 'sol' "${type[*]}"; then
         total+='.vaspsol'
-    elif in_array 'cep' "${type[*]}"; then
-        total+='.vaspsol'
+    # elif in_array 'cep' "${type[*]}"; then
+    #     total+='.vaspsol'
     elif in_array 'vtst' "${type[*]}"; then
         total+='.vtst'
     elif in_array 'wan90v3' "${type[*]}"; then
