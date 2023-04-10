@@ -86,7 +86,7 @@ else
     if in_array 'sol' "${type[*]}"; then
         total+='.vaspsol'
         if [[ -d wave ]]; then
-            cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR.
+            cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
             cp wave/CONTCAR POSCAR
         fi
     elif in_array 'cep' "${type[*]}"; then
