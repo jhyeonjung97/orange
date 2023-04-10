@@ -128,7 +128,7 @@ else
         sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
         if in_array 'sol' "${type[*]}"; then
             sh ~/bin/orange/modify.sh INCAR LVHAR
-            sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
+            sh ~/bin/orange/modify.sh INCAR LSOL
             sh ~/bin/orange/modify.sh INCAR LWAVE
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
         else
