@@ -8,17 +8,8 @@ y2=''
 hl=-4.43
 step=0.1
 error=0.02
-    
-if [[ ! -d wave ]]; then
-    mkdir wave
-    cp * wave
-fi
-cp wave/CONTCAR POSCAR
-sh ~/bin/orange/modify.sh INCAR ISTART 1
-sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
-sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
-sh ~/bin/orange/modify.sh INCAR LCHARG .TRUE.
-sh ~/bin/orange/modify.sh INCAR LAECHG .TRUE.
+unset map
+declare -A map
 
 if [[ -n $1 ]]; then
     goal=$1
@@ -30,15 +21,22 @@ else
     goal=-0.6
 fi
 
-unset map
-declare -A map
+if [[ ! -d wave ]]; then
+    mkdir wave
+    cp * wave
+fi
+cp wave/CONTCAR POSCAR
+sh ~/bin/orange/modify.sh INCAR ISTART 1
+sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
+sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
+sh ~/bin/orange/modify.sh INCAR LCHARG .TRUE.
+sh ~/bin/orange/modify.sh INCAR LAECHG .TRUE.
+
 if [[ ! -s mpiexe.sh ]]; then
     grep mpiexe run_slurm.sh > mpiexe.sh
 fi
 date >> cepout.log
-# date >> check.log
 echo -e "Nelect\tType\tDiff\tShift\tFermi\tWork.F\tPotential" >> cepout.log
-# echo -e "x1\tx2\ty1\ty2\tgrad\tgoal\ttype\tdiff" >> check.log
 
 while read line
 do
@@ -64,13 +62,12 @@ do
         fi
     fi
 done < cepout.log
-# echo $x1 $x2 $y1 $y2 ${#map[@]}
 
 function update {
     IFS=' '
     nes=$(grep NELECT OUTCAR)
     read -ra nea <<< $nes
-    ne=$(echo ${nea[2]} | awk '{printf "%.8f", $1}')
+    ne=$(echo ${nea[2]} | awk '{printf "%.3f", $1}')
     shs=$(grep FERMI_SHIFT stdout.log | tail -n 1)
     read -ra sha <<< $shs
     sh=$(echo ${sha[2]} | awk '{printf "%.8f", $1}')
