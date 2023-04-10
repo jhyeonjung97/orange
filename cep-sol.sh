@@ -102,6 +102,7 @@ do
         echo -e "$ne\t$type\t$diff\t$sh\t$fl\t$wf\t$ep" >> cepout.log
         x2=$ne
         y2=$ep
+        echo $ne
     fi
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
