@@ -6,7 +6,7 @@ function resub {
     else
         rm STD* *out.log
     fi
-    rm WAVECAR CHGCAR
+    # rm WAVECAR CHGCAR
     # find . -size +10000000c -type f -delete
     if [[ -d pwscf.save ]]; then
         rm -r pwscf.save
