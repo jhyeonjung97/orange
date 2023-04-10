@@ -20,6 +20,7 @@ elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
 else
     goal=-0.6
 fi
+echo $goal
 
 if [[ ! -d wave ]]; then
     mkdir wave
