@@ -84,9 +84,9 @@ do
     if [[ ! -s POTCAR ]]; then
         python3 ~/bin/shoulder/potcar_ara.py
     fi
-    if [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
-        sh ~/bin/orange/nelect.sh
-    fi
+    # if [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
+    #     sh ~/bin/orange/nelect.sh
+    # fi
     if grep -q '^[^#]*IBRION\s*=\s*0' INCAR && \
        grep -q '^[^#]*POTIM\s*=\s*1' INCAR && \
        grep -q '^[^#]*TEBEG\s*=\s*300' INCAR && \
