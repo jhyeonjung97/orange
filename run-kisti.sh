@@ -66,7 +66,7 @@ else
     elif in_array 'sol' "${type[*]}"; then
         total+='.beef.vaspsol'
         if [[ -d wave ]]; then
-            cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR .
+            cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
             cp wave/CONTCAR POSCAR
         fi
     elif in_array 'beef' "${type[*]}"; then
@@ -96,49 +96,23 @@ else
         exit 1
     fi
     if in_array 'cep' "${type[*]}"; then
-        read -p 'goal electrode potential? ' goal
+        read -p 'goal electrode potential? (default: -0.6 V) ' goal
         if [[ -z $goal ]]; then
-            if [[ -n $(echo $PWD | grep 1_Au) ]]; then
-                goal=-0.6
-            elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
-                goal=-0.1
-            else
-                goal=-0.6
-            fi
-            echo "use default value $goal V..."
+            echo 'use default value -0.6 V...'
+            goal='-0.6'
         fi
         cp INCAR .INCAR_old
         sh ~/bin/orange/modify.sh INCAR IDIPOL 3
         sh ~/bin/orange/modify.sh INCAR LDIPOL
-<<<<<<< HEAD
-=======
-        sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
->>>>>>> 2d9d1974e86cb447aba9577f91371ce02cdf624f
         if in_array 'sol' "${type[*]}"; then
             sh ~/bin/orange/modify.sh INCAR LVHAR
-            sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
             sh ~/bin/orange/modify.sh INCAR LWAVE
+            sh ~/bin/orange/modify.sh INCAR LSOL
+            sh ~/bin/orange/modify.sh INCAR ISTART 0
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
-<<<<<<< HEAD
-        # else
-        #     sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
-        #     sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
-        #     sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
-        fi
-        if [[ -s WAVECAR ]]; then
-            grep mpiexe run_slurm.sh >> mpiexe.sh
-            sed -i -e '/mpiexe/d' run_slurm.sh
-            rm STD*
-        elif [[ -s CONTCAR ]]; then
-            mkdir geo
-            cp * geo
-            mv CONTCAR POSCAR
-            rm STD*
-=======
         else
-            sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
-            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
->>>>>>> 2d9d1974e86cb447aba9577f91371ce02cdf624f
+             sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
+             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
         fi
     fi
 fi
@@ -156,11 +130,10 @@ else
     sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
 fi
 
-if [[ -n $(grep cep-sol run_slurm.sh) ]]; then
-    sed -i '/mpiexe/d' run_slurm.sh
+if [[ -e mpiexe.sh ]] && [[ -s WAVECAR ]]; then
+    sed -i -e '/mpiexe/d' run_slurm.sh
 fi
 
-echo $PWD
 read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then
     sh ~/bin/orange/jobname.sh $jobname
