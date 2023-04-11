@@ -124,7 +124,7 @@ else
             sh ~/bin/orange/modify.sh INCAR LDIPOL .TRUE.
             sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
             sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.
-            sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
+            sh ~/bin/orange/modify.sh INCAR LWAVE
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
         fi
     fi
