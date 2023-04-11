@@ -25,6 +25,7 @@ echo $goal
 if [[ ! -d wave ]]; then
     mkdir wave
     cp * wave
+    mv conti*/ wave
 fi
 cp wave/CONTCAR POSCAR
 sh ~/bin/orange/modify.sh INCAR ISTART 1

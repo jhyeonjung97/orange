@@ -27,7 +27,7 @@ else
 fi
 
 read -p "which queue? (g1~g5, gpu): " q
-echo -n "which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster): "
+echo -n "which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea): "
 read -a type
 
 if [[ $q == 'g1' ]]; then
@@ -83,7 +83,9 @@ else
     elif in_array 'dftd4' "${type[*]}"; then
         total+='.dftd4'
     fi
-    if in_array 'sol' "${type[*]}"; then
+    if in_array 'sea' "${type[*]}"; then
+        total+='.vaspsol'
+    elif in_array 'sol' "${type[*]}"; then
         total+='.vaspsol'
     elif in_array 'vtst' "${type[*]}"; then
         total+='.vtst'
@@ -143,6 +145,18 @@ else
     sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
 fi
 
+if in_array 'sea' "${type[*]}"; then
+    if [[ -d wave ]]; then
+        cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
+        cp wave/CONTCAR POSCAR
+    fi
+    sh ~/bin/orange/modify.sh INCAR ISTART 0
+    sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.
+    sh ~/bin/orange/modify.sh INCAR LWAVE .TRUE.
+    echo '
+sh ~/bin/orange/seawater.sh
+sh mpiexe.sh; sh ~/bin/orange/ediff.sh' >> run_slurm.sh
+        
 if [[ -e mpiexe.sh ]] && [[ -s WAVECAR ]]; then
     sed -i -e '/mpiexe/d' run_slurm.sh
 fi
