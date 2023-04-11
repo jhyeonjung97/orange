@@ -39,16 +39,15 @@ fi
 date >> cepout.log
 echo -e "Nelect\tType\tDiff\tFermi\tWork.F\tPotential" >> cepout.log
 
-while read line
+while IFS=$'\t' read -r -a line
 do
-    IFS=' ' read -r -a line <<< $line
     head=${line[0]}
     head=${head#-}
     head=${head//[0-9]/}
     head=${head#.}
-    if [[ -z $head ]] && [[ ${#line[@]} == 7 ]]; then
+    if [[ -z $head ]] && [[ ${#line[@]} == 6 ]]; then
         ne=${line[0]}
-        ep=${line[6]}
+        ep=${line[5]}
         x1=$x2
         y1=$y2
         x2=$ne

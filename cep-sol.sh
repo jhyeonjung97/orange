@@ -39,15 +39,14 @@ fi
 date >> cepout.log
 echo -e "Nelect\tType\tDiff\tShift\tFermi\tWork.F\tPotential" >> cepout.log
 
-while read line
+while IFS=$'\t' read -r -a line
 do
-    IFS=' ' read -r -a line <<< $line
     head=${line[0]}
     head=${head#-}
     head=${head//[0-9]/}
     head=${head#.}
-    # echo $head
-    # echo ${#line[@]}
+    echo $head
+    echo ${#line[@]}
     if [[ -z $head ]] && [[ ${#line[@]} == 7 ]]; then
         ne=${line[0]}
         ep=${line[6]}
@@ -61,6 +60,7 @@ do
         else
             map+=([$ne]=$ep)
         fi
+        echo $x1 $x2 $y1 $y2 $ne $ep
     fi
 done < cepout.log
 
