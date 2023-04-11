@@ -108,7 +108,7 @@ else
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
         else
             sh ~/bin/orange/modify.sh INCAR IDIPOL 3
-            sh ~/bin/orange/modify.sh INCAR LDIPOL .TRUE.
+            sh ~/bin/orange/modify.sh INCAR LDIPOL
             sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
             sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.
             sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
