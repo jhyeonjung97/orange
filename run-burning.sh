@@ -61,7 +61,7 @@ function in_array {
 
 total=''
 if in_array 'qe' "${type[*]}"; then
-    sed -i '/mpiexec/i\cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
+    sed -i '/mpiexe/i\cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
     sed -i 's/custom/4 pw.x -in qe-relax.in/' run_slurm.sh
 else
     if in_array 'mmff' "${type[*]}"; then
@@ -77,7 +77,7 @@ else
         fi
     fi
     if in_array 'beef' "${type[*]}"; then
-        sed -i '/mpiexec/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
+        sed -i '/mpiexe/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
         echo 'rm vdw_kernel.bindat' >> run_slurm.sh
         total+='.beef' 
     elif in_array 'dftd4' "${type[*]}"; then
@@ -150,9 +150,9 @@ if in_array 'sea' "${type[*]}"; then
         cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
         cp wave/CONTCAR POSCAR
     fi
-    sed -i '/mpiexec/i\sh ~/bin/orange/modify.sh INCAR ISTART 0' run_slurm.sh
-    sed -i '/mpiexec/i\sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.' run_slurm.sh
-    sed -i '/mpiexec/i\sh ~/bin/orange/modify.sh INCAR LWAVE .TRUE.' run_slurm.sh
+    sed -i '/mpiexe/i\sh ~/bin/orange/modify.sh INCAR ISTART 0' run_slurm.sh
+    sed -i '/mpiexe/i\sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.' run_slurm.sh
+    sed -i '/mpiexe/i\sh ~/bin/orange/modify.sh INCAR LWAVE .TRUE.' run_slurm.sh
     echo '
 sh ~/bin/orange/seawater.sh
 sh mpiexe.sh; sh ~/bin/orange/ediff.sh' >> run_slurm.sh
