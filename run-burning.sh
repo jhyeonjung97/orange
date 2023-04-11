@@ -150,9 +150,9 @@ if in_array 'sea' "${type[*]}"; then
         cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
         cp wave/CONTCAR POSCAR
     fi
-    sh ~/bin/orange/modify.sh INCAR ISTART 0
-    sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.
-    sh ~/bin/orange/modify.sh INCAR LWAVE .TRUE.
+    sed -i '/mpiexec/i\sh ~/bin/orange/modify.sh INCAR ISTART 0' run_slurm.sh
+    sed -i '/mpiexec/i\sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.' run_slurm.sh
+    sed -i '/mpiexec/i\sh ~/bin/orange/modify.sh INCAR LWAVE .TRUE.' run_slurm.sh
     echo '
 sh ~/bin/orange/seawater.sh
 sh mpiexe.sh; sh ~/bin/orange/ediff.sh' >> run_slurm.sh
