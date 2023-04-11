@@ -147,5 +147,8 @@ do
     y1=$y2
     x2=$ne
     y2=$ep
+    if [[ -n $(grep LDIPOL stdout.log) ]]; then
+        exit 5
+    fi
 done
 IFS=$OIFS
