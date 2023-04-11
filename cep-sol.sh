@@ -5,7 +5,7 @@ x1=''
 x2=''
 y1=''
 y2=''
-hl=-4.43
+hl=4.43
 step=0.1
 error=0.02
 unset map
@@ -76,8 +76,8 @@ function update {
     fls=$(grep E-fermi OUTCAR | tail -n 1)
     read -ra fla <<< $fls
     fl=${fla[2]}
-    wf=$(echo "$fl $sh" | awk '{printf "%.8f", $1 + $2}')
-    ep=$(echo "$hl $wf" | awk '{printf "%.8f", $1 - $2}')
+    wf=$(echo "$fl $sh" | awk '{printf "%.8f", - $1 - $2}')
+    ep=$(echo "$wf $hl" | awk '{printf "%.8f", $1 - $2}')
     diff=$(echo $diff | awk '{printf "%.8f", $1}')
 }
 

@@ -5,7 +5,7 @@ x1=''
 x2=''
 y1=''
 y2=''
-hl=-4.43
+hl=4.43
 step=0.1
 error=0.02
 unset map
