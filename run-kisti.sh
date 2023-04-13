@@ -136,6 +136,9 @@ if in_array 'sea' "${type[*]}"; then
     if [[ -d wave ]]; then
         cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
         cp wave/CONTCAR POSCAR
+    else
+        rm STD*
+        mv CONTCAR POSCAR
     fi
     sed -i '/mpiexe/i\sh ~/bin/orange/modify.sh INCAR ISTART 0' run_slurm.sh
     sed -i '/mpiexe/i\sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.' run_slurm.sh
