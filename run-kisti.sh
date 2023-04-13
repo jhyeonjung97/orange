@@ -8,7 +8,7 @@ fi
 cp ~/input_files/run_slurm.sh .
 
 read -p 'which queue? (normal, skl, long, flat): ' q
-echo -n 'which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster): '
+echo -n 'which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea): '
 read -a type
 
 if [[ $q == l* ]]; then
