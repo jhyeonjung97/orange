@@ -5,6 +5,7 @@ x1=''
 x2=''
 y1=''
 y2=''
+pH=14
 hl=4.43
 step=0.1
 error=0.02
@@ -12,25 +13,25 @@ unset map
 declare -A map
 
 if [[ -n $1 ]]; then
-    goal=$1
+    rhe=$1
 elif [[ -n $(echo $PWD | grep 1_Au) ]]; then
-    goal=-0.6
+    rhe=-0.6
 elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
-    goal=-0.1
+    rhe=-0.1
 else
-    goal=-0.6
+    rhe=-0.6
 fi
-echo $goal
+goal=$(echo "$rhe $pH" | awk '{print $1 - 0.0592 * $2}')
+echo "goal RHE: $rhe, SHE: $goal (pH = $pH)"
 
-if [[ ! -d wave ]]; then
+if [[ ! -d wave ]] && [[ -s WAVECAR ]] && [[ -s CONTCAR ]]; then
     mkdir wave
     cp * wave
     mv conti*/ wave
 fi
-cp wave/CONTCAR POSCAR
 sh ~/bin/orange/modify.sh INCAR ISTART 1
 sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.
-sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
+sh ~/bin/orange/modify.sh INCAR LWAVE
 sh ~/bin/orange/modify.sh INCAR LCHARG .TRUE.
 sh ~/bin/orange/modify.sh INCAR LAECHG .TRUE.
 
@@ -38,7 +39,7 @@ if [[ ! -s mpiexe.sh ]]; then
     grep mpiexe run_slurm.sh > mpiexe.sh
 fi
 date >> cepout.log
-echo -e "Nelect\tType\tDiff\tFermi\tWork.F\tPotential" >> cepout.log
+echo -e "Nelect\tType\tDiff\tFermi_level\tWork_Function\tV_SHE\tV_RHE" >> cepout.log
 
 while IFS=$'\t' read -r -a line
 do
@@ -75,6 +76,7 @@ function update {
     fl=${fla[2]}
     wf=$(echo "$vl $fl" | awk '{print $1 - $2}')
     ep=$(echo "$wf $hl" | awk '{print $1 - $2}')
+    rp=$(echo "$ep $pH" | awk '{print $1 + 0.0592 * $2}')
 }
 
 function in_array {
@@ -139,7 +141,7 @@ do
         exit 1
     fi
     update
-    echo -e "$ne\t$type\t$diff\t$fl\t$wf\t$ep" >> cepout.log
+    echo -e "$ne\t$type\t$diff\t$fl\t$wf\t$ep\t$rp" >> cepout.log
     map+=([$ne]=$ep)
     mkdir cep_$ne
     cp INCAR POSCAR CONTCAR XDATCAR LOCPOT PLANAR_AVERAGE.dat AECCAR0 AECCAR1 AECCAR2 CHGCAR OUTCAR OSZICAR vasprun.xml stdout.log cep_$ne
