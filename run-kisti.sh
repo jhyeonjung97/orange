@@ -63,6 +63,8 @@ else
     fi
     if in_array 'vtst' "${type[*]}"; then
         total+='.vtst179.beef'
+    elif in_array 'sea' "${type[*]}"; then
+        total+='.beef.vaspsol'
     elif in_array 'sol' "${type[*]}"; then
         total+='.beef.vaspsol'
     elif in_array 'beef' "${type[*]}"; then
@@ -108,10 +110,10 @@ else
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
         else
             sh ~/bin/orange/modify.sh INCAR IDIPOL 3
-            sh ~/bin/orange/modify.sh INCAR LDIPOL
+            # sh ~/bin/orange/modify.sh INCAR LDIPOL
             sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
             sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.
-            sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
+            sh ~/bin/orange/modify.sh INCAR LWAVE
             sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
         fi
     fi
@@ -128,6 +130,19 @@ export OMP_PROC_BIND=spread
 else
     grep mpiexe run_slurm.sh > mpiexe.sh
     sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
+fi
+
+if in_array 'sea' "${type[*]}"; then
+    if [[ -d wave ]]; then
+        cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
+        cp wave/CONTCAR POSCAR
+    fi
+    sed -i '/mpiexe/i\sh ~/bin/orange/modify.sh INCAR ISTART 0' run_slurm.sh
+    sed -i '/mpiexe/i\sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.' run_slurm.sh
+    sed -i '/mpiexe/i\sh ~/bin/orange/modify.sh INCAR LWAVE .TRUE.' run_slurm.sh
+    echo '
+sh ~/bin/orange/seawater.sh
+sh mpiexe.sh; sh ~/bin/orange/ediff.sh' >> run_slurm.sh
 fi
 
 if [[ -e mpiexe.sh ]] && [[ -s WAVECAR ]]; then
