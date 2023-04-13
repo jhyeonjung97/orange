@@ -140,7 +140,7 @@ if in_array 'sea' "${type[*]}"; then
     sed -i '/mpiexe/i\sh ~/bin/orange/modify.sh INCAR ISTART 0' run_slurm.sh
     sed -i '/mpiexe/i\sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.' run_slurm.sh
     sed -i '/mpiexe/i\sh ~/bin/orange/modify.sh INCAR LWAVE .TRUE.' run_slurm.sh
-    echo '
+    echo 'mv CONTCAR POSCAR
 sh ~/bin/orange/seawater.sh
 sh mpiexe.sh; sh ~/bin/orange/ediff.sh' >> run_slurm.sh
 fi
