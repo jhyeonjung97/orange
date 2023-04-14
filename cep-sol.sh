@@ -14,9 +14,9 @@ declare -A map
 
 if [[ -n $1 ]]; then
     rhe=$1
-elif [[ -n $(echo $PWD | grep 1_Au) ]]; then
+elif [[ -n $(echo $PWD | grep _Au) ]]; then
     rhe=-0.6
-elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
+elif [[ -n $(echo $PWD | grep _Pt) ]]; then
     rhe=-0.1
 else
     rhe=-0.6
