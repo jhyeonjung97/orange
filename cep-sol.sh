@@ -38,6 +38,10 @@ sh ~/bin/orange/modify.sh INCAR LWAVE .TRUE.
 sh ~/bin/orange/modify.sh INCAR LCHARG .TRUE.
 sh ~/bin/orange/modify.sh INCAR LAECHG .TRUE.
 
+if [[ -s bj-test.sh ]]; then
+    sh bj-test.sh
+fi
+
 if [[ ! -s mpiexe.sh ]]; then
     grep mpiexe run_slurm.sh > mpiexe.sh
 fi
