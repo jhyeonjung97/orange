@@ -39,15 +39,15 @@ idle'
 alias ta='tail -n 6 */stdout*'
 alias taa='tail -n 6 */*/stdout*'
 
-alias p='<g1>
+alias p='echo "<g1>"
 squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g1
-<g2>
+echo "<g2>"
 squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g2
-<g3>
+echo "<g3>"
 squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g3
-<g4>
+echo "<g4>"
 squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g4
-<g5>
+echo "<g5>"
 squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g5'
 alias p1='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g1'
 alias p2='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep g2'
