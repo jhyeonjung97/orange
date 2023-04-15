@@ -38,8 +38,10 @@ if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
 #     fi
 elif [[ -z $2 ]]; then
     SET=$(seq 1 $1)
+    multiple_input="$1"
 else
     SET=$(seq $1 $2)
+    multiple_input="$1 $2"
 fi
 
 ls
@@ -110,4 +112,7 @@ if [[ $submit =~ 'y' ]]; then
         sh ~/bin/orange/sub.sh
         cd ..
     done
+elif [[ $submit =~ 'm' ]] && [[ -n $multiple_input ]]; then
+    sh ~/bin/orange/multiple.sh $multiple_input
+    echo "multiple $multiple_input"
 fi
