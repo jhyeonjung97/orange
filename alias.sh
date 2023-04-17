@@ -25,6 +25,7 @@ alias clone='sh ~/bin/orange/clone.sh'
 alias pomass='sh ~/bin/orange/pomass.sh'
 alias walltime='sh ~/bin/orange/walltime.sh'
 alias queue='sh ~/bin/orange/queue.sh'
+# alias weekend='
 
 alias zip='tar -cvzf'
 alias unzip='tar -xvf'
