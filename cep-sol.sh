@@ -31,6 +31,8 @@ if [[ ! -d wave ]] && [[ -s WAVECAR ]] && [[ -s CONTCAR ]]; then
 fi
 sh ~/bin/orange/modify.sh INCAR ISTART 1
 sh ~/bin/orange/modify.sh INCAR IDIPOL
+sh ~/bin/orange/modify.sh INCAR LDIPOL
+sh ~/bin/orange/modify.sh INCAR IBRION 2
 sh ~/bin/orange/modify.sh INCAR TAU 0
 sh ~/bin/orange/modify.sh INCAR LAMBDA_D_K 3.0
 sh ~/bin/orange/modify.sh INCAR LSOL .TRUE.
