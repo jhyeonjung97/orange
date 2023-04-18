@@ -28,6 +28,7 @@ if [[ ! -d wave ]] && [[ -s WAVECAR ]] && [[ -s CONTCAR ]]; then
     mkdir wave
     cp * wave
     mv conti*/ wave
+    mv CONTCAR POSCAR
 fi
 sh ~/bin/orange/modify.sh INCAR ISTART 1
 sh ~/bin/orange/modify.sh INCAR IDIPOL
