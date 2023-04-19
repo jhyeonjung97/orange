@@ -104,7 +104,7 @@ else
         exit 1
     fi
     if in_array 'cep' "${type[*]}"; then
-        read -p 'goal electrode potential? ' goal
+        # read -p 'goal electrode potential? ' goal
         if [[ -d wave ]]; then
             cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
             cp wave/CONTCAR POSCAR
@@ -117,14 +117,16 @@ else
             sh ~/bin/orange/modify.sh INCAR LVHAR
             sh ~/bin/orange/modify.sh INCAR LSOL
             sh ~/bin/orange/modify.sh INCAR LWAVE
-            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
+            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh" run_slurm.sh
+            # sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
         else
             sh ~/bin/orange/modify.sh INCAR IDIPOL 3
             # sh ~/bin/orange/modify.sh INCAR LDIPOL
             sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
             sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.
             sh ~/bin/orange/modify.sh INCAR LWAVE
-            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
+            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh" run_slurm.sh
+            # sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
         fi
     fi
 fi
