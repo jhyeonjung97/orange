@@ -170,7 +170,7 @@ do
     if [[ jobname==1 ]]; then
         jobname=$i
     fi
-    if [[ $i == -f* ]]; then
+    if [[ $i == -j* ]]; then
         jobname=1
     fi
 done
