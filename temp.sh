@@ -16,11 +16,12 @@ else
     else
         DIR=$(seq $1 $2)
     fi
-    
+    echo $DIR
     for i in $DIR
     do
-        i=${i%/}
-        cd $i*
+        # i=${i%/}
+        # cd $i*
+        cd $i
         sh ~/bin/temp.sh
         cd ..
     done
