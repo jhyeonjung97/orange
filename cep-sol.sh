@@ -159,7 +159,7 @@ do
     map+=([$ne]=$ep)
     mkdir cep_$ne
     cp INCAR POSCAR CONTCAR XDATCAR AECCAR0 AECCAR1 AECCAR2 WAVECAR CHGCAR OUTCAR OSZICAR vasprun.xml stdout.log cep_$ne
-    mv CONTCAR POSCAR
+    cp CONTCAR POSCAR
     x1=$x2
     y1=$y2
     x2=$ne
