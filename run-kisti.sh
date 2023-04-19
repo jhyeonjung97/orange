@@ -14,15 +14,15 @@ else
     read -p 'which queue? (normal, skl, long, flat): ' q
 fi
 
-if [[ $q =~ l* ]]; then
+if [[ $q == l* ]]; then
     node=64
     q='long'
     sed -i -e 's/walltime=48/walltime=120/g' run_slurm.sh
-elif [[ $q =~ s* ]]; then
+elif [[ $q == s* ]]; then
     node=40
     q='norm_skl'
     sed -i -e 's/KNL_XeonPhi/SKL_Skylake/g' run_slurm.sh
-elif [[ $q =~ f* ]]; then
+elif [[ $q == f* ]]; then
     node=64
     q='flat'
 else
