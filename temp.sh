@@ -17,7 +17,6 @@ else
     else
         DIR=$(seq $1 $2)
     fi
-    echo $DIR
     for i in $DIR
     do
         cd $i
