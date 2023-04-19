@@ -7,24 +7,34 @@ fi
 
 cp ~/input_files/run_slurm.sh .
 
-read -p 'which queue? (normal, skl, long, flat): ' q
-echo -n 'which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea): '
-read -a type
+if [[ $1 == -* ]]; then
+    q=${1##-}
+    shift
+else
+    read -p 'which queue? (normal, skl, long, flat): ' q
+fi
 
-if [[ $q == l* ]]; then
+if [[ $q =~ l* ]]; then
     node=64
     q='long'
     sed -i -e 's/walltime=48/walltime=120/g' run_slurm.sh
-elif [[ $q == s* ]]; then
+elif [[ $q =~ s* ]]; then
     node=40
     q='norm_skl'
     sed -i -e 's/KNL_XeonPhi/SKL_Skylake/g' run_slurm.sh
-elif [[ $q == f* ]]; then
+elif [[ $q =~ f* ]]; then
     node=64
     q='flat'
 else
     node=64
     q='normal'
+fi
+
+if [[ -n $1 ]]; then
+    type=${@}
+else
+    echo -n 'which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea): '
+    read -a type
 fi
 
 sed -i "/ncpus/c\#PBS -l select=1:ncpus=$node:mpiprocs=$node:ompthreads=1" run_slurm.sh
@@ -152,7 +162,21 @@ if [[ -e mpiexe.sh ]] && [[ -s WAVECAR ]]; then
     sed -i -e '/mpiexe/d' run_slurm.sh
 fi
 
-read -p 'enter jobname if you want to change it: ' jobname
+jobname=0
+for i in $@
+do
+    if [[ jobname==1 ]]; then
+        jobname=$i
+    fi
+    if [[ $i == -f* ]]; then
+        jobname=1
+    fi
+done
+
+if [[ -z $jobname ]]; then
+    read -p 'enter jobname if you want to change it: ' jobname
+fi
+
 if [[ -n $jobname ]]; then
     sh ~/bin/orange/jobname.sh $jobname
 fi
