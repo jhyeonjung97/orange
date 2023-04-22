@@ -7,9 +7,12 @@ fi
 
 cp ~/input_files/run_slurm.sh .
 
-read -p 'which queue? (normal, skl, long, flat): ' q
-echo -n 'which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea): '
-read -a type
+if [[ $1 == -* ]]; then
+    q=${1##-}
+    shift
+else
+    read -p 'which queue? (normal, skl, long, flat): ' q
+fi
 
 if [[ $q == l* ]]; then
     node=64
@@ -25,6 +28,13 @@ elif [[ $q == f* ]]; then
 else
     node=64
     q='normal'
+fi
+
+if [[ -n $1 ]]; then
+    type=${@}
+else
+    echo -n 'which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea): '
+    read -a type
 fi
 
 sed -i "/ncpus/c\#PBS -l select=1:ncpus=$node:mpiprocs=$node:ompthreads=1" run_slurm.sh
@@ -94,7 +104,7 @@ else
         exit 1
     fi
     if in_array 'cep' "${type[*]}"; then
-        read -p 'goal electrode potential? ' goal
+        # read -p 'goal electrode potential? ' goal
         if [[ -d wave ]]; then
             cp wave/INCAR wave/KPOINTS wave/POTCAR wave/WAVECAR wave/OUTCAR .
             cp wave/CONTCAR POSCAR
@@ -107,14 +117,16 @@ else
             sh ~/bin/orange/modify.sh INCAR LVHAR
             sh ~/bin/orange/modify.sh INCAR LSOL
             sh ~/bin/orange/modify.sh INCAR LWAVE
-            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
+            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh" run_slurm.sh
+            # sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep-sol.sh $goal" run_slurm.sh
         else
             sh ~/bin/orange/modify.sh INCAR IDIPOL 3
             # sh ~/bin/orange/modify.sh INCAR LDIPOL
             sh ~/bin/orange/modify.sh INCAR LVHAR .TRUE.
             sh ~/bin/orange/modify.sh INCAR LSOL .FALSE.
             sh ~/bin/orange/modify.sh INCAR LWAVE
-            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
+            sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh" run_slurm.sh
+            # sed -i -e "/mpiexe/a\sh ~\/bin\/orange\/cep.sh $goal" run_slurm.sh
         fi
     fi
 fi
@@ -152,7 +164,21 @@ if [[ -e mpiexe.sh ]] && [[ -s WAVECAR ]]; then
     sed -i -e '/mpiexe/d' run_slurm.sh
 fi
 
-read -p 'enter jobname if you want to change it: ' jobname
+jobname=0
+for i in $@
+do
+    if [[ jobname==1 ]]; then
+        jobname=$i
+    fi
+    if [[ $i == -j* ]]; then
+        jobname=1
+    fi
+done
+
+if [[ -z $jobname ]]; then
+    read -p 'enter jobname if you want to change it: ' jobname
+fi
+
 if [[ -n $jobname ]]; then
     sh ~/bin/orange/jobname.sh $jobname
 fi

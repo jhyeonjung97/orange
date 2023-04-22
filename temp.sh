@@ -3,6 +3,7 @@
 if [[ -z $1 ]]; then # simple submit
     sh ~/bin/temp.sh
 else
+    dir_now=$PWD
     if [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
         DIR='*/'
     elif [[ $1 == '-rr' ]]; then
@@ -16,12 +17,10 @@ else
     else
         DIR=$(seq $1 $2)
     fi
-    
     for i in $DIR
     do
-        i=${i%/}
-        cd $i*
+        cd $i
         sh ~/bin/temp.sh
-        cd ..
+        cd $dir_now
     done
 fi
