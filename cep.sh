@@ -8,7 +8,7 @@ y2=''
 pH=14
 hl=4.43
 step=0.1
-error=0.02
+error=0.002
 unset map
 declare -A map
 

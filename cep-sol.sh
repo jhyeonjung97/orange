@@ -8,7 +8,7 @@ y2=''
 pH=14
 hl=4.43
 step=0.1
-error=0.02
+error=0.002
 unset map
 declare -A map
 
@@ -113,7 +113,7 @@ do
     fi
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
-        diff=0.0
+        diff=+2.0
     elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
         type=type1
         diff=-0.1
@@ -155,7 +155,7 @@ do
     map+=([$ne]=$ep)
     mkdir cep_$ne
     cp INCAR POSCAR CONTCAR XDATCAR AECCAR0 AECCAR1 AECCAR2 WAVECAR CHGCAR OUTCAR OSZICAR vasprun.xml stdout.log cep_$ne
-    mv CONTCAR POSCAR
+    cp CONTCAR POSCAR
     x1=$x2
     y1=$y2
     x2=$ne

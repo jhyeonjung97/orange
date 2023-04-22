@@ -31,12 +31,6 @@ fi
 multiple_input="${@}"
 if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
     SET=${@:2}
-# elif [[ $1 == '-n' ]] || [[ $1 == '-non' ]]; then
-#     if [[ -z $3 ]]; then
-#         SET=$(seq 1 $2)
-#     else
-#         SET=$(seq $2 $3)
-#     fi
 elif [[ -z $2 ]]; then
     SET=$(seq 1 $1)
 else
