@@ -8,11 +8,15 @@ y2=''
 pH=14
 hl=4.43
 step=0.1
-error=0.02
+error=0.002
 unset map
 declare -A map
 
-if [[ -n $1 ]]; then
+if [[ $1 == 'rhe' ]]; then
+    rhe=$2
+elif [[ $1 == 'she' ]]; then
+    goal=$2
+elif [[ -n $1 ]]; then
     rhe=$1
 elif [[ -n $(echo $PWD | grep 1_Au) ]]; then
     rhe=-0.6
@@ -21,7 +25,12 @@ elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
 else
     rhe=-0.6
 fi
-goal=$(echo "$rhe $pH" | awk '{print $1 - 0.0592 * $2}')
+
+if [[ -z $goal ]]; then
+    goal=$(echo "$rhe $pH" | awk '{print $1 - 0.0592 * $2}')
+elif [[ -z $rhe ]]; then
+    rhe=$(echo "$goal $pH" | awk '{print $1 + 0.0592 * $2}')
+fi
 echo "goal RHE: $rhe, SHE: $goal (pH = $pH)"
 
 if [[ ! -d wave ]] && [[ -s WAVECAR ]] && [[ -s CONTCAR ]]; then
