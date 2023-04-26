@@ -1,6 +1,6 @@
 #!/bin/bash
 
-xc=0
+xc_tag=0
 # error cases
 if [[ $1 == '-qe' ]] || [[ $1 == 'qe' ]]; then
     sh ~/bin/orange/autosub-qe.sh ${@:2}
@@ -25,7 +25,7 @@ fi
 
 if [[ $1 == '-x' ]] || [[ $1 == '-xc' ]]; then
     shift
-    xc=1
+    xc_tag=1
 fi
 
 multiple_input="${@}"
@@ -64,7 +64,7 @@ do
     if [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
         sed -i '/MAGMOM/d' INCAR
     else
-        if [[ $xc == 0 ]]; then
+        if [[ $xc_tag == 0 ]]; then
             python ~/bin/pyband/xcell.py #XCELL
             mv out*.vasp POSCAR #XCELL
             echo 'xcell.py is applied'
