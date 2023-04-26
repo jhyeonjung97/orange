@@ -37,10 +37,6 @@ else
     SET=$(seq $1 $2)
 fi
 
-ls
-read -p "POSCARs starts with: " p
-read -p "job name: " n
-
 if [[ -z $n ]]; then
     n=$p
 fi
