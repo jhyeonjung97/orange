@@ -24,22 +24,32 @@ elif [[ -z $1 ]]; then
 fi
 
 if [[ $1 == '-x' ]] || [[ $1 == '-xc' ]]; then
+    echo 'a'
     shift
     xc_tag=1
 fi
 
 multiple_input="${@}"
 if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
+    echo 'b'
     SET=${@:2}
 elif [[ -z $2 ]]; then
+    echo 'c'
     SET=$(seq 1 $1)
 else
+    echo 'd'
     SET=$(seq $1 $2)
 fi
+
+ls
+read -p "POSCARs starts with: " p
+read -p "job name: " n
 
 if [[ -z $n ]]; then
     n=$p
 fi
+
+echo "p: $p, s: $s, set: $SET"
 
 for i in $SET
 do
