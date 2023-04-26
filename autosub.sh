@@ -45,8 +45,6 @@ if [[ -z $n ]]; then
     n=$p
 fi
 
-echo "p: $p, s: $s, set: $SET"
-
 for i in $SET
 do
     if [[ ! -d $i ]]; then
