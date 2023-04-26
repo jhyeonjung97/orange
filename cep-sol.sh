@@ -60,7 +60,7 @@ do
     head=${head#.}
     echo $head
     echo ${#line[@]}
-    if [[ -z $head ]] && [[ ${#line[@]} == 7 ]]; then
+    if [[ -z $head ]] && [[ ${#line[@]} == 8 ]]; then
         ne=${line[0]}
         ep=${line[6]}
         x1=$x2
