@@ -96,6 +96,9 @@ if [[ $send == 'port' ]]; then
 # elif [[ $send =~ 'window' ]]; then
 #     echo "scp $list jhyeo@192.168.1.251:~/Desktop/$send"
 #     scp $list jhyeo@192.168.1.251:~/Desktop/$send
+elif [[ $send =~ 'x2658' ]]; then
+    echo "scp $list x2658a09@nurion-dm.ksc.re.kr:~/vis"
+    scp $list x2431a10@nurion.ksc.re.kr:~/vis
 elif [[ $send =~ 'x2347' ]]; then
     echo "scp $list x2347a10@nurion-dm.ksc.re.kr:~/vis"
     scp $list x2347a10@nurion.ksc.re.kr:~/vis

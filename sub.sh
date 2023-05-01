@@ -8,6 +8,7 @@ function submit {
         elif [[ -n $(grep walltime run_slurm.sh | grep 48) ]]; then
             sed -i 's/max_seconds = 430000/max_seconds = 170000/' incar.in
         fi
+        sed -i -e "s/x2658a09/${account}/g" incar.in
         sed -i -e "s/x2347a10/${account}/g" incar.in
         sed -i -e "s/x2431a10/${account}/g" incar.in
         sed -i -e "s/x2421a04/${account}/g" incar.in
@@ -20,6 +21,7 @@ function submit {
         grep MAGMOM INCAR
     fi
     if [[ ${here} == 'kisti' ]]; then
+        sed -i -e "s/x2658a09/${account}/g" run_slurm.sh
         sed -i -e "s/x2347a10/${account}/g" run_slurm.sh
         sed -i -e "s/x2431a10/${account}/g" run_slurm.sh
         sed -i -e "s/x2421a04/${account}/g" run_slurm.sh

@@ -104,16 +104,10 @@ CELL_PARAMETERS {angstrom}
     cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in
     sh ~/bin/orange/jobname.sh $n$i
     
-    if [[ ${account} == 'x2347a10' ]]; then
-        sed -i -e 's/x2421a04/x2347a10/' *
-        sed -i -e 's/x2431a10/x2347a10/' *
-    elif [[ ${account} == 'x2421a04' ]]; then
-        sed -i -e 's/x2347a10/x2421a04/' *
-        sed -i -e 's/x2431a10/x2421a04/' *
-    elif [[ ${account} == 'x2431a10' ]]; then
-        sed -i -e 's/x2347a10/x2431a10/' *
-        sed -i -e 's/x2421a04/x2431a10/' *
-    fi
+    sed -i -e "s/x2658a09/${account}/" *
+    sed -i -e "s/x2431a10/${account}/" *
+    sed -i -e "s/x2421a04/${account}/" *
+    sed -i -e "s/x2347a10/${account}/" *
     cd ..
 done
 grep --colour chemical_formula_sum */*.cif
