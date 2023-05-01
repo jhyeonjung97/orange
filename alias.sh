@@ -52,6 +52,7 @@ cd $dir_now'
 
 #SSH
 alias burning='ssh -X -Y hyeonjung@burning.postech.ac.kr -p 1234'
+alias x2658='ssh -X -Y x2658a09@nurion.ksc.re.kr'
 alias x2431='ssh -X -Y x2431a10@nurion.ksc.re.kr'
 alias x2421='ssh -X -Y x2421a04@nurion.ksc.re.kr'
 alias x2347='ssh -X -Y x2347a10@nurion.ksc.re.kr'
