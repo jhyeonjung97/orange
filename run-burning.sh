@@ -129,10 +129,10 @@ fi
 if in_array 'lobster' "${type[*]}"; then
     cp ~/input_files/lobster.sh
     echo 'sbatch lobster.sh' >> run_slurm.sh
-else
-    grep mpiexe run_slurm.sh > mpiexe.sh
-    sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
 fi
+
+grep mpiexe run_slurm.sh > mpiexe.sh
+sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
 
 if in_array 'sea' "${type[*]}"; then
     if [[ -d wave ]]; then
