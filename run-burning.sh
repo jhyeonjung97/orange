@@ -155,8 +155,10 @@ sh ~/bin/orange/seawater.sh
 sh mpiexe.sh; sh ~/bin/orange/ediff.sh' >> run_slurm.sh
 fi
         
-if [[ -e mpiexe.sh ]] && [[ -s WAVECAR ]]; then
-    sed -i -e '/mpiexe/d' run_slurm.sh
+if in_array 'cep' "${type[*]}"; then
+    if [[ -e mpiexe.sh ]] && [[ -s WAVECAR ]]; then
+        sed -i -e '/mpiexe/d' run_slurm.sh
+    fi
 fi
             
 if [[ -z $(grep stdout run_slurm.sh) ]]; then
