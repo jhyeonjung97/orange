@@ -177,6 +177,7 @@ do
 done
 
 if [[ -z $jobname ]]; then
+    echo $PWD
     read -p 'enter jobname if you want to change it: ' jobname
 fi
 
