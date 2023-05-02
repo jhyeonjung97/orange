@@ -20,8 +20,11 @@ function numb {
 if [[ -z $2 ]]; then
     sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$1\"" run_slurm.sh
     sed -i "/#PBS -N/c\#PBS -N $1" run_slurm.sh
+    if [[ -f lobster.sh ]]; then
+        sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$1\"" lobster.sh
+        sed -i "/#PBS -N/c\#PBS -N $1" lobster.sh
+    fi
     exit 0
-    
 elif [[ $1 == '-r' ]] ; then
     if [[ -z $2 ]]; then
         usage_error

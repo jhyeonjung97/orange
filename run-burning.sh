@@ -126,6 +126,11 @@ else
     fi
 fi
 
+if in_array 'lobster' "${type[*]}"; then
+    cp ~/input_files/lobster.sh .
+    echo 'sbatch lobster.sh' >> run_slurm.sh
+fi
+
 grep mpiexe run_slurm.sh > mpiexe.sh
 sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
 
@@ -159,16 +164,4 @@ echo $PWD
 read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then
     sh ~/bin/orange/jobname.sh $jobname
-fi
-
-if in_array 'lobster' "${type[*]}"; then
-    cp run_slurm.sh lobster.sh
-    sed -i -e "10,\$d" lobster.sh
-    echo 'sbatch lobster.sh' >> run_slurm.sh
-    echo '#OpenMP settings:
-export OMP_NUM_THREADS=$SLURM_NTASKS
-export OMP_PLACES=threads
-export OMP_PROC_BIND=spread
-
-~/bin/lobster/lobster' >> lobster.sh
 fi
