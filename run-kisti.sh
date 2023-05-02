@@ -133,13 +133,8 @@ else
 fi
 
 if in_array 'lobster' "${type[*]}"; then
-    echo '
-#OpenMP settings:
-export OMP_NUM_THREADS=$SLURM_NTASKS
-export OMP_PLACES=threads
-export OMP_PROC_BIND=spread
-
-~/bin/lobster/lobster' >> run_slurm.sh
+    cp ~/input_files/lobster.sh
+    echo 'sbatch lobster.sh' >> run_slurm.sh
 else
     grep mpiexe run_slurm.sh > mpiexe.sh
     sed -i -e '/mpiexe/c\sh mpiexe.sh; sh ~/bin/orange/ediff.sh' run_slurm.sh
