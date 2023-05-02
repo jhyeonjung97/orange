@@ -17,8 +17,10 @@ function resub {
     if [[ -f CRASH ]]; then
         rm CRASH
     fi
-    if [[ -e mpiexe.sh ]] && [[ -s WAVECAR ]]; then
-        sed -i -e '/mpiexe/d' run_slurm.sh
+    if [[ -n $(grep cep run_sluerm.sh)]]; then
+        if [[ -e mpiexe.sh ]] && [[ -s WAVECAR ]]; then
+            sed -i -e '/mpiexe/d' run_slurm.sh
+        fi
     fi
     sh ~/bin/orange/sub.sh
 }
