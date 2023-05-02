@@ -33,7 +33,6 @@ else
     q='g3'
     node=20
 fi
-
 if [[ -s mpiexe.sh ]]; then
     rm mpiexe.sh
 fi
@@ -164,22 +163,8 @@ if [[ -z $(grep stdout run_slurm.sh) ]]; then
     sed -i 's/STDOUT/stdout/' run_slurm.sh
 fi
 
-jobname=0
-for i in $@
-do
-    if [[ jobname==1 ]]; then
-        jobname=$i
-    fi
-    if [[ $i == -j* ]]; then
-        jobname=1
-    fi
-done
-
-if [[ -z $jobname ]]; then
-    echo $PWD
-    read -p 'enter jobname if you want to change it: ' jobname
-fi
-
+echo $PWD
+read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then
     sh ~/bin/orange/jobname.sh $jobname
 fi
