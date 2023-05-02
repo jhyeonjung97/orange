@@ -4,9 +4,6 @@ if [[ ! -d ~/KISTI_VASP/ ]]; then
     echo 'Here is not nurion.ksc.re.kr...'
     exit 1
 fi
-
-cp ~/input_files/run_slurm.sh .
-
 if [[ $1 == -* ]]; then
     q=${1##-}
     shift
@@ -14,6 +11,10 @@ else
     read -p 'which queue? (normal, skl, long, flat): ' q
 fi
 
+if [[ -s mpiexe.sh ]]; then
+    rm mpiexe.sh
+fi
+cp ~/input_files/run_slurm.sh .
 if [[ $q == l* ]]; then
     node=64
     q='long'
