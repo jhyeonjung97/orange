@@ -186,5 +186,5 @@ export OMP_NUM_THREADS=$SLURM_NTASKS
 export OMP_PLACES=threads
 export OMP_PROC_BIND=spread
 
-~/bin/lobster/lobster' >> run_slurm.sh
+~/bin/lobster/lobster' >> lobster.sh
 fi
