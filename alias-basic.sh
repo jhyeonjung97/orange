@@ -139,7 +139,7 @@ cd ../
 sub'
 
 #Electronic structure
-alias aloha='python3 ~/bin/orange/cohp.py'
+alias aloha='python3 ~/bin/orange/cohp.py > icohp.txt'
 alias charge='python3 ~/bin/orange/charge.py'
 alias bader='chgsum.pl AECCAR0 AECCAR2
 bader CHGCAR -ref CHGCAR_sum'
