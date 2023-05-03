@@ -59,7 +59,7 @@ if [[ ! -s mpiexe.sh ]]; then
     grep mpiexe run_slurm.sh > mpiexe.sh
 fi
 date >> cepout.log
-echo -e "Nelect\tType\tDiff\tShift\tFermi_level\tWork_Function\tV_SHE\tV_RHE" >> cepout.log
+echo -e "Nelect  \tType\tDiff    \tShift\tFermi_level\tWork_Function\tV_SHE\tV_RHE" >> cepout.log
 
 while IFS=$'\t' read -r -a line
 do
@@ -89,16 +89,16 @@ function update {
     IFS=' '
     nes=$(grep NELECT OUTCAR)
     read -ra nea <<< $nes
-    ne=$(echo ${nea[2]} | awk '{printf "%.3f", $1}')
+    ne=$(echo ${nea[2]} | awk '{printf "%.4f", $1}')
     shs=$(grep FERMI_SHIFT stdout.log | tail -n 1)
     read -ra sha <<< $shs
-    sh=$(echo ${sha[2]} | awk '{printf "%.8f", $1}')
+    sh=$(echo ${sha[2]} | awk '{printf "%.4f", $1}')
     fls=$(grep E-fermi OUTCAR | tail -n 1)
     read -ra fla <<< $fls
-    fl=${fla[2]}
-    wf=$(echo "$fl $sh" | awk '{printf "%.8f", - $1 - $2}')
-    ep=$(echo "$wf $hl" | awk '{printf "%.8f", $1 - $2}')
-    diff=$(echo $diff | awk '{printf "%.8f", $1}')
+    fl=$(echo $(printf %.4f ${fla[2]}))
+    wf=$(echo "$fl $sh" | awk '{printf "%.4f", - $1 - $2}')
+    ep=$(echo "$wf $hl" | awk '{printf "%.4f", $1 - $2}')
+    diff=$(echo $diff | awk '{printf "%.4f", $1}')
     rp=$(echo "$ep $pH" | awk '{print $1 + 0.0592 * $2}')
 }
 
