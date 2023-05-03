@@ -126,7 +126,11 @@ do
     fi
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
-        diff=+1.0
+        if [[ $goal == -0.1 ]]; then
+            diff=+0.5
+        else
+            diff=+1.0
+        fi
     elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
         type=type1
         diff=-0.1
