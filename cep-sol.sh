@@ -59,7 +59,7 @@ if [[ ! -s mpiexe.sh ]]; then
     grep mpiexe run_slurm.sh > mpiexe.sh
 fi
 date >> cepout.log
-echo -e "Nelect\tType\tDiff    \tShift\tFermi_level\tWork_Function\tV_SHE\tV_RHE" >> cepout.log
+echo -e "Nelect\tType\tDiff\tShift\tFermi_level\tWork_Function\tV_SHE\tV_RHE" >> cepout.log
 
 while IFS=$'\t' read -r -a line
 do
