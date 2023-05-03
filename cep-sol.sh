@@ -18,9 +18,9 @@ elif [[ $1 == 'she' ]]; then
     goal=$2
 elif [[ -n $1 ]]; then
     rhe=$1
-elif [[ -n $(echo $PWD | grep 1_Au) ]]; then
+elif [[ -n $(echo $PWD | grep Au) ]]; then
     rhe=-0.6
-elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
+elif [[ -n $(echo $PWD | grep Pt) ]]; then
     rhe=-0.1
 else
     rhe=-0.6
