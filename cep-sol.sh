@@ -59,7 +59,7 @@ if [[ ! -s mpiexe.sh ]]; then
     grep mpiexe run_slurm.sh > mpiexe.sh
 fi
 date >> cepout.log
-echo -e "Nelect\tType\tDiff\tShift\tFermi_level\tWork_Function\tV_SHE\tV_RHE" >> cepout.log
+echo -e "Nelect\tType\tDiff\tShift\tFermi\tWork_F\tV_SHE\tV_RHE" >> cepout.log
 
 while IFS=$'\t' read -r -a line
 do
@@ -96,7 +96,7 @@ function update {
     fls=$(grep E-fermi OUTCAR | tail -n 1)
     read -ra fla <<< $fls
     fl=$(echo $(printf %.8f ${fla[2]}))
-    wf=$(echo "$fl $sh" | awk '{printf "%.8f", - $1 - $2}')
+    wf=$(echo "$fl $sh" | awk '{printf "%.4f", - $1 - $2}')
     ep=$(echo "$wf $hl" | awk '{printf "%.4f", $1 - $2}')
     diff=$(echo $diff | awk '{printf "%.4f", $1}')
     rp=$(echo "$ep $pH" | awk '{print $1 + 0.0592 * $2}')
