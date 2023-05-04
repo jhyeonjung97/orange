@@ -95,7 +95,7 @@ function update {
     sh=$(echo ${sha[2]} | awk '{printf "%.4f", $1}')
     fls=$(grep E-fermi OUTCAR | tail -n 1)
     read -ra fla <<< $fls
-    fl=$(echo $(printf %.8f ${fla[2]}))
+    fl=$(echo $(printf %.4f ${fla[2]}))
     wf=$(echo "$fl $sh" | awk '{printf "%.4f", - $1 - $2}')
     ep=$(echo "$wf $hl" | awk '{printf "%.4f", $1 - $2}')
     diff=$(echo $diff | awk '{printf "%.4f", $1}')
