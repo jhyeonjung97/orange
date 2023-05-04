@@ -18,9 +18,9 @@ elif [[ $1 == 'she' ]]; then
     goal=$2
 elif [[ -n $1 ]]; then
     rhe=$1
-elif [[ -n $(echo $PWD | grep 1_Au) ]]; then
+elif [[ -n $(echo $PWD | grep Au) ]]; then
     rhe=-0.6
-elif [[ -n $(echo $PWD | grep 2_Pt) ]]; then
+elif [[ -n $(echo $PWD | grep Pt) ]]; then
     rhe=-0.1
 else
     rhe=-0.6
@@ -59,7 +59,7 @@ if [[ ! -s mpiexe.sh ]]; then
     grep mpiexe run_slurm.sh > mpiexe.sh
 fi
 date >> cepout.log
-echo -e "Nelect\tType\tDiff\tShift\tFermi_level\tWork_Function\tV_SHE\tV_RHE" >> cepout.log
+echo -e "Nelect\tType\tDiff\tShift\tFermi\tWork_F\tV_SHE\tV_RHE" >> cepout.log
 
 while IFS=$'\t' read -r -a line
 do
@@ -92,13 +92,13 @@ function update {
     ne=$(echo ${nea[2]} | awk '{printf "%.3f", $1}')
     shs=$(grep FERMI_SHIFT stdout.log | tail -n 1)
     read -ra sha <<< $shs
-    sh=$(echo ${sha[2]} | awk '{printf "%.8f", $1}')
+    sh=$(echo ${sha[2]} | awk '{printf "%.4f", $1}')
     fls=$(grep E-fermi OUTCAR | tail -n 1)
     read -ra fla <<< $fls
-    fl=${fla[2]}
-    wf=$(echo "$fl $sh" | awk '{printf "%.8f", - $1 - $2}')
-    ep=$(echo "$wf $hl" | awk '{printf "%.8f", $1 - $2}')
-    diff=$(echo $diff | awk '{printf "%.8f", $1}')
+    fl=$(echo $(printf %.8f ${fla[2]}))
+    wf=$(echo "$fl $sh" | awk '{printf "%.4f", - $1 - $2}')
+    ep=$(echo "$wf $hl" | awk '{printf "%.4f", $1 - $2}')
+    diff=$(echo $diff | awk '{printf "%.4f", $1}')
     rp=$(echo "$ep $pH" | awk '{print $1 + 0.0592 * $2}')
 }
 
@@ -126,7 +126,15 @@ do
     fi
     if [[ ${#map[@]} -eq 0 ]]; then
         type=type0
+<<<<<<< HEAD
         diff=+0.0
+=======
+        if [[ $goal == -0.1 ]]; then
+            diff=+0.5
+        else
+            diff=+1.0
+        fi
+>>>>>>> 0034a9e3c31e3fbbb6e1cc7753ecccab843a2d62
     elif [[ ${#map[@]} -eq 1 ]] && [[ `echo "$ep < $goal" | bc` == 1 ]]; then
         type=type1
         diff=-0.1
@@ -173,8 +181,5 @@ do
     y1=$y2
     x2=$ne
     y2=$ep
-    if [[ -n $(grep LDIPOL stdout.log) ]]; then
-        exit 5
-    fi
 done
 IFS=$OIFS
