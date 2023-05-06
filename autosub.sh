@@ -54,6 +54,9 @@ do
     if [[ -s mpiexe.sh ]]; then
         cp mpiexe.sh $i
     fi
+    if [[ -s lobster.sh ]]; then
+        cp lobster.sh lobsterin $i
+    fi
     if [[ -n $(grep mmff run_slurm.sh) ]]; then
         sed -i -e "s/mmff.sh a.vasp/mmff.sh $p.vasp/" run_slurm.sh
         cp $p$i.vasp $i
