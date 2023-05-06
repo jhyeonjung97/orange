@@ -94,11 +94,8 @@ do
         echo "Note: This is MD calculation"
         sh ~/bin/orange/pomass.sh
     fi
-    sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
-    if [[ -s lobster.sh ]]; then
-        sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
-    fi
-    sed -i "/#PBS -N/c\#PBS -N $n$i" run_slurm.sh
+    sed -i -e "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" *.sh
+    sed -i -e "/#PBS -N/c\#PBS -N $n$i" *.sh
     cd ..
 done
 
