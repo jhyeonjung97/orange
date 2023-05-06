@@ -72,38 +72,39 @@ else
             exit 5
         fi
     fi
-    if in_array 'vtst' "${type[*]}"; then
-        total+='.vtst179.beef'
-    elif in_array 'sea' "${type[*]}"; then
-        total+='.beef.vaspsol'
-    elif in_array 'sol' "${type[*]}"; then
-        total+='.beef.vaspsol'
-    elif in_array 'beef' "${type[*]}"; then
-        total+='.vtst179.beef'
-    elif in_array 'cep' "${type[*]}"; then
-        total+='.beef.vaspsol'
-    fi
-    if [[ -n $(echo $total | grep beef) ]]; then
-        sed -i -e '/mpiexe/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
-        echo 'rm vdw_kernel.bindat' >> run_slurm.sh
-    fi
-    if in_array 'gam' "${type[*]}"; then
-        sed -i -e "3c\Gamma-only" KPOINTS
-        sed -i -e "4c\1\t1\t1" KPOINTS
-        total+='.gam'
-    elif in_array 'ncl' "${type[*]}"; then
-        total+='.ncl'
-    else
-        total+='.std'
-    fi
+    # if in_array 'vtst' "${type[*]}"; then
+    #     total+='.vtst179.beef'
+    # elif in_array 'sea' "${type[*]}"; then
+    #     total+='.beef.vaspsol'
+    # elif in_array 'sol' "${type[*]}"; then
+    #     total+='.beef.vaspsol'
+    # elif in_array 'beef' "${type[*]}"; then
+    #     total+='.vtst179.beef'
+    # elif in_array 'cep' "${type[*]}"; then
+    #     total+='.beef.vaspsol'
+    # fi
+    # if [[ -n $(echo $total | grep beef) ]]; then
+    #     sed -i -e '/mpiexe/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
+    #     echo 'rm vdw_kernel.bindat' >> run_slurm.sh
+    # fi
+    # if in_array 'gam' "${type[*]}"; then
+    #     sed -i -e "3c\Gamma-only" KPOINTS
+    #     sed -i -e "4c\1\t1\t1" KPOINTS
+    #     total+='.gam'
+    # elif in_array 'ncl' "${type[*]}"; then
+    #     total+='.ncl'
+    # else
+    #     total+='.std'
+    # fi
     # echo "/home01/${account}/KISTI_VASP/KNL_XeonPhi/vasp.5.4.4.pl2.KISTI.KNL_XeonPhi$total.x"
-    if [[ -e "/home01/${account}/KISTI_VASP/KNL_XeonPhi/vasp.5.4.4.pl2.KISTI.KNL_XeonPhi$total.x" ]]; then
-        custom='KISTI_VASP\/KNL_XeonPhi\/vasp.5.4.4.pl2.KISTI.KNL_XeonPhi'
-        sed -i -e "s/custom/$node \/home01\/${account}\/$custom$total.x/" run_slurm.sh
-    else
-        echo 'there is no corroesponding version...'
-        exit 1
-    fi
+    # if [[ -e "/home01/${account}/KISTI_VASP/KNL_XeonPhi/vasp.5.4.4.pl2.KISTI.KNL_XeonPhi$total.x" ]]; then
+    #     custom='KISTI_VASP\/KNL_XeonPhi\/vasp.5.4.4.pl2.KISTI.KNL_XeonPhi'
+    #     sed -i -e "s/custom/$node \/home01\/${account}\/$custom$total.x/" run_slurm.sh
+    # else
+    #     echo 'there is no corroesponding version...'
+    #     exit 1
+    # fi
+    sed -i -e "s/custom/$node/" run_slurm.sh
     if in_array 'cep' "${type[*]}"; then
         # read -p 'goal electrode potential? ' goal
         if [[ -d wave ]]; then
