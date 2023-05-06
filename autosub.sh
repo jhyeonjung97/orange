@@ -95,6 +95,9 @@ do
         sh ~/bin/orange/pomass.sh
     fi
     sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
+    if [[ -s lobster.sh ]]; then
+        sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" run_slurm.sh
+    fi
     sed -i "/#PBS -N/c\#PBS -N $n$i" run_slurm.sh
     cd ..
 done
