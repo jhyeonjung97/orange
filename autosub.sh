@@ -45,6 +45,15 @@ if [[ -z $n ]]; then
     n=$p
 fi
 
+if [[ -n $(grep lobster run_slurm.sh) ]]; then
+    cp run_slurm.sh lobster.sh
+    if [[ ${here} == 'burning' ]]; then
+        sed -i -e '15,$d' lobster.sh
+    elif [[ ${here} == 'kisti' ]]; then
+        sed -i -e '10,$d' lobster.sh
+    fi
+fi
+    
 for i in $SET
 do
     if [[ ! -d $i ]]; then
