@@ -134,8 +134,7 @@ else
 fi
 
 if in_array 'lobster' "${type[*]}"; then
-    cp ~/input_files/lobster.sh .
-    echo 'qsub lobster.sh' >> run_slurm.sh
+    echo '~/bin/lobster/lobster' >> run_slurm.sh
 fi
 
 grep mpiexe run_slurm.sh > mpiexe.sh
