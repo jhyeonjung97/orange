@@ -1,10 +1,10 @@
-from aloha.cohp_analysis import *
+from aloha.cobi_analysis import *
 import sys
 
-cohp=Cohpout('.')
-cohp.pcohp() 
-# cohp.pcohp(label=1,lm_orbital={'Fe':('d'),'O':('p')})
-# cohp.pcohp(label=1,lm_orbital={'Fe':('d')})
+cobi=Cohpout('.')
+cobi.pcobi() 
+# cobi.pcobi(label=1,lm_orbital={'Fe':('d'),'O':('p')})
+# cobi.pcobi(label=1,lm_orbital={'Fe':('d')})
 #label=1, lm_orbital={'Ir':('dxy','dz2'),'O':('p')}), summed_spin_channels=False
 #d orbital (dxy, dyz, dz2, dxz, dx2) & p orbital (px, py, pz)
 
