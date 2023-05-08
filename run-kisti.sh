@@ -34,7 +34,8 @@ fi
 if [[ -n $1 ]]; then
     type=${@}
 else
-    echo -n 'which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea): '
+    echo -n 'which type? (qe, mmff, cep, sol, lobster, sea): '
+    # echo -n 'which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea): '
     read -a type
 fi
 
