@@ -4,7 +4,7 @@ if [[ ! -d ~/KISTI_VASP/ ]]; then
     echo 'Here is not nurion.ksc.re.kr...'
     exit 1
 fi
-if [[ $1 == -* ]]; then
+if [[ $1 == '-*' ]]; then
     q=${1##-}
     shift
 else
@@ -169,7 +169,7 @@ do
     if [[ jobname==1 ]]; then
         jobname=$i
     fi
-    if [[ $i == -j* ]]; then
+    if [[ $i == '-j*' ]]; then
         jobname=1
     fi
 done
