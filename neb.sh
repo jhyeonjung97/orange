@@ -15,6 +15,7 @@ fi
 cp $2/INCAR $2/KPOINTS $2/POTCAR .
 cp $3/INCAR $3/KPOINTS $3/POTCAR .
 
+sh ~/bin/orange/modify.sh INCAR NSW 2000
 sh ~/bin/orange/modify.sh INCAR IBRION 3
 sh ~/bin/orange/modify.sh INCAR POTIM 0.05
 sh ~/bin/orange/modify.sh INCAR IMAGES $1
