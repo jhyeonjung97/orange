@@ -67,6 +67,7 @@ alias close='python3 ~/bin/orange/close.py'
 alias magmom='python3 ~/bin/orange/magmom.py'
 alias ldau='python3 ~/bin/orange/ldau.py'
 alias ma='grep MAGMOM */INCAR'
+alias neb='sh ~/bin/orange/neb.sh'
 alias modify='sh ~/bin/orange/modify.sh'
 
 #LOBSTERIN
