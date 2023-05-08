@@ -12,6 +12,9 @@ else
     exit 3
 fi
 
+cp $2/INCAR $2/KPOINTS $2/POTCAR .
+cp $3/INCAR $3/KPOINTS $3/POTCAR .
+
 sh ~/bin/orange/modify.sh INCAR IMAGES $1
 sh ~/bin/orange/modify.sh INCAR SPRING -5.0
 sh ~/bin/orange/modify.sh INCAR LCLIMB .TRUE.
@@ -48,6 +51,4 @@ for i in $(seq 0 $numb)
 do
     pos+="0$i/POSCAR "
 done
-
-echo $pos
 ase gui $pos
