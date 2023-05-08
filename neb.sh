@@ -16,6 +16,6 @@ if [[ ${here} == 'burning' ]]; then
 elif [[ ${here} == 'kisti' ]]; then
     sh ~/bin/orange/run-kisti.sh -l vtst
     np=$(echo $1 | awk '{print $1 * 64}')
-    sed -i -e "s/np 64/np $np/" run_slurm.sh
+    sed -i -e "s/np 64/np $np/" mpiexe.sh
     sed -i -e "s/select=1/select=$1/" run_slurm.sh
 fi
