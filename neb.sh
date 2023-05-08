@@ -41,3 +41,13 @@ elif [[ ${here} == 'kisti' ]]; then
     sed -i -e "s/np 64/np $np/" mpiexe.sh
     sed -i -e "s/select=1/select=$1/" run_slurm.sh
 fi
+
+pos=''
+numb=$(($1+1))
+for i in $(seq 0 $numb)
+do
+    pos+="0$i/POSCAR "
+done
+
+echo $pos
+ase gui $pos
