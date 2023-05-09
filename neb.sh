@@ -1,4 +1,9 @@
-pos=''
+ase=''
+if [[ $1 =~ '-a' ]]; then
+    ase='yes'
+    shift
+fi
+
 dir=$(($1+1))
 if [[ ! -d "0$1" ]]; then
     echo 'prepare 00 01 02 .. first'
@@ -50,8 +55,11 @@ elif [[ ${here} == 'kisti' ]]; then
     sed -i -e "s/select=1/select=$1/" run_slurm.sh
 fi
 
-for i in $(seq 0 $dir)
-do
-    pos+="0$i/POSCAR "
-done
-ase gui $pos
+if [[ $ase == 'yes' ]]; then
+    pos=''
+    for i in $(seq 0 $dir)
+    do
+        pos+="0$i/POSCAR "
+    done
+    ase gui $pos
+fi
