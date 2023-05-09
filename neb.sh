@@ -49,7 +49,7 @@ elif [[ ${here} == 'kisti' ]]; then
         cp $3/mpiexe.sh $3/run_slurm.sh .
     else
         sh ~/bin/orange/run-kisti.sh -l vtst
-        echo '(warning) check run_slurm.sh ..'
+        echo '(warning) check mpiexe.sh & run_slurm.sh ..'
     fi
     np=$(echo $1 | awk '{print $1 * 64}')
     sed -i -e "s/np 64/np $np/" mpiexe.sh
