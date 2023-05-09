@@ -4,16 +4,17 @@ if [[ $1 =~ '-a' ]]; then
     shift
 fi
 
-dir=$(($1+1))
-if [[ ! -d "0$1" ]]; then
-    echo 'prepare 00 01 02 .. first'
-    exit 1
-fi
+# if [[ ! -d "0$1" ]]; then
+#     echo 'prepare 00 01 02 .. first'
+#     exit 1
+# fi
 
+dir=$(($1+1))
 if [[ -s $2/CONTCAR ]] && [[ -s $3/CONTCAR ]] && [[ -s $2/OUTCAR ]] && [[ -s $3/OUTCAR ]]; then
     nebmake.pl $2/CONTCAR $3/CONTCAR $1
     cp $2/OUTCAR 00
     cp $3/OUTCAR 0$dir
+    nebef.pl
 else
     echo "check $2 and $3 directories"
     exit 3
