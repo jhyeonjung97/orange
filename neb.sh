@@ -1,12 +1,14 @@
+pos=''
+dir=$(($1+1))
 if [[ ! -d "0$1" ]]; then
     echo 'prepare 00 01 02 .. first'
     exit 1
 fi
 
 if [[ -s $2/CONTCAR ]] && [[ -s $3/CONTCAR ]] && [[ -s $2/OUTCAR ]] && [[ -s $3/OUTCAR ]]; then
-    nebef.pl $2/CONTCAR $3/CONTCAR $1
-    cp $2/OUTCAR "00/"
-    cp $3/OUTCAR "0$1/"
+    nebmake.pl $2/CONTCAR $3/CONTCAR $1
+    cp $2/OUTCAR 00
+    cp $3/OUTCAR 0$dir
 else
     echo "check $2 and $3 directories"
     exit 3
@@ -48,9 +50,7 @@ elif [[ ${here} == 'kisti' ]]; then
     sed -i -e "s/select=1/select=$1/" run_slurm.sh
 fi
 
-pos=''
-numb=$(($1+1))
-for i in $(seq 0 $numb)
+for i in $(seq 0 $dir)
 do
     pos+="0$i/POSCAR "
 done
