@@ -5,8 +5,8 @@ fi
 
 if [[ -s $2/CONTCAR ]] && [[ -s $3/CONTCAR ]] && [[ -s $2/OUTCAR ]] && [[ -s $3/OUTCAR ]]; then
     nebef.pl $2/CONTCAR $3/CONTCAR $1
-    cp $2/OUTCAR 00
-    cp $3/OUTCAR 0$1
+    cp $2/OUTCAR "00/"
+    cp $3/OUTCAR "0$1/"
 else
     echo "check $2 and $3 directories"
     exit 3
