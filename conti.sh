@@ -1,6 +1,18 @@
 #!/bin/bash
 OIFS=$IFS
 
+if [[ -z $1 ]]; then # simple submit
+    DIR='./'
+elif [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
+    DIR='*/'
+elif [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
+    DIR=${@:2}
+elif [[ -z $2 ]]; then
+    DIR=$(seq 1 $1)
+else
+    DIR=$(seq $1 $2)
+fi
+
 function out2xyz {
     atomic=$(grep ATOMIC_POSITIONS stdout.log | tail -n 1)
     if [[ ! -f stdout.log ]] || [[ -z $atomic ]]; then
@@ -142,6 +154,7 @@ function cep {
         sed -i -e '/mpiexe/d' run_slurm.sh
     fi
 }
+
 
 for i in $DIR
 do
