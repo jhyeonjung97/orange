@@ -72,8 +72,6 @@ else
             exit 5
         fi
     fi
-    sed -i -e '/mpiexe/i\cp ~/KISTI_VASP/vdw_kernel.bindat .' run_slurm.sh
-    echo 'rm vdw_kernel.bindat' >> run_slurm.sh
     # if in_array 'vtst' "${type[*]}"; then
     #     total+='.vtst179.beef'
     # elif in_array 'sea' "${type[*]}"; then
