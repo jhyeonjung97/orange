@@ -1,4 +1,5 @@
 #!/bin/bash
+OIFS=$IFS
 
 function out2xyz {
     atomic=$(grep ATOMIC_POSITIONS stdout.log | tail -n 1)
@@ -87,6 +88,30 @@ function conti {
     fi
 }
 
+function neb {
+    i=1
+    save="conti_$i"
+    while [[ -d "conti_$i" ]]
+    do
+        i=$(($i+1))
+        save="conti_$i"
+    done
+    mkdir $save
+    mv * $save
+    cd $save
+    # IFS=' '
+    # image_string=$(grep IMAGES INCAR)
+    # read -ra image_array <<< $image_string
+    # image=$(echo ${image_array[2]} | awk '{printf "%.3f", $1}')
+    cp -r 0*/ ..
+    cp INCAR KPOINTS POTCAR run_slurm.sh mpiexe.sh ..
+    cd ..
+    for j in 0*/
+    do
+        mv $j/CONTCAR $j/POSCAR
+    done
+}
+
 function qe {
     i=1
     while [[ -f "stdout$i.log" ]] || [[ -f "contcar$i.xyz" ]]
@@ -118,59 +143,29 @@ function cep {
     fi
 }
 
-if [[ -z $1 ]]; then # simple conti
+for i in $DIR
+do
+    i=${i%/}
+    cd $i*
     if [[ -n $(grep pw.x run_slurm.sh) ]]; then
-        qe
-        sh ~/bin/orange/sub.sh
-    elif [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
-        cep
-        sh ~/bin/orange/sub.sh
-    else
-        conti
-        sh ~/bin/orange/sub.sh
-    fi
-elif [[ $1 == '-n' ]]; then
-    if [[ -n $(grep pw.x run_slurm.sh) ]]; then
-        qe
-    elif [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
-        cep
-    else
-        conti
-    fi
-else
-    if [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
-        DIR='*/'
-    elif [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
-        DIR=${@:2}
-    elif [[ -z $2 ]]; then
-        DIR=$(seq 1 $1)
-    else
-        DIR=$(seq $1 $2)
-    fi
-    
-    for i in $DIR
-    do
-        i=${i%/}
-        cd $i*
-        if [[ -n $(grep pw.x run_slurm.sh) ]]; then
-            if [[ -n $(grep Maximum stdout.log) ]] && [[ -n $(grep request stdout.log) ]]; then
-                if [[ -n $(grep DONE stdout.log) ]]; then
-                    echo 'DONE!'
-                else
-                    qe
-                    sh ~/bin/orange/sub.sh
-                fi
+        if [[ -n $(grep Maximum stdout.log) ]] && [[ -n $(grep request stdout.log) ]]; then
+            if [[ -n $(grep DONE stdout.log) ]]; then
+                echo 'DONE!'
             else
                 qe
                 sh ~/bin/orange/sub.sh
             fi
-        elif [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
-            cep
-            sh ~/bin/orange/sub.sh
         else
-            conti
+            qe
             sh ~/bin/orange/sub.sh
         fi
-        cd ..
-    done
-fi
+    elif [[ -n $(grep cep-sol.sh run_slurm.sh) ]]; then
+        cep
+        sh ~/bin/orange/sub.sh
+    else
+        conti
+        sh ~/bin/orange/sub.sh
+    fi
+    cd ..
+done
+IFS=$OIFS
