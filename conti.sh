@@ -1,6 +1,12 @@
 #!/bin/bash
 OIFS=$IFS
 
+neb=''
+if [[ $1 =~ '-n' ]]; then
+    neb='yes'
+    shift
+fi
+
 if [[ -z $1 ]]; then # simple submit
     DIR='./'
 elif [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
@@ -160,7 +166,10 @@ for i in $DIR
 do
     i=${i%/}
     cd $i*
-    if [[ -n $(grep pw.x run_slurm.sh) ]]; then
+    if [[ $neb == 'yes' ]]; then
+        neb
+        sh ~/bin/orange/sub.sh
+    elif [[ -n $(grep pw.x run_slurm.sh) ]]; then
         if [[ -n $(grep Maximum stdout.log) ]] && [[ -n $(grep request stdout.log) ]]; then
             if [[ -n $(grep DONE stdout.log) ]]; then
                 echo 'DONE!'
