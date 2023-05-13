@@ -1,19 +1,19 @@
 #!/bin/bash
 
-if [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
+if [[ $1 == '-r' ]]; then
     DIR='*/'
+    shift
 elif [[ $1 == '-rr' ]]; then
     DIR='*/*/'
+    shift
 elif [[ $1 == '-rrr' ]]; then
     DIR='*/*/*/'
-elif [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
-    DIR=${@:2}
-elif [[ -z $2 ]]; then
-    DIR=$(seq 1 $1)
+    shift
 else
-    DIR=$(seq $1 $2)
+    DIR='*/'
 fi
 
+file=${@}
 for dir in $SET
 do
     cp $file $dir
