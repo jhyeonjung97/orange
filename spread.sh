@@ -14,7 +14,7 @@ else
 fi
 
 file=${@}
-for dir in $SET
+for dir in $DIR
 do
     cp $file $dir
     # if [[ ! -e $file ]]; then
