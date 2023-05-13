@@ -1,17 +1,21 @@
 #!/bin/bash
 
-numb=$1
-if [[ -n ${numb//[0-9]/} ]]; then
-    file=${@:1}
-    SET='*/'
+if [[ $1 == '-r' ]] || [[ $1 == 'all' ]]; then
+    DIR='*/'
+elif [[ $1 == '-rr' ]]; then
+    DIR='*/*/'
+elif [[ $1 == '-rrr' ]]; then
+    DIR='*/*/*/'
+elif [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
+    DIR=${@:2}
+elif [[ -z $2 ]]; then
+    DIR=$(seq 1 $1)
 else
-    file=${@:2}
-    for i in $(seq 2 $1); do
-        SET+='*/'
-    done
+    DIR=$(seq $1 $2)
 fi
 
-for dir in $SET; do
+for dir in $SET
+do
     cp $file $dir
     # if [[ ! -e $file ]]; then
     #     name=${file%.*}
