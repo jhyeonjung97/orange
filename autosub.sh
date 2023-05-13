@@ -103,6 +103,7 @@ do
         echo "Note: This is MD calculation"
         sh ~/bin/orange/pomass.sh
     fi
+    sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
     sed -i -e "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" *.sh
     sed -i -e "/#PBS -N/c\#PBS -N $n$i" *.sh
     cd ..
