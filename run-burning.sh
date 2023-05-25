@@ -164,3 +164,6 @@ read -p 'enter jobname if you want to change it: ' jobname
 if [[ -n $jobname ]]; then
     sh ~/bin/orange/jobname.sh $jobname
 fi
+if in_array 'repeat' "${type[*]}"; then
+    sed -i -e 's/ediff.sh/repeat.sh/g' run_slurm.sh
+fi
