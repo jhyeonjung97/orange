@@ -2,8 +2,6 @@
 
 i=1
 j=1
-E0_list=$(grep E0 OSZICAR | tail -1)
-iter=${E0_array[0]}
 while [[ $iter -ne 1 ]]
 do 
     i=1
@@ -22,4 +20,6 @@ do
     fi
     sh mpiexe.sh
     j=$(($j+1))
+    E0_list=$(grep E0 OSZICAR | tail -1)
+    iter=${E0_array[0]}
 done
