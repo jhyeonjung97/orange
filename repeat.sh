@@ -2,6 +2,7 @@
 
 i=1
 j=1
+iter=600
 while [[ $iter -ne 1 ]]
 do 
     i=1
