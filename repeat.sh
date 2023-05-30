@@ -22,5 +22,7 @@ do
     sh mpiexe.sh
     j=$(($j+1))
     E0_list=$(grep E0 OSZICAR | tail -1)
+    E0_array=($E0_list)
+    E0_org=${E0_array[4]}
     iter=${E0_array[0]}
 done
