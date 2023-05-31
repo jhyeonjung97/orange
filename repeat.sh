@@ -25,4 +25,5 @@ do
     E0_array=($E0_list)
     E0_org=${E0_array[4]}
     iter=${E0_array[0]}
+    echo "iter: $iter, j: $j"
 done
