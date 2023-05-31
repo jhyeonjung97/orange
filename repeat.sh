@@ -3,7 +3,7 @@
 i=1
 j=1
 iter=600
-while [[ $iter -gt 1 ]] && && [[ $j -le 9 ]]
+while [[ $iter -gt 1 ]] && [[ $j -le 9 ]]
 do 
     i=1
     save="conti_$i"
