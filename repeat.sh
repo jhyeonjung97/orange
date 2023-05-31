@@ -16,9 +16,6 @@ do
     cp * $save
     cp POSCAR .POSCAR
     cp CONTCAR POSCAR
-    if [[ $j -eq 2 ]]; then
-        sh ~/bin/orange/modify.sh INCAR EDIFF 1E-05
-    fi
     sh mpiexe.sh
     j=$(($j+1))
     E0_list=$(grep E0 OSZICAR | tail -1)
