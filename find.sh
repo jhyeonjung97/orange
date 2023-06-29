@@ -8,7 +8,7 @@ do
     for j in $DIR
     do
         cd $j
-        if [[ -f POTCAR ]] && [[ -n $(grep $1 POTCAR) ]]; then
+        if [[ -f POTCAR ]] && [[ -n $(grep "TITEL  = PAW_PBE $1" POTCAR) ]]; then
             echo $j
             grep "TITEL  = PAW_PBE $1" POTCAR --color
         fi
