@@ -9,7 +9,7 @@ do
     do
         cd $j
         if [[ -f POTCAR ]] && [[ -n $(grep $1 POTCAR) ]]; then
-            pwd
+            echo $j
             grep $1 POTCAR --color
             i+=1
         fi
