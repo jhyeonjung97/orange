@@ -16,6 +16,6 @@ do
         cd $dir_now
     done
     
-    DIR=$DIR+'*/'
+    DIR=$DIR'*/'
     echo "directories: $DIR"
 done
