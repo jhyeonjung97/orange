@@ -11,9 +11,9 @@ do
         if [[ -f POTCAR ]] && [[ -n $(grep $1 POTCAR) ]]; then
             pwd
             grep $1 POTCAR --color
+            i+=1
         fi
         cd $dir_now
-        i+=1
     done
     
     DIR=$DIR+'*/'
