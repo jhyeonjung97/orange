@@ -17,5 +17,6 @@ do
     done
     
     DIR=$DIR'*/'
+    echo "i: $i, j: $j"
     echo "directories: $DIR"
 done
