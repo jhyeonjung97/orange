@@ -11,7 +11,7 @@ do
         if [[ -f POTCAR ]] && [[ -n $(grep $1 POTCAR) ]]; then
             echo $j
             grep $1 POTCAR --color
-            i+=1
+            i=$(($i+1))
         fi
         cd $dir_now
     done
