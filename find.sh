@@ -10,7 +10,7 @@ do
         cd $j
         if [[ -f POTCAR ]] && [[ -n $(grep $1 POTCAR) ]]; then
             echo $j
-            grep "PAW_PBE $1" POTCAR --color
+            grep "TITEL  = PAW_PBE $1" POTCAR --color
         fi
         cd $dir_now
         i=$(($i+1))
