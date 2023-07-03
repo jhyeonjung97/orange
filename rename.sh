@@ -35,6 +35,21 @@ if [[ $1 == '-ase' ]] || [[ $1 == '-a' ]]; then
             fi
         fi
     done
+elif [[ $1 == '-0' ]] || [[ $1 == '-z' ]]; then
+    extension=${2##*.}
+    filename=${2%.*}
+    # echo $extension $filename
+    for file in *."$extension"
+    do  
+        name=$(echo $file | rev | cut -c 6- | rev)
+        if [[ $name =~ $filename ]]; then
+            numb=$(echo $name | rev | cut -c -5 | rev)
+            if [[ $numb =~ '0000' ]]; then
+                i=$(echo $numb | rev | cut -c -1 | rev)
+                mv $file $filename$i.$extension
+            fi
+        fi
+    done
 elif [[ $1 == '-ksoe' ]] || [[ $1 == '-k' ]]; then
     extension=${2##*.}
     filename=${2%.*}
