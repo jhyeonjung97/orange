@@ -10,7 +10,7 @@ if [[ $1 =~ '-h' ]]; then
     exit 4
 elif [[ $1 == '-q' ]]; then
     shift
-    if [[ $1 == -* ]];
+    if [[ $1 == -* ]]; then
         echo "usage: run-burning.sh [-q] <1,2,3,4,5> [types]"
         exit 3
     else
