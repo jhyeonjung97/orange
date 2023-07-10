@@ -4,7 +4,10 @@ if [[ ! -d ~/KISTI_VASP/ ]]; then
     echo 'Here is not nurion.ksc.re.kr...'
     exit 1
 fi
-if [[ $1 == -* ]]; then
+if [[ $1 =~ '-h' ]]; then
+    echo "usage: run-burning.sh [-q] <1,2,3,4,5> [types]"
+    exit 4
+elif [[ $1 == -* ]]; then
     q=${1##-}
     shift
 else

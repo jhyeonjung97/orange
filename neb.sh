@@ -30,7 +30,7 @@ sh ~/bin/orange/modify.sh INCAR IMAGES $1
 sh ~/bin/orange/modify.sh INCAR SPRING -5.0
 sh ~/bin/orange/modify.sh INCAR LCLIMB .TRUE.
 
-if [[ ${here} == 'burning' ]]; then
+if [[ ${here} =~ 'burning' ]]; then
     if [[ ! -s run_slurm.sh ]]; then
         if [[ -n $(grep vtst $2/mpiexe.sh) ]]; then
             cp $2/mpiexe.sh $2/run_slurm.sh .

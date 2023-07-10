@@ -10,7 +10,7 @@ done
 sh ~/bin/orange/out2xyz.sh
 cp contcar.xyz contcar$i.xyz
 cp stdout.log stdout$i.log
-if [[ ${here} == 'burning' ]]; then
+if [[ ${here} =~ 'burning' ]]; then
     sed -i -e "s/  / /g" INCAR
     sbatch run_slurm.sh
 elif [[ ${here} == 'kisti' ]]; then

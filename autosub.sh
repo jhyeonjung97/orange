@@ -13,7 +13,7 @@ elif [[ ! -e "KPOINTS" ]]; then
     exit 2
 elif [[ ! -e "run_slurm.sh" ]]; then
     echo "don't forget run_slurm.sh.."
-    if [[ $here == 'burning' ]]; then
+    if [[ $here =~ 'burning' ]]; then
         sh ~/bin/orange/run-burning.sh
     elif [[ $here == 'kisti' ]]; then
         sh ~/bin/orange/run-kisti.sh
@@ -47,7 +47,7 @@ fi
 
 # if [[ -n $(grep lobster run_slurm.sh) ]]; then
 #     cp run_slurm.sh lobster.sh
-#     if [[ ${here} == 'burning' ]]; then
+#     if [[ ${here} =~ 'burning' ]]; then
 #         sed -i -e '15,$d' lobster.sh
 #     elif [[ ${here} == 'kisti' ]]; then
 #         sed -i -e '10,$d' lobster.sh

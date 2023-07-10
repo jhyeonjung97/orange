@@ -64,7 +64,7 @@ if [[ $chg != 'y' ]] && [[ ! -d chg ]]; then
 fi
 
 #prepare run files
-if [[ ${here} == 'burning' ]]; then
+if [[ ${here} =~ 'burning' ]]; then
     if [[ -n $(grep beef run_slurm.sh) ]]; then
         sed -n '16,18p' run_slurm.sh > temp1
     else
@@ -83,7 +83,7 @@ fi
 
 if [[ $geo != 'y' ]]; then
     cp * geo
-    if [[ ${here} == 'burning' ]]; then
+    if [[ ${here} =~ 'burning' ]]; then
         sed -i '16,$d' run_slurm.sh
     elif [[ ${here} == 'kisti' ]]; then
         sed -i '11,$d' run_slurm.sh

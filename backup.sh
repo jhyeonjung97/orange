@@ -10,7 +10,7 @@
 if [[ ${here} == kisti ]]; then
     echo "cp -r $PWD /scratch/${account}/backup"
     cp -r $PWD /scratch/${account}/backup
-elif [[ ${here} == burning ]] || [[ ${here} == mac ]] || [[ ${here} == mini ]]; then
+elif [[ ${here} =~ burning ]] || [[ ${here} == mac ]] || [[ ${here} == mini ]]; then
     echo "cp -r $PWD ~/backup"
     cp -r $PWD ~/backup
 else

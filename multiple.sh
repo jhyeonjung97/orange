@@ -20,7 +20,7 @@ fi
 
 cp run_slurm.sh .run_slurm.sh
 sed -i '/vdw_kernel.bindat/d' run_slurm.sh
-if [[ ${here} == 'burning' ]]; then
+if [[ ${here} =~ 'burning' ]]; then
     sed '1,15d' run_slurm.sh > fragment.sh
     sed -i '16,$d' run_slurm.sh
 elif [[ ${here} == 'kisti' ]]; then
@@ -32,7 +32,7 @@ else
 fi
 
 if [[ -n $(grep vdw_kernel.bindat .run_slurm.sh) ]]; then
-    if [[ ${here} == 'burning' ]]; then
+    if [[ ${here} =~ 'burning' ]]; then
         echo 'cp /TGM/Apps/VASP/vdw_kernel.bindat .' >> run_slurm.sh
     elif [[ ${here} == 'kisti' ]]; then
         echo 'cp ~/KISTI_VASP/vdw_kernel.bindat .' >> run_slurm.sh

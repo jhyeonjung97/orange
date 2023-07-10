@@ -9,7 +9,7 @@ elif [[ ! -e "kpoints.in" ]]; then
     exit 2
 elif [[ ! -e "run_slurm.sh" ]]; then
     echo "don't forget run_slurm.sh.."
-    if [[ $here == 'burning' ]]; then
+    if [[ $here =~'burning' ]]; then
         sh ~/bin/orange/run-burning.sh
     elif [[ $here == 'kisti' ]]; then
         sh ~/bin/orange/run-kisti.sh
@@ -26,7 +26,7 @@ if [[ -n $tot_charge ]]; then
     grep --colour tot_charge incar.in
 fi
 
-if [[ ${here} == 'burning' ]]; then
+if [[ ${here} =~ 'burning' ]]; then
     sed -i -e "/pseudo_dir/c\    pseudo_dir = '/home/hyeonjung/q-e-qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in
 elif [[ ${here} == 'kisti' ]]; then
     sed -i -e "/pseudo_dir/c\    pseudo_dir = '/home01/${account}/qe-7.1/pslibrary/pbe/PSEUDOPOTENTIALS'" incar.in

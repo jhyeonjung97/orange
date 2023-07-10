@@ -20,7 +20,7 @@ mv CONTCAR POSCAR
 sh ~/bin/orange/modify.sh INCAR IBRION 5
 sh ~/bin/orange/modify.sh INCAR POTIM 0.015
 
-if [[ ${here} == 'burning' ]]; then
+if [[ ${here} =~ 'burning' ]]; then
     npar=$(grep ntasks-per-node run_slurm.sh | rev | cut -c -2 | rev)
 elif [[ ${here} == 'kisti' ]]; then
     npar=64

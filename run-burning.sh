@@ -1,42 +1,67 @@
 #!/bin/bash
 
+
 if [[ ! -d /TGM/Apps/VASP/VASP_BIN/6.3.2 ]]; then
     echo "Here is not burning.postech.ac.kr..."
     exit 1
 fi
-
-echo -e "\033[1mg1:\033[0m"
-qstat | grep -i "Q g1"
-echo -e "\033[1mg2:\033[0m"
-qstat | grep -i "Q g2"
-echo -e "\033[1mg3:\033[0m"
-qstat | grep -i "Q g3"
-echo -e "\033[1mg4:\033[0m"
-qstat | grep -i "Q g4"
-echo -e "\033[1mg5:\033[0m"
-qstat | grep -i "Q g5"
-pestat -s idle
-
-read -p "which queue? (g1~g5, gpu): " q
-echo -n "which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea): "
-read -a type
-
-if [[ $q == 'g1' ]]; then
-    node=12
-elif [[ $q == 'g2' ]] || [[ $q == 'g3' ]] ; then
-    node=20
-elif [[ $q == 'g4' ]]; then
-    node=24
-elif [[ $q == 'g5' ]] || [[ $q == 'gpu' ]]; then
-    node=32
+if [[ $1 =~ '-h' ]]; then
+    echo "usage: run-burning.sh [-q] <1,2,3,4,5> [types]"
+    exit 4
+elif [[ $1 == '-q' ]]; then
+    shift
+    if [[ $1 == -* ]];
+        echo "usage: run-burning.sh [-q] <1,2,3,4,5> [types]"
+        exit 3
+    else
+        q=${1##-}
+        shift
+    fi
+elif [[ ${here} == 'burning2' ]]; then
+    q='g1'
 else
-    q='g3'
-    node=20
+    echo -e "\033[1mg1:\033[0m"
+    qstat | grep -i "Q g1"
+    echo -e "\033[1mg2:\033[0m"
+    qstat | grep -i "Q g2"
+    echo -e "\033[1mg3:\033[0m"
+    qstat | grep -i "Q g3"
+    echo -e "\033[1mg4:\033[0m"
+    qstat | grep -i "Q g4"
+    echo -e "\033[1mg5:\033[0m"
+    qstat | grep -i "Q g5"
+    pestat -s idle
+    read -p "which queue? (g1~g5, gpu): " q
 fi
+
 if [[ -s mpiexe.sh ]]; then
     rm mpiexe.sh
 fi
 cp ~/input_files/run_slurm.sh .
+if [[ $q == 'g1' ]] || [ $q == '1' ]]; then
+    if [[ ${here} == 'burning2' ]]; then
+        node=32
+    else
+        node=12
+    fi
+elif [[ $q == 'g2' ]] || [ $q == '2' ]] || [[ $q == 'g3' ]] || [ $q == '3' ]]; then
+    node=20
+elif [[ $q == 'g4' ]] || [ $q == '4' ]]; then
+    node=24
+elif [[ $q == 'g5' ]] || [ $q == '5' ]] || [[ $q == 'gpu' ]]; then
+    node=32
+else
+    echo "think about queue..."
+    exit 2
+fi
+
+if [[ -n $1 ]]; then
+    type=${@}
+else
+    echo -n "which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea): "
+    read -a type
+fi
+
 sed -i "/ntasks-per-node/c\#SBATCH --ntasks-per-node=$node" run_slurm.sh
 sed -i "/partition/c\#SBATCH --partition=$q" run_slurm.sh
 
