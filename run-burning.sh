@@ -38,17 +38,17 @@ if [[ -s mpiexe.sh ]]; then
     rm mpiexe.sh
 fi
 cp ~/input_files/run_slurm.sh .
-if [[ $q == 'g1' ]] || [ $q == '1' ]]; then
+if [[ $q == 'g1' ]]; then
     if [[ ${here} == 'burning2' ]]; then
         node=32
     else
         node=12
     fi
-elif [[ $q == 'g2' ]] || [ $q == '2' ]] || [[ $q == 'g3' ]] || [ $q == '3' ]]; then
+elif [[ $q == 'g2' ]] || [[ $q == 'g3' ]]; then
     node=20
-elif [[ $q == 'g4' ]] || [ $q == '4' ]]; then
+elif [[ $q == 'g4' ]]; then
     node=24
-elif [[ $q == 'g5' ]] || [ $q == '5' ]] || [[ $q == 'gpu' ]]; then
+elif [[ $q == 'g5' ]] || [[ $q == 'gpu' ]]; then
     node=32
 else
     echo "think about queue..."
