@@ -1,6 +1,7 @@
 #!/bin/bash
 
 xc_tag=0
+mag_tag=0
 # error cases
 if [[ $1 == '-qe' ]] || [[ $1 == 'qe' ]]; then
     sh ~/bin/orange/autosub-qe.sh ${@:2}
@@ -26,6 +27,10 @@ fi
 if [[ $1 == '-x' ]] || [[ $1 == '-xc' ]]; then
     shift
     xc_tag=1
+fi
+if [[ $1 == '-m' ]] || [[ $1 == '-mag' ]]; then
+    shift
+    mag_tag=1
 fi
 
 multiple_input="${@}"
@@ -73,7 +78,7 @@ do
         cp $p$i.vasp $i/POSCAR
     fi
     cd $i
-    if [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
+    if [[ $xc_tag == 1 ]] || [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
         sed -i '/MAGMOM/d' INCAR
     else
         python3 ~/bin/orange/magmom.py
