@@ -69,6 +69,10 @@ elif [[ $1 == '-ksoe' ]] || [[ $1 == '-k' ]]; then
                 mv $file $filename'11'.$extension
             elif [[ $numb =~ '00003' ]]; then
                 mv $file $filename'12'.$extension
+            elif [[ $numb =~ '00004' ]]; then
+                mv $file $filename'13'.$extension
+            elif [[ $numb =~ '00005' ]]; then
+                mv $file $filename'14'.$extension
             elif [[ $numb =~ '0000' ]]; then
                 i=$(echo $numb | rev | cut -c -1 | rev)
                 j=$(($i-2))
