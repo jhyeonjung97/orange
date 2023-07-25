@@ -78,15 +78,15 @@ do
         cp $p$i.vasp $i/POSCAR
     fi
     cd $i
-    if [[ $mag_tag == 1 ]] || [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
-        sed -i '/MAGMOM/d' INCAR
-    else
-        python3 ~/bin/orange/magmom.py
-    fi
     if [[ $xc_tag == 0 ]]; then
         python ~/bin/pyband/xcell.py #XCELL
         mv out*.vasp POSCAR #XCELL
         echo 'xcell.py is applied'
+    fi
+    if [[ $mag_tag == 1 ]] || [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
+        sed -i '/MAGMOM/d' INCAR
+    else
+        python3 ~/bin/orange/magmom.py
     fi
     sh ~/bin/orange/vasp5.sh
     if [[ -s POTCAR ]]; then
