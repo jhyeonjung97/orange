@@ -78,7 +78,7 @@ do
         cp $p$i.vasp $i/POSCAR
     fi
     cd $i
-    if [[ $xc_tag == 1 ]] || [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
+    if [[ $mag_tag == 1 ]] || [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
         sed -i '/MAGMOM/d' INCAR
     else
         python3 ~/bin/orange/magmom.py
