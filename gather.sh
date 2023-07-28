@@ -112,9 +112,11 @@ elif [[ $send =~ 'cori' ]]; then
     echo "scp $list jiuy97@cori.nersc.gov:~/vis"
     scp $list jiuy97@cori.nersc.gov:~/vis
 elif [[ $send =~ 'mac' ]]; then
-    echo "scp $list hailey@172.30.1.14:~/Desktop/$send"
-    scp $list hailey@172.30.1.14:~/Desktop/$send
+    read -p "which directory? " mac_dir
+    echo "scp $list hailey@172.30.1.14:~/Desktop/$mac_dir"
+    scp $list hailey@172.30.1.14:~/Desktop/$mac_dir
 elif [[ $send =~ 'mini' ]]; then
-    echo "scp $list hailey@192.168.0.241:~/Desktop/$send"
-    scp $list hailey@192.168.0.241:~/Desktop/$send
+    read -p "which directory? " mac_dir
+    echo "scp $list hailey@192.168.0.241:~/Desktop/$mac_dir"
+    scp $list hailey@192.168.0.241:~/Desktop/$mac_dir
 fi

@@ -4,6 +4,9 @@
 if [[ ${here} == 'mac' ]]; then
     port=' -P 1234'
     srvr='hyeonjung@burning.postech.ac.kr:'
+elif [[ ${here} == 'burning' ]]; then
+    port=''
+    srvr='hailey@192.168.0.241:~/Desktop/'
 fi
 
 # Let's check the input values
