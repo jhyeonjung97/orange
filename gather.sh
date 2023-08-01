@@ -49,9 +49,7 @@ else
 fi
 
 list=''
-if [[ $r == '' ]]; then
-    read -p 'vaspsend destination (enter for skip): ' send
-fi
+read -p 'vaspsend destination (enter for skip): ' send
 
 for dir in $dirs
 do
@@ -98,32 +96,34 @@ do
     cd $destination
 done
 
-if [[ $send == 'port' ]]; then
-    cp $list ~/port/
+if [[ -d $send ]]; then
+    cp $r$list $send/
+elif [[ $send == 'port' ]]; then
+    cp $r$list ~/port/
 # elif [[ $send =~ 'window' ]]; then
 #     echo "scp $list jhyeo@192.168.1.251:~/Desktop/$send"
 #     scp $list jhyeo@192.168.1.251:~/Desktop/$send
 elif [[ $send =~ 'x2658' ]]; then
-    echo "scp $list x2658a09@nurion-dm.ksc.re.kr:~/vis"
-    scp $list x2431a10@nurion.ksc.re.kr:~/vis
+    echo "scp $r$list x2658a09@nurion-dm.ksc.re.kr:~/vis"
+    scp $r$list x2431a10@nurion.ksc.re.kr:~/vis
 elif [[ $send =~ 'x2347' ]]; then
-    echo "scp $list x2347a10@nurion-dm.ksc.re.kr:~/vis"
-    scp $list x2347a10@nurion.ksc.re.kr:~/vis
+    echo "scp $r$list x2347a10@nurion-dm.ksc.re.kr:~/vis"
+    scp $r$list x2347a10@nurion.ksc.re.kr:~/vis
 elif [[ $send =~ 'x2431' ]]; then
-    echo "scp $list x2431a10@nurion-dm.ksc.re.kr:~/vis"
-    scp $list x2431a10@nurion.ksc.re.kr:~/vis
+    echo "scp $r$list x2431a10@nurion-dm.ksc.re.kr:~/vis"
+    scp $r$list x2431a10@nurion.ksc.re.kr:~/vis
 elif [[ $send =~ 'x2421' ]]; then
-    echo "scp $list x2421a04@nurion-dm.ksc.re.kr:~/vis"
-    scp $list x2431a10@nurion.ksc.re.kr:~/vis
+    echo "scp $r$list x2421a04@nurion-dm.ksc.re.kr:~/vis"
+    scp $r$list x2431a10@nurion.ksc.re.kr:~/vis
 elif [[ $send =~ 'cori' ]]; then
-    echo "scp $list jiuy97@cori.nersc.gov:~/vis"
-    scp $list jiuy97@cori.nersc.gov:~/vis
+    echo "scp $r$list jiuy97@cori.nersc.gov:~/vis"
+    scp $r$list jiuy97@cori.nersc.gov:~/vis
 elif [[ $send =~ 'mac' ]]; then
     read -p "which directory? " mac_dir
-    echo "scp $list hailey@172.30.1.14:~/Desktop/$mac_dir"
-    scp $list hailey@172.30.1.14:~/Desktop/$mac_dir
+    echo "scp $r$list hailey@172.30.1.14:~/Desktop/$mac_dir"
+    scp $r$list hailey@172.30.1.14:~/Desktop/$mac_dir
 elif [[ $send =~ 'mini' ]]; then
     read -p "which directory? " mac_dir
-    echo "scp $list hailey@192.168.0.241:~/Desktop/$mac_dir"
-    scp $list hailey@192.168.0.241:~/Desktop/$mac_dir
+    echo "scp $r$list hailey@192.168.0.241:~/Desktop/$mac_dir"
+    scp $r$list hailey@192.168.0.241:~/Desktop/$mac_dir
 fi
