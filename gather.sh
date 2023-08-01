@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cut_tag=''
+r=''
 if [[ $1 == '-n' ]] || [[ $1 == 'neb' ]]; then
     # usage: sh gather.sh -n IMAGES
     read -p "files starts with: " f
@@ -13,26 +15,29 @@ if [[ $1 == '-n' ]] || [[ $1 == 'neb' ]]; then
     cp 00/POSCAR $f-c0.vasp
     cp 0$(($2+1))/POSCAR $f-c$(($2+1)).vasp
     exit 1
-elif [[ $1 == '-c' ]] || [[ $1 == '-s' ]]; then
-    if [[ -z $2 ]]; then
-        read -p 'which files? ' f
-    else
-        f=$2
-    fi
-elif [[ -z $1 ]]; then
-    read -p 'which files? ' f
-else
-    f=$1
+elif [[ $1 == '-c' ]]; then
+    cut_tag=1
+    shift
+elif [[ $1 == '-r' ]]; then
+    r='-r '
+    shift
 fi
 
-if [[ $1 == '-s' ]]; then
+if [[ $1 == '-rr' ]]; then
     dirs='*/*/'
     destination='../../'
+    shift
 else
     dirs='*/'
     destination='../'
 fi
-    
+
+if [[ -z $1 ]]; then
+    read -p 'which files/directories to move? ' f
+else
+    f=$1
+fi
+
 if [[ $f == 'p' ]] || [[ $f == 'pos' ]]; then
     pattern='POSCAR'
     read -p "filename starts with? " filename
@@ -44,12 +49,14 @@ else
 fi
 
 list=''
-read -p 'vaspsend destination (enter for skip): ' send
+if [[ $r == '' ]]; then
+    read -p 'vaspsend destination (enter for skip): ' send
+fi
 
 for dir in $dirs
 do
     cd $dir
-    if [[ $1 == '-c' ]] || [[ $1 == '-s' ]]; then
+    if [[ $cut_tag == 1 ]]; then
         numb=$(echo $dir | cut -c 1)
     else
         numb=${dir%/}
@@ -77,12 +84,12 @@ do
                 filename="${file%.*}"
                 extension="${file##*.}"
                 if [[ $filename == $extension ]]; then
-                    cp $file $destination$filename$numb
-                    echo "$dir$file $filename$numb"
+                    cp $r$file $destination$filename$numb
+                    echo "$r$dir$file $filename$numb"
                     list+="$filename$numb "
                 else
-                    cp $file $destination$filename$numb.$extension
-                    echo "$dir$file $filename$numb.$extension"
+                    cp $r$file $destination$filename$numb.$extension
+                    echo "$r$dir$file $filename$numb.$extension"
                     list+="$filename$numb.$extension "
                 fi
             fi
