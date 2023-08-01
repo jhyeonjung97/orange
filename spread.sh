@@ -13,19 +13,14 @@ else
     DIR='*/'
 fi
 
-if [[ $1 == *.vasp ]]; then
-    echo hello1
-fi
-if [[ ! -f $1 ]]; then
-    echo hello2
-fi
-
 if [[ $1 == '*.vasp' ]] && [[ ! -f $1 ]]; then
     file=$1
     name=${file%.*}
+    echo $file $name
     for i in $NUM
     do
         cp $name$i.vasp $i*/
+        echo "cp $name$i.vasp $i*/"
     done
 else
     file=${@}
