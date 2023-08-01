@@ -13,7 +13,7 @@ else
     DIR='*/'
 fi
 
-if [[ $1 == '*.vasp' ]] && [[ ! -f $1 ]]; then
+if [[ $1 == *.vasp ]] && [[ ! -f $1 ]]; then
     file=$1
     name=${file%.*}
     echo $file $name
