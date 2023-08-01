@@ -16,11 +16,12 @@ fi
 if [[ $1 == *.vasp ]] && [[ ! -f $1 ]]; then
     file=$1
     name=${file%.*}
-    echo $file $name
-    for i in $NUM
+    for i in {0..9}
     do
-        cp $name$i.vasp $i*/
-        echo "cp $name$i.vasp $i*/"
+        if [[ -f $name$i.vasp ]]; then
+            cp $name$i.vasp $i*/
+            echo "cp $name$i.vasp $i*/"
+        fi
     done
 else
     file=${@}
