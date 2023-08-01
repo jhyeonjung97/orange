@@ -84,6 +84,15 @@ elif [[ $1 == '-ksoe' ]] || [[ $1 == '-k' ]]; then
             fi
         fi
     done
+elif [[ $1 == '-r' ]]; then
+    front=${2%'*'*}
+    back=${2##*'*'}
+    for i in {0..9}
+    do
+        if [[ -d $front$i$back ]]; then
+            mv $front$i$back $i
+        fi
+    done
 else
     extension1=${1##*.}
     filename1=${1%.*}
