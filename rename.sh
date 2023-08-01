@@ -85,8 +85,8 @@ elif [[ $1 == '-ksoe' ]] || [[ $1 == '-k' ]]; then
         fi
     done
 elif [[ $1 == '-r' ]]; then
-    front=${2%'*'*}
-    back=${2##*'*'}
+    front=${2%.*}
+    back=${2##*.}
     echo $front $back
     for i in {0..9}
     do
