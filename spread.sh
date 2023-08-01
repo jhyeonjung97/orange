@@ -19,8 +19,8 @@ if [[ $1 == *.vasp ]] && [[ ! -f $1 ]]; then
     for i in {0..9}
     do
         if [[ -f $name$i.vasp ]]; then
-            cp $name$i.vasp $i*/
-            echo "cp $name$i.vasp $i*/"
+            cp $name$i.vasp $i*/POSCAR
+            echo "cp $name$i.vasp $i*/POSCAR"
         fi
     done
 else
