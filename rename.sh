@@ -87,10 +87,12 @@ elif [[ $1 == '-ksoe' ]] || [[ $1 == '-k' ]]; then
 elif [[ $1 == '-r' ]]; then
     front=${2%'*'*}
     back=${2##*'*'}
+    echo $front $back
     for i in {0..9}
     do
         if [[ -d $front$i$back ]]; then
             mv $front$i$back $i
+            echo "mv $front$i$back $i"
         fi
     done
 else
