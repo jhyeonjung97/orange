@@ -13,9 +13,10 @@ else
     DIR='*/'
 fi
 
-if [[ $1 == '*.vasp' ]]; then
+if [[ $1 == *.vasp ]]; then
     echo hello1
-elif [[ ! -f $1 ]]; then
+fi
+if [[ ! -f $1 ]]; then
     echo hello2
 fi
 
