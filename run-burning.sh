@@ -194,5 +194,4 @@ if in_array 'repeat' "${type[*]}"; then
 fi
 if in_array 'freq' "${type[*]}"; then
     sed -i -e 's/; sh ~\/bin\/orange\/ediff.sh//' run_slurm.sh
-    sed -i -e '/conti/d' run_slurm.sh
 fi

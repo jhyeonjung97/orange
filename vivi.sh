@@ -21,6 +21,9 @@ sh ~/bin/orange/modify.sh INCAR IBRION 5
 sh ~/bin/orange/modify.sh INCAR POTIM 0.015
 sh ~/bin/orange/modify.sh INCAR NPAR
 
+sed -i -e 's/; sh ~\/bin\/orange\/ediff.sh//' run_slurm.sh
+sed -i -e '/conti/d' run_slurm.sh
+
 # if [[ ${here} =~ 'burning' ]]; then
 #     npar=$(grep ntasks-per-node run_slurm.sh | rev | cut -c -2 | rev)
 # elif [[ ${here} == 'kisti' ]]; then
