@@ -58,7 +58,7 @@ fi
 if [[ -n $1 ]]; then
     type=${@}
 else
-    echo -n "which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea): "
+    echo -n "which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea, freq): "
     read -a type
 fi
 
@@ -80,6 +80,8 @@ total=''
 if in_array 'qe' "${type[*]}"; then
     sed -i '/mpiexe/i\cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
     sed -i 's/custom/4 pw.x -in qe-relax.in/' run_slurm.sh
+elif in_array 'freq' "${type[*]}"; then
+
 else
     if in_array 'mmff' "${type[*]}"; then
         file=''
