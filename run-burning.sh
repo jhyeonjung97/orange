@@ -79,9 +79,7 @@ function in_array {
 total=''
 if in_array 'qe' "${type[*]}"; then
     sed -i '/mpiexe/i\cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
-    sed -i 's/custom/4 pw.x -in qe-relax.in/' run_slurm.sh
-elif in_array 'freq' "${type[*]}"; then
-
+    sed -i 's/custom/4 pw.x -in qe-relax.in/' run_slurm.sh    
 else
     if in_array 'mmff' "${type[*]}"; then
         file=''
@@ -192,5 +190,8 @@ if [[ -n $jobname ]]; then
     sh ~/bin/orange/jobname.sh $jobname
 fi
 if in_array 'repeat' "${type[*]}"; then
+    sed -i -e 's/ediff.sh/repeat.sh/g' run_slurm.sh
+fi
+if in_array 'freq' "${type[*]}"; then
     sed -i -e 's/ediff.sh/repeat.sh/g' run_slurm.sh
 fi
