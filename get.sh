@@ -4,6 +4,9 @@
 if [[ ${here} == 'mac' ]]; then
     port='-P 1234 '
     srvr='hyeonjung@burning.postech.ac.kr:'
+elif [[ ${here} == 'burning' ]]; then
+    port=''
+    srvr='hailey@192.168.0.241:~/Desktop/'
 fi
 
 # Let's check the input values
@@ -58,6 +61,8 @@ else
         file='POSCAR'
     elif [[ $file == 'c' ]] || [[ $file == 'con' ]]; then
         file='CONTCAR'
+    elif [[ $file == 'v' ]] || [[ $file == 'vasp' ]]; then
+        file='*.vasp'
     fi
 fi
 

@@ -38,17 +38,17 @@ if [[ -s mpiexe.sh ]]; then
     rm mpiexe.sh
 fi
 cp ~/input_files/run_slurm.sh .
-if [[ $q == 'g1' ]] || [ $q == '1' ]]; then
+if [[ $q == 'g1' ]]; then
     if [[ ${here} == 'burning2' ]]; then
         node=32
     else
         node=12
     fi
-elif [[ $q == 'g2' ]] || [ $q == '2' ]] || [[ $q == 'g3' ]] || [ $q == '3' ]]; then
+elif [[ $q == 'g2' ]] || [[ $q == 'g3' ]]; then
     node=20
-elif [[ $q == 'g4' ]] || [ $q == '4' ]]; then
+elif [[ $q == 'g4' ]]; then
     node=24
-elif [[ $q == 'g5' ]] || [ $q == '5' ]] || [[ $q == 'gpu' ]]; then
+elif [[ $q == 'g5' ]] || [[ $q == 'gpu' ]]; then
     node=32
 else
     echo "think about queue..."
@@ -58,7 +58,7 @@ fi
 if [[ -n $1 ]]; then
     type=${@}
 else
-    echo -n "which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea): "
+    echo -n "which type? (beef, vtst, sol, gam, qe, cep, mmff, lobster, sea, freq): "
     read -a type
 fi
 
@@ -79,7 +79,7 @@ function in_array {
 total=''
 if in_array 'qe' "${type[*]}"; then
     sed -i '/mpiexe/i\cat incar.in potcar.in poscar.in kpoints.in > qe-relax.in' run_slurm.sh
-    sed -i 's/custom/4 pw.x -in qe-relax.in/' run_slurm.sh
+    sed -i 's/custom/4 pw.x -in qe-relax.in/' run_slurm.sh    
 else
     if in_array 'mmff' "${type[*]}"; then
         file=''
@@ -191,4 +191,7 @@ if [[ -n $jobname ]]; then
 fi
 if in_array 'repeat' "${type[*]}"; then
     sed -i -e 's/ediff.sh/repeat.sh/g' run_slurm.sh
+fi
+if in_array 'freq' "${type[*]}"; then
+    sed -i -e 's/; sh ~\/bin\/orange\/ediff.sh//' run_slurm.sh
 fi

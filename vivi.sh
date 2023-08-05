@@ -19,14 +19,18 @@ cd freq
 mv CONTCAR POSCAR
 sh ~/bin/orange/modify.sh INCAR IBRION 5
 sh ~/bin/orange/modify.sh INCAR POTIM 0.015
+sh ~/bin/orange/modify.sh INCAR NPAR
 
-if [[ ${here} =~ 'burning' ]]; then
-    npar=$(grep ntasks-per-node run_slurm.sh | rev | cut -c -2 | rev)
-elif [[ ${here} == 'kisti' ]]; then
-    npar=64
-else
-    echo 'where am i ..? you might need to modify vivi.sh file'
-fi
+sed -i -e 's/; sh ~\/bin\/orange\/ediff.sh//' run_slurm.sh
+sed -i -e '/conti/d' run_slurm.sh
 
-sh ~/bin/orange/modify.sh INCAR NPAR $npar
+# if [[ ${here} =~ 'burning' ]]; then
+#     npar=$(grep ntasks-per-node run_slurm.sh | rev | cut -c -2 | rev)
+# elif [[ ${here} == 'kisti' ]]; then
+#     npar=64
+# else
+#     echo 'where am i ..? you might need to modify vivi.sh file'
+# fi
+
+# sh ~/bin/orange/modify.sh INCAR NPAR $npar
 # sh ~/bin/orange/sub.sh
