@@ -1,7 +1,7 @@
 #!/bin/bash
 i=1
 j=1
-while [[ -n $(tail stdout.log | grep EDIFF) ]] && [[ $j -le 3 ]]
+while [[ -n $(tail stdout*.log | grep EDIFF) ]] && [[ $j -le 3 ]]
 do 
     i=1
     save="conti_$i"
