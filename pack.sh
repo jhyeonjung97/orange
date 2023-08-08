@@ -11,6 +11,7 @@ elif [[ -z $3 ]]; then
     SET=$(seq 1 $2)
 else
     SET=$(seq $2 $3)
+    shift
 fi
 
 filename="${1%.*}"
