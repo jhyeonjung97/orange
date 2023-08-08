@@ -12,9 +12,6 @@ a=$2
 b=$3
 c=$4
 if [[ -z $a ]]; then
-    read -p 'lattice parameter? (A) ' a b c
-fi
-if [[ -z $a ]]; then
     echo 'use default lattice parameter 50 A...'
     a=50.
 fi
