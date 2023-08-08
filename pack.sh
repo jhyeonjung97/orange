@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $1 =~ '-h' ]]; then
-    echo 'usage: pack.sh [filename.inp] [seed]'
+    echo 'usage: pack.sh [filename.inp] [seed] [lattice]'
     exit 1
 fi
 
@@ -28,7 +28,12 @@ else
     done
 fi
 
-read -p "lattice parameter (A): " a
+if [[ -z $3 ]]; then
+    read -p "lattice parameter (A): " a
+else
+    a=$3
+fi
+
 if [[ -z $a ]]; then
     echo 'use default lattice parameter, 40 A ...'
     a=40.
