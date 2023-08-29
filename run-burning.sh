@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+path_now="$PWD"
 if [[ ! -d /TGM/Apps/VASP/VASP_BIN/6.3.2 ]]; then
     echo "Here is not burning.postech.ac.kr..."
     exit 1
@@ -84,7 +84,11 @@ else
     if in_array 'beef' "${type[*]}"; then
         sed -i '/mpiexe/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
         echo 'rm vdw_kernel.bindat' >> run_slurm.sh
-        total+='.beef' 
+        total+='.beef'
+    elif [[ $PWD == *ation* ]]; then
+        sed -i '/mpiexe/i\cp /TGM/Apps/VASP/vdw_kernel.bindat .' run_slurm.sh
+        echo 'rm vdw_kernel.bindat' >> run_slurm.sh
+        total+='.beef'
     elif in_array 'dftd4' "${type[*]}"; then
         total+='.dftd4'
     fi
