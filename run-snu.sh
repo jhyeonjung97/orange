@@ -6,12 +6,12 @@ if [[ ! -d /TGM/Apps/VASP/VASP_BIN/6.3.2 ]]; then
     exit 1
 fi
 if [[ $1 =~ '-h' ]]; then
-    echo "usage: run-burning.sh [-q] <g1,g2,g3> [types]"
+    echo "usage: run-burning.sh [-q] <g1,g2,g3,g4> [types]"
     exit 4
 elif [[ $1 == '-q' ]]; then
     shift
     if [[ $1 == -* ]]; then
-        echo "usage: run-burning.sh [-q] <g1,g2,g3> [types]"
+        echo "usage: run-burning.sh [-q] <g1,g2,g3,g4> [types]"
         exit 3
     else
         q=$1
@@ -24,8 +24,10 @@ else
     qstat | grep -i "Q g2"
     echo -e "\033[1mg3:\033[0m"
     qstat | grep -i "Q g3"
+    echo -e "\033[1mg4:\033[0m"
+    qstat | grep -i "Q g4"
     pestat -s idle
-    read -p "which queue? (g1~g3): " q
+    read -p "which queue? (g1~g4): " q
 fi
 
 if [[ -s mpiexe.sh ]]; then
@@ -33,11 +35,13 @@ if [[ -s mpiexe.sh ]]; then
 fi
 cp ~/input_files/run_slurm.sh .
 if [[ $q == 'g1' ]]; then
-    node=12
+    node=32
 elif [[ $q == 'g2' ]]; then
     node=20
 elif [[ $q == 'g3' ]]; then
-    node=20
+    node=24
+elif [[ $q == 'g3' ]]; then
+    node=32
 else
     echo "think about queue..."
     exit 2
