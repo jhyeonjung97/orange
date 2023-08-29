@@ -40,7 +40,7 @@ elif [[ $q == 'g2' ]]; then
     node=20
 elif [[ $q == 'g3' ]]; then
     node=24
-elif [[ $q == 'g3' ]]; then
+elif [[ $q == 'g4' ]]; then
     node=32
 else
     echo "think about queue..."
