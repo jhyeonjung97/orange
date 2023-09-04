@@ -28,7 +28,7 @@ else:
 scp='scp'
 
 if surv=='burning':
-    scp=scp+' -P 1234'
+    scp=scp+' -P 54329'
     surv='hyeonjung@burning.postech.ac.kr:'
 elif surv=='mac':
     surv='hailey@172.30.1.14:~/Desktop/'

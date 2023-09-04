@@ -54,7 +54,7 @@ chmod 755 *
 cd $dir_now'
 
 #SSH
-alias burning='ssh -X -Y hyeonjung@burning.postech.ac.kr -p 1234'
+alias burning='ssh -X -Y hyeonjung@burning.postech.ac.kr -p 54329'
 alias snu='ssh -X -Y hyeonjung@210.117.209.87'
 alias x2658='ssh -X -Y x2658a09@nurion.ksc.re.kr'
 alias x2431='ssh -X -Y x2431a10@nurion.ksc.re.kr'

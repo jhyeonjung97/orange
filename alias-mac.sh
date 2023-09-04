@@ -6,7 +6,7 @@ jupyter notebook'
 alias cdw='cd ~/Desktop/'
 alias vbash='vi ~/.zshrc'
 alias sbash='source ~/.zshrc'
-alias port='scp -P 1234 hyeonjung@burning.postech.ac.kr:~/port/*.vasp .'
+alias port='scp -P 54329 hyeonjung@burning.postech.ac.kr:~/port/*.vasp .'
 
 alias vasp2png='python ~/bin/shoulder/vasp2png.py'
 alias style='open /Applications/VESTA/VESTA.app/Contents/Resources/style.ini'

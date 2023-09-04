@@ -2,7 +2,7 @@
 
 # default destination server
 if [[ ${here} == 'mac' ]]; then
-    port='-P 1234 '
+    port='-P 54329 '
     srvr='hyeonjung@burning.postech.ac.kr:'
 elif [[ ${here} == 'burning' ]]; then
     port=''
@@ -25,7 +25,7 @@ do
         port=''
         srvr='hailey@192.168.0.241:~/Desktop/'
     elif [[ $i == 'burning' ]]; then
-        port='-P 1234 '
+        port='-P 54329 '
         srvr='hyeonjung@burning.postech.ac.kr:'
     elif [[ $i == 'snu' ]]; then
         port=''

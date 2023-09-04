@@ -25,7 +25,7 @@ else:
         file='CONTCAR'
         
 if surv=='burning':
-    p='-P 1234'
+    p='-P 54329'
     surv='hyeonjung@burning.postech.ac.kr:'
 elif surv=='mac':
     surv='hailey@172.30.1.14:~/Desktop/'
