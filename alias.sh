@@ -60,6 +60,7 @@ alias x2658='ssh -X -Y x2658a09@nurion.ksc.re.kr'
 alias x2431='ssh -X -Y x2431a10@nurion.ksc.re.kr'
 alias x2421='ssh -X -Y x2421a04@nurion.ksc.re.kr'
 alias x2347='ssh -X -Y x2347a10@nurion.ksc.re.kr'
+alias x2755='ssh -X -Y x2755a09@nurion.ksc.re.kr'
 alias cori='ssh -X -Y jiuy97@cori.nersc.gov'
 alias nersc='ssh -X -Y jiuy97@perlmutter-p1.nersc.gov'
 

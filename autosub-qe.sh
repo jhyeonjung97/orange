@@ -108,6 +108,7 @@ CELL_PARAMETERS {angstrom}
     sed -i -e "s/x2431a10/${account}/" *
     sed -i -e "s/x2421a04/${account}/" *
     sed -i -e "s/x2347a10/${account}/" *
+    sed -i -e "s/x2755a09/${account}/" *
     cd ..
 done
 grep --colour chemical_formula_sum */*.cif

@@ -42,6 +42,9 @@ do
     elif [[ $i == 'x2347' ]]; then
         port=''
         srvr='x2347a10@nurion-dm.ksc.re.kr:'
+    elif [[ $i == 'x2755' ]]; then
+        port=''
+        srvr='x2755a09@nurion-dm.ksc.re.kr:'
     elif [[ $i == 'cori' ]]; then
         port=''
         srvr='jiuy97@cori.nersc.gov:'

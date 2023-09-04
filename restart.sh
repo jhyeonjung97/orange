@@ -18,6 +18,7 @@ elif [[ ${here} == 'kisti' ]]; then
     sed -i -e "s/x2431a10/${account}/g" *
     sed -i -e "s/x2421a04/${account}/g" *
     sed -i -e "s/x2347a10/${account}/g" *
+    sed -i -e "s/x2755a09/${account}/g" *
     qsub run_slurm.sh
 else
     echo 'where am i..? please modify [conti-qe.sh] code'
