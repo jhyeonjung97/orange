@@ -26,6 +26,7 @@ alias pomass='sh ~/bin/orange/pomass.sh'
 alias walltime='sh ~/bin/orange/walltime.sh'
 alias queue='sh ~/bin/orange/queue.sh'
 alias nofile='find . -maxdepth 1 -type f -delete'
+alias merge='git stash'
 # alias weekend='
 
 alias zip='tar -cvzf'
