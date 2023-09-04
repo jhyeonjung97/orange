@@ -17,7 +17,7 @@ function resub {
     if [[ -f CRASH ]]; then
         rm CRASH
     fi
-    if [[ -n $(grep cep run_sluerm.sh) ]]; then
+    if [[ -n $(grep cep run_slurm.sh) ]]; then
         if [[ -e mpiexe.sh ]] && [[ -s WAVECAR ]]; then
             sed -i -e '/mpiexe/d' run_slurm.sh
         fi
