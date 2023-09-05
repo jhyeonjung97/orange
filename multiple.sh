@@ -40,6 +40,7 @@ if [[ -n $(grep vdw_kernel.bindat .run_slurm.sh) ]]; then
     elif [[ ${here} == 'kisti' ]]; then
         echo 'cp ~/KISTI_VASP/vdw_kernel.bindat .' >> run_slurm.sh
     fi
+    echo " " >> run_slurm.sh
 fi
 for i in $SET
 do
