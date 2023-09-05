@@ -24,8 +24,8 @@ if [[ ${here} == 'burning' ]]; then
     sed '1,15d' run_slurm.sh > fragment.sh
     sed -i '16,$d' run_slurm.shv
 elif [[ ${here} == 'burning2' ]]; then
-    sed '1,12d' run_slurm.sh > fragment.sh
-    sed -i '13,$d' run_slurm.shv
+    sed '1,10d' run_slurm.sh > fragment.sh
+    sed -i '11,$d' run_slurm.shv
 elif [[ ${here} == 'kisti' ]]; then
     sed '1,10d' run_slurm.sh > fragment.sh
     sed -i '11,$d' run_slurm.sh
