@@ -14,7 +14,9 @@ do
     done
     mkdir $save
     cp * $save
-    cp POSCAR .POSCAR
+    if [[ -z initial.vasp ]]; then
+        cp POSCAR initial.vasp
+    fi
     cp CONTCAR POSCAR
     sh mpiexe.sh
     j=$(($j+1))

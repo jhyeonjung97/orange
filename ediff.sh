@@ -12,7 +12,9 @@ do
     done
     mkdir $save
     cp * $save
-    cp POSCAR .POSCAR
+    if [[ -z initial.vasp ]]; then
+        cp POSCAR initial.vasp
+    fi
     cp CONTCAR POSCAR
     if [[ $j -eq 2 ]]; then
         sh ~/bin/orange/modify.sh INCAR EDIFF 1E-05

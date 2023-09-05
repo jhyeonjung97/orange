@@ -154,7 +154,9 @@ function qe {
 function cep {
     rm STD*
     if [[ ! -s WAVECAR ]] && [[ -s CONTCAR ]]; then
-        cp POSCAR .POSCAR
+        if [[ -z initial.vasp ]]; then
+            cp POSCAR initial.vasp
+        fi
         mv CONTCAR POSCAR
     elif [[ -s WAVECAR ]]; then
         sed -i -e '/mpiexe/d' run_slurm.sh
