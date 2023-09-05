@@ -45,13 +45,13 @@ alias convert='python3 ~/bin/orange/convert.py'
 
 alias orange='dir_now=$PWD
 cd ~/bin/orange
+git stash
 git pull
-chmod 755 *
 cd $dir_now'
 alias shoulder='dir_now=$PWD
 cd ~/bin/shoulder
+git stash
 git pull
-chmod 755 *
 cd $dir_now'
 
 #SSH
