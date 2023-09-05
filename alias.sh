@@ -27,6 +27,7 @@ alias walltime='sh ~/bin/orange/walltime.sh'
 alias queue='sh ~/bin/orange/queue.sh'
 alias nofile='find . -maxdepth 1 -type f -delete'
 alias merge='git stash'
+alias direct='sh ~/bin/orange/direct.sh'
 # alias weekend='
 
 alias zip='tar -cvzf'
