@@ -11,6 +11,7 @@ boundary=1.0
 i=1
 
 while i <= numb:
+    system(f'rm slab{i}.vasp xc{i}.vasp')
     bulk=read(f'{filename}{i}.vasp')
     slab=surface(bulk, (1,1,1), 4, vacuum/2)
     
@@ -29,4 +30,4 @@ while i <= numb:
     write(f'fix{i}.vasp',xcell)
     i=i+1
 
-# os.system('rm slab*.vasp xc*.vasp')
+system('rm slab*.vasp xc*.vasp')
