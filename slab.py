@@ -26,8 +26,8 @@ if len(remaining_args) < 2:
     parser.print_help()
     sys.exit()
 else:
-    filename=str(remaining_args[1])
-    numb=float(remaining_args[2])
+    filename=str(remaining_args[0])
+    numb=float(remaining_args[1])
 
 i=1
 while i <= numb:
