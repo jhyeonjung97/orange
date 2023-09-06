@@ -18,7 +18,7 @@ while i <= numb:
     write(f'slab{i}.vasp',slab.repeat((2,2,1)))
     system(f'~/bin/pyband/xcell.py -i slab{i}.vasp -o xc{i}.vasp')
     xcell=read(f'xc{i}.vasp')
-    min_z=xcell.positions[2].min()
+    min_z=xcell.positions[:,2].min()
     # min_z=min([atom.position[2] for atom in xcell])
     # print(min_z)
     # del xcell.constraints
