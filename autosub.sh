@@ -6,7 +6,7 @@ submit=''
 filename=''
 jobname=''
 
-while getopts ":xmli:o:" opt; do
+while getopts ":xmlyni:o:" opt; do
   case $opt in
     x)
       xc_tag=1
@@ -15,7 +15,13 @@ while getopts ":xmli:o:" opt; do
       mag_tag=1
       ;;
     l)
-      submit='m'
+      submit='multi'
+      ;;
+    y)
+      submit='yes'
+      ;;
+    n)
+      submit='no'
       ;;
     i)
       filename="$OPTARG"
@@ -141,16 +147,17 @@ do
 done
 
 grep --colour NETCHG INCAR
-# read -p 'do you want to submit jobs? [y/n] (default: n) ' submit
-# if [[ $submit =~ 'y' ]]; then
-#     for i in $SET
-#     do
-#         cd $i
-#         sh ~/bin/orange/sub.sh
-#         cd ..
-#     done
-# el
-if [[ $submit =~ 'm' ]] && [[ -n $multiple_input ]]; then
+if [[ -z $submit ]]; then
+    read -p 'do you want to submit jobs? [y/n] (default: n) ' submit
+fi
+if [[ $submit =~ 'y' ]]; then
+    for i in $SET
+    do
+        cd $i
+        sh ~/bin/orange/sub.sh
+        cd ..
+    done
+elif [[ $submit =~ 'm' ]] && [[ -n $multiple_input ]]; then
     sh ~/bin/orange/multiple.sh $multiple_input
     sh ~/bin/orange/jobname.sh $jobname
     echo "multiple $multiple_input; name $jobname"
