@@ -1,9 +1,43 @@
 #!/bin/bash
 
 cut_tag=''
+neb_tag=''
+port_tag=''
 r=''
-if [[ $1 == '-n' ]] || [[ $1 == 'neb' ]]; then
-    # usage: sh gather.sh -n IMAGES
+
+while getopts ":cnrpd:" opt; do
+  case $opt in
+    c)
+      cut_tag=1
+      ;;
+    n)
+      neb_tag=1
+      ;;
+    r)
+      r='-r '
+      ;;
+    p)
+      port_tag=1
+      ;;
+    d)
+      send="$OPTARG"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+# Shift the options out, so $1, $2, etc. are the non-option arguments
+shift "$((OPTIND-1))"
+
+if [[ $neb_tag == 1 ]]; then
+    # usage: sh gather.sh -n #IMAGES
     read -p "files starts with: " f
     for i in $(seq 1 $2)
     do
@@ -15,12 +49,6 @@ if [[ $1 == '-n' ]] || [[ $1 == 'neb' ]]; then
     cp 00/POSCAR $f-c0.vasp
     cp 0$(($2+1))/POSCAR $f-c$(($2+1)).vasp
     exit 1
-elif [[ $1 == '-c' ]]; then
-    cut_tag=1
-    shift
-elif [[ $1 == '-r' ]]; then
-    r='-r '
-    shift
 fi
 
 if [[ $1 == '-rr' ]]; then
@@ -49,7 +77,10 @@ else
 fi
 
 list=''
-read -p 'vaspsend destination (enter for skip): ' send
+if [[ $port_tag == 1 ]]; then
+    send='port'
+fi 
+# read -p 'vaspsend destination (enter for skip): ' send
 
 for dir in $dirs
 do
