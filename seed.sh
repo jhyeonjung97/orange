@@ -47,5 +47,3 @@ do
     # echo "sed \"/seed/c\seed $i\" $filename.inp"
 #    ~/bin/packmol/packmol < $filename.inp
 done
-
-python3 ~/bin/orange/convert.py xyz vasp $a $b $c
