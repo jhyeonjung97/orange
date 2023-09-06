@@ -68,10 +68,16 @@ fi
 
 if [[ $f == 'p' ]] || [[ $f == 'pos' ]]; then
     pattern='POSCAR'
-    read -p "filename starts with? " filename
+    filename=$2
+    if [[ -z $filename ]]; then
+        read -p "filename starts with? " filename
+    fi
 elif [[ $f == 'c' ]] || [[ $f == 'con' ]]; then
     pattern='CONTCAR'
-    read -p "filename starts with? " filename
+    filename=$2
+    if [[ -z $filename ]]; then
+        read -p "filename starts with? " filename
+    fi
 else
     pattern=$f
 fi
