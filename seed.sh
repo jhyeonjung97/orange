@@ -27,13 +27,13 @@ if [[ -z $a ]]; then
     c=40.
 else
     if [[ $a != '*.*' ]]; then
-        a=$a.
+        a=$a.0
     fi
     if [[ $b != '*.*' ]]; then
-        b=$b.
+        b=$b.0
     fi
     if [[ $c != '*.*' ]]; then
-        c=$c.
+        c=$c.0
     fi
 fi
 # echo $a $b $c
@@ -47,3 +47,5 @@ do
     # echo "sed \"/seed/c\seed $i\" $filename.inp"
 #    ~/bin/packmol/packmol < $filename.inp
 done
+
+python3 ~/bin/orange/convert.py xyz vasp $a $b $c
