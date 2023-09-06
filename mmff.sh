@@ -2,15 +2,20 @@
 
 if [[ $1 =~ '-h' ]]; then
     echo 'usage: mmff [filename.extention (ex. cation.xyz)] lattice a, b, c'
+    exit 1
 fi
 
 name="${1%.*}"
 ext="${1##*.}"
+shift
 # echo $name $ext
 
-a=$2
-b=$3
-c=$4
+a=$1
+shift
+b=$1
+shift
+c=$1
+shift
 if [[ -z $a ]]; then
     echo 'use default lattice parameter 30 A, 30 A, 40 A...'
     a=30.
@@ -47,8 +52,7 @@ do
     fi
 done
 
-python3 ~/bin/orange/convert.py pdb xyz $a $b $c
-python3 ~/bin/orange/convert.py xyz vasp $a $b $c
+python3 ~/bin/orange/convert.py pdb vasp $a $b $c
 
 if [[ -n $(grep mmff.sh run_slurm.sh) ]] && [[ -n $(grep mpiexe run_slurm.sh) ]]; then
     cp $name$i.vasp POSCAR
