@@ -62,7 +62,7 @@ while i <= numb:
     # min_z=min([atom.position[2] for atom in xcell])
     # print(min_z)
     # del xcell.constraints
-    for atom in xcell
+    for atom in xcell:
         if 92 < atom.index < 96 and atom.symbol =! 'S':
             atom.symbol='Pt'
     # xcell.symbols[93]='Pt'
