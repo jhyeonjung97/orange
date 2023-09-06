@@ -1,5 +1,7 @@
 #!/bin/bash
 
+p=''
+n=''
 xc_tag=0
 mag_tag=0
 # error cases
@@ -21,7 +23,7 @@ elif [[ ! -e "run_slurm.sh" ]]; then
     fi
     exit 3
 elif [[ -z $1 ]]; then
-    echo 'usage: autosub (directory#1) [directory#2]'
+    echo 'usage: autosub (number)'
 fi
 
 if [[ $1 == '-x' ]] || [[ $1 == '-xc' ]]; then
@@ -31,6 +33,11 @@ fi
 if [[ $1 == '-m' ]] || [[ $1 == '-mag' ]]; then
     shift
     mag_tag=1
+fi
+if [[ $1 =~ '-i' ]] || [[ $1 =~ '-f' ]] || [[ $1 =~ '-p' ]]; then
+    shift
+    p=$1
+    shift
 fi
 
 multiple_input="${@}"
@@ -42,13 +49,15 @@ else
     SET=$(seq $1 $2)
 fi
 
-ls
-read -p "POSCARs starts with: " p
-read -p "job name: " n
-
-if [[ -z $n ]]; then
-    n=$p
+if [[ -z $p ]]; then
+    ls
+    read -p "POSCARs starts with: " p
 fi
+
+# read -p "job name: " n
+# if [[ -z $n ]]; then
+#     n=$p
+# fi
 
 # if [[ -n $(grep lobster run_slurm.sh) ]]; then
 #     cp run_slurm.sh lobster.sh
