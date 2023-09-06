@@ -11,11 +11,8 @@ shift
 # echo $name $ext
 
 a=$1
-shift
-b=$1
-shift
-c=$1
-shift
+b=$2
+c=$3
 if [[ -z $a ]]; then
     echo 'use default lattice parameter 30 A, 30 A, 40 A...'
     a=30.
