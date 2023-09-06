@@ -12,7 +12,7 @@ i=1
 
 if argv[2]==None:
     print('usage: slab [filename] [numb]')
-    break
+    exit()
     
 while i <= numb:
     system(f'rmv slab{i}.vasp xc{i}.vasp')
