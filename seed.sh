@@ -1,17 +1,17 @@
 #!/bin/bash
 
 if [[ $1 =~ '-h' ]] || [[ $1 == '*.inp' ]] || [[ -z $2 ]]; then
-    echo 'usage: seed [FILENAME.inp] [SEED] [lattice A, B, C]'
+    # echo 'usage: seed [FILENAME.inp] [SEED] [lattice A, B, C]'
     exit 1
 fi
 
 filename="${1%.*}"
 extension="${1##*.}"
-echo $filename $extension
+# echo $filename $extension
 shift
 
 SET=$(seq 1 $1)
-echo $SET
+# echo $SET
 shift
 
 a=$1
@@ -36,15 +36,15 @@ else
         c=$c.
     fi
 fi
-echo $a $b $c
+# echo $a $b $c
 
 for i in $SET
 do
-    echo $i
-    sed "/output/c\output $filename$i.xyz" $filename.inp
-    echo "sed \"/output/c\output $filename$i.xyz\" $filename.inp"
-    sed "/seed/c\seed $i" $filename.inp
-    echo "sed \"/seed/c\seed $i\" $filename.inp"
+    # echo $i
+    sed -i "/output/c\output $filename$i.xyz" $filename.inp
+    # echo "sed \"/output/c\output $filename$i.xyz\" $filename.inp"
+    sed -i "/seed/c\seed $i" $filename.inp
+    # echo "sed \"/seed/c\seed $i\" $filename.inp"
 #    ~/bin/packmol/packmol < $filename.inp
 done
 
