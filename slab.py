@@ -3,21 +3,20 @@ from ase.io import read, write
 from ase.build import surface
 from ase.constraints import FixAtoms
 
-bulk=read(f'a{argv[1]}.vasp',format='vasp')
-slab=surface(bulk, (1,1,1), 4, vacuum=15)
-write('b1.vasp',slab,format='vasp')
-# slab=read('b1.vasp',format='vasp')
-write('c1.vasp',slab.repeat((2,2,1)),format='vasp')
+filename=argv[1]
+numb=argv[2]
 
-os.system(f"~/bin/pyband/xcell.py -i a1.vasp -o o2.vasp")
+while i <= numb:
+    bulk=read(f'{filename}{i}.vasp')
+    slab=surface(bulk, (1,1,1), 4, vacuum=15)
+    # write(f'slab{i}.vasp',slab)
+    # slab=read(f'slab{i}.vasp')
+    write(f'slab{i}.vasp',slab.repeat((2,2,1)))
+    os.system(f'~/bin/pyband/xcell.py -i slab{i}.vasp -o xc{i}.vasp')
+    xcell=read(f'xc{i}.vasp')
+    min_z=min([xcell.position[2])
+    fixed=FixAtoms(indices=[atom.index for atom in xcell if atom.position[2] <= min_z + 1])
+    xcell.set_constraint(fixed)
+    write(f'fix{i}.vasp',fixed)
 
-os.system(f"~/bin/pyband/xcell.py -i {filename.replace('xyz', 'vasp')}")
-
-
-c = FixAtoms(indices=[atom.index for atom in atoms if atom.symbol == 'Cu'])
-atoms.set_constraint(c)
-
-month = 1
-while month <= 12:
-    print(f'2020년 {month}월')
-    month = month + 1
+# os.system('rm slab*.vasp xc*.vasp')
