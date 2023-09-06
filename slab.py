@@ -1,19 +1,35 @@
-from sys import argv
+import sys
+import argparse 
 from os import system
 from ase.io import read, write
 from ase.build import surface
 from ase.constraints import FixAtoms
 
-if argv[2]==None:
-    print('usage: slab [filename] [numb]')
-    exit()
-    
-filename=argv[1]
-numb=int(argv[2])
-vacuum=20
-boundary=1.0
-i=1
+parser = argparse.ArgumentParser(description='Command-line options example')
 
+parser.add_argument('-v', '--vacuum', type=float, default=20.0, help='Vaccum layer thickness (A)')
+parser.add_argument('-b', '--boundary', atype=float, default=1.0, help='Boundary for fixed atoms (A)')
+
+args, remaining_args = parser.parse_known_args()
+
+# Process arguments parsed by argparse
+vacuum = args.vacuum
+boundary = args.boundary
+
+# Process remaining arguments using sys.argv
+for arg in remaining_args:
+    if arg.startswith('-'):
+        print(f"Unrecognized option: {arg}")
+        sys.exit()
+
+if remaining_args.len() < 2:
+    parser.print_help()
+    sys.exit()
+else:
+    filename=string(remaining_args[1])
+    numb=float(remaining_args[2])
+
+i=1
 while i <= numb:
     system(f'sh ~/bin/orange/rmv.sh slab{i}.vasp xc{i}.vasp')
     bulk=read(f'{filename}{i}.vasp')
