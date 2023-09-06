@@ -15,7 +15,7 @@ while getopts ":x:m:l:i:o:" opt; do
       mag_tag=1
       ;;
     l)
-      submit='m'
+      submit='multi'
       ;;
     i)
       filename="$OPTARG"

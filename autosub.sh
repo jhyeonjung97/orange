@@ -6,7 +6,7 @@ submit=''
 filename=''
 jobname=''
 
-while getopts ":x:m:l:i:o:" opt; do
+while getopts ":xmli:o:" opt; do
   case $opt in
     x)
       xc_tag=1
