@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $1 =~ '-h' ]]; then
-    echo 'usage: mmff [filename.extention] lattice a, b, c'
+    echo 'usage: mmff [filename.extention (ex. cation.xyz)] lattice a, b, c'
 fi
 
 name="${1%.*}"
@@ -12,14 +12,11 @@ a=$2
 b=$3
 c=$4
 if [[ -z $a ]]; then
-    echo 'use default lattice parameter 50 A...'
-    a=50.
+    echo 'use default lattice parameter 30 A, 30 A, 40 A...'
+    a=30.
+    b=30.
+    c=40.
 fi
-
-for i in {0..9}
-do
-    sed -i -e "seed/c\seed $i"
-done
 
 # if [[ -f $name.$ext ]]; then
 #     # python ~/bin/orange/cluster.py $name.$ext $name.xyz $a
