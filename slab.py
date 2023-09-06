@@ -14,7 +14,7 @@ while i <= numb:
     system(f'rm slab{i}.vasp xc{i}.vasp')
     bulk=read(f'{filename}{i}.vasp')
     slab=surface(bulk, (1,1,1), 4, vacuum/2)
-    
+    slab.positions+=(0,0,0.1-vacuum/2)
     # write(f'slab{i}.vasp',slab)
     # slab=read(f'slab{i}.vasp')
     write(f'slab{i}.vasp',slab.repeat((2,2,1)))
