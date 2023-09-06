@@ -1,10 +1,10 @@
 #!/bin/bash
 
-p=''
-n=''
 xc_tag=0
 mag_tag=0
 submit=''
+filename=''
+jobname=''
 
 while getopts ":x:m:l:i:o:" opt; do
   case $opt in
