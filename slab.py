@@ -20,6 +20,7 @@ while i <= numb:
     xcell=read(f'xc{i}.vasp')
     min_z=min(xcell.positions[2])
     # del xcell.constraints
+    print(atom.index for atom in xcell if atom.position[2] <= min_z)
     fixed=FixAtoms(indices=[atom.index for atom in xcell if atom.position[2] <= min_z])
     print(fixed)
     xcell.set_constraint(fixed)
