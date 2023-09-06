@@ -34,7 +34,7 @@ while getopts ":x:m:l:i:o:" opt; do
   esac
 done
 
-echo $xc_tag $mag_tag $submit $filename $jobname
+echo '1' $xc_tag '2' $mag_tag '3' $submit '4' $filename '5' $jobname
 
 # Shift the options out, so $1, $2, etc. are the non-option arguments
 shift "$((OPTIND-1))"
