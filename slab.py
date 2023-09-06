@@ -12,11 +12,11 @@ filename=argv[1]
 numb=int(argv[2])
 if argv[3] == None:
     vacuum=15.0
-else
+else:
     vacuum=float(argv[3])
 if argv[4] == None:
     boundary=1.0
-else
+else:
     boundary=float(argv[4])
 
 i=1
