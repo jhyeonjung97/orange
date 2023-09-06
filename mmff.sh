@@ -16,6 +16,11 @@ if [[ -z $a ]]; then
     a=50.
 fi
 
+for i in {0..9}
+do
+    sed -i -e "seed/c\seed $i"
+done
+
 # if [[ -f $name.$ext ]]; then
 #     # python ~/bin/orange/cluster.py $name.$ext $name.xyz $a
 #     # obabel $name.xyz -O $name.mol2
