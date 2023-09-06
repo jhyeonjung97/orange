@@ -51,20 +51,21 @@ while i <= numb:
     # system(f'sh ~/bin/orange/rmv.sh slab{i}.vasp xc{i}.vasp')
     bulk=read(f'{filename}{i}.vasp')
     bulk.positions+=(0,0,bulk.cell[2,2]/2)
-    slab=surface(bulk, (x,y,z), layer, vacuum/2)
+    slab=surface(bulk, (x,y,z), layer, vacuum/2).repeat((a,b,c))
     slab.positions+=(0,0,0.1-vacuum/2)
     # write(f'slab{i}.vasp',slab)
     # slab=read(f'slab{i}.vasp')
-    write(f'slab{i}.vasp',slab.repeat((a,b,c)))
+    for atom in slab:
+        if atom.position[2] > 5 and atom.symbol != 'S':
+            atom.symbol='Pt'
+    write(f'slab{i}.vasp',slab)
     system(f'python ~/bin/pyband/xcell.py -i slab{i}.vasp -o xc{i}.vasp')
     xcell=read(f'xc{i}.vasp')
     min_z=xcell.positions[:,2].min()
     # min_z=min([atom.position[2] for atom in xcell])
     # print(min_z)
     # del xcell.constraints
-    for atom in xcell:
-        if atom.position[2] > 5 and atom.symbol != 'S':
-            atom.symbol='Pt'
+    
     # xcell.symbols[93]='Pt'
     # xcell.symbols[94]='Pt'
     # xcell.symbols[95]='Pt'
