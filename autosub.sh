@@ -34,6 +34,8 @@ while getopts ":x:m:l:i:o:" opt; do
   esac
 done
 
+echo $xc_tag $mag_tag $submit $filename $jobname
+
 # Shift the options out, so $1, $2, etc. are the non-option arguments
 shift "$((OPTIND-1))"
 
@@ -58,6 +60,8 @@ elif [[ ! -e "run_slurm.sh" ]]; then
 elif [[ -z $1 ]]; then
     echo 'usage: autosub (number)'
 fi
+
+
 
 multiple_input="${@}"
 if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
