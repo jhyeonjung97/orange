@@ -5,20 +5,13 @@ from ase.build import surface
 from ase.constraints import FixAtoms
 
 if argv[2]==None:
-    print('usage: slab [filename] [numb] [vacuum=15.0] [boundary=1.0]')
+    print('usage: slab [filename] [numb]')
     exit()
     
 filename=argv[1]
 numb=int(argv[2])
-if argv[3] == None:
-    vacuum=15.0
-else:
-    vacuum=float(argv[3])
-if argv[4] == None:
-    boundary=1.0
-else:
-    boundary=float(argv[4])
-
+vacuum=15
+boundary=1.0
 i=1
 
 while i <= numb:
