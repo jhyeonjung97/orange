@@ -62,10 +62,12 @@ while i <= numb:
     # min_z=min([atom.position[2] for atom in xcell])
     # print(min_z)
     # del xcell.constraints
-    # xcell.symbols[12]='Pt'
-    # xcell.symbols[13]='Pt'
-    # xcell.symbols[14]='Pt'
-    # xcell.symbols[15]='Pt'
+    for atom in xcell
+        if 92 < atom.index < 96 and atom.symbol =! 'S':
+            atom.symbol='Pt'
+    # xcell.symbols[93]='Pt'
+    # xcell.symbols[94]='Pt'
+    # xcell.symbols[95]='Pt'
     fixed=FixAtoms(indices=[atom.index for atom in xcell if atom.position[2] <= min_z + boundary])
     # print(fixed)
     # xcell.set_constraint(fixed)
