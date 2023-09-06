@@ -17,10 +17,10 @@ while i <= numb:
     system(f'~/bin/pyband/xcell.py -i slab{i}.vasp -o xc{i}.vasp')
     xcell=read(f'xc{i}.vasp')
     min_z=min(xcell.positions[2])
-    del xcell.constraints
+    # del xcell.constraints
     fixed=FixAtoms(indices=[atom.index for atom in xcell if atom.z <= min_z + 1])
     xcell.set_constraint(fixed)
-    write(f'fix{i}.vasp',fixed)
+    write(f'fix{i}.vasp',xcell)
     i=i+1
 
 # os.system('rm slab*.vasp xc*.vasp')
