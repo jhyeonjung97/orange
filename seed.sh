@@ -26,13 +26,13 @@ if [[ -z $a ]]; then
     b=30.
     c=40.
 else
-    if [[ ! $a =~ '.' ]]; then
+    if [[ $a != '*.*' ]]; then
         a=$a.
     fi
-    if [[ ! $b =~ '.' ]]; then
+    if [[ $b != '*.*' ]]; then
         b=$b.
     fi
-    if [[ ! $c =~ '.' ]]; then
+    if [[ $c != '*.*' ]]; then
         c=$c.
     fi
 fi
