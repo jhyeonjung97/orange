@@ -8,7 +8,7 @@ from ase.constraints import FixAtoms
 parser = argparse.ArgumentParser(description='Command-line options example')
 
 parser.add_argument('-v', '--vacuum', type=float, default=20.0, help='Vaccum layer thickness (A)')
-parser.add_argument('-b', '--boundary', atype=float, default=1.0, help='Boundary for fixed atoms (A)')
+parser.add_argument('-b', '--boundary', type=float, default=1.0, help='Boundary for fixed atoms (A)')
 
 args, remaining_args = parser.parse_known_args()
 
