@@ -11,7 +11,7 @@ parser.add_argument('-v', '--vacuum', type=float, default=20.0, help='Vaccum lay
 parser.add_argument('-z', '--boundary', type=float, default=1.0, help='Boundary for fixed atoms (A)')
 parser.add_argument('-s', '--vector', type=str, default='1,1,1', help='vector of surface index (e.g., "a,b,c")')
 parser.add_argument('-r', '--repeat', type=str, default='2,2,1', help='repeat (e.g., "a,b,c")')
-parser.add_argument('-l', '--layer', type=float, default='3', help='the number of layers')
+parser.add_argument('-l', '--layer', type=int, default='3', help='the number of layers')
 
 args, remaining_args = parser.parse_known_args()
 
