@@ -6,7 +6,7 @@ submit=''
 filename=''
 jobname=''
 
-while getopts ":xmuyni:o:" opt; do
+while getopts ":xmlyni:o:" opt; do
   case $opt in
     x)
       xc_tag=1
@@ -14,7 +14,7 @@ while getopts ":xmuyni:o:" opt; do
     m)
       mag_tag=1
       ;;
-    u)
+    l)
       submit='multi'
       ;;
     y)
