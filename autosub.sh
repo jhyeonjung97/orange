@@ -4,6 +4,51 @@ p=''
 n=''
 xc_tag=0
 mag_tag=0
+submit=''
+
+while getopts ":n:p" opt; do
+  case $opt in
+    x)
+      xc_tag=1
+      ;;
+    xc)
+      xc_tag=1
+      ;;
+    m)
+      mag_tag=1
+      ;;
+    t)
+      submit='multi'
+      ;;
+    p)
+      p="$OPTARG"
+      ;;
+    i)
+      p="$OPTARG"
+      ;;
+    f)
+      p="$OPTARG"
+      ;;
+    j)
+      n="$OPTARG"
+      ;;
+    n)
+      n="$OPTARG"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+# Shift the options out, so $1, $2, etc. are the non-option arguments
+shift "$((OPTIND-1))"
+
 # error cases
 if [[ $1 == '-qe' ]] || [[ $1 == 'qe' ]]; then
     sh ~/bin/orange/autosub-qe.sh ${@:2}
@@ -26,20 +71,6 @@ elif [[ -z $1 ]]; then
     echo 'usage: autosub (number)'
 fi
 
-if [[ $1 == '-x' ]] || [[ $1 == '-xc' ]]; then
-    shift
-    xc_tag=1
-fi
-if [[ $1 == '-m' ]] || [[ $1 == '-mag' ]]; then
-    shift
-    mag_tag=1
-fi
-if [[ $1 =~ '-i' ]] || [[ $1 =~ '-f' ]] || [[ $1 =~ '-p' ]]; then
-    shift
-    p=$1
-    shift
-fi
-
 multiple_input="${@}"
 if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
     SET=${@:2}
@@ -49,16 +80,6 @@ else
     SET=$(seq $1 $2)
 fi
 
-if [[ -z $p ]]; then
-    ls
-    read -p "POSCARs starts with: " p
-fi
-
-# read -p "job name: " n
-# if [[ -z $n ]]; then
-#     n=$p
-# fi
-
 # if [[ -n $(grep lobster run_slurm.sh) ]]; then
 #     cp run_slurm.sh lobster.sh
 #     if [[ ${here} =~ 'burning' ]]; then
@@ -67,7 +88,7 @@ fi
 #         sed -i -e '10,$d' lobster.sh
 #     fi
 # fi
-    
+
 for i in $SET
 do
     if [[ ! -d $i ]]; then
@@ -128,15 +149,16 @@ do
 done
 
 grep --colour NETCHG INCAR
-read -p 'do you want to submit jobs? [y/n] (default: n) ' submit
-if [[ $submit =~ 'y' ]]; then
-    for i in $SET
-    do
-        cd $i
-        sh ~/bin/orange/sub.sh
-        cd ..
-    done
-elif [[ $submit =~ 'm' ]] && [[ -n $multiple_input ]]; then
+# read -p 'do you want to submit jobs? [y/n] (default: n) ' submit
+# if [[ $submit =~ 'y' ]]; then
+#     for i in $SET
+#     do
+#         cd $i
+#         sh ~/bin/orange/sub.sh
+#         cd ..
+#     done
+# el
+if [[ $submit =~ 'm' ]] && [[ -n $multiple_input ]]; then
     sh ~/bin/orange/multiple.sh $multiple_input
     sh ~/bin/orange/jobname.sh $n
     echo "multiple $multiple_input; name $n"
