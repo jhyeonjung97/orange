@@ -10,7 +10,7 @@ if argv[2]==None:
     
 filename=argv[1]
 numb=int(argv[2])
-vacuum=15
+vacuum=20
 boundary=1.0
 i=1
 
