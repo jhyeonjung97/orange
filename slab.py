@@ -22,7 +22,7 @@ for arg in remaining_args:
         print(f"Unrecognized option: {arg}")
         sys.exit()
 
-if remaining_args.len() < 2:
+if len(remaining_args) < 2:
     parser.print_help()
     sys.exit()
 else:
