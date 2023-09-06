@@ -157,6 +157,9 @@ if [[ $submit =~ 'y' ]]; then
     done
 elif [[ $submit =~ 'm' ]] && [[ -n $multiple_input ]]; then
     sh ~/bin/orange/multiple.sh $multiple_input
-    sh ~/bin/orange/jobname.sh $jobname
-    echo "multiple $multiple_input; name $jobname"
+    echo "multiple $multiple_input"
+    if [[ -n $jobname ]]; then
+        sh ~/bin/orange/jobname.sh $jobname
+        echo "multiple $multiple_input; name $jobname"
+    fi
 fi
