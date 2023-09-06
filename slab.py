@@ -31,7 +31,7 @@ else:
 
 i=1
 while i <= numb:
-    system(f'sh ~/bin/orange/rmv.sh slab{i}.vasp xc{i}.vasp')
+    # system(f'sh ~/bin/orange/rmv.sh slab{i}.vasp xc{i}.vasp')
     bulk=read(f'{filename}{i}.vasp')
     slab=surface(bulk, (1,1,1), 4, vacuum/2)
     slab.positions+=(0,0,0.1-vacuum/2)
@@ -54,5 +54,5 @@ while i <= numb:
     write(f'fix{i}.vasp',xcell)
     i=i+1
 
-system('rm slab*.vasp xc*.vasp fix*.vasp')
+system('rm slab*.vasp xc*.vasp')
 system(f'sh ~/bin/orange/rename.sh fix.vasp {filename}.vasp')
