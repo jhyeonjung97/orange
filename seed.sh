@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $1 =~ '-h' ]] || [[ -z $2 ]] || [[ $extension != 'inp' ]]; then
+if [[ $1 =~ '-h' ]] || [[ $1 == '*.inp' ]] || [[ -z $2 ]]; then
     echo 'usage: seed [FILENAME.inp] [SEED] [lattice A, B, C]'
     exit 1
 fi
