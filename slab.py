@@ -4,16 +4,16 @@ from ase.io import read, write
 from ase.build import surface
 from ase.constraints import FixAtoms
 
+if argv[2]==None:
+    print('usage: slab [filename] [numb]')
+    exit()
+    
 filename=argv[1]
 numb=int(argv[2])
 vacuum=15.0
 boundary=1.0
 i=1
 
-if argv[2]==None:
-    print('usage: slab [filename] [numb]')
-    exit()
-    
 while i <= numb:
     system(f'rmv slab{i}.vasp xc{i}.vasp')
     bulk=read(f'{filename}{i}.vasp')
