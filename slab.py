@@ -73,4 +73,4 @@ while i <= numb:
     i=i+1
 
 system('rm slab*.vasp xc*.vasp')
-system(f'sh ~/bin/orange/rename.sh fix.vasp {filename}.vasp')
+#system(f'sh ~/bin/orange/rename.sh fix.vasp {filename}.vasp')
