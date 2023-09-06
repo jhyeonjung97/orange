@@ -18,10 +18,14 @@ args, remaining_args = parser.parse_known_args()
 if args.vector:
     x, y, z = args.vector.split(',')
     x=int(x); y=int(y); z=int(z)
-
-if args.vector:
-    a, b, c = args.vector.split(',')
+else:
+    print('Vector not provided.')
+    
+if args.repeat:
+    a, b, c = args.repeat.split(',')
     a=int(a); b=int(b); c=int(c)
+else:
+    print('Repeat not provided.')
         
 # Process arguments parsed by argparse
 vacuum = args.vacuum
