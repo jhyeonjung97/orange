@@ -16,9 +16,9 @@ shift
 
 a=$1
 shift
-b=$2
+b=$1
 shift
-c=$3
+c=$1
 shift
 if [[ -z $a ]]; then
     echo 'use default lattice parameter 30 A, 30 A, 40 A...'
