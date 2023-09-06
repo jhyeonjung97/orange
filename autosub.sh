@@ -6,34 +6,22 @@ xc_tag=0
 mag_tag=0
 submit=''
 
-while getopts ":x:xc:m:t:p:i:f:j:n:" opt; do
+while getopts ":x:m:t:i:o:" opt; do
   case $opt in
     x)
-      xc_tag=1
-      ;;
-    xc)
       xc_tag=1
       ;;
     m)
       mag_tag=1
       ;;
     t)
-      submit='multi'
-      ;;
-    p)
-      p="$OPTARG"
+      submit='m'
       ;;
     i)
-      p="$OPTARG"
+      filename="$OPTARG"
       ;;
-    f)
-      p="$OPTARG"
-      ;;
-    j)
-      n="$OPTARG"
-      ;;
-    n)
-      n="$OPTARG"
+    o)
+      jobname="$OPTARG"
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -102,10 +90,10 @@ do
         cp lobsterin $i
     fi
     if [[ -n $(grep mmff run_slurm.sh) ]]; then
-        sed -i -e "s/mmff.sh a.vasp/mmff.sh $p.vasp/" run_slurm.sh
-        cp $p$i.vasp $i
+        sed -i -e "s/mmff.sh a.vasp/mmff.sh $filename.vasp/" run_slurm.sh
+        cp $filename$i.vasp $i
     else
-        cp $p$i.vasp $i/POSCAR
+        cp $filename$i.vasp $i/POSCAR
     fi
     cd $i
     if [[ $xc_tag == 0 ]]; then
@@ -143,8 +131,8 @@ do
     else
         sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
     fi
-    sed -i -e "/#SBATCH --job-name/c\#SBATCH --job-name=\"$n$i\"" *.sh
-    sed -i -e "/#PBS -N/c\#PBS -N $n$i" *.sh
+    sed -i -e "/#SBATCH --job-name/c\#SBATCH --job-name=\"$jobname$i\"" *.sh
+    sed -i -e "/#PBS -N/c\#PBS -N $jobname$i" *.sh
     cd ..
 done
 
@@ -160,6 +148,6 @@ grep --colour NETCHG INCAR
 # el
 if [[ $submit =~ 'm' ]] && [[ -n $multiple_input ]]; then
     sh ~/bin/orange/multiple.sh $multiple_input
-    sh ~/bin/orange/jobname.sh $n
-    echo "multiple $multiple_input; name $n"
+    sh ~/bin/orange/jobname.sh $jobname
+    echo "multiple $multiple_input; name $jobname"
 fi
