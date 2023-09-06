@@ -6,15 +6,15 @@ xc_tag=0
 mag_tag=0
 submit=''
 
-while getopts ":xc:mag:m:i:o:" opt; do
+while getopts ":x:m:l:i:o:" opt; do
   case $opt in
-    xc)
+    x)
       xc_tag=1
       ;;
-    mag)
+    m)
       mag_tag=1
       ;;
-    m)
+    l)
       submit='m'
       ;;
     i)
