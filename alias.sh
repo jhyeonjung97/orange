@@ -2,7 +2,7 @@
 alias c='clear'
 alias ls='ls --color=auto'
 alias rm='~/bin/rm_mv'
-alias rmv='~/bin/orange/rmv.sh'
+alias rmv='sh ~/bin/orange/rmv.sh'
 alias remove='/bin/rm'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -50,13 +50,11 @@ alias orange='dir_now=$PWD
 cd ~/bin/orange
 git stash
 git pull
-chmod 744 *
 cd $dir_now'
 alias shoulder='dir_now=$PWD
 cd ~/bin/shoulder
 git stash
 git pull
-chmod 744 *
 cd $dir_now'
 
 #SSH
