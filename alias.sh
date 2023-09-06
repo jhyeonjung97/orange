@@ -50,11 +50,13 @@ alias orange='dir_now=$PWD
 cd ~/bin/orange
 git stash
 git pull
+chmod 744 *
 cd $dir_now'
 alias shoulder='dir_now=$PWD
 cd ~/bin/shoulder
 git stash
 git pull
+chmod 744 *
 cd $dir_now'
 
 #SSH
