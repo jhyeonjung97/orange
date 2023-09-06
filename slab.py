@@ -26,7 +26,7 @@ if len(remaining_args) < 2:
     parser.print_help()
     sys.exit()
 else:
-    filename=string(remaining_args[1])
+    filename=str(remaining_args[1])
     numb=float(remaining_args[2])
 
 i=1
