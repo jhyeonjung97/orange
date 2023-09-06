@@ -9,9 +9,19 @@ parser = argparse.ArgumentParser(description='Command-line options example')
 
 parser.add_argument('-v', '--vacuum', type=float, default=20.0, help='Vaccum layer thickness (A)')
 parser.add_argument('-z', '--boundary', type=float, default=1.0, help='Boundary for fixed atoms (A)')
+parser.add_argument('-l', '--vector', type=str, default='1,1,1', help='vector of surface index (e.g., "a,b,c")')
 
 args, remaining_args = parser.parse_known_args()
 
+# Process the 'coordinates' option
+if args.vector:
+    x, y, z = args.vector.split(',')
+    x=int(x)
+    y=int(y)
+    z=int(z)
+else:
+    print('Coordinates not provided.')
+        
 # Process arguments parsed by argparse
 vacuum = args.vacuum
 boundary = args.boundary
@@ -33,11 +43,11 @@ i=1
 while i <= numb:
     # system(f'sh ~/bin/orange/rmv.sh slab{i}.vasp xc{i}.vasp')
     bulk=read(f'{filename}{i}.vasp')
-    slab=surface(bulk, (1,1,1), 4, vacuum/2)
+    slab=surface(bulk, (0,0,1), 4, vacuum/2)
     slab.positions+=(0,0,0.1-vacuum/2)
     # write(f'slab{i}.vasp',slab)
     # slab=read(f'slab{i}.vasp')
-    write(f'slab{i}.vasp',slab.repeat((2,2,1)))
+    write(f'slab{i}.vasp',slab.repeat((x,y,z)))
     system(f'python ~/bin/pyband/xcell.py -i slab{i}.vasp -o xc{i}.vasp')
     xcell=read(f'xc{i}.vasp')
     min_z=xcell.positions[:,2].min()
