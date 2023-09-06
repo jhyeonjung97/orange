@@ -69,5 +69,5 @@ while i <= numb:
     write(f'fix{i}.vasp',xcell)
     i=i+1
 
-system('rm slab*.vasp xc*.vasp')
-system(f'sh ~/bin/orange/rename.sh fix.vasp {filename}.vasp')
+#system('rm slab*.vasp xc*.vasp')
+#system(f'sh ~/bin/orange/rename.sh fix.vasp {filename}.vasp')
