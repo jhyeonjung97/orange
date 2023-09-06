@@ -48,7 +48,7 @@ i=1
 while i <= numb:
     # system(f'sh ~/bin/orange/rmv.sh slab{i}.vasp xc{i}.vasp')
     bulk=read(f'{filename}{i}.vasp')
-    bulk.positions+=(0,0,bulk.cell[2,2])
+    bulk.positions+=(0,0,bulk.cell[2,2]/2)
     slab=surface(bulk, (x,y,z), 4, vacuum/2)
     slab.positions+=(0,0,0.1-vacuum/2)
     # write(f'slab{i}.vasp',slab)
