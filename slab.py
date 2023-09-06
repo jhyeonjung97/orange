@@ -9,8 +9,9 @@ parser = argparse.ArgumentParser(description='Command-line options example')
 
 parser.add_argument('-v', '--vacuum', type=float, default=20.0, help='Vaccum layer thickness (A)')
 parser.add_argument('-z', '--boundary', type=float, default=1.0, help='Boundary for fixed atoms (A)')
-parser.add_argument('-l', '--vector', type=str, default='1,1,1', help='vector of surface index (e.g., "a,b,c")')
+parser.add_argument('-i', '--vector', type=str, default='1,1,1', help='vector of surface index (e.g., "a,b,c")')
 parser.add_argument('-r', '--repeat', type=str, default='2,2,1', help='repeat (e.g., "a,b,c")')
+parser.add_argument('-l', '--layer', type=float, default='3', help='the number of layers')
 
 args, remaining_args = parser.parse_known_args()
 
@@ -30,6 +31,7 @@ else:
 # Process arguments parsed by argparse
 vacuum = args.vacuum
 boundary = args.boundary
+layer = args.layer
 
 # Process remaining arguments using sys.argv
 for arg in remaining_args:
@@ -49,7 +51,7 @@ while i <= numb:
     # system(f'sh ~/bin/orange/rmv.sh slab{i}.vasp xc{i}.vasp')
     bulk=read(f'{filename}{i}.vasp')
     bulk.positions+=(0,0,bulk.cell[2,2]/2)
-    slab=surface(bulk, (x,y,z), 4, vacuum/2)
+    slab=surface(bulk, (x,y,z), layer, vacuum/2)
     slab.positions+=(0,0,0.1-vacuum/2)
     # write(f'slab{i}.vasp',slab)
     # slab=read(f'slab{i}.vasp')
