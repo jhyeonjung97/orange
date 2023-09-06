@@ -29,7 +29,7 @@ alias queue='sh ~/bin/orange/queue.sh'
 alias nofile='find . -maxdepth 1 -type f -delete'
 alias merge='git stash'
 alias direct='sh ~/bin/orange/direct.sh'
-alias slab='python3 ~/bin/orange/slab.py'
+# alias slab='python3 ~/bin/orange/slab.py'
 # alias weekend='
 
 alias zip='tar -cvzf'
