@@ -85,6 +85,10 @@ fi
 #     fi
 # fi
 
+if [[ -z $filename ]]; then
+    read -p 'filename of vasp files?' filename
+fi
+
 for i in $SET
 do
     if [[ ! -d $i ]]; then
