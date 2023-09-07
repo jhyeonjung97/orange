@@ -30,6 +30,7 @@ alias nofile='find . -maxdepth 1 -type f -delete'
 alias merge='git stash'
 alias direct='sh ~/bin/orange/direct.sh'
 alias slab='python3 ~/bin/orange/slab.py'
+alias split_dos='python ~/bin/vtstscripts/split_dos.py'
 # alias weekend='
 
 alias zip='tar -cvzf'
