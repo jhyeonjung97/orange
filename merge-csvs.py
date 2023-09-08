@@ -1,6 +1,7 @@
 import os
+from sys import argv
 import numpy as np
-
+    
 # Set the parent directory path where the CSV files are located to the current working directory
 parent_dir = './'
 

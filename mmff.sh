@@ -29,24 +29,32 @@ fi
 #     obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name.mol2 > $name.pdb
 # fi
     
-for file in *
+# for file in *
+# do
+#     name0="${file%.*}"
+#     ext0="${file##*.}"
+#     # echo $name0 $ext0
+#     if [[ $name0 =~ $name ]] && [[ $ext0 == $ext ]]; then
+#         # python ~/bin/orange/cluster.py $name$i.$ext $name$i.xyz $a
+#         # obabel $name$i.xyz -O $name$i.mol2
+#         i=${name0//$name/}
+#         if [[ $ext != 'mol2' ]]; then
+#             echo "obabel $name$i.$ext -O $name$i.mol2"
+#             obabel $name$i.$ext -O $name$i.mol2
+#         fi
+#         echo "obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb"
+#         obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb
+#         # obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s a1.mol2 > a1.pdb
+#         # python ~/bin/orange/cluster.py $name$i.pdb $name$i.xyz $a
+#     fi
+# done
+
+for i in {0..9}
 do
-    name0="${file%.*}"
-    ext0="${file##*.}"
-    # echo $name0 $ext0
-    if [[ $name0 =~ $name ]] && [[ $ext0 == $ext ]]; then
-        # python ~/bin/orange/cluster.py $name$i.$ext $name$i.xyz $a
-        # obabel $name$i.xyz -O $name$i.mol2
-        i=${name0//$name/}
-        if [[ $ext != 'mol2' ]]; then
-            echo "obabel $name$i.$ext -O $name$i.mol2"
-            obabel $name$i.$ext -O $name$i.mol2
-        fi
-        echo "obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb"
-        obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb
-        # obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s a1.mol2 > a1.pdb
-        # python ~/bin/orange/cluster.py $name$i.pdb $name$i.xyz $a
-    fi
+    echo "obabel $name$i.$ext -O $name$i.mol2"
+    obabel $name$i.$ext -O $name$i.mol2
+    echo "obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb"
+    obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb
 done
 
 python3 ~/bin/orange/convert.py pdb vasp $a $b $c
