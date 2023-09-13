@@ -7,7 +7,7 @@ from ase.constraints import FixAtoms
 
 parser = argparse.ArgumentParser(description='Command-line options example')
 
-parser.add_argument('filename', type=str, default='a.vasp', help='input filename (e.g., a.vasp for a1~a3.vasp)')
+parser.add_argument('filename', type=str, default='a.vasp', help='input filename (e.g., a for a1~a3.vasp)')
 parser.add_argument('-n', '--number', type=int, default=0, help='the number of files (e.g., 3 for a1~a3.vasp)')
 parser.add_argument('-o', '--output',type=str, default='slab.vasp', help='output filename')
 parser.add_argument('-v', '--vacuum', type=float, default=20.0, help='Vaccum layer thickness (A)')
@@ -53,13 +53,11 @@ if args.repeat:
 #     filename=str(remaining_args[0])
 #     numb=int(remaining_args[1])
 
-numb_tag=0
 if numb == 0:
     i=-1
 else:
     i=0
 
-i=-1
 while i < numb:
     if numb == 0:
         i=None
