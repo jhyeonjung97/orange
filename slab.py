@@ -7,47 +7,57 @@ from ase.constraints import FixAtoms
 
 parser = argparse.ArgumentParser(description='Command-line options example')
 
+parser.add_argument('filename', type=str, default='a.vasp', help='input filename (e.g., a.vasp for a1~a3.vasp)')
+parser.add_argument('-n', '--number', type=int, default=0, help='the number of files (e.g., 3 for a1~a3.vasp)')
+parser.add_argument('-o', '--output',type=str, default='slab.vasp', help='output filename')
 parser.add_argument('-v', '--vacuum', type=float, default=20.0, help='Vaccum layer thickness (A)')
 parser.add_argument('-z', '--boundary', type=float, default=1.0, help='Boundary for fixed atoms (A)')
 parser.add_argument('-f', '--facet', type=str, default='1,1,1', help='Surface facet vector (e.g., "x,y,z")')
 parser.add_argument('-r', '--repeat', type=str, default='2,2,1', help='Repeat unit cell (e.g., "a,b,c")')
-parser.add_argument('-l', '--layer', type=int, default='3', help='the number of layers')
+parser.add_argument('-l', '--layer', type=int, default=3, help='the number of layers')
 
-args, remaining_args = parser.parse_known_args()
-
-# Process the 'coordinates' option
-if args.vector:
-    x, y, z = args.vector.split(',')
-    x=int(x); y=int(y); z=int(z)
-else:
-    print('Vector not provided.')
-    
-if args.repeat:
-    a, b, c = args.repeat.split(',')
-    a=int(a); b=int(b); c=int(c)
-else:
-    print('Repeat not provided.')
+# args, remaining_args = parser.parse_known_args()
+args = parser.parse_args()
         
 # Process arguments parsed by argparse
 vacuum = args.vacuum
 boundary = args.boundary
 layer = args.layer
+filename = args.filename
+numb = args.number
+
+# Process the 'facet' and 'repeat' option
+if args.facet:
+    x, y, z = map(int, args.facet.split(','))
+    
+if args.repeat:
+    a, b, c = map(int, args.repeat.split(','))
+# else:
+#     print('Repeat not provided.')
 
 # Process remaining arguments using sys.argv
-for arg in remaining_args:
-    if arg.startswith('-'):
-        print(f"Unrecognized option: {arg}")
-        sys.exit()
+# for arg in remaining_args:
+#     if arg.startswith('-'):
+#         print(f"Unrecognized option: {arg}")
+#         sys.exit()
 
-if len(remaining_args) < 2:
-    parser.print_help()
-    sys.exit()
+# if len(remaining_args) < 2:
+#     parser.print_help()
+#     sys.exit()
+# else:
+#     filename=str(remaining_args[0])
+#     numb=int(remaining_args[1])
+
+numb_tag=0
+if numb == 0:
+    i=-1
 else:
-    filename=str(remaining_args[0])
-    numb=float(remaining_args[1])
+    i=0
 
-i=1
-while i <= numb:
+i=-1
+while i < numb:
+    if numb == 0:
+        i=None
     # system(f'sh ~/bin/orange/rmv.sh slab{i}.vasp xc{i}.vasp')
     bulk=read(f'{filename}{i}.vasp')
     bulk.positions+=(0,0,bulk.cell[2,2]/2)
@@ -73,7 +83,8 @@ while i <= numb:
     # print(fixed)
     # xcell.set_constraint(fixed)
     write(f'fix{i}.vasp',xcell)
-    i=i+1
+    if numb > 0:
+        i=i+1
 
 system('rm slab*.vasp xc*.vasp')
 system(f'sh ~/bin/orange/rename.sh fix.vasp {filename}.vasp')
