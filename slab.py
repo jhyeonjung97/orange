@@ -54,11 +54,11 @@ if args.repeat:
 #     numb=int(remaining_args[1])
 
 if numb == 0:
-    i=-1
-else:
     i=0
+else:
+    i=1
 
-while i < numb:
+while i <= numb:
     if numb == 0:
         i=None
     # system(f'sh ~/bin/orange/rmv.sh slab{i}.vasp xc{i}.vasp')
