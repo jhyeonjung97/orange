@@ -65,8 +65,6 @@ elif [[ -z $1 ]]; then
     echo 'usage: autosub (number)'
 fi
 
-
-
 multiple_input="${@}"
 if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
     SET=${@:2}
@@ -86,7 +84,10 @@ fi
 # fi
 
 if [[ -z $filename ]]; then
-    read -p 'filename of vasp files?' filename
+    read -p 'name of the file? ' filename
+fi
+if [[ -z $jobname ]]; then
+    read -p 'name of the job? ' jobname
 fi
 
 for i in $SET
