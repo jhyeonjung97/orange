@@ -53,8 +53,8 @@ for i in {0..9}
 do
     echo "obabel $name$i.$ext -O $name$i.mol2"
     obabel $name$i.$ext -O $name$i.mol2
-    echo "obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb"
-    obminimize -n 10000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb
+    echo "obminimize -n 1000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb"
+    obminimize -n 1000000000 -sd -c 1e-10 -ff MMFF94s $name$i.mol2 > $name$i.pdb
 done
 
 python3 ~/bin/orange/convert.py pdb vasp $a $b $c
