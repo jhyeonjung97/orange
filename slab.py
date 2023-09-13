@@ -87,9 +87,11 @@ while i <= numb:
     # print(min_z)
     # del xcell.constraints
     
+    # custom - constrain
     fixed=FixAtoms(indices=[atom.index for atom in xcell if atom.position[2] <= min_z + boundary])
-    # print(fixed)
     xcell.set_constraint(fixed)
+    # print(fixed)
+    
     write(f'fix{i}.vasp',xcell)
     if numb > 0:
         i=i+1
