@@ -68,9 +68,17 @@ while i <= numb:
     slab.positions+=(0,0,0.1-vacuum/2)
     # write(f'slab{i}.vasp',slab)
     # slab=read(f'slab{i}.vasp')
+    
+    # # custom1
+    # for atom in slab:
+    #     if atom.position[2] > 5 and atom.symbol != 'S':
+    #         atom.symbol='Pt'
+            
+    # custom2
     for atom in slab:
-        if atom.position[2] > 5 and atom.symbol != 'S':
-            atom.symbol='Pt'
+        if atom.position[2] > 5:
+            atom.symbol='Ir'
+            
     write(f'slab{i}.vasp',slab)
     system(f'python ~/bin/pyband/xcell.py -i slab{i}.vasp -o xc{i}.vasp')
     xcell=read(f'xc{i}.vasp')
@@ -79,12 +87,9 @@ while i <= numb:
     # print(min_z)
     # del xcell.constraints
     
-    # xcell.symbols[93]='Pt'
-    # xcell.symbols[94]='Pt'
-    # xcell.symbols[95]='Pt'
     fixed=FixAtoms(indices=[atom.index for atom in xcell if atom.position[2] <= min_z + boundary])
     # print(fixed)
-    # xcell.set_constraint(fixed)
+    xcell.set_constraint(fixed)
     write(f'fix{i}.vasp',xcell)
     if numb > 0:
         i=i+1
