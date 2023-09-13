@@ -20,13 +20,18 @@ parser.add_argument('-l', '--layer', type=int, default=3, help='the number of la
 args = parser.parse_args()
         
 # Process arguments parsed by argparse
+filename = args.filename
+numb = args.number
 vacuum = args.vacuum
 boundary = args.boundary
 layer = args.layer
-filename = args.filename
-numb = args.number
 
-# Process the 'facet' and 'repeat' option
+# Process the 'output', 'facet' and 'repeat' option
+if args.output:
+    output = args.output
+else:
+    output = filename
+
 if args.facet:
     x, y, z = map(int, args.facet.split(','))
     
@@ -87,4 +92,4 @@ while i < numb:
         i=i+1
 
 system('rm slab*.vasp xc*.vasp')
-system(f'sh ~/bin/orange/rename.sh fix.vasp {filename}.vasp')
+system(f'sh ~/bin/orange/rename.sh fix.vasp {output}.vasp')
