@@ -26,7 +26,9 @@ alias clone='sh ~/bin/orange/clone.sh'
 alias pomass='sh ~/bin/orange/pomass.sh'
 alias walltime='sh ~/bin/orange/walltime.sh'
 alias queue='sh ~/bin/orange/queue.sh'
-alias nofile='mkdir _trash; find . -maxdepth 1 -type f -exec mv {} _trash \; ~/bin/rm_mv _trash'
+alias nofile='mkdir _trash
+find . -maxdepth 1 -type f -exec mv {} _trash \;
+~/bin/rm_mv _trash'
 alias rmfile='find . -maxdepth 1 -type f -delete'
 alias direct='sh ~/bin/orange/direct.sh'
 alias slab='python3 ~/bin/orange/slab.py'
