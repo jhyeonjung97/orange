@@ -5,14 +5,18 @@ mag_tag=0
 submit=''
 filename=''
 jobname=''
+sed -i -e '/RECOMMEND/s/.FALSE.  /.TRUE.  /' ~/.vaspkit
 
-while getopts ":xmlyni:o:" opt; do
+while getopts ":xmplyni:o:" opt; do
   case $opt in
     x)
       xc_tag=1
       ;;
     m)
       mag_tag=1
+      ;;
+    p)
+      sed -i -e '/RECOMMEND/s/.TRUE.  /.FALSE.  /' ~/.vaspkit
       ;;
     l)
       submit='multi'
@@ -41,8 +45,8 @@ while getopts ":xmlyni:o:" opt; do
 done
 
 # Shift the options out, so $1, $2, etc. are the non-option arguments
-shift "$((OPTIND-1))"
-
+shift "$((OPTIND-1))"    
+        
 # error cases
 if [[ $1 == '-qe' ]] || [[ $1 == 'qe' ]]; then
     sh ~/bin/orange/autosub-qe.sh ${@:2}
@@ -123,7 +127,7 @@ do
     if [[ -s POTCAR ]]; then
         rm POTCAR
     fi
-    vaspkit -task 103 | grep --colour POTCAR
+    vaspkit -task 103 | grep --colour POTCAR  
     if [[ ! -s POTCAR ]]; then
         python3 ~/bin/shoulder/potcar_ara.py
     fi
@@ -168,3 +172,5 @@ elif [[ $submit =~ 'm' ]] && [[ -n $multiple_input ]]; then
         echo "multiple $multiple_input; name $jobname"
     fi
 fi
+
+sed -i -e '/RECOMMEND/s/.FALSE.  /.TRUE.  /' ~/.vaspkit
