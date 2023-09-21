@@ -187,3 +187,6 @@ fi
 if in_array 'repeat' "${type[*]}"; then
     sed -i -e 's/ediff.sh/repeat.sh/g' run_slurm.sh
 fi
+if in_array 'freq' "${type[*]}"; then
+    sed -i -e 's/; sh ~\/bin\/orange\/ediff.sh//' run_slurm.sh
+fi
