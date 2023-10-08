@@ -24,7 +24,7 @@ output = args.output
 slab=read(filename)
 a=slab.cell[0][0]
 b=slab.cell[1][1]
-c=slab.cell[2][2]
+# c=slab.cell[2][2]
 z=slab.positions[:,2].max()
 
 factor=4/8.490373/4.901919 # ase WL.pj
@@ -40,5 +40,7 @@ system(f'sh ~/bin/orange/water-slab.sh {a} {b} {top} {number} {seed} {output}')
 
 for i in range(1,seed+1):
     water=read(f'{output}{i}.vasp')
+    water.positions+=(0, 0, z)
     slab_water=slab+water
+    slab_water.wrap()
     write(f'hello{i}.vasp',slab_water)
