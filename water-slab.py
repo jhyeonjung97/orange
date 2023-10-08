@@ -40,7 +40,7 @@ system(f'sh ~/bin/orange/water-slab.sh {a} {b} {top} {number} {seed} {output}')
 
 for i in range(1,seed+1):
     water=read(f'{output}{i}.vasp')
-    water.positions+=(0, 0, z)
+    water.positions+=(0, 0, z+2)
     slab_water=slab+water
     slab_water.wrap()
     write(f'hello{i}.vasp',slab_water)
