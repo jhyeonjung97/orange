@@ -25,7 +25,7 @@ slab=read(filename)
 a=slab.cell[0][0]
 b=slab.cell[1][1]
 c=slab.cell[2][2]
-z=slab.positions[:,2].max()+2
+z=slab.positions[:,2].max()
 
 factor=4/8.490373/4.901919 # ase WL.pj
 number=int(a*b*factor*layer)+1
