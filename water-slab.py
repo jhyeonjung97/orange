@@ -45,4 +45,4 @@ for i in range(1,iteration+1):
         water.positions+=(0, 0, z+2)
         slab_water=slab+water
         slab_water.wrap()
-        write(f'{filename}{i}{j}.vasp',slab_water)
+        write(f'o-{filename}{i}{j}.vasp',slab_water)
