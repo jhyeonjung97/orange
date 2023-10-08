@@ -40,4 +40,4 @@ system(f'sh ~/bin/orange/water-slab.sh {a} {b} {c} {z} {top} {number} {seed} {ou
 
 for i in range(1,seed+1):
     water=read(f'{output}{i}.vasp')
-    write(f'{output}{i}.vasp',slab+water)
+    write(f'hello{i}.vasp',slab+water)
