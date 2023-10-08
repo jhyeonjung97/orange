@@ -34,14 +34,11 @@ while number < 2:
     layer=input()
     number=int(a*b*factor*layer)+1
 
-top=z+number/a/b*10**30/997/1000*18.01528/(6.022*10**23)
-a=round(a, 3)
-b=round(b, 3)
-c=round(c, 3)
-z=round(z, 3)
-top=round(top, 3)
-system(f'sh ~/bin/orange/water-slab.sh {a} {b} {c} {z} {top} {number} {seed} {output}')
+top=number/a/b*10**30/997/1000*18.01528/(6.022*10**23)
+# top=round(top, 4)
+system(f'sh ~/bin/orange/water-slab.sh {a} {b} {top} {number} {seed} {output}')
 
 for i in range(1,seed+1):
     water=read(f'{output}{i}.vasp')
-    write(f'hello{i}.vasp',slab+water)
+    slab_water=slab+water
+    write(f'hello{i}.vasp',slab_water)
