@@ -11,6 +11,16 @@ parser.add_argument('-l', '--layer',type=int, default=4, help='the number of wat
 parser.add_argument('-s', '--seed', type=int, default=3, help='the number of seeds')
 parser.add_argument('-o', '--output', type=str, default='water-slab', help='output filename')
 
+# args, remaining_args = parser.parse_known_args()
+args = parser.parse_args()
+        
+# Process arguments parsed by argparse
+filename = args.filename
+number = args.number
+layer = args.layer
+seed = args.seed
+output = args.output
+
 slab=read(filename)
 a=slab.cell[0][0]
 b=slab.cell[1][1]
