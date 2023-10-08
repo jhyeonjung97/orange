@@ -16,8 +16,8 @@ output=$1; shift
 
 cp ~/input_files/water.xyz .
 cp ~/input_files/water-slab.inp .
-sed -i "/number/c\number $number" water-slab.inp
-sed -i "/inside/c\inside box 0. 0. $z $a $b $top" water-slab.inp
+sed -i "/number/c\  number $number" water-slab.inp
+sed -i "/inside/c\  inside box 0. 0. $z $a $b $top" water-slab.inp
 
 for i in $(seq 1 $seed)
 do

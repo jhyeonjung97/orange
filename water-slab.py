@@ -34,7 +34,7 @@ while number < 2:
     layer=input()
     number=int(a*b*factor*layer)+1
 
-top=number/a/b*10**30/997/1000*18.01528/(6.022*10**23)
+top=z+number/a/b*10**30/997/1000*18.01528/(6.022*10**23)
 a=round(a, 3)
 b=round(b, 3)
 c=round(c, 3)
