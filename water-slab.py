@@ -11,7 +11,7 @@ parser.add_argument('-l', '--layer',type=int, default=4, help='the number of wat
 parser.add_argument('-s', '--seed', type=int, default=3, help='the number of seeds')
 parser.add_argument('-o', '--output', type=str, default='water-slab', help='output filename')
 
-slab=read(f'{filename}')
+slab=read(filename)
 a=slab.cell[0][0]
 b=slab.cell[1][1]
 c=slab.cell[2][2]
