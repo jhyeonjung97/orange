@@ -35,7 +35,10 @@ while number < 2:
     number=int(a*b*factor*layer)+1
 
 top=number/a/b*10**30/997/1000*18.01528/(6.022*10**23)
-print(top)
+a=round(a, 3)
+b=round(b, 3)
+c=round(c, 3)
+z=round(z, 3)
 top=round(top, 3)
 system(f'sh ~/bin/orange/water-slab.sh {a} {b} {c} {z} {top} {number} {seed} {output}')
 
