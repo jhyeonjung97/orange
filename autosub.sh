@@ -78,6 +78,10 @@ else
     SET=$(seq $1 $2)
 fi
 
+if [[ -n $(grep LiS $PWD) ]]; then
+    sed -i -e '/RECOMMEND/s/.TRUE.  /.FALSE.  /' ~/.vaspkit
+fi
+
 # if [[ -n $(grep lobster run_slurm.sh) ]]; then
 #     cp run_slurm.sh lobster.sh
 #     if [[ ${here} =~ 'burning' ]]; then
