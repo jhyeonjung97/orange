@@ -78,7 +78,7 @@ else
     SET=$(seq $1 $2)
 fi
 
-if [[ -n $(grep LiS $PWD) ]]; then
+if [[ -n $(echo $PWD | grep LiS) ]]; then
     sed -i -e '/RECOMMEND/s/.TRUE.  /.FALSE.  /' ~/.vaspkit
 fi
 
