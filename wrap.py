@@ -10,7 +10,7 @@ atoms=read(f'{filename}')
 #         atoms.cell[2][2]=vac
 #         write(f'{a}{i}.vasp',atoms)
 
-if len(argv)==2:
+if len(argv)==3:
     height=float(argv[2])
     atoms.cell[2][2]=height
 
