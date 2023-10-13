@@ -3,6 +3,7 @@ from sys import argv
 
 filename=argv[1]
 atoms=read(f'{filename}')
+atoms.wrap()
 
 # for a in ['a', 'b', 'c']:
 #     for i in range(0,9):
