@@ -3,7 +3,7 @@ from ase.io import read, write
 from ase.io.vasp import read_vasp_xdatcar
 
 filename=argv[1]
-if not filename=='XDATCAR':
+if filename=='XDATCAR':
     structures = read_vasp_xdatcar('XDATCAR', index=0)
     for atoms in structures:
         atoms.wrap()
