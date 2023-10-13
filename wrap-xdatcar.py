@@ -2,13 +2,14 @@ from sys import argv
 from ase.io import read, write
 from ase.io.vasp import read_vasp_xdatcar
 
+
+cell = structures[0].cell
+
+
+
 filename=argv[1]
 if not filename=='XDATCAR':
     structures = read_vasp_xdatcar('XDATCAR', index=0)
-    for atoms in structures:
-        atoms.wrap()
-    write_vasp_xdatcar('test_XDATCAR', structures)
-np.savetxt(f'numb_hydrations_{cation}.csv', numb_hydrations, delimiter=',')
 else:
     atoms=read(f'{filename}')
     atoms.wrap()
