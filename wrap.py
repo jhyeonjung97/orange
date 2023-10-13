@@ -6,7 +6,7 @@ filename=argv[1]
 if filename=='XDATCAR':
     structures = read_vasp_xdatcar('XDATCAR', index=0)
     for atoms in structures:
-        atoms.wrap()
+        atoms.cell[2][2]=50
     write_vasp_xdatcar('test_XDATCAR', structures)
 else:
     atoms=read(f'{filename}')
