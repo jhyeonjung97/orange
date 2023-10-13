@@ -1,6 +1,6 @@
 from sys import argv
 from ase.io import read, write
-from ase.io.vasp import read_vasp_xdatcar
+from ase.io.vasp import read_vasp_xdatcar, write_vasp_xdatcar
 
 filename=argv[1]
 if filename=='XDATCAR':
