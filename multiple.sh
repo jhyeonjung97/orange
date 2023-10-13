@@ -53,6 +53,13 @@ do
         echo "mv conti*/ $i/" >> run_slurm.sh
     fi
     echo " " >> run_slurm.sh
+    cd $i
+    if [[ -n $(grep POTIM INCAR | grep 0.015) ]]; then
+        sed -i "/NPAR/d" INCAR
+    else
+        sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
+    fi
+    cd ..
 done
 rm fragment.sh
 if [[ -n $(grep vdw_kernel.bindat run_slurm.sh) ]]; then

@@ -147,7 +147,7 @@ do
         echo "Note: This is MD calculation"
         sh ~/bin/orange/pomass.sh
     fi
-    if [[ -z $(grep POTIM INCAR) ]] || [[ -n $(grep POTIM INCAR | grep 0.015) ]]; then
+    if [[ -n $(grep POTIM INCAR | grep 0.015) ]]; then
         sed -i "/NPAR/d" INCAR
     else
         sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
