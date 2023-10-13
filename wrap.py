@@ -8,7 +8,6 @@ if not filename=='XDATCAR':
     for atoms in structures:
         atoms.wrap()
     write_vasp_xdatcar('test_XDATCAR', structures)
-np.savetxt(f'numb_hydrations_{cation}.csv', numb_hydrations, delimiter=',')
 else:
     atoms=read(f'{filename}')
     atoms.wrap()
