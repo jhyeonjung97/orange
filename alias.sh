@@ -49,6 +49,7 @@ alias port='sh ~/bin/orange/port.sh'
 alias repeat='sh ~/bin/orange/repeat.sh'
 alias rename='sh ~/bin/orange/rename.sh'
 alias convert='python3 ~/bin/orange/convert.py'
+alias wrap='python ~/bin/orange/wrap.py'
 
 alias orange='dir_now=$PWD
 cd ~/bin/orange
