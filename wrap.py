@@ -22,7 +22,7 @@ if filename=='XDATCAR':
     # for atoms in structures:
     #     atoms.cell[2][2]=50
     # write_vasp_xdatcar('test_XDATCAR', structures)
-else if number==0:
+elif number==0:
     atoms=read(f'{filename}')
     atoms.wrap()
     if height:
