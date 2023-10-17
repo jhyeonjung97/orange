@@ -23,6 +23,7 @@ layer = args.layer
 seed = args.seed
 output = args.output
 
+print(filename)
 slab=read(f'{filename}')
 a=slab.cell[0][0]
 b=slab.cell[1][1]

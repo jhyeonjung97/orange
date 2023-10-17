@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $1 =~ '-h' ]] || [[ $1 == '*.inp' ]] || [[ -z $2 ]]; then
-    # echo 'usage: sh ~/bin/orange/water-slab.sh {a} {b} {top} {number} {seed} {output}'
+    # echo 'usage: sh ~/bin/orange/water-slab.sh {a} {b} {top} {waternumb} {seed} {output}'
     exit 1
 fi
 
