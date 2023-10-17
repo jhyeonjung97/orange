@@ -5,7 +5,7 @@ from ase.io import read, write
 parser = argparse.ArgumentParser(description='Command-line options example')
 
 parser.add_argument('filename', type=str, default='CONTCAR', help='input slab filename (e.g., a1.vasp)')
-parser.add_argument('-n', '--filenumb', type=int, default=3, help='the number of files (e.g., 3 for a1~a3.vasp)')
+# parser.add_argument('-n', '--filenumb', type=int, default=3, help='the number of files (e.g., 3 for a1~a3.vasp)')
 parser.add_argument('-w', '--waternumb', type=int, default=0, help='the number of water molecules')
 parser.add_argument('-l', '--layer',type=int, default=4, help='the number of water layers')
 # parser.add_argument('-s', '--surface', type=int, default=9, help='the number of surface atoms')
@@ -17,7 +17,7 @@ args = parser.parse_args()
         
 # Process arguments parsed by argparse
 filename = args.filename
-filenumb = args.filenumb
+# filenumb = args.filenumb
 waternumb = args.waternumb
 layer = args.layer
 seed = args.seed
