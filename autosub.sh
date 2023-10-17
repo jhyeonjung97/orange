@@ -75,7 +75,7 @@ fi
 
 multiple_input="${@}"
 if [[ $select == 1 ]]; then
-    SET=${@:2}
+    SET=${@}
 elif [[ -z $2 ]]; then
     SET=$(seq 1 $1)
 else
