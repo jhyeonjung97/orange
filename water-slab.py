@@ -5,8 +5,8 @@ from ase.io import read, write
 parser = argparse.ArgumentParser(description='Command-line options example')
 
 parser.add_argument('filename', type=str, default='a', help='input filename (e.g., a for a1~a3.vasp)')
-parser.add_argument('-i', '--iteration', type=int, default=3, help='the number of files (e.g., 3 for a1~a3.vasp)')
-parser.add_argument('-n', '--number', type=int, default=0, help='the number of water molecules')
+parser.add_argument('-i', '--filenumb', type=int, default=3, help='the number of files (e.g., 3 for a1~a3.vasp)')
+parser.add_argument('-w', '--waternumb', type=int, default=0, help='the number of water molecules')
 parser.add_argument('-l', '--layer',type=int, default=4, help='the number of water layers')
 # parser.add_argument('-s', '--surface', type=int, default=9, help='the number of surface atoms')
 parser.add_argument('-s', '--seed', type=int, default=3, help='the number of seeds')
@@ -17,13 +17,13 @@ args = parser.parse_args()
         
 # Process arguments parsed by argparse
 filename = args.filename
-iteration = args.iteration
-number = args.number
+filenumb = args.filenumb
+waternumb = args.waternumb
 layer = args.layer
 seed = args.seed
 output = args.output
 
-for i in range(1,iteration+1):
+for i in range(1,filenumb+1):
     slab=read(f'{filename}{i}.vasp')
     a=slab.cell[0][0]
     b=slab.cell[1][1]
@@ -31,14 +31,14 @@ for i in range(1,iteration+1):
     z=slab.positions[:,2].max()
 
     factor=4/8.490373/4.901919 # ase WL.pj
-    number=int(a*b*factor*layer)+1
+    waternumb=int(a*b*factor*layer)+1
     while number < 2:
         print("How many water layers do you want?")
         layer=input()
-        number=int(a*b*factor*layer)+1
+        waternumb=int(a*b*factor*layer)+1
 
-    top=number/a/b*10**30/997/1000*18.01528/(6.022*10**23)
-    system(f'sh ~/bin/orange/water-slab.sh {a} {b} {top} {number} {seed} {output}')
+    top=waternumb/a/b*10**30/997/1000*18.01528/(6.022*10**23)
+    system(f'sh ~/bin/orange/water-slab.sh {a} {b} {top} {waternumb} {seed} {output}')
 
     for j in range(1,seed+1):
         water=read(f'{output}{j}.vasp')
