@@ -1,5 +1,6 @@
 #!/bin/bash
 
+select=0
 xc_tag=0
 mag_tag=0
 submit=''
@@ -7,7 +8,7 @@ filename=''
 jobname=''
 sed -i -e '/RECOMMEND/s/.FALSE.  /.TRUE.  /' ~/.vaspkit
 
-while getopts ":xmplyni:o:" opt; do
+while getopts ":xmplyni:o:s" opt; do
   case $opt in
     x)
       xc_tag=1
@@ -32,6 +33,9 @@ while getopts ":xmplyni:o:" opt; do
       ;;
     o)
       jobname="$OPTARG"
+      ;;
+    s)
+      select=1
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -70,7 +74,7 @@ elif [[ -z $1 ]]; then
 fi
 
 multiple_input="${@}"
-if [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
+if [[ $select == 1 ]]; then
     SET=${@:2}
 elif [[ -z $2 ]]; then
     SET=$(seq 1 $1)
