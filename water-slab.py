@@ -37,7 +37,7 @@ for i in range(1,filenumb+1):
         layer=input()
         waternumb=int(a*b*factor*layer)+1
 
-    top=waternumb/a/b*10**30/997/1000*18.01528/(6.022*10**23)
+    top=waternumb/a/b*10**30/997/1000*18.01528/(6.022*10**23)*1.2
     system(f'sh ~/bin/orange/water-slab.sh {a} {b} {top} {waternumb} {seed} {output}')
 
     for j in range(1,seed+1):
