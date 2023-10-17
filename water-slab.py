@@ -32,7 +32,7 @@ for i in range(1,filenumb+1):
 
     factor=4/8.490373/4.901919 # ase WL.pj
     waternumb=int(a*b*factor*layer)+1
-    while number < 2:
+    while waternumb < 2:
         print("How many water layers do you want?")
         layer=input()
         waternumb=int(a*b*factor*layer)+1
