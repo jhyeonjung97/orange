@@ -42,7 +42,7 @@ for i in range(1,filenumb+1):
 
     for j in range(1,seed+1):
         water=read(f'{output}{j}_w.vasp')
-        water.positions+=(0, 0, z+3)
+        water.positions+=(0, 0, z+2.5)
         slab_water=slab+water
         slab_water.wrap()
         write(f'{output}{j}.vasp',slab_water)
