@@ -41,8 +41,10 @@ for i in range(1,filenumb+1):
     system(f'sh ~/bin/orange/water-slab.sh {a} {b} {top} {waternumb} {seed} {output}')
 
     for j in range(1,seed+1):
-        water=read(f'{output}{j}.vasp')
+        water=read(f'{output}{j}_w.vasp')
         water.positions+=(0, 0, z+2)
         slab_water=slab+water
         slab_water.wrap()
-        write(f'o-{filename}{i}{j}.vasp',slab_water)
+        write(f'{output}{j}.vasp',slab_water)
+        
+system(f'~/bin/rm_mv *_w.vasp')

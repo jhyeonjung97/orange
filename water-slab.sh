@@ -19,7 +19,7 @@ sed -i "/inside/c\  inside box 0. 0. 0. $a $b $top" water-slab.inp
 
 for i in $(seq 1 $seed)
 do
-    sed -i "/output/c\output $output$i.xyz" water-slab.inp
+    sed -i "/output/c\output $output${i}_w.xyz" water-slab.inp
     sed -i "/seed/c\seed $i" water-slab.inp
     ~/bin/packmol/packmol < water-slab.inp
 done
