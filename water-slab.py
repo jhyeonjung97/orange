@@ -37,9 +37,9 @@ while waternumb < 2:
     waternumb=int(a*b*factor*layer)+1
 
 top=waternumb/a/b*10**30/997/1000*18.01528/(6.022*10**23)*1.2
-system(f'sh ~/bin/orange/water-slab.sh {a} {b} {top} {waternumb} {seed} {output}')
 
 for i in range(1,seed+1):
+    system(f'sh ~/bin/orange/water-slab.sh {a} {b} {top} {waternumb} {seed} {output}')
     water=read(f'{output}{i}_w.vasp')
     water.positions+=(0, 0, z+2.2)
     slab_water=slab+water
