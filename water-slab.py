@@ -47,4 +47,4 @@ for i in range(1,filenumb+1):
         slab_water.wrap()
         write(f'{output}{j}.vasp',slab_water)
         
-system(f'~/bin/rm_mv *_w.vasp')
+system(f'~/bin/rm_mv *_w.vasp *_w.xyz')
