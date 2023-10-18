@@ -34,6 +34,7 @@ alias direct='sh ~/bin/orange/direct.sh'
 alias slab='python3 ~/bin/orange/slab.py'
 alias split_dos='python ~/bin/vtstscripts/split_dos.py'
 alias merge='python ~/bin/orange/merge-csvs.py'
+alias jn='jupyter notebook --allow-root'
 # alias weekend='
 
 alias zip='tar -cvzf'
