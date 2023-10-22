@@ -82,7 +82,7 @@ else
     SET=$(seq $1 $2)
 fi
 
-if [[ -n $(echo $PWD | grep LiS) ]]; then
+if [[ -n $(echo $PWD | grep 'PCL') ]]; then
     sed -i -e '/RECOMMEND/s/.TRUE.  /.FALSE.  /' ~/.vaspkit
 fi
 
