@@ -12,7 +12,6 @@ alias vasp2png='python ~/bin/shoulder/vasp2png.py'
 alias style='open /Applications/VESTA/VESTA.app/Contents/Resources/style.ini'
 alias element='open /Applications/VESTA/VESTA.app/Contents/Resources/elements.ini'
 alias carbon='sed -i -e "s/1.89002  0  2/1.89002  0  0/" *.vesta'
-alias
 
 alias orange='dir_now=$PWD
 cd ~/bin/orange
