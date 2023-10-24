@@ -1,6 +1,6 @@
 alias jl='cd ~/bin
 jupyter-lab'
-alias jn='cd ~/bin
+alias jn='ssh -N -f -L localhost:7777:localhost:9999 hyeonjung@burning.postech.ac.kr -p 54329
 jupyter notebook'
 
 alias cdw='cd ~/Desktop/'
