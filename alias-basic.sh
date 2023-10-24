@@ -11,11 +11,7 @@ alias acf='sh ~/bin/orange/acf.sh'
 alias pos2cif='~/bin/vtstscripts/pos2cif.pl POSCAR'
 alias con2cif='~/bin/vtstscripts/pos2cif.pl CONTCAR'
 alias out2xyz='sh ~/bin/orange/out2xyz.sh'
-<<<<<<< HEAD
 alias rmport='~/bin/rm_mv ~/port
-=======
-alias rmport='mv ~/port/ ~/_TRASH
->>>>>>> c7dbe11499dc57bd3700427de67409b482ac87ee
 mkdir ~/port'
 alias lsport='ls ~/port/'
 alias rmtemp='~/bin/rm_mv ~/bin/temp.sh'
