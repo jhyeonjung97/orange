@@ -111,7 +111,7 @@ do
                     echo "$dir$pattern $filename$numb.vasp"
                 fi
                 list+="$filename$numb.vasp "
-            elif [[ $pattern == 'CHGCAR' ]]; then
+            elif [[ $file == 'CHGCAR' ]]; then
                 cp $file $destination'chgcar'$numb.vasp
                 echo "$dir$file 'chgcar'$numb.vasp"
                 list+="chgcar$numb.vasp "
