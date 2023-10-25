@@ -78,6 +78,12 @@ elif [[ $f == 'c' ]] || [[ $f == 'con' ]]; then
     if [[ -z $filename ]]; then
         read -p "filename starts with? " filename
     fi
+elif [[ $f == 'POSCAR' ]]; then
+    pattern='POSCAR'
+    filename=$2
+    if [[ -z $filename ]]; then
+        read -p "filename starts with? " filename
+    fi
 else
     pattern=$f
 fi
