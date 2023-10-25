@@ -108,7 +108,7 @@ do
             if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
                 if [[ $f == 'POSCAR' ]]; then
                     cp POSCAR $destination$filename$numb.vasp
-                    echo "$dir'POSCAR' $filename$numb.vasp"
+                    echo "$dir$f $filename$numb.vasp"
                 elif [[ $pattern == 'POSCAR' ]] && [[ -e initial.vasp ]]; then
                     cp initial.vasp $destination$filename$numb.vasp
                     echo "$dir'initial.vasp' $filename$numb.vasp"
