@@ -100,7 +100,7 @@ do
     do
         if [[ $file =~ $pattern ]]; then
             if [[ $pattern == 'POSCAR' ]] || [[ $pattern == 'CONTCAR' ]]; then
-                if [[ $f =! 'p' ]] && [[ $f =! 'pos' ]]; then
+                if [[ $f != 'p' ]] && [[ $f != 'pos' ]]; then
                     cp POSCAR $destination$filename$numb.vasp
                     echo "$dir'initial.vasp' $filename$numb.vasp"
                 elif [[ $pattern == 'POSCAR' ]] && [[ -e initial.vasp ]]; then
