@@ -10,7 +10,7 @@ if [[ $1 == '-c' ]] || [[ $1 == '-n' ]]; then
 else
     for file in $@
     do
-        if [[ file =~ '-' ]]; then
+        if ! [[ file =~ '-' ]]; then
             ase convert --write-args direct=True -f $file $file
             echo "Direct $file"
         fi
