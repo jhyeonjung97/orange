@@ -64,7 +64,6 @@ alias name='sh ~/bin/orange/jobname.sh'
 alias conti='sh ~/bin/orange/conti.sh'
 
 #INCAR
-alias chg='python3 ~/bin/orange/change.py'
 alias del='python3 ~/bin/orange/delete.py'
 alias close='python3 ~/bin/orange/close.py'
 alias magmom='python3 ~/bin/orange/magmom.py'
