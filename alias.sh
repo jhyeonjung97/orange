@@ -53,7 +53,7 @@ alias convert='python3 ~/bin/orange/convert.py'
 alias wrap='python ~/bin/orange/wrap.py'
 alias cpport='cp *.vasp ~/port'
 alias names='sh ~/bin/orange/names.sh'
-alias chg='sh ~/bin/orange/chg/sh'
+alias chg='sh ~/bin/orange/chg.sh'
 
 alias orange='dir_now=$PWD
 cd ~/bin/orange
