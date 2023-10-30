@@ -52,6 +52,7 @@ alias rename='sh ~/bin/orange/rename.sh'
 alias convert='python3 ~/bin/orange/convert.py'
 alias wrap='python ~/bin/orange/wrap.py'
 alias cpport='cp *.vasp ~/port'
+alias names='sh ~/bin/orange/names.sh'
 
 alias orange='dir_now=$PWD
 cd ~/bin/orange
