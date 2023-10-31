@@ -36,6 +36,7 @@ alias slab='python3 ~/bin/orange/slab.py'
 alias split_dos='python ~/bin/vtstscripts/split_dos.py'
 alias merge='python ~/bin/orange/merge-csvs.py'
 alias jn='jupyter notebook --allow-root'
+alias bader='sh ~/bin/orange/bader.sh'
 
 alias zip='tar -cvzf'
 alias unzip='tar -xvf'
