@@ -8,9 +8,11 @@ function directory {
         $1
     else
         for dir in */
-        cd $dir
-        $1
-        cd ..
+        do
+            cd $dir
+            $1
+            cd ..
+        done
     fi
     }
     
