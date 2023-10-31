@@ -4,7 +4,7 @@ function baderchg {
 }
 
 if ! [[ $1 == '-r' ]]; then
-    bader-chg
+    baderchg
 else
     for dir in */
     do
