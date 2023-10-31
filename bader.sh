@@ -1,4 +1,4 @@
-function bader-chg {
+function baderchg {
     chgsum.pl AECCAR0 AECCAR2
     bader CHGCAR -ref CHGCAR_sum
 }
@@ -9,7 +9,7 @@ else
     for dir in */
     do
         cd $dir
-        bader-chg
+        baderchg
         cd ..
     done
 fi
