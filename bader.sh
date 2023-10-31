@@ -1,4 +1,4 @@
-function bader-chg {
+function bader {
     chgsum.pl AECCAR0 AECCAR2
     bader CHGCAR -ref CHGCAR_sum
     }
@@ -16,4 +16,4 @@ function directory {
     fi
     }
     
-directory bader-chg $1
+directory $(bader) $1
