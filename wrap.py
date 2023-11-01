@@ -27,7 +27,13 @@ elif number==0:
     atoms=read(f'{filename}')
     atoms.wrap()
     if height:
-        atoms.cell[2][2]=height
+        x=atoms.cell.lengths()[0]
+        y=atoms.cell.lengths()[1]
+        # z=atoms.cell.lengths()[2]
+        a=atoms.cell.angles()[0]
+        b=atoms.cell.angles()[1]
+        c=atoms.cell.angles()[2]
+        atoms.cell=(x,y,height,a,b,c)
     write(f'{filename}',atoms)
 else:
     i=1
