@@ -4,8 +4,9 @@ from ase.io import read, write
 for file in os.listdir('./'):
     if file.endswith('.vasp'):
         atoms=read(file)
-        del atoms[[atom.index for atom in atoms if atom.z <= 7.0 and atom.symbol == 'H' ]]
-        write(file,atoms)
+        # del atoms[[atom.index for atom in atoms if atom.z <= 7.0 and atom.symbol == 'H' ]]
+        fixed=FixAtoms(indices=[atom.index for atom in atoms if atom.symbol != 'Li' and atom.symbol != 'S' ])
+        write(file,fixed)
         
 # from ase.io import read, write
 # from ase.build import sort
