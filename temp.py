@@ -1,5 +1,7 @@
 import os
 from ase.io import read, write
+from ase.constraints import FixAtoms
+
 
 for file in os.listdir('./'):
     if file.endswith('.vasp'):
