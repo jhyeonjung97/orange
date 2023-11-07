@@ -6,12 +6,12 @@ if [[ ! -d /TGM/Apps/VASP/VASP_BIN/6.3.2 ]]; then
     exit 1
 fi
 if [[ $1 =~ '-h' ]]; then
-    echo "usage: run-burning.sh [-q] <g1,g2,g3,g4> [types]"
+    echo "usage: run-burning.sh [-q] <g1,g2,g3,g4,test> [types]"
     exit 4
 elif [[ $1 == '-q' ]]; then
     shift
     if [[ $1 == -* ]]; then
-        echo "usage: run-burning.sh [-q] <g1,g2,g3,g4> [types]"
+        echo "usage: run-burning.sh [-q] <g1,g2,g3,g4,test> [types]"
         exit 3
     else
         q=$1
@@ -26,6 +26,8 @@ else
     qstat | grep -i "Q g3"
     echo -e "\033[1mg4:\033[0m"
     qstat | grep -i "Q g4"
+    echo -e "\033[1mtest:\033[0m"
+    qstat | grep -i "Q test"
     pestat -s idle
     read -p "which queue? (g1~g4): " q
 fi
@@ -42,6 +44,8 @@ elif [[ $q == 'g3' ]]; then
     node=24
 elif [[ $q == 'g4' ]]; then
     node=32
+elif [[ $q == 'test' ]]; then
+    node=20
 else
     echo "think about queue..."
     exit 2
@@ -186,4 +190,7 @@ if in_array 'repeat' "${type[*]}"; then
 fi
 if in_array 'freq' "${type[*]}"; then
     sed -i -e 's/; sh ~\/bin\/orange\/ediff.sh//' run_slurm.sh
+fi
+if [[ $q == 'test' ]]; then
+    sed -i -e 's/05-12/00-01/g' run_slurm.sh
 fi
