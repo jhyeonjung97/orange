@@ -98,6 +98,14 @@ function conti {
     cd $save/
     mv */ ..
     cp POSCAR ../initial.vasp
+    if [[ -s CHGCAR ]]; then
+        cp CHGCAR ..
+        sh ~/bin/orange/modify.sh INCAR ICHARG 1
+    fi
+    if [[ -s WAVECAR ]]; then
+        cp WAVECAR ..
+        sh ~/bin/orange/modify.sh INCAR ISTART 1
+    fi
     cp POSCAR CONTCAR INCAR KPOINTS POTCAR run_slurm.sh initial.vasp mpiexe.sh ..
     cd ..
 
