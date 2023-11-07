@@ -4,7 +4,7 @@ from ase.io import read, write
 for file in os.listdir('./'):
     if file.endswith('.vasp'):
         atoms=read(file)
-        del atoms[[atom.index for atom in atoms if 36 < atom.index <= 112 ]]
+        del atoms[[atom.index for atom in atoms if 36 < atom.index <= 42 ]]
         write(file,atoms)
         
 # from ase.io import read, write
