@@ -6,9 +6,12 @@ from ase.constraints import FixAtoms
 for file in os.listdir('./'):
     if file.endswith('.vasp'):
         atoms=read(file)
+        for atom in atoms:
+            if atom.symbol=='C':
+                atom.symbol=='O'
         # del atoms[[atom.index for atom in atoms if atom.z <= 7.0 and atom.symbol == 'H' ]]
-        fixed=FixAtoms(indices=[atom.index for atom in atoms if atom.symbol != 'Li' and atom.symbol != 'S'])
-        atoms.set_constraint(fixed)
+        # fixed=FixAtoms(indices=[atom.index for atom in atoms if atom.symbol != 'Li' and atom.symbol != 'S'])
+        # atoms.set_constraint(fixed)
         write(file,atoms)
         
 # from ase.io import read, write
