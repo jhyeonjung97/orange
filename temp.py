@@ -12,6 +12,7 @@ for file in os.listdir('./'):
         # del atoms[[atom.index for atom in atoms if atom.z <= 7.0 and atom.symbol == 'H' ]]
         # fixed=FixAtoms(indices=[atom.index for atom in atoms if atom.symbol != 'Li' and atom.symbol != 'S'])
         # atoms.set_constraint(fixed)
+        atoms.wrap()
         write(file,atoms)
         
 # from ase.io import read, write
