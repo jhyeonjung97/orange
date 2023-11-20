@@ -23,6 +23,7 @@ g2
 echo -e "\033[1mg3:\033[0m"
 g3
 echo -e "\033[1mg4:\033[0m"
+g4
 idle'
 alias ta='tail -n 6 */stdout*'
 alias taa='tail -n 6 */*/stdout*'
