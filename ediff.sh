@@ -1,10 +1,9 @@
 #!/bin/bash
 i=1
 j=1
+save="conti_1"
 while [[ -n $(tail stdout.log | grep EDIFF) ]] && [[ $j -le 3 ]]
 do 
-    i=1
-    save="conti_$i"
     while [[ -d "conti_$i" ]]
     do
         i=$(($i+1))
