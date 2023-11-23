@@ -2,14 +2,22 @@ import os
 from ase.io import read, write
 from ase.constraints import FixAtoms
 
+height=20
 
 for file in os.listdir('./'):
     if file.endswith('.vasp'):
         atoms=read(file)
+        x=atoms.cell.lengths()[0]
+        y=atoms.cell.lengths()[1]
+        # z=atoms.cell.lengths()[2]
+        a=atoms.cell.angles()[0]
+        b=atoms.cell.angles()[1]
+        c=atoms.cell.angles()[2]
+        atoms.cell=(x,y,height,a,b,c)
         # for atom in atoms:
         #     if atom.symbol=='C':
         #         atom.symbol=='O'
-        del atoms[[atom.index for atom in atoms if atom.index >= 27 and atom.symbol == 'S' ]]
+        # del atoms[[atom.index for atom in atoms if atom.index >= 27 and atom.symbol == 'S' ]]
         # fixed=FixAtoms(indices=[atom.index for atom in atoms if atom.symbol != 'Li' and atom.symbol != 'S'])
         # atoms.set_constraint(fixed)
         atoms.wrap()
