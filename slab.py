@@ -75,9 +75,9 @@ while i <= numb:
     #         atom.symbol='Pt'
             
     # custom2
-    for atom in slab:
-        if atom.position[2] > 5:
-            atom.symbol='Ir'
+    # for atom in slab:
+    #     if atom.position[2] > 5:
+    #         atom.symbol='Ir'
             
     write(f'slab{i}.vasp',slab)
     system(f'python ~/bin/pyband/xcell.py -i slab{i}.vasp -o xc{i}.vasp')
