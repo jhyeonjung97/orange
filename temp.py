@@ -19,8 +19,7 @@ for file in os.listdir('./'):
         #         atom.symbol=='O'
         # del atoms[[atom.index for atom in atoms if atom.index >= 24 and atom.symbol == 'Co' ]]
         del atoms.constraints
-        fixed=FixAtoms(indices=[atom.index for atom in atoms if atom.symbol == 'Co' and atom.index < 8])
-        fixed=FixAtoms(indices=[atom.index for atom in atoms if atom.symbol == 'S' and atom.index < 40])
+        fixed=FixAtoms(indices=[atom.index for atom in atoms if (atom.symbol == 'Co' and atom.index < 8) or (atom.symbol == 'S' and atom.index < 40)])
         atoms.set_constraint(fixed)
         atoms.wrap()
         write(file,atoms)
