@@ -10,6 +10,14 @@ else
         DIR='*/*/'
     elif [[ $1 == '-rrr' ]]; then
         DIR='*/*/*/'
+    elif [[ $1 == '-rrrr' ]]; then
+        DIR='*/*/*/*/'
+    elif [[ $1 == '-rrrrr' ]]; then
+        DIR='*/*/*/*/*/'
+    elif [[ $1 == '-rrrrrr' ]]; then
+        DIR='*/*/*/*/*/*/'
+    elif [[ $1 == '-rrrrrrr' ]]; then
+        DIR='*/*/*/*/*/*/*/'
     elif [[ $1 == '-s' ]] || [[ $1 == '-select' ]]; then
         DIR=${@:2}
     elif [[ -z $2 ]]; then
