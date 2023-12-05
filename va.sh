@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dir_now=$PWD
+
 echo 'ZPE'
 for i in '*/'
 do
