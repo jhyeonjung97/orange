@@ -1,15 +1,11 @@
 #!/bin/bash
 
-dir_now=$PWD
-
-echo $dir_now
-
 echo 'ZPE'
 for i in '*/'
 do
     cd $i
     vaspkit -task 501 | grep 'Zero-point energy E_ZPE'
-    cd $dir_now
+    cd ..
 done
 
 echo 'S_vib'
@@ -17,7 +13,5 @@ for i in '*/'
 do
     cd $i
     vaspkit -task 501 | grep 'Entropy S'
-    cd $dir_now
+    cd ..
 done
-
-echo $dir_now
