@@ -2,6 +2,8 @@
 
 dir_now=$PWD
 
+echo $dir_now
+
 echo 'ZPE'
 for i in '*/'
 do
@@ -17,3 +19,5 @@ do
     vaspkit -task 501 | grep 'Entropy S'
     cd $dir_now
 done
+
+echo $dir_now
