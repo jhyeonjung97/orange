@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'ZPE'
+echo '[ZPE]'
 for i in */
 do
     cd $i
@@ -8,7 +8,7 @@ do
     cd ..
 done
 
-echo 'S_vib'
+echo '[S_vib]'
 for i in */
 do
     cd $i
