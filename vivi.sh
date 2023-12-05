@@ -17,9 +17,15 @@
 
 # cd freq
 # mv CONTCAR POSCAR
+
 sh ~/bin/orange/modify.sh INCAR IBRION 5
 sh ~/bin/orange/modify.sh INCAR POTIM 0.015
 sh ~/bin/orange/modify.sh INCAR NPAR
+
+sh ~/bin/orange/modify.sh INCAR LWAVE .FALSE.
+sh ~/bin/orange/modify.sh INCAR LCHARG .FALSE.
+sh ~/bin/orange/modify.sh INCAR LAECHG
+sh ~/bin/orange/modify.sh INCAR LORBIT
 
 # sed -i -e 's/; sh ~\/bin\/orange\/ediff.sh//' run_slurm.sh
 # sed -i -e '/conti/d' run_slurm.sh
