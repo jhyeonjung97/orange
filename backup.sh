@@ -28,7 +28,7 @@ find . -name OSZICAR -type f -delete
 find . -name XDATCAR -type f -delete
 find . -name WAVECAR -type f -delete
 find . -name EIGENVAL -type f -delete
-find . -delete -name conti* -type d
+find . -name conti* -type d -exec rm -rv {} +
 find . -name x -type d -exec rm -rv {} +
 find . -empty -delete
 
