@@ -38,7 +38,7 @@ do
     echo $size
     du -sh
     find . -size +"$size"c -type f -delete
-    size=${size:0:-1}
+    size=$((size/10))
 done
 du -sh
 
