@@ -18,9 +18,9 @@ else
     exit 2
 fi
 
-find . -name CHG* -type f -delete
-find . -name DOS* -type f -delete
-find . -name *err -type f -delete
+find . -name 'CHG*' -type f -delete
+find . -name 'DOS*' -type f -delete
+find . -name '*err' -type f -delete
 find . -name PCDAT -type f -delete
 find . -name REPORT -type f -delete
 find . -name IBZKPT -type f -delete
@@ -28,7 +28,7 @@ find . -name OSZICAR -type f -delete
 find . -name XDATCAR -type f -delete
 find . -name WAVECAR -type f -delete
 find . -name EIGENVAL -type f -delete
-find . -name conti* -type d -exec rm -rv {} +
+find . -name 'conti*' -type d -exec rm -rv {} +
 find . -name x -type d -exec rm -rv {} +
 find . -empty -delete
 
