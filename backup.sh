@@ -32,8 +32,8 @@ find . -name 'conti*' -type d -exec rm -rv {} +
 find . -name x -type d -exec rm -rv {} +
 find . -empty -delete
 
-size=10000000000
-until [[ $(du -sb | cut -f 1) -lt 1000000000 ]]
+size=1000000
+until [[ $(du -s | cut -f 1) -lt 2097152 ]]
 do
     echo $size
     du -sh
