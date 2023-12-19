@@ -84,6 +84,9 @@ fi
 
 if [[ -n $(echo $PWD | grep 'PCL') ]]; then
     sed -i -e '/RECOMMEND/s/.TRUE.  /.FALSE.  /' ~/.vaspkit
+    if [[ -n $(echo $PWD | grep 'implicit') ]]; then
+        sed -i -e '/RECOMMEND/s/.FALSE.  /.TRUE.  /' ~/.vaspkit
+    fi
 fi
 
 # if [[ -n $(grep lobster run_slurm.sh) ]]; then
