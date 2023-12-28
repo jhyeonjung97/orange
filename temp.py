@@ -2,7 +2,7 @@ import os
 from ase.io import read, write
 from ase.constraints import FixAtoms
 
-height=30
+# height=30
 
 for file in os.listdir('./'):
     if file.endswith('.vasp'):
@@ -14,14 +14,26 @@ for file in os.listdir('./'):
         # b=atoms.cell.angles()[1]
         # c=atoms.cell.angles()[2]
         # atoms.cell=(x,y,height,a,b,c)
-        # for atom in atoms:
-        #     if atom.symbol=='C':
-        #         atom.symbol=='O'
-        del atoms[[atom.index for atom in atoms if atom.index == 32 and atom.symbol == 'O' ]]
+        for atom in atoms:
+            if atom.index == 32 and atom.symbol == 'O'
+            
+        # del atoms[[atom.index for atom in atoms if atom.index == 32 and atom.symbol == 'O' ]]
+        
+        h = Atoms('H', positions=[(0, 0, 0)], cell=(d, 0, 0), pbc=(1, 0, 0))
         # del atoms.constraints
         # fixed=FixAtoms(indices=[atom.index for atom in atoms if (atom.symbol == 'Co' and atom.index < 8) or (atom.symbol == 'S' and atom.index < 40)])
         # atoms.set_constraint(fixed)
         # atoms.wrap()
+        write(file,atoms)
+
+        
+for file in os.listdir('./'):
+    if file.starswith('a') and file.endswith('.vasp'):
+        atoms=read(file)
+        for atom in atoms:
+            if atom.index == 32 and atom.symbol == 'O':
+                p = atom.position+(0.0,1.0,0.0)
+        atoms += Atoms('H', positions=p)
         write(file,atoms)
         
 # from ase.io import read, write
