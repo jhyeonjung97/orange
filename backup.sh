@@ -1,22 +1,22 @@
 #!/bin/bash
 
-# read -p 'are you sure for backup? [y/n] (default: n) ' yn
+read -p 'are you sure for backup? [y/n] (default: n) ' yn
 # read -p 'how about big files (CHG, DOS)? [y/n] (default: y) ' big
 
-# if [[ ! yn == y* ]]; then
-#     exit 1
-# fi
+if [[ ! yn == y* ]]; then
+    exit 1
+fi
 
-# if [[ ${here} == kisti ]]; then
-#     echo "cp -r $PWD /scratch/${account}/backup"
-#     cp -r $PWD /scratch/${account}/backup
-# elif [[ ${here} =~ burning ]] || [[ ${here} == mac ]] || [[ ${here} == mini ]]; then
-#     echo "cp -r $PWD ~/backup"
-#     cp -r $PWD ~/backup
-# else
-#     echo 'where are you?'
-#     exit 2
-# fi
+if [[ ${here} == kisti ]]; then
+    echo "cp -r $PWD /scratch/${account}/backup"
+    cp -r $PWD /scratch/${account}/backup
+elif [[ ${here} =~ burning ]] || [[ ${here} == mac ]] || [[ ${here} == mini ]]; then
+    echo "cp -r $PWD ~/backup"
+    cp -r $PWD ~/backup
+else
+    echo 'where are you?'
+    exit 2
+fi
 
 find . -name 'CHG*' -type f -delete
 find . -name 'DOS*' -type f -delete
