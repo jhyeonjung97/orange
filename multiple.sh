@@ -50,7 +50,7 @@ do
     more fragment.sh >> run_slurm.sh
     echo "cp * $i/" >> run_slurm.sh
     if [[ -n $(grep ediff run_slurm.sh) ]]; then
-        echo "mv conti*/ $i/" >> run_slurm.sh
+        echo "mv wave/ conti*/ $i/" >> run_slurm.sh
     fi
     echo " " >> run_slurm.sh
     cd $i

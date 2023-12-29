@@ -1,4 +1,5 @@
 import os
+from sys import argv
 from ase.io import read, write
 from ase.constraints import FixAtoms
 
