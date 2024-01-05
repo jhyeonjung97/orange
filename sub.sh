@@ -14,10 +14,10 @@ function submit {
         sed -i -e "s/x2421a04/${account}/g" incar.in
         sed -i -e "s/x2755a09/${account}/g" incar.in
     else
-        if [[ -z $(grep POTIM INCAR) ]] || [[ -n $(grep POTIM INCAR | grep 0.015) ]]; then
-            sed -i "/NPAR/d" INCAR
+        if [[ -n $(grep IBRION INCAR | grep 2) ]]; then
+            sh ~/bin/orange/modify.sh INCAR NPAR ${npar}
         else
-            sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
+            sed -i "/NPAR/d" INCAR
         fi
         grep NPAR INCAR
         grep Selective POSCAR
