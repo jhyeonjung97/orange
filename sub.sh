@@ -19,7 +19,6 @@ function submit {
         else
             sed -i "/NPAR/d" INCAR
         fi
-        grep NPAR INCAR
         grep Selective POSCAR
         grep MAGMOM INCAR
     fi
