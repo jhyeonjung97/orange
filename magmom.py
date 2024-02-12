@@ -79,8 +79,8 @@ elif 'Pt3Co' in os.getcwd() :
     iMAGMOM={'Li':'2','S':'3','Pt':'0','Fe':'4','Co':'3','Cu':'0','Ti':'0'}
 elif 'LiS' in os.getcwd() :
     iMAGMOM={'Li':'1','S':'1','C':'1','N':'1','Fe':'2','Co':'2','Ni':'2'}
-elif 'IrFe1' in os.getcwd() :
-    iMAGMOM={'Fe':'4','Co':'3','Ni':'2','Ir':'0'}
+# elif 'IrFe1' in os.getcwd() :
+#     iMAGMOM={'Fe':'4','Co':'3','Ni':'2','Ir':'0'}
 else :
     iMAGMOM={'Sc':'1','Ti':'2','V':'3','Cr':'6','Mn':'5','Fe':'4','Co':'3','Ni':'2','Cu':'1','Zn':'0',
              'Y':'1','Zr':'2','Nb':'5','Mo':'6','Tc':'5','Ru':'4','Rh':'3','Pd':'0','Ag':'1','Cd':'0',
