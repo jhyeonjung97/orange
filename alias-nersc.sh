@@ -1,6 +1,6 @@
 #!/bin/bash
 
-alias cdw='cd /global/cscratch1/sd/jiuy97'
+alias cdw='cd /pscratch/sd/j/jiuy97'
 
 alias pestat='squeue --me'
 alias qstat='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q"'
