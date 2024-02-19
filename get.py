@@ -34,7 +34,7 @@ elif surv=='kisti':
 elif surv=='cori':
     surv='jiuy97@cori.nersc.gov:'
 elif surv=='nersc':
-    surv='jiuy97@perlmutter-p1.nersc.gov:'
+    surv='jiuy97@perlmutter.nersc.gov:'
 
 path=input("from where?: ")
 

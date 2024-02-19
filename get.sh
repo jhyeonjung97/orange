@@ -50,7 +50,7 @@ do
         srvr='jiuy97@cori.nersc.gov:'
     elif [[ $i == 'nersc' ]]; then
         port=''
-        srvr='jiuy97@perlmutter-p1.nersc.gov:'
+        srvr='jiuy97@perlmutter.nersc.gov:'
     fi
     
 done
