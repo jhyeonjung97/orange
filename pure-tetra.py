@@ -2,7 +2,7 @@ import pandas as pd
 import glob
 
 # Define the pattern to match the files - adjust the path as necessary
-file_pattern = "/path/to/your/files/*.txt"  # Adjust this to your files' location
+file_pattern = "./*.txt"  # Adjust this to your files' location
 file_list = glob.glob(file_pattern)
 
 # List to hold dataframes
