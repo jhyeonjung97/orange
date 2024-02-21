@@ -4,7 +4,7 @@ alias cdw='cd /pscratch/sd/j/jiuy97'
 alias cdp='cd /global/cfs/cdirs/m2997/'
 
 alias run='sh run-nersc.sh'
-
+alias time='grep sec OUTCAR'
 alias qdel='scancel'
 alias mystat='squeue --me'
 # alias mystat='squeue -o "%.10F %.10u %.20j %.2P %.5Q %.2t %.2Y" -S "t,-Q" | grep jiuy97'
