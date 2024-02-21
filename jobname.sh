@@ -54,9 +54,10 @@ do
     i=${i%/}
     j=$(echo $i | cut -c 1)
     sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$name$j\"" $i$star/run_slurm.sh
-    sed -i "/#SBATCH -j/c\#SBATCH -j $name$j" $i$star/run_slurm.sh
+    sed -i "/#SBATCH -J/c\#SBATCH -J $name$j" $i$star/run_slurm.sh
     sed -i "/#PBS -N/c\#PBS -N $name$j" $i$star/run_slurm.sh
 done
 
 grep '#PBS -N' */run_slurm.sh
+grep '#SBATCH -J' */run_slurm.sh
 grep '#SBATCH --job-name' */run_slurm.sh
