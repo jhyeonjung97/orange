@@ -19,11 +19,11 @@ function numb {
 
 if [[ -z $2 ]]; then
     sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$1\"" run_slurm.sh
-    sed -i "/#SBATCH -J/c\#SBATCH -J $name$j" $i$star/run_slurm.sh
+    sed -i "/#SBATCH -J/c\#SBATCH -J $name$j" run_slurm.sh
     sed -i "/#PBS -N/c\#PBS -N $1" run_slurm.sh
     if [[ -f lobster.sh ]]; then
         sed -i "/#SBATCH --job-name/c\#SBATCH --job-name=\"$1\"" lobster.sh
-        sed -i "/#SBATCH -J/c\#SBATCH -J $name$j" $i$star/run_slurm.sh
+        sed -i "/#SBATCH -J/c\#SBATCH -J $name$j" lobster.sh
         sed -i "/#PBS -N/c\#PBS -N $1" lobster.sh
     fi
     exit 0
