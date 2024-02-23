@@ -135,10 +135,13 @@ do
     fi
     if [[ $anti_tag == 1 ]]; then
         python3 ~/bin/orange/magmom-anti.py
+        echo 'hello1'
     elif [[ $mag_tag == 1 ]] || [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
         sed -i '/MAGMOM/d' INCAR
+        echo 'hello2'
     else
         python3 ~/bin/orange/magmom.py
+        echo 'hello3'
     fi
     sh ~/bin/orange/vasp5.sh
     if [[ -s POTCAR ]]; then
