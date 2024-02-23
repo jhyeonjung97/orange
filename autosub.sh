@@ -133,10 +133,10 @@ do
         mv out*.vasp POSCAR #XCELL
         echo 'xcell.py is applied'
     fi
-    if [[ $mag_tag == 1 ]] || [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
-        sed -i '/MAGMOM/d' INCAR
-    elif [[ $anti_tag == 1 ]]; then
+    if [[ $anti_tag == 1 ]]; then
         python3 ~/bin/orange/magmom-anti.py
+    elif [[ $mag_tag == 1 ]] || [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
+        sed -i '/MAGMOM/d' INCAR
     else
         python3 ~/bin/orange/magmom.py
     fi
