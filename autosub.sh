@@ -3,18 +3,22 @@
 select=0
 xc_tag=0
 mag_tag=0
+anti_tag=0
 submit=''
 filename=''
 jobname=''
 sed -i -e '/RECOMMEND/s/.FALSE.  /.TRUE.  /' ~/.vaspkit
 
-while getopts ":xmplyni:o:s" opt; do
+while getopts ":xmaplyni:o:s" opt; do
   case $opt in
     x)
       xc_tag=1
       ;;
     m)
       mag_tag=1
+      ;;
+    a)
+      anti_tag=1
       ;;
     p)
       sed -i -e '/RECOMMEND/s/.TRUE.  /.FALSE.  /' ~/.vaspkit
@@ -131,6 +135,8 @@ do
     fi
     if [[ $mag_tag == 1 ]] || [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
         sed -i '/MAGMOM/d' INCAR
+    elif [[ $anti_tag == 1 ]]; then
+        python3 ~/bin/orange/magmom-anti.py
     else
         python3 ~/bin/orange/magmom.py
     fi
