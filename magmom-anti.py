@@ -90,11 +90,14 @@ MAGMOMlist=[]
 for a , i in enumerate(line62) :
     try :
         atom=iMAGMOM['{}'.format(i)]
-        type(atomnumber[a])
-        MAGMOMlist.append(atomnumber[a]+"*"+atom)
+        atom_count = int(atomnumber[a])
+        MAGMOMlist.append(str(atom_count / 2) + "*" + atom)
+        MAGMOMlist.append(str(atom_count / 2) + "*-" + atom)
     except:
         MAGMOMlist.append(atomnumber[a]+"*"+'0')
 print(MAGMOMlist)
+
+
 
 atomlist=[]
 for i in line62:
