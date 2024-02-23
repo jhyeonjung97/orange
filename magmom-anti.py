@@ -90,9 +90,8 @@ MAGMOMlist=[]
 for a , i in enumerate(line62) :
     try :
         atom=iMAGMOM['{}'.format(i)]
-        b=int(int(atomnumber[a])/2)
-        print(b)
-        MAGMOMlist.append(atomnumber[a]+"*"+atom)
+        a_half=int(int(atomnumber[a])/2)
+        MAGMOMlist.append(a_half+"*"+atom)
     except:
         MAGMOMlist.append(atomnumber[a]+"*"+'0')
 print(MAGMOMlist)
