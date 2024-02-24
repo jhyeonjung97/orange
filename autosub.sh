@@ -81,6 +81,10 @@ elif [[ -z $1 ]]; then
     echo 'usage: autosub (number)'
 fi
 
+if [[ ! -n $jobname ]]; then
+    $jobname='test'
+    echo 'please make job names'
+fi
 multiple_input="${@}"
 if [[ $select == 1 ]]; then
     SET=${@}
@@ -192,10 +196,8 @@ if [[ $submit =~ 'y' ]]; then
 elif [[ $submit =~ 'm' ]] && [[ -n $multiple_input ]]; then
     sh ~/bin/orange/multiple.sh $multiple_input
     echo "multiple $multiple_input"
-    if [[ -n $jobname ]]; then
-        sh ~/bin/orange/jobname.sh $jobname
-        echo "multiple $multiple_input; name $jobname"
-    fi
+    sh ~/bin/orange/jobname.sh $jobname
+    echo "multiple $multiple_input; name $jobname"
 fi
 
 sed -i -e '/RECOMMEND/s/.FALSE.  /.TRUE.  /' ~/.vaspkit
