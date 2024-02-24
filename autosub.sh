@@ -174,7 +174,7 @@ do
         sed -i "/NPAR/c\NPAR   = ${npar}" INCAR
     fi
     sed -i -e "/#SBATCH --job-name/c\#SBATCH --job-name=\"$jobname$i\"" *.sh
-    sed -i -e "/#SBATCH -J/c\#SBATCH -J=\"$jobname$i\"" *.sh
+    sed -i -e "/#SBATCH -J/c\#SBATCH -J \"$jobname$i\"" *.sh
     sed -i -e "/#PBS -N/c\#PBS -N $jobname$i" *.sh
     cd ..
 done
