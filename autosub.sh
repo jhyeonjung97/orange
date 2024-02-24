@@ -111,7 +111,7 @@ if [[ -z $filename ]]; then
 fi
 if [[ -z $jobname ]]; then
     $jobname='test'
-    echo 'please make job names'
+    echo "${bold}please make job names${normal}"
 fi
 
 for i in $SET
