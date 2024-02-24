@@ -82,7 +82,7 @@ firstline= ' '.join(LDAUUlist)
 atomline=' '.join(atomlist)
 
 if ldau_tag == 0 :
-    subprocess.call('sed -i \'/LDAU/c\LDAU = .FALSE.\' INCAR', shell=True)
+    subprocess.call('sed -i \'/LDAU /c\LDAU = .FALSE.\' INCAR', shell=True)
 
 subprocess.call('sed -i \'/LDAUU/d\' INCAR', shell=True)
 subprocess.call('sed -i \'/LDAUL/aLDAUU = '+firstline+' \# '+atomline+'\' INCAR', shell=True)
