@@ -65,7 +65,7 @@ if 'tetra' in os.getcwd() :
 
 LDAUUlist=[]
 for a, i in enumerate(line62) :
-    try :
+    try:
         atom=iLDAUU['{}'.format(i)]
         LDAUUlist.append(atom)
     except:
@@ -80,7 +80,7 @@ firstline= ' '.join(LDAUUlist)
 atomline=' '.join(atomlist)
 
 subprocess.call('sed -i \'/LDAUU/d\' INCAR', shell=True)
-# subprocess.call('sed -i \'/IDIPOL/aLDAUU = '+firstline+' \# '+atomline+'\' INCAR', shell=True)
+subprocess.call('sed -i \'/LDAUL/aLDAUU = '+firstline+' \# '+atomline+'\' INCAR', shell=True)
 
 print(Ge)
 subprocess.call('grep LDAUU INCAR', shell=True)
