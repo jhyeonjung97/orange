@@ -63,6 +63,8 @@ else :
 
 if 'tetra' in os.getcwd() :
     iLDAUU={'Ti':'3.00','V':'3.25','Cr':'3.50','Mn':'3.75','Fe':'4.30','Co':'3.32','Ni':'6.45','Cu':'3.00'}
+else:
+    iLDAUU={}
 
 LDAUUlist=[]
 for a, i in enumerate(line62) :

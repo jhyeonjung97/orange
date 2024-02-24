@@ -144,7 +144,7 @@ do
     else
         python3 ~/bin/orange/magmom.py
     fi
-    if [[ $ldau_tag == 1 ]]; then
+    if [[ $ldau_tag == 0 ]]; then
         python3 ~/bin/orange/ldauu.py
     fi
     sh ~/bin/orange/vasp5.sh
