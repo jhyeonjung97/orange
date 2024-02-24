@@ -3,7 +3,7 @@
 select=0
 xc_tag=0
 mag_tag=0
-ladu_tag=0
+ldau_tag=0
 anti_tag=0
 submit=''
 filename=''
