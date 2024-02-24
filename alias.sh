@@ -38,7 +38,7 @@ alias merge='python ~/bin/orange/merge-csvs.py'
 alias jn='jupyter notebook --allow-root'
 alias bader='sh ~/bin/orange/bader.sh'
 alias va='sh ~/bin/orange/va.sh'
-
+alias magnet='sh ~/bin/orange/magnet.sh'
 alias zip='tar -cvzf'
 alias unzip='tar -xvf'
 
