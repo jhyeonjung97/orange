@@ -10,7 +10,7 @@ filename=''
 jobname=''
 sed -i -e '/RECOMMEND/s/.FALSE.  /.TRUE.  /' ~/.vaspkit
 
-while getopts ":xmaptyni:o:s" opt; do
+while getopts ":xmauptyni:o:s" opt; do
   case $opt in
     x)
       xc_tag=1
