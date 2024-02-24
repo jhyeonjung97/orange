@@ -3,13 +3,14 @@
 select=0
 xc_tag=0
 mag_tag=0
+ladu_tag=0
 anti_tag=0
 submit=''
 filename=''
 jobname=''
 sed -i -e '/RECOMMEND/s/.FALSE.  /.TRUE.  /' ~/.vaspkit
 
-while getopts ":xmaplyni:o:s" opt; do
+while getopts ":xmaptyni:o:s" opt; do
   case $opt in
     x)
       xc_tag=1
@@ -20,10 +21,13 @@ while getopts ":xmaplyni:o:s" opt; do
     a)
       anti_tag=1
       ;;
+    u)
+      ldau_tag=1
+      ;;
     p)
       sed -i -e '/RECOMMEND/s/.TRUE.  /.FALSE.  /' ~/.vaspkit
       ;;
-    l)
+    t)
       submit='multi'
       ;;
     y)
@@ -135,13 +139,13 @@ do
     fi
     if [[ $anti_tag == 1 ]]; then
         python3 ~/bin/orange/magmom-anti.py
-        echo 'hello1'
     elif [[ $mag_tag == 1 ]] || [[ -n $(grep '#ISPIN' INCAR) ]] || [[ -n $(grep ISPIN INCAR | grep 1) ]]; then
         sed -i '/MAGMOM/d' INCAR
-        echo 'hello2'
     else
         python3 ~/bin/orange/magmom.py
-        echo 'hello3'
+    fi
+    if [[ $ldau_tag == 1 ]]; then
+        python3 ~/bin/orange/ldauu.py
     fi
     sh ~/bin/orange/vasp5.sh
     if [[ -s POTCAR ]]; then
