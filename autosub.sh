@@ -81,10 +81,6 @@ elif [[ -z $1 ]]; then
     echo 'usage: autosub (number)'
 fi
 
-if [[ ! -n $jobname ]]; then
-    $jobname='test'
-    echo 'please make job names'
-fi
 multiple_input="${@}"
 if [[ $select == 1 ]]; then
     SET=${@}
@@ -114,7 +110,8 @@ if [[ -z $filename ]]; then
     read -p 'name of the file? ' filename
 fi
 if [[ -z $jobname ]]; then
-    read -p 'name of the job? ' jobname
+    $jobname='test'
+    echo 'please make job names'
 fi
 
 for i in $SET
