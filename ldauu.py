@@ -89,7 +89,7 @@ if ldau_tag == 0 :
 subprocess.call('sed -i \'/LDAUU/d\' INCAR', shell=True)
 subprocess.call('sed -i \'/LDAUL/aLDAUU = '+firstline+' \# '+atomline+'\' INCAR', shell=True)
 
-print(Ge)
+print(Bu)
 subprocess.call('grep \'LDAU =\' INCAR', shell=True)
 subprocess.call('grep LDAUU INCAR', shell=True)
 print(reset)
