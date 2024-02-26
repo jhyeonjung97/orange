@@ -56,6 +56,7 @@ alias wrap='python ~/bin/orange/wrap.py'
 alias cpport='cp *.vasp ~/port'
 alias names='sh ~/bin/orange/names.sh'
 alias chg='sh ~/bin/orange/chg.sh'
+alias dos3='sh ~/bin/shoulder/dos3.sh'
 
 alias orange='dir_now=$PWD
 cd ~/bin/orange
