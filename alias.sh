@@ -41,6 +41,7 @@ alias va='sh ~/bin/orange/va.sh'
 alias magnet='awk "/magnetization \(x\)/,/tot /" OUTCAR'
 alias zip='tar -cvzf'
 alias unzip='tar -xvf'
+alias ta='tail */std*'
 
 alias temp='sh ~/bin/orange/temp.sh'
 alias vbash='vi ~/.bashrc'
