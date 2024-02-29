@@ -69,6 +69,11 @@ cd ~/bin/shoulder
 git stash
 git pull
 cd $dir_now'
+alias shoulder='dir_now=$PWD
+cd ~/bin/verve
+git stash
+git pull
+cd $dir_now'
 
 #SSH
 alias burning='ssh -X -Y hyeonjung@burning.postech.ac.kr -p 54329'
