@@ -69,7 +69,7 @@ cd ~/bin/shoulder
 git stash
 git pull
 cd $dir_now'
-alias shoulder='dir_now=$PWD
+alias verve='dir_now=$PWD
 cd ~/bin/verve
 git stash
 git pull
