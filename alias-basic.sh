@@ -142,10 +142,10 @@ cd ../
 sub'
 
 #Electronic structure
-alias aloha='python3 ~/bin/orange/cohp.py > icohp.txt
-python3 ~/bin/orange/cohp.py'
-alias mahalo='python3 ~/bin/orange/cobi.py > icobi.txt
-python3 ~/bin/orange/cobi.py'
+alias aloha='python ~/bin/orange/cohp.py > icohp.txt
+python ~/bin/orange/cohp.py'
+alias mahalo='python ~/bin/orange/cobi.py > icobi.txt
+python ~/bin/orange/cobi.py'
 alias charge='python3 ~/bin/orange/charge.py'
 alias ichg='sh ~/bin/orange/modify0.sh chg
 cp INCAR INCAR.original
