@@ -155,6 +155,7 @@ calc = vasp_calculator.Vasp(istart=1,
                             # idipol=3,
                             # dipol=(0, 0, 0.5),
                             # ldipol=True
+                            txt='out.vasp'
                            )
 
 cell = atoms.cell.copy()
@@ -166,8 +167,6 @@ atoms.set_calculator(calc)
 eng = atoms.get_potential_energy()
 
 print ('Calculation Complete, storing the run + calculator to traj file')
-
-from ase.io.trajectory import Trajectory
 
 traj2=Trajectory('final_with_calculator.traj',  'w') 	
 traj2.write(atoms)
