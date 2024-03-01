@@ -27,3 +27,10 @@ git add *
 git commit -m "."
 git push
 cd $dir_now'
+alias verve='dir_now=$PWD
+cd ~/bin/verve
+git pull
+git add *
+git commit -m "."
+git push
+cd $dir_now'
