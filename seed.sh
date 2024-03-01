@@ -48,4 +48,4 @@ do
     ~/bin/packmol/packmol < $filename.inp
 done
 
-python3 ~/bin/orange/convert.py xyz vasp $a $b $c
+python3 ~/bin/verve/convert.py xyz traj $a $b $c
