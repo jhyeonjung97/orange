@@ -8,14 +8,11 @@ fi
 if [[ $1 == '-ase' ]] || [[ $1 == '-a' ]]; then
     extension=${2##*.}
     filename=${2%.*}
-    # echo $extension $filename
     for file in *."$extension"
     do  
         name=$(echo $file | rev | cut -c 6- | rev)
         if [[ $name =~ $filename ]]; then
-            # echo $file
             numb=$(echo $name | rev | cut -c -5 | rev)
-            # echo $numb
             if [[ $numb =~ '00000' ]]; then
                 mv $file $filename'1'.$extension
                 # echo $i
@@ -38,16 +35,17 @@ if [[ $1 == '-ase' ]] || [[ $1 == '-a' ]]; then
 elif [[ $1 == '-0' ]] || [[ $1 == '-z' ]]; then
     extension=${2##*.}
     filename=${2%.*}
-    # echo $extension $filename
     for file in *."$extension"
     do  
         name=$(echo $file | rev | cut -c 6- | rev)
         if [[ $name =~ $filename ]]; then
             numb=$(echo $name | rev | cut -c -5 | rev)
-            if [[ $numb =~ '0000' ]]; then
-                i=$(echo $numb | rev | cut -c -1 | rev)
-                mv $file $filename$i.$extension
-            fi
+            i=$(echo $numb | rev | cut -c -2 | rev)
+            mv $file $filename$i.$extension
+            # if [[ $numb =~ '0000' ]]; then
+            #     i=$(echo $numb | rev | cut -c -1 | rev)
+            #     mv $file $filename$i.$extension
+            # fi
         fi
     done
 elif [[ $1 == '-ksoe' ]] || [[ $1 == '-k' ]]; then
@@ -100,10 +98,10 @@ else
     filename1=${1%.*}
     extension2=${2##*.}
     filename2=${2%.*}
-    for i in {0..9}
+    for file in *."$extension1"
     do
-        if [[ -e $filename1$i.$extension1 ]]; then
-            mv $filename1$i.$extension1 $filename2$i.$extension2
-        fi
+        newname="${file/$filename1/$filename2}"
+        newname="${newname%.*}.$extension2"
+        mv "$file" "$newname"
     done
 fi

@@ -1,46 +1,64 @@
-# from sys import argv
+import os
+import glob
 import argparse
 from ase.io import read, write
+from ase.build.tools import sort
+from ase.constraints import FixAtoms
 from ase.io.vasp import read_vasp_xdatcar, write_vasp_xdatcar
 
 parser = argparse.ArgumentParser(description='Command-line options example')
-
 parser.add_argument('filename', type=str, default='POSCAR', help='input filename (e.g., a for a1~a3.vasp, OR you can type POSCAR, CONTCAR, XDATCAR)')
-parser.add_argument('-n', '--number', type=int, default=0, help='the number of files (e.g., 3 for a1~a3.vasp)')
-parser.add_argument('-z', '--height', type=float, default=None, help='z-axis length (A)')
+parser.add_argument('-a', '--add', type=float, default=0)
+parser.add_argument('-z', '--height', type=float, default=None)
+parser.add_argument('-f', '--fix', action='store_true', default=False)
+parser.add_argument('-s', '--sort', action='store_true', default=False)
+parser.add_argument('-w', '--wrap', action='store_true', default=False)
+parser.add_argument('-c', '--center', action='store_true', default=False)
+parser.add_argument('--facet', type=str, default='0,0,1')
+parser.add_argument('-r', '--repeat', type=str, default='1,1,1')
 
-# args, remaining_args = parser.parse_known_args()
 args = parser.parse_args()
-        
-# Process arguments parsed by argparse
 filename = args.filename
-number = args.number
 height = args.height
-    
-# filename=argv[1]
-if filename=='XDATCAR':
-    structures = read_vasp_xdatcar('XDATCAR', index=0)
-    # for atoms in structures:
-    #     atoms.cell[2][2]=50
-    # write_vasp_xdatcar('test_XDATCAR', structures)
-elif number==0:
-    atoms=read(f'{filename}')
-    atoms.wrap()
-    if height:
-        x=atoms.cell.lengths()[0]
-        y=atoms.cell.lengths()[1]
-        # z=atoms.cell.lengths()[2]
-        a=atoms.cell.angles()[0]
-        b=atoms.cell.angles()[1]
-        c=atoms.cell.angles()[2]
-        atoms.cell=(x,y,height,a,b,c)
-    write(f'{filename}',atoms)
-else:
-    i=1
-    while i <= number:
-        atoms=read(f'{filename}{i}.vasp')
+add = args.add
+
+facet = args.facet
+repeat = args.repeat
+x, y, z = map(int, facet.split(','))
+a, b, c = map(int, repeat.split(','))
+
+pattern = os.path.join('./', f'{filename}*.vasp')
+matching_files = glob.glob(pattern)
+for file in matching_files:
+    atoms = read(f'{file}')
+    if repeat:
+        atoms = atoms.repeat((a,b,c))
+    if args.wrap:
         atoms.wrap()
-        if height:
-            atoms.cell[2][2]=height
-        write(f'{filename}{i}.vasp',atoms)
-        i+=1
+    if args.center:
+        atoms.center()
+    if args.sort:
+        atoms = sort(atoms)
+    if add:
+        l1 = atoms.cell.lengths()[0]
+        l2 = atoms.cell.lengths()[1]
+        l3 = atoms.cell.lengths()[2]
+        a1 = atoms.cell.angles()[0]
+        a2 = atoms.cell.angles()[1]
+        a3 = atoms.cell.angles()[2]
+        atoms.cell = (l1, l2, l3+add, a1, a2, a3)
+    if height:
+        l1 = atoms.cell.lengths()[0]
+        l2 = atoms.cell.lengths()[1]
+        # l3 = atoms.cell.lengths()[2]
+        a1 = atoms.cell.angles()[0]
+        a2 = atoms.cell.angles()[1]
+        a3 = atoms.cell.angles()[2]
+        atoms.cell = (l1, l2, height, a1, a2, a3)
+    if args.fix:
+        min_z = atoms.positions[:,2].min()
+        max_z = atoms.positions[:,2].max()
+        mid_z = (min_z + max_z) / 2
+        fixed = FixAtoms(indices=[atom.index for atom in atoms if atom.position[2] < mid_z])
+        atoms.set_constraint(fixed)
+    write(f'{file}',atoms)

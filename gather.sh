@@ -5,10 +5,10 @@ neb_tag=''
 port_tag=''
 r=''
 
-while getopts ":cnrpd:" opt; do
+while getopts ":c:nrpd:" opt; do
   case $opt in
     c)
-      cut_tag=1
+      cut_tag=$OPTARG
       ;;
     n)
       neb_tag=1
@@ -97,8 +97,8 @@ fi
 for dir in $dirs
 do
     cd $dir
-    if [[ $cut_tag == 1 ]]; then
-        numb=$(echo $dir | cut -c 1)
+    if [[ $cut_tag != 0 ]]; then
+        numb=$(echo $dir | cut -c -$cut_tag)
     else
         numb=${dir%/}
     fi
