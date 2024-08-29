@@ -29,8 +29,8 @@ find . -name XDATCAR -type f -delete
 find . -name WAVECAR -type f -delete
 find . -name EIGENVAL -type f -delete
 find . -name OUTCAR -type f -exec ase convert {} final_with_calculator.json;
-find . -name 'conti*' -type d -exec rm -rv {} +
-find . -name x -type d -exec rm -rv {} +
+find . -name 'conti*' -type d -exec rm -rv {};
+find . -name x -type d -exec rm -rv {};
 find . -empty -delete
 
 size=2097152
