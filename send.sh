@@ -51,7 +51,10 @@ do
     elif [[ $i == 'nersc' ]]; then
         port=''
         srvr='jiuy97@perlmutter.nersc.gov:'
-    
+    elif [[ $i == 'slac' ]]; then
+        port=''
+        srvr='jiuy97@s3dflogin.slac.stanford.edu:'
+        
     # POSCAR/CONTCAR/port
     elif [[ $i == 'p' ]] || [[ $i == 'pos' ]]; then
         file="$file POSCAR"
