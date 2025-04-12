@@ -103,7 +103,7 @@ firstline= ' '.join(MAGMOMlist)
 atomline=' '.join(atomlist)
 
 subprocess.call('sed -i \'/MAGMOM/d\' INCAR', shell=True)
-subprocess.call('sed -i \'/IDIPOL/aMAGMOM = '+firstline+' \# '+atomline+'\' INCAR', shell=True)
+subprocess.call('sed -i \'/ISPIN/aMAGMOM = '+firstline+' \# '+atomline+'\' INCAR', shell=True)
 
 
 

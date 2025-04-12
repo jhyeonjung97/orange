@@ -28,8 +28,8 @@ do
         port=' -P 54329'
         srvr='hyeonjung@burning.postech.ac.kr:'
     elif [[ $i == 'snu' ]]; then
-        port=''
-        srvr='hyeonjung@210.117.209.87:'
+        port=' -P 54329'
+        srvr='hyeonjung@114.71.51.21:'
     elif [[ $i == 'x2658' ]]; then
         port=''
         srvr='x2658a09@nurion-dm.ksc.re.kr:'
