@@ -52,7 +52,7 @@ do
         port=''
         srvr='jiuy97@perlmutter.nersc.gov:'
     elif [[ $i == 'slac' ]]; then
-        port=''
+        port=' -J jiuy97@s3dflogin.slac.stanford.edu'
         srvr='jiuy97@suncat:'
         
     # POSCAR/CONTCAR/port
